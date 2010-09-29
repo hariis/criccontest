@@ -1,0 +1,6 @@
+<h1>Editing entry</h1>
+
+<%= render :partial => 'entry', :member => @entry, :locals => {:submit_type => 'Update'} %>
+
+<%= link_to 'Show', @entry %> |
+<%= link_to 'Back', entries_path %>

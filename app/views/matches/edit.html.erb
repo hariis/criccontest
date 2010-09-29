@@ -1,0 +1,6 @@
+<h1>Editing match</h1>
+
+<%= render :partial => 'match', :member => [@contest, @match], :locals => {:submit_type => 'Update'} %>
+
+<%= link_to 'Show', @match %> |
+<%= link_to 'Back', matches_path %>

@@ -1,0 +1,36 @@
+<div id="post-content">
+  <div id="actual-post-content">
+
+    <div id="parent-post">
+        <div class="subject">            
+          <span style="font-size:140%;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
+          <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %>
+        </div>
+        <div id="post-body">
+            <span style="color:#0062f6;">
+              <%=h @match.venue %><br/>
+              <%=h @match.date %><br/>      
+              <%=h @match.starttime %><br/>
+            </span>
+        </div> 
+  </div><br/>
+        <span style="font-size:150%">Listing Predictions</span>
+        <div id='predictions'>
+            <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %><br/>
+              <b><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</b> <br/>
+              <% user_predicted = 0 %>
+              <% spectator.predicitions.each do |predicition| %>                
+                <% entry = Entry.find_by_id(predicition.entry_id) %>
+                <% if entry.name == 'winner' %>
+                    <%= "Winner: " + Team.find_by_id(predicition.user_predicition).teamname  if predicition.user_predicition != 0 %>
+                    <% user_predicted += predicition.user_predicition %>
+                <% end %>
+              <% end %>
+              <%= "Yet to predict" if user_predicted == 0 %><br/>
+            <% end %>
+        </div>
+  
+  <h4 style="border-top:1px solid #000;"></h4>
+  <h3><%= facebox_link_to 'Cast / Edit Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<% if current_user && current_user.admin? && current_user.admin_user? %>
+    <% link_to "Add New Match",  :controller => 'matches', :action => 'new', :contest_id => @contest.id, :user_id => current_user.id %>  <br/>    
+    <%= button_to "Add New Match",  new_contest_match_path(@contest, @match), :method => 'get' %>      
+<% end %>
+
+<p>
+  <b>Name:</b>
+  <%=h @contest.name %>
+</p>
+
+
+<p>
+  <b>Description:</b>
+  <%=h @contest.description %>
+</p>
+
+<br/><h4>Listing Matches</h4>
+<%= render :partial => 'match', :collection => @contest.matches %>
+
+<% link_to 'Edit', edit_contest_path(@contest) %>
+<% link_to 'Back', contests_path %>

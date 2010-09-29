@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= title_tag_line %> </title>
+ 
+  <%= stylesheet_link_merged :base %>
+ <%= javascript_include_merged :proto %>
+  <script src="/javascripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var tinymce_advanced_options = {
+  mode : "textareas",
+  theme : "advanced",
+  editor_deselector : "mceNoEditor",
+  skin : "o2k7",
+  skin_variant : "black",
+  theme_advanced_resizing_min_width : 500,
+  theme_advanced_resizing_max_width : 800,
+  plugins : "paste,safari,table,paste,emotions",
+
+  width: "760",
+  button_title_map: false,
+  apply_source_formatting: true,
+  theme_advanced_toolbar_align: "left",
+
+  theme_advanced_buttons1: "formatselect,outdent,indent,seperator,undo,redo,separator,emotions",
+  theme_advanced_buttons2: "justifyleft,justifycenter,justifyright,separator,bold,italic,separator,bullist,numlist,link,separator,table",
+  theme_advanced_buttons3: "", //you have to have this to get an empty third row otherwise you get some elements
+  theme_advanced_toolbar_location: "bottom",
+  theme_advanced_resizing : true,
+  theme_advanced_blockformats : "p,h2,h3,blockquote"
+};
+
+tinyMCE.init(tinymce_advanced_options);
+  </script>
+ <%= javascript_include_merged :rest %>
+  
+  <script type="text/javascript">
+        jQuery.noConflict();
+        var $j = jQuery;
+     </script>
+  <script  type="text/javascript">
+  $j(function(){  // $(document).ready shorthand
+     $j('#flash-notice').fadeOut(8000);
+     $j('#flash-error').fadeOut(8000);
+});
+  </script>
+</head>
+<body>
+
+<div id="header">
+   <!--[if lt IE 7]>
+ <div class="banner" style="height:33px; padding:10px 20px 7px 30px;background-color:#ff0000;">
+ It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
+</div> <![endif]--> 
+
+<div id="logo-text">
+    <li><%= link_to "Social Cricket Contest", root_url %></li>
+</div>
+
+<ul>
+  <li><% link_to "Home", root_url %></li>
+  <li><% link_to "How to get Started", howtogetstarted_path %></li>
+
+  <% if current_user && current_user.activated? %>
+      <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %> %>
+   <% else %>
+       <li><%= link_to "Sign Up", new_user_path %></li>
+       <li><%= link_to "Login", login_path %></li>    
+   <% end %>
+      
+</ul>
+</div>
+  
+<% if flash[:notice] %>
+  <div id="flash-notice">
+      <p><%= flash[:notice] %><%  flash[:notice] = nil %></p>
+  </div>
+<% end %>
+<% if flash[:error] %>
+  <div id="flash-error">
+      <p><%= flash[:error] %><%  flash[:error] = nil %></p>
+  </div>
+<% end %>
+
+<% if flash[:status] %>
+  <div id="flash-status">
+      <p><%= flash[:status] %><%  flash[:status] = nil %></p>
+  </div>
+<% end %>
+<% if controller.action_name == 'howtogetstarted' || controller.action_name == 'dashboard' || (controller_name != 'contacts' && controller.action_name == 'index') %>
+    <div id="content">
+<% else %>
+     <div id="gen-content">
+<% end %>
+      
+<%= yield %>
+       
+</div>
+  <% if current_user %>
+  <span id="feedback"><%= facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
+  <% end %>
+  <% if controller.action_name == 'howtogetstarted' || controller.action_name == 'dashboard' || controller.action_name == 'privacy' || controller.action_name == 'edit'|| controller.action_name == 'update'|| controller.action_name == 'new' || controller.action_name == 'create'|| controller.action_name == 'index' || controller.action_name == 'contacts' %>
+    <div id="footer-d">
+<% else %>
+     <div id="footer">  
+<% end %>
+      <ul>
+      <li>©2010 CricContest</li> |
+      <li><%= link_to "How to get Started", howtogetstarted_path %></li> |
+      <li><%  link_to "Blog", DOMAIN + "blog" %></li>
+      <li><%=  link_to "About", DOMAIN + "about" %></li> |
+      <li><%=  link_to "Contact", DOMAIN + "contact" %></li> |
+      <li><%=  link_to "Privacy", DOMAIN + "privacy" %></li> |
+      <li><%=  link_to "Help / FAQ", DOMAIN + "help" %></li> 
+    </ul>
+  </div>
+</body>
+</html>

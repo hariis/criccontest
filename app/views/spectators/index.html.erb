@@ -1,0 +1,32 @@
+<h1>Listing spectators</h1>
+
+<table>
+  <tr>
+
+    <th>User</th>
+
+    <th>Match</th>
+
+    <th>Totalscore</th>
+
+  </tr>
+
+<% @spectators.each do |spectator| %>
+  <tr>
+
+    <td><%=h spectator.user %></td>
+
+    <td><%=h spectator.match %></td>
+
+    <td><%=h spectator.totalscore %></td>
+
+    <td><%= link_to 'Show', spectator %></td>
+    <td><%= link_to 'Edit', edit_spectator_path(spectator) %></td>
+    <td><%= link_to 'Destroy', spectator, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New spectator', new_spectator_path %>

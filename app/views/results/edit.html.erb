@@ -1,0 +1,28 @@
+<h1>Editing result</h1>
+
+<% form_for(@result) do |f| %>
+  <%= f.error_messages %>
+
+
+  <p>
+    <%= f.label :result %><br />
+    <%= f.text_field :result %>
+  </p>
+
+  <p>
+    <%= f.label :match %><br />
+    <%= f.text_field :match %>
+  </p>
+
+  <p>
+    <%= f.label :entry %><br />
+    <%= f.text_field :entry %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @result %> |
+<%= link_to 'Back', results_path %>

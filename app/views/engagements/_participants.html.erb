@@ -1,0 +1,35 @@
+<% unless participants.nil? %>
+  <% participants.each_pair do |invitee,engagement| %>
+  <li  class= 'new-p'>
+          <%= image_tag "user_green.png" %> <%=  invitee.display_name(nil,engagement) %>
+            <%= link_to_function( (image_tag ("bullet_arrow_down.png")),  :id => "more_link_down_#{invitee.id}") do |page|
+                      page.visual_effect  :toggle_blind, "user-details_#{invitee.id}"
+                      page.show "more_link_up_#{invitee.id}"
+                      page.hide "more_link_down_#{invitee.id}"
+               end  %>
+              <%= link_to_function( (image_tag ("bullet_arrow_up.png")),  :id => "more_link_up_#{invitee.id}", :style => 'display:none;') do |page|
+                      page.visual_effect  :toggle_blind, "user-details_#{invitee.id}"
+                      page.hide "more_link_up_#{invitee.id}"
+                      page.show "more_link_down_#{invitee.id}"
+               end  %>
+             <div id="user-details_<%=invitee.id %>"  style="display:none;">
+                    <% if invitee.avatar.file? %>
+                      <%= image_tag invitee.avatar.url(:thumb) %>
+                    <% else %>
+                      No photo available
+                   <% end %>
+                      <div class ="user-bio">
+                        <b>Twitter Profile:</b><br/>
+                         <%= invitee.screen_name.blank? ? "" : "http://twitter.com/" + invitee.screen_name %><br/>
+                        <b>Blog:</b><br/>
+                        <%=  link_to invitee.blog_link, invitee.blog_link %><br/>
+                        <b>Facebook Profile:</b><br/>
+                        <%=h invitee.facebook_link %><br/>
+                        <b>LinkedIn Profile:</b><br/>
+                        <%=h invitee.linked_in_link %><br/>
+                    </div>
+             </div>
+    </li>
+  <% end %>
+
+<% end %>

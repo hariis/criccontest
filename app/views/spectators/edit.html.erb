@@ -1,0 +1,28 @@
+<h1>Editing spectator</h1>
+
+<% form_for(@spectator) do |f| %>
+  <%= f.error_messages %>
+
+
+  <p>
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </p>
+
+  <p>
+    <%= f.label :match %><br />
+    <%= f.text_field :match %>
+  </p>
+
+  <p>
+    <%= f.label :totalscore %><br />
+    <%= f.text_field :totalscore %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @spectator %> |
+<%= link_to 'Back', spectators_path %>

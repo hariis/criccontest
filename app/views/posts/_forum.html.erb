@@ -1,0 +1,56 @@
+<div id="post-content">
+  <div id="actual-post-content">
+      <div id="parent-post">
+          <div id="post-body">
+            <% if @post.owner == @user %>
+               <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <% image_tag '/images/pencil.png' %></div>
+               <div>
+               <span id="url-text" class="url"><%= render :partial => 'posts/update_url_text', :object => @post  %></span><% image_tag '/images/pencil.png' %>
+               <span id="url-link"><%= render :partial => 'posts/update_url_link', :object => @post %></span>
+               </div>                           
+               <div><%= in_place_rich_editor_field :post, :description ,{}, :size => '75', :mode => 'tinymce_advanced_options' %><% image_tag '/images/pencil.png' %></div>
+            <% else %>
+               <div class="subject"> <%= @post.subject.capitalize %></div>
+               <% if @post.url != "Add a link" %>
+               <div class="url">Check out:<%= link_to h(@post.url) , h(@post.url) %></div>
+               <% end %>
+               <div class="description"> <%= @post.description %></div>
+            <% end %>
+               <div><%= image_tag @post.avatar.url(:medium)  if @post.avatar? %></div>
+          </div>
+          <span style="color:#0062f6;">
+          <%= "#{@post.owner.display_name} <br/> #{@post.created_at.to_s(:short)}" %></span>
+          <span style="color:#0062f6;float:right;width:8%;">
+          <%= image_tag @post.owner.avatar.url(:thumb) if @post.owner.avatar.file? %></span>
+
+          <div id="tags">
+            <strong style="float:left;">Keywords:</strong><%= image_tag '/images/pencil.png' %>
+            <span style="font-size:85%;">(separate multiple keywords with comma)</span>
+            <% if !@readonlypost %>
+                  <%= in_place_editor_field :post, 'tag_list',{}, :size => '70',:text_between_controls => ' or ',:save_text => 'save' %>
+            <% else%>
+                   <br/><%= @post.tag_list %>
+            <% end %>
+          </div>
+     </div>
+
+    <div id="comments-section">
+        <div id="sticky-comments">
+            <% if @post.comments.sticky.length > 0 %>
+                  <%= render :partial => "/comments/sticky_comment", :collection => @post.comments.sticky, :locals => {:root => 'true',:parent_comment => nil} %>
+            <% end %>
+        </div>
+
+        <div id ="comments-heading" class="sub-heading">Comments (<%= @post.comments.size - @post.comments.sticky.length %>)</div>
+            <div id="comments">                      
+                  <% if @post.comments.roots.length > 0 %>
+                       <%= render :partial => "/comments/comment", :collection => @post.comments.top, :locals => {:root => 'true',:parent_comment => nil} %>
+                  <% end %>
+            </div>
+        </div>
+
+        <% if !@readonlypost %>
+            <%= render :partial => 'posts/new_comment' %>
+        <% end %>               
+    </div>
+</div>

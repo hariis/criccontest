@@ -1,0 +1,40 @@
+<h1>Listing predicitions</h1>
+
+<table>
+  <tr>
+
+    <th>Result</th>
+
+    <th>Score</th>
+
+    <th>User</th>
+
+    <th>Entry</th>
+
+    <th>Match</th>
+
+  </tr>
+
+<% @predicitions.each do |predicition| %>
+  <tr>
+
+    <td><%=h predicition.result %></td>
+
+    <td><%=h predicition.score %></td>
+
+    <td><%=h predicition.user %></td>
+
+    <td><%=h predicition.entry %></td>
+
+    <td><%=h predicition.match %></td>
+
+    <td><%= link_to 'Show', predicition %></td>
+    <td><%= link_to 'Edit', edit_predicition_path(predicition) %></td>
+    <td><%= link_to 'Destroy', predicition, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New predicition', new_predicition_path %>

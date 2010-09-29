@@ -1,0 +1,41 @@
+
+<script type="text/javascript">
+  function openWindow(url) {
+    var w = 480, h = 340;
+
+      if (document.all) {
+         /* the following is only available after onLoad */
+         w = document.body.clientWidth;
+         h = document.body.clientHeight;
+      }
+      else if (document.layers) {
+         w = window.innerWidth;
+         h = window.innerHeight;
+      }
+      var popW = 800, popH = 450;
+      var leftPos = (w)/2, topPos = (h)/2;
+      window.open(url, 'Authorize','width=' + popW + ',height='+popH+',top='+topPos+ ',left='+leftPos);
+
+      return false;
+    }
+</script>
+
+ <div id="parent-post">
+      <div class="subject"><%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %><br/></div>
+      <%=h @match.venue %><br/>
+      <%=h @match.date %><br/>      
+      <%=h @match.starttime %><br/>
+ </div>
+ 
+<% if current_user && current_user.admin? && current_user.admin_user? %>
+     <b><span style='color:red'>Caution! You are a Super Admin. Your predicitions will be used to set the results.</span></b><br/><br/>
+     <% form_remote_tag :url => {:controller => 'predicitions', :action => 'admin_predicition', :mid => @match.unique_id } do %>
+        <%= render :partial => 'predict' %>
+        <%= submit_tag 'Set Results' %>
+     <% end %>
+<% else %>
+     <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
+        <%= render :partial => 'predict' %>
+        <%= submit_tag 'Predict' %>
+     <% end %>
+<% end %>

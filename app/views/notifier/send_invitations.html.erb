@@ -1,0 +1,47 @@
+
+Hi there!<br/><br/>
+
+<%  if @share %>
+  <%= @inviter.display_name  %> is having a conversation on <br/>
+  <em><%= @post.subject %></em><br/>
+  If you are interested, you can join.
+<% else %>
+  <%= @inviter.display_name  %> is requesting you to join a conversation on <br/>
+  <em><%= @post.subject %></em><br/>
+<% end %>
+
+
+Please visit this link to engage in this conversation:<br/>
+
+   <%= link_to @post_url, @post_url %>  <br/><br/>
+
+<div style="background-color: #dcdcdc; padding: 3px; margin-top: 2px;">
+  If you are using Internet Explorer and/or the above link does not work, try copying and pasting the link into your browser.<br/>
+</div>
+
+<div style="margin-top: 2px;">
+<% unless @invitee.member? %>
+  NOTE: No account signup is required.
+<% end %>
+</div>
+
+Happy Engaging,<br/>
+-EngageVia Team<br/>
+
+<div style="margin-top: 3px;font-size:12px;">
+
+IMPORTANT NOTE: Please do not forward this mail or share this link provided to you <br/>
+ as a way of inviting friends.<br/>
+
+ To invite, please visit the link and invite from there.<br/>
+ Each one of your invitees will then get their own unique link.<br/>
+
+If you have problems viewing this conversation, please feel free to contact us.<br/>
+
+NOTE:<br/>
+<span style="font-size:85%;color:#333333;">
+If you do not know <%= @inviter.display_name %>, please ignore this email and let us <a href="mailto:engagevia@gmail.com">know</a><br/>
+We sincerely apologize for the inconvenience.
+</span>
+</div>
+

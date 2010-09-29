@@ -1,0 +1,9 @@
+<li><%= link_to "My Contests (#{current_user.posts.count})", posts_path if current_user.activated? %></li>
+
+<li><%= link_to "Contacts", contacts_path %></li>
+<li><%= link_to "#{h current_user.display_name}", :controller => 'users', :action => 'show' %></li>
+<% if current_user.admin? %>
+      <li><% link_to "Groups", {:controller => 'users', :action => 'groups' }%></li>
+      <li><%= link_to "Admin", admin_path %></li>
+<% end %>
+<li><%= link_to "Logout", logout_path %></li> 

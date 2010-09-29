@@ -1,0 +1,33 @@
+<% form_for [@contest, @match] do |f| %>
+
+  <%= f.error_messages %>
+
+  <p>
+    Select type of Match<br/>
+    <%= select_tag 'category', options_from_collection_for_select(Category.find(:all), 'id', 'name') %>
+  </p>
+
+  <p>
+    <%= f.label :firstteam, "Team A" %><br />
+    <%= f.select :firstteam, options_from_collection_for_select(Team.find(:all), 'id', 'teamname') %>
+  </p>
+
+  <p>
+    <%= f.label :secondteam, "Team B"  %><br />
+    <%= f.select :secondteam, options_from_collection_for_select(Team.find(:all), 'id', 'teamname') %>
+  </p>
+
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, :rows => 5, :cols => 50 %>
+  </p>
+
+  <p>
+    <%= f.submit submit_type %>
+  </p>
+<% end %>

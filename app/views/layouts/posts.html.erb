@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= title_tag_line %></title>
+  <%= stylesheet_link_merged :base %>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18051435-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body onload="clearElements('comment_form')">
+
+<div id="wide-header">
+  <!--[if lt IE 7]>
+ <div class="banner" style="height:33px; padding:10px 20px 7px 30px;background-color:#ff0000;">
+ It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
+</div> <![endif]--> 
+
+<div id="logo-text">
+    <li><%= link_to "Social Cricket Contest", root_url %></li>
+</div>
+
+<ul id="band-actions">
+  <li><% link_to "Home", root_url %></li>  
+  <% if current_user && current_user.activated? %>
+      <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => nil} %> %>
+  <% else %>
+      <% unless @readonlypost %>
+          <span style="font-size:16px;"><li id='non-member-name' style="color:#fff;"><%= "Welcome #{@user.display_name}" %></li>
+          <li><% link_to "Become a Member", new_user_path %></li>
+          <li><%= link_to "Join/Own Contest", new_post_url %></li></span>
+      <% end %>
+  <% end %>
+  
+</ul>
+</div>
+  <%  if !current_user || !current_user.activated? %>
+    <div class="banner" style="height:33px; padding:10px 20px 7px 30px;">
+      <span style="color:orange;">Discuss, predict results and get social with your friends and families on cricket</span>
+    </div>  
+  <% end %>
+  <div id="widgets">
+    <ul>
+      <li id="invite-status"></li>
+      <% if @readonlypost %>
+           <% if current_user && current_user.activated? || !@user.unique_id.nil? %>
+                <li><%= image_tag "group_add.png" %> <%= link_to "Join this Conversation",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.id, :iid => @inviter_unique_id, :uid => @user.unique_id %></li>
+           <% else %>
+                <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Join this Conversation",  :url => @post.get_url_for_jc_facebox(@inviter_unique_id) %></li>
+           <% end %>
+      <% else %>
+          <li><% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %></li>              
+          <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
+              <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></li>              
+              <li> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
+          <% end %>
+      <% end %>       
+      
+      <% unless @readonlypost %>
+          <%  if !current_user || !current_user.activated? %>
+            <li style="color:#FF60B0;float:right;"><%= @post.get_all_member_participants_for_display %></li>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+  
+  <% unless @comment_notice.blank? %>
+  <div style="background-color:#A9ED2E;color:#000;height:24px;padding-top:6px;text-align:center;font-weight:bold;">
+    <%= @comment_notice %>
+  </div>
+  <% end %>
+  <% if flash[:notice] %>
+  <div id="flash-notice">
+    <p><%= flash[:notice] %><%  flash[:notice] = nil %></p>
+  </div>
+<% end %>
+  <% if flash[:error] %>
+  <div id="flash-error">
+    <p><%= flash[:error] %><%  flash[:error] = nil %></p>
+  </div>
+<% end %>
+  <% if @user.non_member? && !@readonlypost && (is_fullname_missing(@user) || @user.engagements.count > 1)  %>
+  <div id="name-request">
+    <%= render :partial => 'name_request' %>
+  </div>
+  <% end %>  
+<%= yield  %>
+<span id="feedback"><%= facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
+<% if controller.action_name == 'show' || controller.action_name == 'ushow' || controller.action_name == 'callback' %>
+    <div id="footer-d">
+<% else %>
+     <div id="footer">
+<% end %>
+      <ul>
+     <li>©2010 CricContest</li> |
+      <li><%= link_to "How to get Started", howtogetstarted_path %></li> |
+      <li><%  link_to "Blog", DOMAIN + "blog" %></li>
+      <li><%=  link_to "About", DOMAIN + "about" %></li> |
+      <li><%=  link_to "Contact", DOMAIN + "contact" %></li> |
+      <li><%=  link_to "Privacy", DOMAIN + "privacy" %></li> |
+      <li><%=  link_to "Help / FAQ", DOMAIN + "help" %></li>
+    </ul>
+  </div>   
+  <%= javascript_include_merged :rest %>
+  <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
+  <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
+  <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>  
+</body>
+</html>

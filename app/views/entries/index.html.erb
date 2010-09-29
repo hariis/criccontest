@@ -1,0 +1,30 @@
+<h1>Listing entries</h1>
+
+<table>
+  <tr>
+
+    <th>Name</th>
+
+    <th>Positive Weight</th>
+
+    <th>Negative Weight</th>
+
+  </tr>
+
+<% @entries.each do |entry| %>
+  <tr>
+
+    <td><%=h entry.name %></td>
+    <td><%=h entry.posweight %></td>
+    <td><%=h entry.negweight %></td>
+
+    <td><%= link_to 'Show', entry %></td>
+    <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
+    <td><%= link_to 'Destroy', entry, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New entry', new_entry_path %>

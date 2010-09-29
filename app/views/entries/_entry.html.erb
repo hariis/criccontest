@@ -1,0 +1,27 @@
+<% form_for(@entry) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    Select type of Match<br/>
+    <%= select_tag 'category', options_from_collection_for_select(Category.find(:all), 'id', 'name') %>
+  </p>
+
+  <p>
+    <%= f.label :posweight, "Postive Weight" %><br />
+    <%= f.text_field :posweight %>
+  </p>
+
+  <p>
+    <%= f.label :negweight, "Negative Weight" %><br />
+    <%= f.text_field :negweight %>
+  </p>
+
+  <p>
+    <%= f.submit submit_type %>
+  </p>
+<% end %>

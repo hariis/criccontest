@@ -1,0 +1,51 @@
+<script type="text/javascript">
+        $j(function(){
+           $j('#tabs').tabs();
+      });
+ </script>
+<style type="text/css">
+  a.join-link, a.join-link:hover, a.join-link:visited{
+    color: red;
+    margin-left:10px;
+}
+</style>
+<div id="dashboard-view">
+    <% if current_user && current_user.admin? && current_user.admin_user? %>
+          <%= button_to 'Start New Contest', new_contest_path, :class => 'submit' %>
+          <%= button_to 'Create a Category', new_category_path, :class => 'submit' %>
+          <%= button_to 'Create a Rule', new_entry_path, :class => 'submit' %>
+          <%= button_to 'Add Team', new_team_path, :class => 'submit' %>
+    <% end %>
+    
+<div id="tabs">
+      <ul>
+              <li><a href="#joined-posts">Current Contests</a></li>
+              <li><a href="#shared-posts">Upcoming Contests</a></li>
+      </ul>
+
+
+<div id='joined-posts'> 
+    <% count = 1 %>
+    <% @contests.each do |contest| %>
+      <div class="index"></div>
+         <div class="<%= cycle('listing-line-odd', 'listing-line-even') %> post-item">
+            <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
+            <div><%= link_to  h(contest.name.capitalize), contest %></div>
+               <span class="poststat">
+                    <%= contest.matches.size %> matches | <%= contest.posts.size %> instances |                    
+                    <%= link_to 'own this contest', new_contest_post_path(contest)  %>                  
+                </span>
+               <% if contest.url != "Add a link" %>
+                    <div style="font-weight:normal;clear:both;"><%= link_to  h(contest.url), h(contest.url) %> </div>
+               <% end %>
+               
+               <% if contest.owner == current_user %>
+                  <%= link_to '[X]', contest, :confirm => 'Are you sure? This will wipe out this contest and all of its instances.', :method => :delete %>
+               <% end %>
+
+    </div>
+<% end %>
+  
+</div>
+</div>
+</div>

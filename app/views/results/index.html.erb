@@ -1,0 +1,32 @@
+<h1>Listing results</h1>
+
+<table>
+  <tr>
+
+    <th>Result</th>
+
+    <th>Match</th>
+
+    <th>Entry</th>
+
+  </tr>
+
+<% @results.each do |result| %>
+  <tr>
+
+    <td><%=h result.result %></td>
+
+    <td><%=h result.match %></td>
+
+    <td><%=h result.entry %></td>
+
+    <td><%= link_to 'Show', result %></td>
+    <td><%= link_to 'Edit', edit_result_path(result) %></td>
+    <td><%= link_to 'Destroy', result, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New result', new_result_path %>

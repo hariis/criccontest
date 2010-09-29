@@ -1,0 +1,13 @@
+ <div id="parent-post1">
+    <div id="post-body1">
+        <div class="subject"><%= link_to  h(@contest.name.capitalize), @contest %><br/> </div>
+        <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %><br/>
+
+        <%=h @match.venue %><br/>
+        <%=h @match.date %><br/>      
+        <%=h @match.starttime %><br/>
+    </div> 
+  </div>
+
+<% link_to 'Edit', edit_match_path(@match) %>
+<% link_to 'Back', matches_path %>

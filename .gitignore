@@ -1,0 +1,14 @@
+config/database.yml
+config/site.yml
+config/deploy.rb
+db/data.yml
+db/schema.rb
+log
+nbproject
+public/javascripts/cache
+public/stylesheets/cache
+public/system
+tmp
+vendor/plugins/query_trace/
+vendor/gems
+test
