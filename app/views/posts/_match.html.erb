@@ -1,5 +1,6 @@
 
 <p>
-  <%= link_to "#{get_teamname(match.firstteam)} vs #{get_teamname(match.secondteam)} on #{match.date}", match.get_url_for(@eng, 'show') %><br/>
+  <%= link_to "#{get_teamname(match.firstteam)} vs #{get_teamname(match.secondteam)} at #{match.venue.capitalize} <br/>#{match.description.capitalize} on #{match.date}", match.get_url_for(@eng, 'show') %><br/>
   <span style="font-size:11px;margin-left:87px"><%= facebox_link_to 'Cast / Edit Predictions', :url => match.get_url_for(@eng, 'predicitions') %></span><br/>
+  <h1 style="border-bottom:1px dashed #fff;"></h1>
 </p>

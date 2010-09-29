@@ -4,14 +4,14 @@
     <div id="parent-post">
         <div class="subject">            
           <span style="font-size:140%;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
-          <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %>
+          <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %> at <%= @match.venue.capitalize %>          
         </div>
-        <div id="post-body">
-            <span style="color:#0062f6;">
-              <%=h @match.venue %><br/>
-              <%=h @match.date %><br/>      
-              <%=h @match.starttime %><br/>
-            </span>
+
+        <div id="post-body1">
+              <%= @match.description.capitalize %> on <%= @match.date %>
+              <%h @match.venue %><br/>
+              <% @match.date %><br/>      
+              <% @match.starttime %><br/>
         </div> 
   </div><br/>
 

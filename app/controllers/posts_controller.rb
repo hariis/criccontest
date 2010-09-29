@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   layout :choose_layout, :except => [:plaxo]
   
-  before_filter :load_contest, :except => [:show, :index]
+  before_filter :load_contest, :except => [:show, :index, :privacy, :about, :blog, :contact, :admin, :help, :load_all_invitations, :load_all_participants]
   before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help]
   before_filter :check_activated_member,
     :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :load_all_participants, :load_all_invitations]

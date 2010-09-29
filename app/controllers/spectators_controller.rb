@@ -2,7 +2,7 @@ class SpectatorsController < ApplicationController
   
   layout 'posts'
   #layout 'application'
-  before_filter :load_prerequisite, :only => [:show]
+  before_filter :load_prerequisite, :only => [:show, :load_all_participants]
   #before_filter :load_user, :only => [:show]
   
   def load_prerequisite
@@ -42,6 +42,11 @@ class SpectatorsController < ApplicationController
     end
   end           
       
+  def load_all_participants
+       #@post = params[:pid] ? Post.find_by_unique_id(params[:pid]) : nil
+       render :partial => 'participants_list'
+  end
+  
   # GET /spectators
   # GET /spectators.xml  
   def index

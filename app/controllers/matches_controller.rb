@@ -62,7 +62,8 @@ class MatchesController < ApplicationController
   # POST /matches.xml
   def create
     @match = @contest.matches.build(params[:match])
-    @match.user_id = @user.id unless @user.nil?
+    #@match.user_id = @user.id unless @user.nil?
+    @match.user_id = current_user.id unless current_user.nil?
     @match.contest_id = @contest.id
     @match.category_id = params[:category] if params[:category]
     @match.unique_id = Match.generate_unique_id
