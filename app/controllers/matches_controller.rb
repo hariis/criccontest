@@ -122,7 +122,8 @@ class MatchesController < ApplicationController
                 if spectator
                    @total_score = 0
                    category.entries.each do |entry|
-                      if entry.name == 'winner'
+                      #calculate_prediction_result('winner')
+                      #if entry.name == 'winner'
                           predicition = Predicition.find_by_spectator_id_and_entry_id(spectator.id, entry.id)
                           result = Result.find_by_match_id_and_entry_id(match.id, entry.id)
 
@@ -132,7 +133,7 @@ class MatchesController < ApplicationController
                             predicition.score = entry.negweight          
                           end        
                           predicition.save
-                      end
+                      #end
                       @total_score += predicition.score
                    end
                    spectator.totalscore = @total_score

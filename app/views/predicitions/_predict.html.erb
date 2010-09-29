@@ -1,10 +1,19 @@
 <p>
 <% @category.entries.each do |entry| %>
-  <% if entry.name == 'winner' %>
-        <b>Predict Winner </b><br/>
-        <%= radio_button_tag 'winner', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
-        <%= radio_button_tag 'winner', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
-        <%= radio_button_tag 'winner', "0" %> Draw
-  <% end %>
+  <p>
+      <% if entry.name == 'winner' %>
+            <b>Predict Winner </b><br/>
+            <%= radio_button_tag 'winner', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
+            <%= radio_button_tag 'winner', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
+            <%= radio_button_tag 'winner', "0" %> Draw
+      <% end %>
+  </p>
+  <p>
+      <% if entry.name == 'toss' %>
+            <b>Predict Toss </b><br/>
+            <%= radio_button_tag 'toss', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
+            <%= radio_button_tag 'toss', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
+      <% end %>
+  </p>
 <% end %>
 </p>
