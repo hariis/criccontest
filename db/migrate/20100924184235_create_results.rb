@@ -4,7 +4,7 @@ class CreateResults < ActiveRecord::Migration
 
       t.references :match
       t.references :entry
-      t.integer :result
+      t.integer :result, :default => -1
       
       t.timestamps
     end

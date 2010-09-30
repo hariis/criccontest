@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def admin_user?
-    self.username == 'criccontest'
+    self.username == 'doosracricket'
   end
   
   def self.create_non_member(email,fname="", lname="")

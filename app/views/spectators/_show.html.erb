@@ -3,7 +3,7 @@
 
     <div id="parent-post">
         <div class="subject">            
-          <span style="font-size:130%;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
+          <span style="font-size:130%;margin:5px 0px;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/><br/>
           <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %> at <%= @match.venue.capitalize %>          
         </div>
 
@@ -21,11 +21,11 @@
             <%  @category.entries.each do |entry| %>                
                 <% result = Result.find_by_match_id_and_entry_id(@match.id, entry.id) %>                
                 <% if entry.name == 'winner' || entry.name == 'toss' %>
-                    <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname + "<br/>" if result.result != 0 %>
+                    <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname + "<br/>" if result.result != -1 %>
                     <% match_result += result.result %>                    
                 <% end %>
             <% end %>
-            <%= "Results not yet available<br/>" if match_result == 0 %><br/>
+            <%= "Results not yet available<br/>" if match_result < 0 %><br/>
         </div>
         <h4 style="border-top:1px solid #000;"></h4>
 
@@ -37,11 +37,11 @@
               <% spectator.predicitions.each do |predicition| %>                
                     <% entry = Entry.find_by_id(predicition.entry_id) %>
                     <% if entry.name == 'winner' || entry.name == 'toss' %>
-                        <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != 0 %>
+                        <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != -1 %>
                         <% user_predicted += predicition.user_predicition %>
                     <% end %>
               <% end %>
-              <%= "Yet to predict <br/>" if user_predicted == 0 %><br/>
+              <%= "Yet to predict <br/>" if user_predicted < 0 %><br/>
             <% end %>
         </div>
   

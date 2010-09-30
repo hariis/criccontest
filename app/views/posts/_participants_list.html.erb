@@ -5,21 +5,14 @@
               <div id="participant_details_<%=engagement.invitee.id %>" >
 
               <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me (Score <%= engagement.totalscore %>)
-                    <span id="notify-option">
-                         <% if engagement.notify_me? %>
-                            <% image_tag "email.png", :id => "enabled" %><%= image_tag "email_delete.png", :id => "disabled" , :style => "display:none;" %>
-                         <% else %>
-                            <% image_tag "email.png", :id => "enabled", :style => "display:none;" %><%= image_tag "email_delete.png", :id => "disabled"  %>
-                         <% end %>
-                    </span>
+                  <li id='you'><%= image_tag "user_red.png" %> Me (Score - <%= engagement.totalscore %>)
               <% else %>
                     <% if engagement.invitee.member? %>
                       <li><%= image_tag "user_green.png" %> <%=  engagement.invitee.display_name(nil,engagement).titleize %>
                     <% else %>
                       <li><%= image_tag "user_green.png" %> <%=  engagement.invitee.display_name(nil,engagement).titleize %>
                     <% end  %>
-                    (Score <%= engagement.totalscore %>)
+                    (Score - <%= engagement.totalscore %>)
               <% end  %>
 
               <!-- common to both -->

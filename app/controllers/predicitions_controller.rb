@@ -19,14 +19,14 @@ class PredicitionsController < ApplicationController
     @category.entries.each do |entry|
       if entry.name == 'winner'
         @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)
-        @predicition_record.user_predicition = params[:winner]
+        @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1
         #@predicition_record.user_predicition = params[entry.name]
         
         @predicition_record.save
       end
       if entry.name == 'toss'
         @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)
-        @predicition_record.user_predicition = params[:toss]
+        @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1
         @predicition_record.save
       end
     end
