@@ -1,0 +1,13 @@
+<h1>Editing predict_total_score</h1>
+
+<% form_for(@predict_total_score) do |f| %>
+  <%= f.error_messages %>
+
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @predict_total_score %> |
+<%= link_to 'Back', predict_total_scores_path %>

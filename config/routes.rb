@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :predict_total_scores
+
   map.resources :results
 
   map.resources :spectators

@@ -50,7 +50,7 @@ class Match < ActiveRecord::Base
               predicition = Predicition.new
               predicition.spectator_id = spectator.id
               predicition.entry_id = entry.id
-              predicition.user_predicition = 0
+              predicition.user_predicition = -1
               predicition.score = 0
               predicition.save
           end
@@ -71,7 +71,7 @@ class Match < ActiveRecord::Base
             result = Result.new
             result.match_id = match.id
             result.entry_id = entry.id
-            result.result = 0
+            result.result = -1
             result.save
         end
     end

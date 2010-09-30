@@ -12,9 +12,12 @@
 </p>
 <h3 style="border-bottom:1px solid #000;"></h3>
 
-<span style="font-size:140%;">Listing Matches</span>
-<%= render :partial => 'match', :collection => @contest.matches %>
-<br/>
+<% if @contest.matches.size > 0 %>
+    <span style="font-size:140%;">Listing Matches</span>
+    <%= render :partial => 'match', :collection => @contest.matches %>
+    <br/>
+<% end %>
+
 <div id="signup-btn">
     <%= button_to "Start a Contest", contests_path, :method => :get %>
 </div>

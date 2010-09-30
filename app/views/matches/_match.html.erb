@@ -23,6 +23,17 @@
   </p>
 
   <p>
+    <%= f.label :venue %><br />
+    <%= f.text_field :venue %>
+  </p>
+
+  <p>
+    <%= f.label :starttime %><br />
+    <%= f.time_select :starttime %>
+  </p>
+
+  
+  <p>
     <%= f.label :description %><br />
     <%= f.text_area :description, :class =>"mceNoEditor", :rows => 5, :cols => 50 %>        
   </p>

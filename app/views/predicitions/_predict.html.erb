@@ -8,12 +8,32 @@
             <%= radio_button_tag 'winner', "0" %> Draw
       <% end %>
   </p>
+  
   <p>
       <% if entry.name == 'toss' %>
             <b>Predict Toss </b><br/>
             <%= radio_button_tag 'toss', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
             <%= radio_button_tag 'toss', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
+            <h4 style="border-top:1px solid #000;"></h4>
       <% end %>
   </p>
+  
+  <p>
+      <% if entry.name == 'ts_firstteam' %>
+            <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><br/>
+            <% @totalscore_entries.each do |totalscore_entry| %>
+                <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+            <% end %>
+      <% end %>
+
+      <% if entry.name == 'ts_secondteam' %>
+            <b>Predict Total Score: <%= get_teamname(@match.secondteam) %></b><br/>
+            <% @totalscore_entries.each do |totalscore_entry| %>
+                <%= radio_button_tag 'ts_secondteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+            <% end %>
+            <h4 style="border-top:1px solid #000;"></h4>
+      <% end %>
+  </p>
+
 <% end %>
 </p>

@@ -125,15 +125,15 @@ class MatchesController < ApplicationController
                    category.entries.each do |entry|
                       #calculate_prediction_result('winner')
                       #if entry.name == 'winner'
-                          predicition = Predicition.find_by_spectator_id_and_entry_id(spectator.id, entry.id)
-                          result = Result.find_by_match_id_and_entry_id(match.id, entry.id)
+                      predicition = Predicition.find_by_spectator_id_and_entry_id(spectator.id, entry.id)
+                      result = Result.find_by_match_id_and_entry_id(match.id, entry.id)
 
-                          if predicition.user_predicition == result.result
-                            predicition.score = entry.posweight
-                          else
-                            predicition.score = entry.negweight          
-                          end        
-                          predicition.save
+                      if predicition.user_predicition == result.result
+                          predicition.score = entry.posweight
+                      else
+                          predicition.score = entry.negweight          
+                      end        
+                      predicition.save
                       #end
                       @total_score += predicition.score
                    end
