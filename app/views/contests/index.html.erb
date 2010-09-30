@@ -20,7 +20,7 @@
     
 <div id="tabs">
       <ul>
-          <li><a href="#joined-posts">Current Contests</a></li>
+          <li><a href="#joined-posts">Current Tournments</a></li>
       </ul>
 
 
@@ -33,10 +33,10 @@
             <div><%= link_to  h(contest.name.capitalize), contest %></div>
             
             <span class="poststat">
-                <%= contest.matches.size %> matches | <%= contest.posts.size %> instances
+                <%= contest.posts.size %> contest currently running
             </span>
             <% unless current_user && current_user.admin? && current_user.admin_user? %>
-                <span style="float:right;font-size:110%;"><%= link_to 'Own this Contest', new_contest_post_path(contest)  %></span>
+                <span style="float:right;font-size:110%;"><%= link_to 'Start a Contest', new_contest_post_path(contest)  %></span>
             <% end %>
             
             <% if contest.url != "Add a link" %>
