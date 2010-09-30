@@ -32,8 +32,8 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer  
-  #config.action_controller.session_store = :active_record_store
-  #config.action_controller.session = {:domain => '.criccontest.com'}
+  config.action_controller.session_store = :active_record_store
+  config.action_controller.session = {:domain => '.doosracricket.com'}
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   #config.time_zone = 'UTC'
@@ -41,13 +41,13 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-  DOMAIN = "http://www.criccontest.com/" if ENV['RAILS_ENV'] == 'production'
+  DOMAIN = "http://www.doosracricket.com/" if ENV['RAILS_ENV'] == 'production'
   DOMAIN = "http://localhost:3000/" if ENV['RAILS_ENV'] == 'development'
   TWOAUTH_KEY = "2ABzvtWhFUCZFiluhc7bGg"
   TWOAUTH_SECRET = "byf0AI0N6iazhGK1AeZWOqmaOZzm0cKvsMmnu8uDIM"
   TWOAUTH_SITE = "http://twitter.com"
-  TWOAUTH_CALLBACK = "http://www.criccontest.com/callback"
-  EV_TAGLINE = "Discuss, predict results and get social with your friends and families on cricket."
+  TWOAUTH_CALLBACK = "http://www.doosracricket.com/callback"
+  EV_TAGLINE = "Predict matches and Compete with your friends"
   #redefining the error fields display
   config.action_view.field_error_proc = Proc.new do |html_tag, instance|
   "<span class=\"fieldWithErrors\">#{html_tag}</span>"
