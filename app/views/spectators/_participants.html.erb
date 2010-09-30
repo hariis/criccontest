@@ -2,7 +2,7 @@
   <div id="participants">
     <h3 style="border-bottom:1px solid #fff;"><%= image_tag "group.png" %>
    
-       <%= link_to_remote ("Participants / Score <span id='participant-count'>(#{get_joined_participants_count(@post) })</span>" + image_tag("bullet_arrow_down.png")), :url => { :action => :load_all_participants, :mid => @match.unique_id, :eid => @eng.unique_id }, :update => 'list-all-p' %></h3>
+       <%= link_to_remote ("Match Score <span id='participant-count'>(#{get_joined_participants_count(@post) })</span>" + image_tag("bullet_arrow_down.png")), :url => { :action => :load_all_participants, :mid => @match.unique_id, :eid => @eng.unique_id }, :update => 'list-all-p' %></h3>
        <div id="list-all-p"></div>
    </div>
 </div>

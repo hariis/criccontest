@@ -56,9 +56,10 @@ class Match < ActiveRecord::Base
           end
       end
 
-      #TODO send email notification that match is added and available for predicition
+      #send email notification that match is added and available for predicition
       match_details = get_teamname(match.firstteam) + " vs " + get_teamname(match.secondteam)
-      Notifier.deliver_send_match_invitations(post, match, user, engagement, match_details)
+      #TODO: Add it later after handling name_request for mid and eid
+      #Notifier.deliver_send_match_invitations(post, match, user, engagement, match_details)
     end
   end
   

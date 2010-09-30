@@ -1,5 +1,5 @@
 
-<h2><%= @contest.name %>: Own this Contest</h2>
+<h2><%= @contest.name %>: Start a Contest</h2>
 
 <% form_for([@contest, @post] , :html => { :multipart => true }) do |f| %>
   <%= f.error_messages :header_message => "Invalid Post!", :message => "Please address the following fields:", :header_tag => :h3 %>
@@ -14,8 +14,8 @@
     <%= f.text_field :subject, :size=> 91, :maxlength => 80 %>
   </p>
   <p>
-    <%= f.label :description, "Contest Description" %>
-    <%= f.text_area :description, :cols => 83, :rows => 10  %>
+    <%= f.label :description, "Contest Description" %><br />
+    <%= f.text_area :description, :class =>"mceNoEditor", :cols => 66, :rows => 5  %>
   </p>
   <p>
     <%= f.label :url , "Link to a Website" %> (optional)<br />
@@ -27,12 +27,6 @@
    end %>
   
   <div id="optional" style="display:none;">
-      <p>
-        <%= f.label :tag_list, "Tags" %> (optional)<br />
-        <span class ="info">(separate multiple tags with comma) Ex: worldcup, ashes, 20/20</span>
-        <%= f.text_field :tag_list , :size=> 91, :maxlength => 80 %><br/>
-      </p>
-
       <p>
         <%= f.check_box :allow_others_to_invite %><%= f.label :allow_others_to_invite, " Allow Participants to Invite"%>
       </p>

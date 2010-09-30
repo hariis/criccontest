@@ -3,7 +3,7 @@
 
     <div id="parent-post">
         <div class="subject">            
-          <span style="font-size:140%;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
+          <span style="font-size:130%;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
           <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %> at <%= @match.venue.capitalize %>          
         </div>
 
@@ -46,6 +46,6 @@
         </div>
   
   <h4 style="border-top:1px solid #000;"></h4>
-  <h3><%= facebox_link_to 'Cast / Edit Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
+  <h3><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
   </div>
 </div>

@@ -11,7 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   #map.resources :post, :has_many => 'matches', :through => :contest
   
   #map.root :controller => 'posts', :action => 'dashboard'
-  map.root :controller => 'contests', :action => 'index'
+  map.root :controller => 'contests', :action => 'dashboard'
   
   map.connect '/callback', :controller => 'engagements', :action => 'callback'
   map.connect '/posts/show', :controller => 'posts', :action => 'show',  :conditions => { :method => :get }
@@ -39,7 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login "login",   :controller => 'user_sessions', :action => 'new'
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.admin "admin", :controller => 'posts', :action => 'admin'
-  map.howtogetstarted "howtogetstarted", :controller => 'contests', :action => 'howtogetstarted'
+  #map.dashboard "dashboard", :controller => 'contests', :action => 'dashboard'
 
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate' 
   map.auth_start '/authorize', :controller => 'shared_posts', :action => 'fb_authorize'

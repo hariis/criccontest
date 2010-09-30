@@ -23,15 +23,6 @@
           <span style="color:#0062f6;float:right;width:8%;">
           <%= image_tag @post.owner.avatar.url(:thumb) if @post.owner.avatar.file? %></span>
 
-          <div id="tags">
-            <strong style="float:left;">Keywords:</strong><%= image_tag '/images/pencil.png' %>
-            <span style="font-size:85%;">(separate multiple keywords with comma)</span>
-            <% if !@readonlypost %>
-                  <%= in_place_editor_field :post, 'tag_list',{}, :size => '70',:text_between_controls => ' or ',:save_text => 'save' %>
-            <% else%>
-                   <br/><%= @post.tag_list %>
-            <% end %>
-          </div>
      </div>
 
     <div id="comments-section">
