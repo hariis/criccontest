@@ -7,7 +7,7 @@ class UserRole < ActiveRecord::Base
     #User.find_by_id(1000)
     admins.each do |a|
        u = User.find(a.user_id)
-       return u if u.username == 'criccontest'
+       return u if u.username == 'doosracricket'
     end
   end
 end
