@@ -25,7 +25,7 @@ config.action_view.cache_template_loading            = true
 config.action_mailer.raise_delivery_errors = false
 
 config.action_controller.session_store = :active_record_store
-config.action_controller.session = {:domain => '.engagevia.com'}
+config.action_controller.session = {:domain => '.doosracricket.com'}
 
 # Enable threaded mode
 # config.threadsafe!
