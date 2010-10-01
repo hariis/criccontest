@@ -25,7 +25,7 @@
     <%= f.label :email %> (required)<br />
     <%= f.text_field :email %>
     <% if controller.action_name == 'new' %>
-    <br/><span style="font-size:85%;">(If you have received EngageVia invitations to your email address, then please use the same email address here)</span>
+    <br/><span style="font-size:85%;">(If you have received DoosraCricket invitations to your email address, then please use the same email address here)</span>
      <% end %>
   </p>
   <p style="float:left;">
@@ -55,18 +55,11 @@
     <%= f.label :screen_name, "Twitter ID" %><br />
     <%= f.text_field :screen_name %>
     <% if controller.action_name == 'new' %>
-    <br/><span style="font-size:85%;">If you have received EngageVia invitations to your twitter id, then please enter the same here </span>
+    <br/><span style="font-size:85%;">If you have received DoosraCricket invitations to your twitter id, then please enter the same here </span>
     <% end %>
   </p>
  <% end %>
-<p style="clear:both;">
-  
-  <%= f.label "What kind of conversations would you like to be involved in?" %><br/>
-  <span style="font-size:85%;">(separate multiple tags with comma) Ex: graphic designer,hiking,politics,parenting,economics,technology</span>
-  <%= f.text_field :tag_list, :size => '80' , :value => @user.tag_list %>
-  
-  <br/><span style="font-size:85%;">(you can update this anytime)</span>
-</p>
+
 <% if controller.action_name == 'edit' %>
 <p>
     <%= f.label "Facebook Profile" %><br />

@@ -64,18 +64,10 @@ class Post < ActiveRecord::Base
   def send_invitations(invitees,inviter,share = false)
     invitees.each_key{|invitee| Notifier.deliver_send_invitations(self, invitee,inviter, share)}
   end
-#  def send_twitter_notification(followers)
-#   httpauth = Twitter::HTTPAuth.new(from_config[:twitid], from_config[:password])
-#   base = Twitter::Base.new(httpauth)
-#   followers.each_key do |follower|
-#      message = DOMAIN + "conversation/show/#{self.unique_id}/#{follower.unique_id}"
-#      base.update "d #{follower.username}" + " Join me for a conversation. The link is at " + message
-#   end
-#  end
 
-    def get_url_for1(contest, user, action)
-        DOMAIN + "contest/#{contest.id}/" + "posts/" + action + "?pid=#{self.unique_id}&uid=#{user.unique_id}"
-    end
+  def get_url_for1(contest, user, action)
+      DOMAIN + "contest/#{contest.id}/" + "posts/" + action + "?pid=#{self.unique_id}&uid=#{user.unique_id}"
+  end
     
   def get_url_for(user, action)
     if action == 'show'
