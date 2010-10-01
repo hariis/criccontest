@@ -4,18 +4,23 @@
 <% end %>
 
 <p>
-  <b>Name:</b>
-  <%=h @contest.name %>
+  <div class='subject'><%=h @contest.name %></div>
 </p>
-
 
 <p>
-  <b>Description:</b>
   <%=h @contest.description %>
 </p>
+<h3 style="border-bottom:1px solid #000;"></h3>
 
-<br/><h4>Listing Matches</h4>
-<%= render :partial => 'match', :collection => @contest.matches %>
+<% if @contest.matches.size > 0 %>
+    <span style="font-size:140%;">Listing Matches</span>
+    <%= render :partial => 'match', :collection => @contest.matches %>
+    <br/>
+<% end %>
+
+<div id="signup-btn">
+    <%= button_to "Start a Contest", contests_path, :method => :get %>
+</div>
 
 <% link_to 'Edit', edit_contest_path(@contest) %>
 <% link_to 'Back', contests_path %>

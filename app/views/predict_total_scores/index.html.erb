@@ -1,0 +1,20 @@
+<h1>Listing predict_total_scores</h1>
+
+<table>
+  <tr>
+
+  </tr>
+
+<% @predict_total_scores.each do |predict_total_score| %>
+  <tr>
+
+    <td><%= link_to 'Show', predict_total_score %></td>
+    <td><%= link_to 'Edit', edit_predict_total_score_path(predict_total_score) %></td>
+    <td><%= link_to 'Destroy', predict_total_score, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New predict_total_score', new_predict_total_score_path %>

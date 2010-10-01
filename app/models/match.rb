@@ -50,15 +50,16 @@ class Match < ActiveRecord::Base
               predicition = Predicition.new
               predicition.spectator_id = spectator.id
               predicition.entry_id = entry.id
-              predicition.user_predicition = 0
+              predicition.user_predicition = -1
               predicition.score = 0
               predicition.save
           end
       end
 
-      #TODO send email notification that match is added and available for predicition
+      #send email notification that match is added and available for predicition
       match_details = get_teamname(match.firstteam) + " vs " + get_teamname(match.secondteam)
-      Notifier.deliver_send_match_invitations(post, match, user, engagement, match_details)
+      #TODO: Add it later after handling name_request for mid and eid
+      #Notifier.deliver_send_match_invitations(post, match, user, engagement, match_details)
     end
   end
   
@@ -70,7 +71,7 @@ class Match < ActiveRecord::Base
             result = Result.new
             result.match_id = match.id
             result.entry_id = entry.id
-            result.result = 0
+            result.result = -1
             result.save
         end
     end

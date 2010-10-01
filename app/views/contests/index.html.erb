@@ -15,12 +15,12 @@
           <%= button_to 'Create a Category', new_category_path, :class => 'submit' %>
           <%= button_to 'Create a Rule', new_entry_path, :class => 'submit' %>
           <%= button_to 'Add Team', new_team_path, :class => 'submit' %>
+          <%= button_to 'Add Total Score Prediction', new_predict_total_score_path, :class => 'submit' %>
     <% end %>
-    <%= button_to "How to get Started", howtogetstarted_path, :class => 'submit'  %><br/>
     
 <div id="tabs">
       <ul>
-          <li><a href="#joined-posts">Current Tournments</a></li>
+          <li><a href="#joined-posts">Current Fixtures</a></li>
       </ul>
 
 
@@ -30,13 +30,13 @@
       <div class="index"></div>
          <div class="<%= cycle('listing-line-odd', 'listing-line-even') %> post-item">
             <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
-            <div><%= link_to  h(contest.name.capitalize), contest %></div>
+            <div><span style="font-size:120%"><%= link_to  h(contest.name.capitalize), contest %></span></div>
             
-            <span class="poststat">
+            <span style="color:green">
                 <%= contest.posts.size %> contest currently running
             </span>
             <% unless current_user && current_user.admin? && current_user.admin_user? %>
-                <span style="float:right;font-size:110%;"><%= link_to 'Start a Contest', new_contest_post_path(contest)  %></span>
+                <span style="float:right;font-size:120%;"><%= link_to 'Start a Contest', new_contest_post_path(contest)  %></span>
             <% end %>
             
             <% if contest.url != "Add a link" %>

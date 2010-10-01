@@ -62,8 +62,7 @@ tinyMCE.init(tinymce_advanced_options);
 
 <ul>
   <li><% link_to "Home", root_url %></li>
-  <li><% link_to "How to get Started", howtogetstarted_path %></li>
-
+ 
   <% if current_user && current_user.activated? %>
       <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %> %>
    <% else %>
@@ -90,7 +89,7 @@ tinyMCE.init(tinymce_advanced_options);
       <p><%= flash[:status] %><%  flash[:status] = nil %></p>
   </div>
 <% end %>
-<% if controller.action_name == 'howtogetstarted' || controller.action_name == 'dashboard' || (controller_name != 'contacts' && controller.action_name == 'index') %>
+<% if controller.action_name == 'dashboard' || (controller_name != 'contacts' && controller.action_name == 'index') %>
     <div id="content">
 <% else %>
      <div id="gen-content">
@@ -102,14 +101,14 @@ tinyMCE.init(tinymce_advanced_options);
   <% if current_user %>
   <span id="feedback"><%= facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
   <% end %>
-  <% if controller.action_name == 'howtogetstarted' || controller.action_name == 'dashboard' || controller.action_name == 'privacy' || controller.action_name == 'edit'|| controller.action_name == 'update'|| controller.action_name == 'new' || controller.action_name == 'create'|| controller.action_name == 'index' || controller.action_name == 'contacts' %>
+  <% if controller.action_name == 'dashboard' || controller.action_name == 'privacy' || controller.action_name == 'edit'|| controller.action_name == 'update'|| controller.action_name == 'new' || controller.action_name == 'create'|| controller.action_name == 'index' || controller.action_name == 'contacts' %>
     <div id="footer-d">
 <% else %>
      <div id="footer">  
 <% end %>
       <ul>
-      <li>©2010 CricContest</li> |
-      <li><%= link_to "How to get Started", howtogetstarted_path %></li> |
+      <li>©2010 DoosraCricket</li> |
+      <li><%= link_to "How to get Started", root_path %></li> |
       <li><%  link_to "Blog", DOMAIN + "blog" %></li>
       <li><%  link_to "About", DOMAIN + "about" %></li>
       <li><%=  link_to "Contact", DOMAIN + "contact" %></li>

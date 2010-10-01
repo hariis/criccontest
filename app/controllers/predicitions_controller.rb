@@ -17,38 +17,31 @@ class PredicitionsController < ApplicationController
   
   def user_predicition
     @category.entries.each do |entry|
-      if entry.name == 'winner'
-        @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)
-        @predicition_record.user_predicition = params[:winner]
-        #@predicition_record.user_predicition = params[entry.name]
+        @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
         
+        @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1 if entry.name == 'winner'
+        @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1 if entry.name == 'toss'
+        
+        @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1 if entry.name == 'ts_firstteam'
+        @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1 if entry.name == 'ts_secondteam'
         @predicition_record.save
-      end
-      if entry.name == 'toss'
-        @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)
-        @predicition_record.user_predicition = params[:toss]
-        @predicition_record.save
-      end
     end
     
     render :update do |page|
       page.visual_effect :blind_up, 'facebox'
-      #page.replace_html 'predictions'
     end 
   end
  
   def admin_predicition
     @category.entries.each do |entry|
-      if entry.name == 'winner'
         @result = Result.find_by_match_id_and_entry_id(@match.id, entry.id)
-        @result.result = params[:winner]
+        
+        @result.result = params[:winner] ? params[:winner] : -1 if entry.name == 'winner'
+        @result.result = params[:toss] ? params[:toss] : -1 if entry.name == 'toss'
+        
+        @result.result = params[:ts_firstteam] ? params[:ts_firstteam] : -1 if entry.name == 'ts_firstteam'
+        @result.result = params[:ts_secondteam] ? params[:ts_secondteam] : -1 if entry.name == 'ts_secondteam'
         @result.save
-      end
-      if entry.name == 'toss'
-        @result = Result.find_by_match_id_and_entry_id(@match.id, entry.id)
-        @result.result = params[:toss]
-        @result.save
-      end
     end
 
     render :update do |page|
@@ -71,6 +64,8 @@ class PredicitionsController < ApplicationController
   # GET /predicitions/1.xml
   def show
     #@predicition = Predicition.find(params[:id])
+    @totalscore_entries = PredictTotalScore.find(:all)
+    
     respond_to do |format|
       format.html # show.html.erb
       #format.xml  { render :xml => @predicition }

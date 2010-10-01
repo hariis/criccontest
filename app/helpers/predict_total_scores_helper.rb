@@ -1,0 +1,2 @@
+module PredictTotalScoresHelper
+end

@@ -3,7 +3,7 @@
 
     <div id="parent-post">
         <div class="subject">            
-          <span style="font-size:140%;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
+          <span style="font-size:130%;margin:5px 0px;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/><br/>
           <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %> at <%= @match.venue.capitalize %>          
         </div>
 
@@ -19,13 +19,22 @@
         <div id='predictions'>
             <% match_result = 0 %>
             <%  @category.entries.each do |entry| %>                
-                <% result = Result.find_by_match_id_and_entry_id(@match.id, entry.id) %>                
+                <% result = Result.find_by_match_id_and_entry_id(@match.id, entry.id) %>
+                <% match_result += result.result %>
+                
                 <% if entry.name == 'winner' || entry.name == 'toss' %>
-                    <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname + "<br/>" if result.result != 0 %>
-                    <% match_result += result.result %>                    
+                    <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname + "<br/>" if result.result != -1 %>                    
                 <% end %>
+                
+                <% if entry.name == 'ts_firstteam' %>
+                    <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+                <% end %>
+                <% if entry.name == 'ts_secondteam' %>
+                    <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+                <% end %>
+  
             <% end %>
-            <%= "Results not yet available<br/>" if match_result == 0 %><br/>
+            <%= "Results not yet available<br/>" if match_result < 0 %><br/>
         </div>
         <h4 style="border-top:1px solid #000;"></h4>
 
@@ -36,16 +45,25 @@
               <% user_predicted = 0 %>
               <% spectator.predicitions.each do |predicition| %>                
                     <% entry = Entry.find_by_id(predicition.entry_id) %>
+                    <% user_predicted += predicition.user_predicition %>
+                    
                     <% if entry.name == 'winner' || entry.name == 'toss' %>
-                        <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != 0 %>
-                        <% user_predicted += predicition.user_predicition %>
+                        <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != -1 %>
                     <% end %>
+                    
+                    <% if entry.name == 'ts_firstteam' %>
+                        <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                    <% end %>
+                    <% if entry.name == 'ts_secondteam' %>
+                        <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                    <% end %>
+
               <% end %>
-              <%= "Yet to predict <br/>" if user_predicted == 0 %><br/>
+              <%= "Yet to predict <br/>" if user_predicted < 0 %><br/>
             <% end %>
         </div>
   
   <h4 style="border-top:1px solid #000;"></h4>
-  <h3><%= facebox_link_to 'Cast / Edit Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
+  <h3><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
   </div>
 </div>

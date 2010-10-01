@@ -5,7 +5,7 @@ class CreatePredicitions < ActiveRecord::Migration
       t.references :entry
       t.references :spectator
       
-      t.integer :user_predicition
+      t.integer :user_predicition, :default => -1
       t.integer :score
 
       t.timestamps

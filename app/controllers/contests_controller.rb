@@ -5,7 +5,7 @@ class ContestsController < ApplicationController
   before_filter :check_for_admin, :only => [:new, :create]
   #before_filter :load_user
 
-  def howtogetstarted    
+  def dashboard    
   end
   
   # GET /contests

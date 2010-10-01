@@ -1,8 +1,9 @@
 <div id="left">  
     <div id="participants">
-    <h3 style="border-bottom:1px solid #fff;">
-        <%= link_to  h(@post.subject.capitalize), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%> (<%= @contest.matches.size %>) </h3>
+        <span style='font-size:130%'><%= link_to  h(@post.subject.capitalize), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%></span><br/>
+        <%= @contest.matches.size %> matches
+        <h3 style="border-top:1px solid #fff;"> </h3>
         <%= render :partial => 'posts/match', :collection => @contest.matches %>
-       <div id="list-all-i"></div>
     </div>
 </div>
+

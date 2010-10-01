@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   layout :choose_layout, :except => [:plaxo]
   
-  before_filter :load_contest, :except => [:show, :index, :privacy, :about, :blog, :contact, :admin, :help, :load_all_invitations, :load_all_participants]
+  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :load_all_invitations, :load_all_participants]
   before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help]
   before_filter :check_activated_member,
     :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :load_all_participants, :load_all_invitations]
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def load_contest
     @contest = Contest.find_by_id(params[:contest_id])
     if @contest.nil?
-      flash[:notice] = "No contest selected. Please start by selecting a contest"
+      #flash[:notice] = "No contest selected. Please start by selecting a contest"
       redirect_to root_url
     end
   end
@@ -184,9 +184,9 @@ class PostsController < ApplicationController
   # GET /posts/new.xml
   def new
     @post = session[:post] || @contest.posts.build
-    #@post = @contest.posts.build
-    @post.subject = @contest.name || params[:title] if params[:title]
-    @post.url = @contest.name || params[:url] if params[:url]
+    @post.subject = @contest.name #|| params[:subject] if params[:subject]
+    @post.url = @contest.url #|| params[:url] if params[:url]
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }
@@ -296,7 +296,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to(posts_url) }
+      format.html { redirect_to(posts_path) }
       format.xml  { head :ok }
     end
   end
