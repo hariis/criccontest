@@ -15,55 +15,41 @@
         </div> 
   </div><br/>
 
-        <span style="font-size:150%">Match Result</span>
-        <div id='predictions'>
-            <% match_result = 0 %>
-            <%  @category.entries.each do |entry| %>                
-                <% result = Result.find_by_match_id_and_entry_id(@match.id, entry.id) %>
-                <% match_result += result.result %>
-                
+     <%= render :partial => 'result' %>
+
+    <h4 style="border-top:1px solid #000;"></h4>
+
+    <span style="font-size:150%">Listing Predictions</span><br/><br/>
+    <div id='predictions'>
+        <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
+          <b><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</b> <br/>
+          <% user_predicted = 0 %>
+          <% spectator.predicitions.each do |predicition| %>                
+                <% entry = Entry.find_by_id(predicition.entry_id) %>
+                <% user_predicted += predicition.user_predicition %>
+
                 <% if entry.name == 'winner' || entry.name == 'toss' %>
-                    <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname + "<br/>" if result.result != -1 %>                    
+                    <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != -1 %>
                 <% end %>
-                
+
                 <% if entry.name == 'ts_firstteam' %>
-                    <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+                    <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
                 <% end %>
                 <% if entry.name == 'ts_secondteam' %>
-                    <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+                    <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
                 <% end %>
-  
-            <% end %>
-            <%= "Results not yet available<br/>" if match_result < 0 %><br/>
-        </div>
-        <h4 style="border-top:1px solid #000;"></h4>
 
-        <span style="font-size:150%">Listing Predictions</span><br/><br/>
-        <div id='predictions'>
-            <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
-              <b><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</b> <br/>
-              <% user_predicted = 0 %>
-              <% spectator.predicitions.each do |predicition| %>                
-                    <% entry = Entry.find_by_id(predicition.entry_id) %>
-                    <% user_predicted += predicition.user_predicition %>
-                    
-                    <% if entry.name == 'winner' || entry.name == 'toss' %>
-                        <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != -1 %>
-                    <% end %>
-                    
-                    <% if entry.name == 'ts_firstteam' %>
-                        <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                    <% end %>
-                    <% if entry.name == 'ts_secondteam' %>
-                        <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                    <% end %>
+          <% end %>
+          <%= "Yet to predict <br/>" if user_predicted < 0 %><br/>
+        <% end %>
+    </div>
 
-              <% end %>
-              <%= "Yet to predict <br/>" if user_predicted < 0 %><br/>
-            <% end %>
-        </div>
-  
   <h4 style="border-top:1px solid #000;"></h4>
-  <h3><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
+  <% if @match.check_if_match_started %>
+     <h3>Timeline for predicting this match is over.</h3>
+  <% else %>  
+    <h3><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></h3>
+  <% end %>
+   
   </div>
 </div>

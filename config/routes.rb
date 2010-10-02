@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :results
 
-  map.resources :spectators
+  map.resources :spectators, :collection => {:result => :get}
   map.resources :predicitions, :collection => {:predict => :get, :calculate_match_result => :get}
   map.resources :entries
   map.resources :categories, :has_many => ['entries', 'matches']

@@ -2,7 +2,7 @@ class SpectatorsController < ApplicationController
   
   layout 'posts'
   #layout 'application'
-  before_filter :load_prerequisite, :only => [:show, :load_all_participants]
+  before_filter :load_prerequisite, :only => [:show, :result, :load_all_participants]
   #before_filter :load_user, :only => [:show]
   
   def load_prerequisite
@@ -68,6 +68,14 @@ class SpectatorsController < ApplicationController
     end
   end
 
+  def result
+    respond_to do |format|
+      format.html # show.html.erb
+      #format.xml  { render :xml => @spectator }
+      format.js { render_to_facebox }
+    end   
+  end
+  
   # GET /spectators/new
   # GET /spectators/new.xml
   def new

@@ -8,13 +8,17 @@ class Match < ActiveRecord::Base
   #has_many :engagements, :through => :spectators
   
   def get_url_for(eng, action)
-    if action == 'show'
+    if action == 'show' || action == 'result'
       #DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&uid=#{user.unique_id}"
       DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&eid=#{eng.unique_id}"
     elsif action == 'predicitions'
       DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&eid=#{eng.unique_id}"
     end    
   end  
+  
+  def check_if_match_started
+    Time.now.utc > date
+  end
   
   def set_match_predicition_for_admin
     DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}"

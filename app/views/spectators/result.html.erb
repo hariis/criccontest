@@ -1,0 +1,31 @@
+<script type="text/javascript">
+  function openWindow(url) {
+    var w = 480, h = 340;
+
+      if (document.all) {
+         /* the following is only available after onLoad */
+         w = document.body.clientWidth;
+         h = document.body.clientHeight;
+      }
+      else if (document.layers) {
+         w = window.innerWidth;
+         h = window.innerHeight;
+      }
+      var popW = 800, popH = 450;
+      var leftPos = (w)/2, topPos = (h)/2;
+      window.open(url, 'Authorize','width=' + popW + ',height='+popH+',top='+topPos+ ',left='+leftPos);
+
+      return false;
+    }
+</script>
+
+ <div id="parent-post">
+      <div class="subject"><%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %><br/></div>
+      <%=h @match.venue %><br/>
+      <%=h @match.date %><br/>      
+      <%=h @match.starttime %><br/>
+ </div>
+
+<%= render :partial => 'result' %>
+
+ 
