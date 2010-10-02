@@ -1,7 +1,7 @@
 production:
   :enable_starttls_auto: true
-  :address: plannerbee.com
-  :domain: plannerbee.com
+  :address: doosracricket.com
+  :domain: doosracricket.com
   :port: 25
   :authentication: :login
   :user_name: hariis
