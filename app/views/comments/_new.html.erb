@@ -11,7 +11,7 @@
       :before => "Element.show('n-spinner');document.getElementById('reply_comment_form_#{@parent_comment.id}').getElementsByTagName('textarea')[0].value =  tinyMCE.get('comment_body_#{@parent_comment.id}').getContent();",
       :complete => "Element.hide('n-spinner')" do %>
     
-    <%= text_area_tag "comment_body_#{@parent_comment.id}", nil,:rows => 10, :cols => 20 %><br/>
+    <%= text_area_tag "comment_body_#{@parent_comment.id}", nil, :rows => 5, :cols => 20 %><br/>
     <%= javascript_tag("tinyMCE.execCommand('mceAddControl', false, 'comment_body_#{@parent_comment.id}');") -%>
 
 

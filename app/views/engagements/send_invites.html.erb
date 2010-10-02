@@ -162,15 +162,15 @@
 
 
 <div style="background-color:#BBDEFA;padding: 10px;">
-     <h3>Know exactly who would be interested in this conversation? Go ahead and invite them.</h3>
+     <h3>Know exactly who would be interested in this contest? Go ahead and invite them.</h3>
         <div id="tabs">
               <ul>
                       <% if @user.member? %>
-                            <li><a href="#invite-ev">Invite from EngageVia</a></li>
+                            <li><a href="#invite-ev">Invite from Addressbook</a></li>
                       <% end %>
-                      <li><a href="#show_email_form">Invite from other Addressbooks</a></li>
+                      <li><a href="#show_email_form">Invite using Email</a></li>
                       <% if @user.admin? %>
-                            <li><a href="#get_twitter_auth">Invite via Twitter</a></li>
+                            <li><a href="#get_twitter_auth">Invite using Twitter</a></li>
                       <% end %>
               </ul>
 
@@ -230,10 +230,10 @@
                   <% if @followers.nil? %>
                          <p  style="font-size: 12px;">
                             Easy to reach some of your friends at their Twitter hangouts? No Problem.<br/><br/>
-                            EngageVia can send invitations directly to their Twitter accounts.<br/><br/>
+                            DoosraCricket can send invitations directly to their Twitter accounts.<br/><br/>
 
                             Click on the button below to be redirected to Twitter where you can authorize<br/>
-                            EngageVia to access your account. <br/><br/>
+                            DoosraCricket to access your account. <br/><br/>
                             This privilege will be used only to gather your list of followers and <br/>
                             send invites via direct messages to them.<br/><br/>
 

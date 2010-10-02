@@ -206,37 +206,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  #def get_inner_and_extended_contacts
-  #  inner_circle = {}
-    #get all users invited by you
-  #  Engagement.find_all_by_invited_by(id, :select => 'DISTINCT user_id').each do |e|
-  #     inner_circle[e.invitee.id] = e.invitee unless e.invitee.id == id
-  #  end
-
-    #get all users that invited you
-  #  Engagement.find_all_by_user_id(id, :select => 'DISTINCT invited_by').each do |e|
-  #     inner_circle[e.invited_by] = User.find(e.invited_by) unless e.invited_by == id
-  #  end
-
-  #  extended_circle = {}
-   #get all participants from all posts you have participated in
-  # Engagement.find_all_by_user_id(id, :select => 'DISTINCT post_id').each do |e|
-  #   Post.find(e.post_id).get_all_participants.each do |p|
-  #     extended_circle[p.id] = p unless (inner_circle.has_key?(p.id) || p.id == id)
-  #   end
-  # end
-
-  #  return inner_circle,extended_circle
-  #end
-
-  #def get_contacts_for_invite_from_engagevia
-  #  all_contacts = []
-  #  groups.each do |g|
-  #    all_contacts << g.users if g.name == 'ic' || g.name == 'ec' && !g.users.nil?
-  #  end
-  #  return all_contacts.flatten
-  #end
-    
   def get_address_book_contacts
     ab_contacts = []
     groups.each do |g|
@@ -244,23 +213,7 @@ class User < ActiveRecord::Base
     end
     return ab_contacts.flatten
   end
-  
-  #def get_inner_circle_contacts
-  #  inner = []
-  #  groups.each do |g|
-  #    inner << g.users if g.name == 'ic' && !g.users.nil?
-  #  end
-  #  return inner.flatten
-  #end
-  
-  #def get_extended_circle_contacts
-  #  ext = []
-  #  groups.each do |g|
-  #    ext << g.users if g.name == 'ec' && !g.users.nil?
-  #  end
-  #  return ext.flatten
-  #end
-  
+
   def get_all_contacts
     #ic,ec = get_inner_and_extended_contacts
     #ic.keys + ec.keys
@@ -279,11 +232,6 @@ class User < ActiveRecord::Base
   def self.get_recommended_contacts(keywords, all_contacts)
     User.find_tagged_with(keywords, :contacts => all_contacts)
   end
-
-  #def join_ec_of(post_owner)
-  #  ec = Group.find_or_create_by_user_id(:user_id => post_owner.id, :name => 'ec')
-  #  Membership.find_or_create_by_user_id(:user_id => id, :group_id => ec.id)
-  #end
   
   def add_mutually_to_address_book(user) #invitee || post_owner
     #Add user to the adddress book of inviter

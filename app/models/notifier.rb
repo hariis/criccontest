@@ -2,7 +2,7 @@ class Notifier < ActionMailer::Base
 
 include ActionView::Helpers::TextHelper
 layout 'notifications'
-default_url_options[:host] = "www.engagevia.com"
+default_url_options[:host] = "www.doosracricket.com"
 
   def password_reset_instructions(user)
     setup_email(user)
@@ -36,12 +36,12 @@ default_url_options[:host] = "www.engagevia.com"
   def send_invitations(post, invitee, inviter, share)
     setup_email(post.owner)
     if share
-      @subject    += " #{inviter.display_name} is having a conversation on #{truncate(post.subject,20,"...")}"
+      @subject    += " #{inviter.display_name} is having a contest on #{truncate(post.subject,20,"...")}"
       #post_url = DOMAIN + "posts/show?pid=#{post.unique_id}&iid=#{inviter.unique_id}&uid=#{invitee.unique_id}"
       post_url = DOMAIN + "posts/show?pid=#{post.unique_id}&iid=#{inviter.unique_id}"
       post_url = DOMAIN + "posts/show?pid=#{post.unique_id}&iid=#{inviter.unique_id}&uid=#{invitee.unique_id}"
     else
-      @subject    += " #{inviter.display_name} has invited you for a conversation on #{truncate(post.subject,20,"...")}"
+      @subject    += " #{inviter.display_name} has invited you for a contest on #{truncate(post.subject,20,"...")}"
       post_url = DOMAIN + "posts/show?pid=#{post.unique_id}&uid=#{invitee.unique_id}"
     end
     recipients invitee.email
@@ -67,14 +67,14 @@ default_url_options[:host] = "www.engagevia.com"
   def send_experience(experience, user)
     setup_email  #TODO: we are not using this argument.
     @subject    +=   "Feedback | #{experience.feedback_type}"
-    recipients    "engagevia@gmail.com"
+    recipients    "umpire@doosracricket.com"
     body          :experience => experience, :user => user
   end
   
   protected
     def setup_email(user=nil)      
-      @from        = "EngageVia <EngageVia-notifier@engagevia.com>"
-      headers         "Reply-to" => "engagevia@gmail.com"
+      @from        = "Doosra Cricket <umpire@doosracricket>"
+      headers         "Reply-to" => "umpire@doosracricket"
       @subject     = ""
       @sent_on     = Time.zone.now
       @content_type = "text/html"

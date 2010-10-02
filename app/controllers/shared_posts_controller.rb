@@ -60,12 +60,12 @@ class SharedPostsController < ApplicationController
       #make up the generic url
       @fb_url = @post.get_readonly_url(@user)
       #make up the message
-      wall_message = "I am engaged in a conversation about '#{@post.subject}' at EngageVia." +
-        "If you are interested, you can join me. The link to the conversation is here " +
+      wall_message = "I am playing '#{@post.subject}' contest at DoosraCricket." +
+        "If you are interested, you can join me. The link to the contest is here " +
         "#{@fb_url}"
       @fb_user.post(wall_message)
       flash[:notice] = "The open invitation has been successfully posted to your Facebook Profile. <br/><br/>
-                        Please close this window and proceed with your conversation."
+                        Please close this window and proceed with your contest."
     rescue => err
       RAILS_DEFAULT_LOGGER.error "Failed to get callback from Facebook" + err
       flash[:notice] = "There was a problem posting the open invitation to your Profile. <br/><br/>

@@ -103,7 +103,7 @@ class PostsController < ApplicationController
   def index
     @posts = @user.posts.find(:all, :order => 'updated_at desc')
     if @posts.count < 1
-      prompt_message = "Currently you are not engaged in any conversation. Why don't you start one?"
+      prompt_message = "Currently you are not engaged in any contest. Why don't you start one?"
       if flash[:notice].blank?
         flash[:notice] = prompt_message
       else  #when we come here upon login, we will already have a flash[:notice] message
@@ -153,7 +153,7 @@ class PostsController < ApplicationController
                       @eng = create_engagement(sp_exists)
                       sp_exists.destroy
                   else
-                    flash[:error] = "It appears you have not joined this conversation. Please join by clicking on your Open invitation link."
+                    flash[:error] = "It appears you have not joined this contest. Please join by clicking on your Open invitation link."
                     render 'posts/404', :status => 404, :layout => false and return
                   end
               end
@@ -268,13 +268,13 @@ class PostsController < ApplicationController
       if @post.errors.size == 0 && @post.save
         update_tags_for_all_invitees(@post.get_all_participants)  #At this point, the only participant is the post creator
         if current_user && current_user.activated?
-          flash[:notice] ='Your email contains the link to this post as well.<br/> '+
-            'You can now start inviting your friends for the conversation.'
+          flash[:notice] ='Your email contains the link to this contest as well.<br/> '+
+            'You can now start inviting your friends to play the contest.'
         else
-          flash[:notice] = 'Your Conversation page was successfully created. <br/>'
-          flash[:notice] +='Please check your email for the link to this post you just created. <br/>' +
+          flash[:notice] = 'Your contest page was successfully created. <br/>'
+          flash[:notice] +='Please check your email for the link to this contest you just created. <br/>' +
             'This redirect helps us to confirm your ownership of the provided email.'+
-                       'Happy Engaging!'
+                       'Enjoy Contest!'
           redirect_to root_url
           return
         end

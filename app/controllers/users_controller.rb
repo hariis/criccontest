@@ -190,7 +190,7 @@ class UsersController < ApplicationController
         end
      end
      if checkpassword && params[:password].blank?
-       @error_message = "Please choose a password! This will help you access all your conversations from one place."
+       @error_message = "Please choose a password! This will help you access all your contests from one place."
      end
    
      #all the information is available     

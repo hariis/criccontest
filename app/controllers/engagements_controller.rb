@@ -207,13 +207,13 @@ end
     invitee = User.find_by_email(params[:email]) if params[:email]
     
     if invitee && invitee.activated? #check if user is already a member
-        @status_message = "Our records indicate that you are a member. Please login first and then join this conversation."
+        @status_message = "Our records indicate that you are a member. Please login first and then join this contest."
     elsif params[:email]
             create_shared_post_and_send_invite(params[:email], @invited_by) 
     end
     render :update do |page|
       if @status_message.blank?
-        page.replace_html "send-status", "An email has been sent with a link. <br/> Please check your email and click on the link to join the conversation."
+        page.replace_html "send-status", "An email has been sent with a link. <br/> Please check your email and click on the link to join the contest."
       else
         page.replace_html "send-status", @status_message
       end
@@ -411,7 +411,7 @@ end
  def send_twitter_notification(followers)
    followers.each_key do |follower|
       message = DOMAIN + "conversation/show/#{@post.unique_id}/#{follower.unique_id}"      
-      send_direct_message! follower.screen_name, "Please join me for a conversation at " + message + " about #{truncate(@post.subject,20,"...")}"
+      send_direct_message! follower.screen_name, "Please join me for a contest at " + message + " about #{truncate(@post.subject,20,"...")}"
    end
  end
 
