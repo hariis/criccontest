@@ -12,12 +12,12 @@
               <% if engagement.invitee.id == @user.id  %>
                   <li id='you'><%= image_tag "user_red.png" %> Me (Score - <%= engagement.totalscore %>)
               <% else %>
-                    <% if engagement.invitee.member? %>
-                      <li><%= image_tag "user_green.png" %> <%=  engagement.invitee.display_name(nil,engagement).titleize %>
-                    <% else %>
-                      <li><%= image_tag "user_green.png" %> <%=  engagement.invitee.display_name(nil,engagement).titleize %>
-                    <% end  %>
-                    (Score - <%= engagement.totalscore %>)
+                  <% if engagement.invitee.member? %>
+                    <li><%= image_tag "user_green.png" %> <%=  engagement.invitee.display_name(nil,engagement).titleize %>
+                  <% else %>
+                    <li><%= image_tag "user_green.png" %> <%=  engagement.invitee.display_name(nil,engagement).titleize %>
+                  <% end  %>
+                  (Score - <%= engagement.totalscore %>)
               <% end  %>
 
               <!-- common to both -->
