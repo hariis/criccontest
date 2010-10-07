@@ -34,12 +34,3 @@
       <span style="font-size:85%;">(separate multiple tags with comma)</span>
       <%= in_place_editor_field :user, 'tag_list',{}, :size => '80',:text_between_controls => ' or ',:save_text => 'save' %>
  </div>
- <p id="tags">
-      <b>Tags: </b><br/>
-      <%=h @user.tag_list %>
- </p>
-<p id="assoc-tags">
-  <b>Conversations you have been linked to:</b><br/>
-  <% admin = User.get_admin_user %>
-  <%=h admin.associated_tag_list @user %>
-</p>

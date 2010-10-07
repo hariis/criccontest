@@ -57,14 +57,14 @@ tinyMCE.init(tinymce_advanced_options);
 </div> <![endif]--> 
 
 <div id="logo-text">
-   <%=  image_tag "doosra-y.png"  %>
+   <%  image_tag "doosra-y.png"  %>
 </div>
 
 <ul>
   <li><% link_to "Home", root_url %></li>
  
   <% if current_user && current_user.activated? %>
-      <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %> %>
+      <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
    <% else %>
        <li><%= link_to "Sign Up", new_user_path %></li>
        <li><%= link_to "Login", login_path %></li>    

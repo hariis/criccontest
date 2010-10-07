@@ -36,8 +36,8 @@
     <%= f.label :last_name %> (required)<br />
     <%= f.text_field :last_name %>
   </p>
-  
-  <p style="float:left;">
+
+  <p style="float:left;clear:both;">
     <% if controller.action_name == 'edit' %>        
         <%= f.label :password, "Choose New Password" %><br/>
     <% else %>
@@ -47,37 +47,47 @@
   </p>
   <p style="float:left;">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation %><br/>
   </p>
 
-  <% if controller.action_name == 'xxx' %>
-  <p style="float:left;clear:both;">
-    <%= f.label :screen_name, "Twitter ID" %><br />
-    <%= f.text_field :screen_name %>
-    <% if controller.action_name == 'new' %>
-    <br/><span style="font-size:85%;">If you have received DoosraCricket invitations to your twitter id, then please enter the same here </span>
-    <% end %>
+<p style="clear:both;">
+  <%= link_to_function 'more >>' do |page|
+    page.toggle 'optional'
+  end %>
   </p>
- <% end %>
+  
+  <div id = 'optional' style='display:none;' >
 
-<% if controller.action_name == 'edit' %>
-<p>
-    <%= f.label "Facebook Profile" %><br />
-    <%= f.text_field :facebook_link %>
-  </p>
-    <p>
-    <%= f.label "LinkedIn Profile" %><br />
-    <%= f.text_field :linked_in_link %>
-  </p>
-    <p>
-    <%= f.label "Your Blog" %><br />
-    <%= f.text_field :blog_link %>
-  </p>
-  <p>
-  <%= f.label :avatar %><br />
-  <%= f.file_field :avatar %>
-</p>
-<% end %>
+    <% if controller.action_name == 'xxx' %>
+    <p style="float:left;clear:both;">
+      <%= f.label :screen_name, "Twitter ID" %><br />
+      <%= f.text_field :screen_name %>
+      <% if controller.action_name == 'new' %>
+      <br/><span style="font-size:85%;">If you have received DoosraCricket invitations to your twitter id, then please enter the same here </span>
+      <% end %>
+    </p>
+   <% end %>
+
+  <% if controller.action_name == 'edit' %>
+      <p style="clear:both;">
+          <%= f.label "Facebook Profile" %><br />
+          <%= f.text_field :facebook_link %>
+      </p>
+      <p>
+          <%= f.label "LinkedIn Profile" %><br />
+          <%= f.text_field :linked_in_link %>
+        </p>
+          <p>
+          <%= f.label "Your Blog" %><br />
+          <%= f.text_field :blog_link %>
+        </p>
+        <p>
+        <%= f.label :avatar %><br />
+        <%= f.file_field :avatar %>
+      </p>
+       <% end %>
+   </div>
+
   <p style="clear:both;">
     <%= f.submit button_type, :class => 'submit' %>
     <%  if button_type == 'Update' %>
