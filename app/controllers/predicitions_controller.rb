@@ -3,7 +3,7 @@ class PredicitionsController < ApplicationController
   before_filter :load_prerequisite, :only => [:user_predicition, :admin_predicition, :show]
   
   def load_prerequisite
-    @match = Match.find_by_unique_id(params[:mid]) if params[:mid]
+    @match = Match.find_by_unique_id(params[:mid], :include => :category) if params[:mid]
     #@user = User.find_by_unique_id(params[:uid]) if params[:uid]
     
     unless current_user && current_user.admin? && current_user.admin_user?

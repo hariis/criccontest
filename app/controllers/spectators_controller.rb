@@ -7,14 +7,18 @@ class SpectatorsController < ApplicationController
   
   def load_prerequisite
     unless params[:mid].nil? || params[:eid].nil?
-        @match = Match.find_by_unique_id(params[:mid]) if params[:mid]
-        @eng = Engagement.find_by_unique_id(params[:eid]) if params[:eid]
-        @user = User.find_by_id(@eng.user_id)
-        @post = Post.find_by_id(@eng.post_id)    #needed to display the matches on the spectator page
-        @contest = Contest.find_by_id(@post.contest_id) #needed to display the matches on the spectator page
+        @match = Match.find_by_unique_id(params[:mid], :include => [:category, :contest]) if params[:mid]
+        @eng = Engagement.find_by_unique_id(params[:eid], :include => [:post, :invitee]) if params[:eid]
+        #@user = User.find(@eng.user_id)
+        @user = @eng.invitee
+        #@post = Post.find(@eng.post_id)    needed to display the matches on the spectator page
+        @post = @eng.post
+        #@contest = Contest.find(@post.contest_id) needed to display the matches on the spectator page
+        @contest = @match.contest
         #@spectator = @user.spectators.find_by_match_id(@match.id)
         @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
-        @category = Category.find_by_id(@match.category_id)
+        #@category = Category.find(@match.category_id)
+        @category = @match.category
     end
   end
   

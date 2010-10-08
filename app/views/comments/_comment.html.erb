@@ -21,13 +21,12 @@
   <% end %>
   <% if !@readonlypost %>
       <span style="float:left;clear:left;">
-          <% facebox_link_to "#{image_tag("comment_add.png")} reply2",  :url => comment.get_url_for_new_comment(@post,@user) %>
-          <%= link_to_remote "#{image_tag("comment_add.png")} reply",  :url => comment.get_url_for_new_comment(@post,@user) %>
+          <%= link_to_remote "#{image_tag("comment_add.png")} reply",  :url => comment.get_url_for_new_comment(@post, @user) %>
       </span>
   <% end %>
    
   <div id="children_for_<%= comment.id %>">
-  <%= render :partial => "/comments/comment", :collection => comment.children , :locals => {:root => nil,:parent_comment => comment } %>
+    <%= render :partial => "/comments/comment", :collection => comment.children , :locals => {:root => nil,:parent_comment => comment } %>
   </div>
 
 </div>

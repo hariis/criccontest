@@ -13,6 +13,7 @@ class Post < ActiveRecord::Base
            :conditions => 'engagements.notify_me = 1'
   
   has_many :spectators, :through => :engagements
+  belongs_to :contest
   
   has_attached_file :avatar, :styles => { :medium => "300x300>" }
   validates_presence_of :subject

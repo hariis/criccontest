@@ -1,7 +1,7 @@
  <% viewed_count = 0 %>
    <ul id="participants-list">
     <% unless @post.engagements.empty? %>
-        <% @post.engagements.find(:all, :order => 'totalscore desc').each do |engagement| %>
+        <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>
               <div id="participant_details_<%=engagement.invitee.id %>" >
 
               <% if engagement.invitee.id == @user.id  %>

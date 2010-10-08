@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
   layout :choose_layout, :except => [:plaxo]
   
-  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :load_all_invitations, :load_all_participants]
+  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :load_all_invitations, :load_all_participants, :update_settings]
   before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help]
   before_filter :check_activated_member,
     :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :load_all_participants, :load_all_invitations]
   in_place_edit_for :post, :note
 
   def load_contest
-    @contest = Contest.find_by_id(params[:contest_id])
+    @contest = Contest.find(params[:contest_id])
     if @contest.nil?
       #flash[:notice] = "No contest selected. Please start by selecting a contest"
       redirect_to root_url
@@ -30,11 +30,7 @@ class PostsController < ApplicationController
     current_user && current_user.activated?
   end
 
-  #-----------------------------------------------------------------------------------------------------
-  def load_user1  #TODO fix it later
-    @user = current_user
-  end
-  
+  #-----------------------------------------------------------------------------------------------------  
   def load_user
       if (action_name == 'show' || action_name == 'send_invites')
           if !params[:uid].nil? && params[:iid].nil?
@@ -123,8 +119,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml  
   def show
-      @post = params[:pid] ? Post.find_by_unique_id(params[:pid]) : nil
-      @contest = Contest.find_by_id(@post.contest_id)
+      @post = params[:pid] ? Post.find_by_unique_id(params[:pid], :include => [:contest, :owner]) : nil
+      #@contest = Contest.find_by_id(@post.contest_id)
+      @contest = @post.contest unless @post.nil?
       
       if @post 
           if @readonlypost
@@ -140,10 +137,6 @@ class PostsController < ApplicationController
                 redirect_to(@post.get_url_for(@user, 'show')) && return unless @eng.nil?
               end   
           else            
-              if @post.tag_list == ""
-                @post.tag_list = "Click here to Add"
-              end
-              
               #Special case: If non-member joined a post and visiting the post for the first time
               #there would not be an engagement record. So fix this by creating eng. record
               @eng = @user.engagements.find_by_post_id(@post.id)
