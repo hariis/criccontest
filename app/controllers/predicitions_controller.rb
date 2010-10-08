@@ -12,7 +12,8 @@ class PredicitionsController < ApplicationController
       @spectator = Spectator.find_by_engagement_id_and_match_id(@engagement.id, @match.id)
     end
 
-    @category = Category.find_by_id(@match.category_id)
+    @category = @match.category
+    #@category = Category.find_by_id(@match.category_id)
   end
   
   def user_predicition

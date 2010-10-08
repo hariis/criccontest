@@ -19,7 +19,7 @@
   <div id="participants">
       <b><span style='font-size:130%'><%= @post.subject.capitalize %></span></b><br/> 
       <%= @contest.matches.size %> matches
-      <h3 style="border-top:1px solid #fff;"> </h3>
+      <h3 style="border-top:1px solid black;"> </h3>
       <%= render :partial => 'match', :collection => @contest.matches %>
   </div>
 </div>
