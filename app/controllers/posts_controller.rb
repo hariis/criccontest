@@ -105,7 +105,7 @@ class PostsController < ApplicationController
       else  #when we come here upon login, we will already have a flash[:notice] message
         flash[:notice] += prompt_message
       end
-      redirect_to new_post_path
+      redirect_to contests_path
       return
     end
     @shared_posts = @user.posts_shared.find(:all, :order => 'updated_at desc' )
@@ -446,7 +446,7 @@ class PostsController < ApplicationController
   #-----------------------------------------------------------------------------------------------------
   def admin
     if current_user && current_user.admin?
-      @posts = @contest.posts.find(:all)
+      @posts = Post.find(:all)
       @participants = Engagement.find(:all)
       @comments = Comment.find(:all)
       @members = User.find_by_sql "select users.id,email,first_name,last_name from users,user_roles WHERE users.id = user_roles.user_id AND role_id = 5;"

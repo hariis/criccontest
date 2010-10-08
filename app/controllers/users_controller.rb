@@ -101,8 +101,12 @@ class UsersController < ApplicationController
       end
      #If there are no errors looged then go ahead
       if @user.errors.size == 0
-        @user.email = params[:user][:email]
-        @user.username = "member"  #currently this field is not used -this is a dummy value
+        @user.email = params[:user][:email]        
+        if User.find(:all).size == 0 
+          @user.username = "doosracricket"
+        else
+          @user.username = "member"  #currently this field is not used -this is a dummy value
+        end
         assign_user_object
       end
     end

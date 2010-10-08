@@ -1,8 +1,11 @@
-<div id="participants">
-    <%= link_to "#{get_teamname(match.firstteam).capitalize} vs #{get_teamname(match.secondteam).capitalize} at #{match.venue.capitalize} <br/>#{match.description.capitalize} on #{match.date}", match.get_url_for(@eng, 'show') %><br/>
-    <% if match.check_if_match_started %>
-        <span style="font-size:11px;margin-left:80px"><%= facebox_link_to 'See Results', :url => match.get_url_for(@eng, 'result') %></span><br/>
-    <% else %>
-        <span style="font-size:11px;margin-left:80px"><%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %></span><br/>
-    <% end %>
+<div id="matches">
+   <ul id="matches-list">
+      <li><%= link_to "#{get_teamname(match.firstteam).capitalize} vs #{get_teamname(match.secondteam).capitalize} at #{match.venue.capitalize} <br/>#{match.description.capitalize} on #{match.date}", match.get_url_for(@eng, 'show') %><br/>
+     
+      <% if match.check_if_match_started %>
+          <span style="font-size:11px;margin-left:80px"><%= facebox_link_to 'See Results', :url => match.get_url_for(@eng, 'result') %></span><br/>
+      <% else %>
+          <span style="font-size:11px;margin-left:80px"><%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %></span><br/>
+      <% end %>
+    </ul>
 </div>
