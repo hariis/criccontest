@@ -12,6 +12,11 @@
   </p>
 
   <p>
+    Add Teams (comma seprated)<br/>
+    <%= text_area_tag :teams, "", :class =>"mceNoEditor", :rows => 2, :cols => 40 %>
+  </p>
+
+  <p>
     <%= f.submit submit_button %> | 
     <%= link_to 'Cancel', contests_path %>
   </p>

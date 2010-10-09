@@ -14,8 +14,7 @@
 
 <% if @contest.matches.size > 0 %>
     <span style="font-size:140%;">Listing Matches</span>
-    <%= render :partial => 'match', :collection => @contest.matches %>
-    <br/>
+    <%= render :partial => 'match', :collection => @contest.matches %><br/>
 <% end %>
 
 <div id="signup-btn">

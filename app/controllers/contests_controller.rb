@@ -51,7 +51,8 @@ class ContestsController < ApplicationController
   def create
     @contest = Contest.new(params[:contest])
     @contest.user_id = current_user.id
-      
+    parse_and_create_teams(params[:teams]) if params[:teams]
+       
     respond_to do |format|
       if @contest.save
         flash[:notice] = 'Contest was successfully created.'
@@ -92,4 +93,14 @@ class ContestsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def parse_and_create_teams(teamtext)
+    team_array = []
+    team_array.concat(teamtext.split(/,/))
+    team_array.each do |team_name|
+      @contest.teams << Team.new(:teamname => team_name.strip)
+    end
+  end 
 end

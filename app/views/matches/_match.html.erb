@@ -9,17 +9,17 @@
 
   <p>
     <%= f.label :firstteam, "Team A" %><br />
-    <%= f.select :firstteam, options_from_collection_for_select(Team.find(:all), 'id', 'teamname') %>
+    <%= f.select :firstteam, options_from_collection_for_select(@contest.teams.find(:all), 'id', 'teamname') %>
   </p>
 
   <p>
     <%= f.label :secondteam, "Team B"  %><br />
-    <%= f.select :secondteam, options_from_collection_for_select(Team.find(:all), 'id', 'teamname') %>
+    <%= f.select :secondteam, options_from_collection_for_select(@contest.teams.find(:all), 'id', 'teamname') %>
   </p>
 
   <p>
-    <%= f.label :datetime %><br />
-    <%= f.datetime_select :datetime %>
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
   </p>
 
   <p>

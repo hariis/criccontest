@@ -3,17 +3,13 @@
 
     <div id="parent-post">
         <div class="subject">            
-          <span style="font-size:130%;margin:5px 0px;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/><br/>
-          <%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %> at <%= @match.venue.capitalize %>          
+          <span style="font-size:120%;margin:5px 0px;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
+          <%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %><br/>
         </div>
-
-        <div id="post-body1">
-              <%= @match.description.capitalize %> on <%= @match.date %>
-              <%h @match.venue %><br/>
-              <% @match.date %><br/>      
-              <% @match.starttime %><br/>
-        </div> 
-  </div><br/>
+        <%=h @match.description.capitalize %><br/>
+        <%=h @match.venue %><br/>
+        <%=h @match.date.to_s(:long) %><br/>               
+    </div><br/>
 
      <%= render :partial => 'result' %>
 
