@@ -73,7 +73,7 @@ class ContestsController < ApplicationController
     respond_to do |format|
       if @contest.update_attributes(params[:contest])
         flash[:notice] = 'Contest was successfully updated.'
-        format.html { redirect_to(@contest) }
+        format.html { redirect_to(contests_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

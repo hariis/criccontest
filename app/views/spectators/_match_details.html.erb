@@ -1,0 +1,6 @@
+<div id="parent-post">
+  <div class="subject"><%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %><br/></div>
+  <%=h @match.description.capitalize %><br/>
+  <%=h @match.venue %><br/>
+  <%=h @match.date.to_s(:long) %>
+</div>

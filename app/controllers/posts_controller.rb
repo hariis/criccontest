@@ -179,6 +179,7 @@ class PostsController < ApplicationController
     @post = session[:post] || @contest.posts.build
     @post.subject = @contest.name #|| params[:subject] if params[:subject]
     @post.url = @contest.url #|| params[:url] if params[:url]
+    @post.description = @contest.description 
     
     respond_to do |format|
       format.html # new.html.erb

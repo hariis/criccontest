@@ -18,7 +18,7 @@
 <% end %>
 
 <div id="signup-btn">
-    <%= button_to "Start a Contest", contests_path, :method => :get %>
+    <%= button_to "Start a Contest", new_contest_post_path(@contest), :method => :get %>
 </div>
 
 <% link_to 'Edit', edit_contest_path(@contest) %>

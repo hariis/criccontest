@@ -20,12 +20,7 @@
     }
 </script>
 
- <div id="parent-post">
-      <div class="subject"><%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %><br/></div>
-      <%=h @match.venue %><br/>
-      <%=h @match.date %><br/>      
-      <%=h @match.starttime %><br/>
- </div>
+<%= render :partial => 'spectators/match_details', :member => @match, :locals => {:match => @match} %>
  
 <% if current_user && current_user.admin? && current_user.admin_user? %>
      <b><span style='color:red'>Caution! You are a Super Admin. Your predicitions will be used to set the results.</span></b><br/><br/>

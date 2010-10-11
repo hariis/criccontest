@@ -1,8 +1,8 @@
 <p>
-  <b><%=h get_teamname(match.firstteam).capitalize %> vs <%=h get_teamname(match.secondteam).capitalize %></b><br/>
-  <%=h match.description.capitalize %><br/>
-  <%=h match.venue %><br/>
-  <%=h match.date.to_s(:long) %>
+    <b><%=h get_teamname(match.firstteam).capitalize %> vs <%=h get_teamname(match.secondteam).capitalize %></b><br/>
+    <%=h match.description.capitalize %><br/>
+    <%=h match.venue %><br/>
+    <%=h match.date.to_s(:long) %>
 </p>
 
 <% link_to 'Edit', edit_match_path(match) %>

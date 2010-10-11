@@ -35,15 +35,13 @@
             <span style="color:green">
                 <%= contest.posts.size %> contest currently running
             </span>
+
             <% unless current_user && current_user.admin? && current_user.admin_user? %>
                 <span style="float:right;font-size:120%;"><%= link_to 'Start a Contest', new_contest_post_path(contest)  %></span>
             <% end %>
-            
-            <% if contest.url != "Add a link" %>
-                <div style="font-weight:normal;clear:both;"><%= link_to  h(contest.url), h(contest.url) %> </div>
-            <% end %>
 
-            <% if contest.owner == current_user %>
+            <% if current_user && current_user.admin? && current_user.admin_user? %>
+                <br/><%= link_to 'edit', edit_contest_path(contest), :method => :get %><br/>
                 <%= link_to '[X]', contest, :confirm => 'Are you sure? This will wipe out this contest and all of its instances.', :method => :delete %>
             <% end %>
          </div>
