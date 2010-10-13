@@ -13,6 +13,7 @@ class CreateMatches < ActiveRecord::Migration
       t.string :venue
       t.time :starttime
       t.string :unique_id
+      t.string :time_zone
 
       t.timestamps
 
