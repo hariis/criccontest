@@ -73,8 +73,8 @@ default_url_options[:host] = "www.doosracricket.com"
   
   protected
     def setup_email(user=nil)      
-      @from        = "Doosra Cricket <umpire@doosracricket>"
-      headers         "Reply-to" => "umpire@doosracricket"
+      @from        = "Doosra Cricket <admin@doosracricket.com>"
+      headers         "Reply-to" => "doosracricket@gmail.com"
       @subject     = ""
       @sent_on     = Time.zone.now
       @content_type = "text/html"
