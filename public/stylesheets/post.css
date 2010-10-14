@@ -102,7 +102,6 @@ margin: 0 auto;
     background-color:#C8D6FF;
     margin-top:10px;
     padding:3px;
-    -moz-border-radius:14px;
     -moz-box-shadow:2px 2px 14px #4B9CE0;
     color:#000;
 }
@@ -110,7 +109,6 @@ margin: 0 auto;
     background-color:#C8D6FF;
     margin-top:16px;
     padding:2px;
-    -moz-border-radius:14px;
     -moz-box-shadow:2px 2px 14px #4E9494;
 }
 #matches{
@@ -851,5 +849,5 @@ padding:4px;
 #logo-text{
 float:left;
 padding-top:10px;
-font-size:240%;
+font-size:340%;
 }

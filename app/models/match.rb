@@ -20,6 +20,13 @@ class Match < ActiveRecord::Base
     Time.now.utc > date
   end
   
+  def display_match_start_time
+    Time.zone = self.time_zone
+    date_time = date.inspect  #Check if the current time at the venue is greater than match start time.
+    Time.zone = 'UTC'
+    return date_time
+  end
+  
   def set_match_predicition_for_admin
     DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}"
   end
