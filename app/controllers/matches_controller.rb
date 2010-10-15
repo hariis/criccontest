@@ -126,7 +126,7 @@ class MatchesController < ApplicationController
                       #calculate_prediction_result('winner')
                       #if entry.name == 'winner'
                       result = Result.find_by_match_id_and_entry_id(match.id, entry.id)
-                      if result != -1
+                      if result.result != -1
                           predicition = Predicition.find_by_spectator_id_and_entry_id(spectator.id, entry.id)
                           if predicition.user_predicition == result.result
                               predicition.score = entry.posweight

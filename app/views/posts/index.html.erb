@@ -27,7 +27,7 @@
   <div class="index"></div>
    <div class="<%= cycle('listing-line-odd', 'listing-line-even') %> post-item">
     <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>
-    <div class ="read-post"><%= link_to  h(post.subject.capitalize), post.get_readonly_url(shared_by)  %></div>
+    <div class ="read-post"><%= link_to  h(post.subject), post.get_readonly_url(shared_by)  %></div>
     <% if post.url != "Add a link" %>
     <div style="font-weight:normal;clear:both;"><%= link_to  h(post.url), h(post.url) %> </div>
     <% end %>
