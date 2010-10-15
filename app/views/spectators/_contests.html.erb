@@ -1,6 +1,6 @@
 <div id="left">  
     <div id="participants">
-        <span style='font-size:130%'><%= link_to  h(@post.subject.capitalize), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%></span><br/>
+        <span style='font-size:130%'><%= link_to  h(@post.subject), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%></span><br/>
         <%= @contest.matches.size %> matches
         <h3 style="border-top:1px solid #000;"> </h3>
         <%= render :partial => 'posts/match', :collection => @contest.matches %>

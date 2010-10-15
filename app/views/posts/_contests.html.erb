@@ -8,7 +8,7 @@
        <ul id="participants-list">
             <% unless @user.posts.empty? %>
                 <% @user.posts.each do |post| %>
-                    <div><% link_to  h(post.subject.capitalize), post.get_url_for(@user, 'show'), :class => "#{post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"   %></div>                    
+                    <div><% link_to  h(post.subject), post.get_url_for(@user, 'show'), :class => "#{post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"   %></div>                    
                 <% end %>
             <% end %>
        </ul>
@@ -17,7 +17,7 @@
   </div>
 
   <div id="participants">
-      <b><span style='font-size:130%'><%= @post.subject.capitalize %></span></b><br/> 
+      <b><span style='font-size:130%'><%= @post.subject %></span></b><br/> 
       <%= @contest.matches.size %> matches
       <h3 style="border-top:1px solid black;"> </h3>
       <%= render :partial => 'match', :collection => @contest.matches %>
