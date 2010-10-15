@@ -28,10 +28,11 @@
  It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
 </div> <![endif]--> 
 
-<div id="logo-text">
-    <%  image_tag "doosra-y.png"  %>
-    <%= link_to "DOOSRA CRICKET", root_path %>
-</div>
+<strong class="logo">
+   <a href="/"><%= image_tag "doosra-y.png" %></a>
+   <% link_to "DOOSRA CRICKET", root_path %>
+</strong>
+
 
 <ul id="band-actions">
   <li><% link_to "Home", root_url %></li>  

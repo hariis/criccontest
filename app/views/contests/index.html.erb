@@ -30,7 +30,7 @@
       <div class="index"></div>
          <div class="<%= cycle('listing-line-odd', 'listing-line-even') %> post-item">
             <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
-            <div><span style="font-size:120%"><%= link_to  h(contest.name.capitalize), contest %></span></div>
+            <div><span style="font-size:120%"><%= link_to  h(contest.name), contest %></span></div>
             
             <span style="color:green">
                 <%= contest.posts.size %> contest currently running
