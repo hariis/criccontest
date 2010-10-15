@@ -6,14 +6,14 @@
         <% match_result += result.result %>
 
         <% if entry.name == 'winner' || entry.name == 'toss' %>
-            <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname + "<br/>" if result.result != -1 %>                    
+            <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname.capitalize + "<br/>" if result.result != -1 %>                    
         <% end %>
 
         <% if entry.name == 'ts_firstteam' %>
-            <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+            <%= "Total Score #{get_teamname(@match.firstteam).capitalize}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
         <% end %>
         <% if entry.name == 'ts_secondteam' %>
-            <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+            <%= "Total Score #{get_teamname(@match.secondteam).capitalize}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
         <% end %>
 
     <% end %>

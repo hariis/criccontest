@@ -8,10 +8,9 @@ class CreateMatches < ActiveRecord::Migration
 
       t.integer :firstteam
       t.integer :secondteam
-      t.date :datetime
+      t.datetime :date_time
       t.text :description
       t.string :venue
-      t.time :starttime
       t.string :unique_id
       t.string :time_zone
 

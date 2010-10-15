@@ -18,8 +18,8 @@
   </p>
 
   <p>
-    <%= f.label :date, "DateTime ( In UTC )" %><br />
-    <%= f.datetime_select :date %>
+    <%= f.label :date_time, "DateTime ( In UTC )" %><br />
+    <%= f.datetime_select :date_time %>
   </p>
 
   <p>
@@ -30,11 +30,6 @@
   <p>
     <%= f.label :time_zone %><br />
     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all %>
-  </p>
-
-  <p>
-    <%= f.label :starttime %><br />
-    <%= f.time_select :starttime %>
   </p>
 
   <p>

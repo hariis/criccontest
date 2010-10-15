@@ -17,14 +17,14 @@ class Match < ActiveRecord::Base
   end  
   
   def check_if_match_started
-    Time.now.utc > date
+    Time.now.utc > date_time
   end
   
   def display_match_start_time
     Time.zone = self.time_zone
-    date_time = date.inspect  #Check if the current time at the venue is greater than match start time.
+    start_date_time = self.date_time.inspect  #Check if the current time at the venue is greater than match start time.
     Time.zone = 'UTC'
-    return date_time
+    return start_date_time
   end
   
   def set_match_predicition_for_admin

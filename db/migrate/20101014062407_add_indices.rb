@@ -9,6 +9,15 @@ class AddIndices < ActiveRecord::Migration
     add_index :memberships, :user_id
     add_index :shared_posts, :post_id
     add_index :shared_posts, :user_id
+    add_index :categories, :name
+    add_index :entries, :category_id
+    add_index :matches, :unique_id
+    add_index :predicitions, :entry_id
+    add_index :predicitions, :spectator_id
+    add_index :spectators, :engagement_id
+    add_index :spectators, :match_id
+    add_index :predict_total_scores, :label_text
+    add_index :teams, :contest_id
   end
 
   def self.down
@@ -23,5 +32,14 @@ class AddIndices < ActiveRecord::Migration
     remove_index :memberships, :user_id
     remove_index :shared_posts, :post_id
     remove_index :shared_posts, :user_id
+    remove_index :categories, :name
+    remove_index :entries, :category_id
+    remove_index :matches, :unique_id
+    remove_index :predicitions, :entry_id
+    remove_index :predicitions, :spectator_id
+    remove_index :spectators, :engagement_id
+    remove_index :spectators, :match_id
+    remove_index :predict_total_scores, :label_text
+    remove_index :teams, :contest_id
   end
 end

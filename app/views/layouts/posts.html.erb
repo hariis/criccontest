@@ -39,9 +39,9 @@
       <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => nil} %>
   <% else %>
       <% unless @readonlypost %>
-          <span style="font-size:16px;"><li id='non-member-name' style="color:#fff;"><%= "Welcome #{@user.display_name}" %></li>
+          <span style="font-size:16px;"><li id='non-member-name'><%= "Welcome #{@user.display_name}" %></li>
           <li><% link_to "Become a Member", new_user_path %></li>
-          <li><%= link_to "Join/Own Contest", new_post_url %></li></span>
+          <li><%= link_to "Current Fixtures", contests_path %></li></span>
       <% end %>
   <% end %>
   
