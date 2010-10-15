@@ -3,7 +3,7 @@
 
     <div id="parent-post">
         <div class="subject">            
-          <span style="font-size:120%;margin:5px 0px;"><%= link_to  @post.subject.capitalize, @post.get_url_for(@user, 'show') %></span><br/>
+          <span style="font-size:120%;margin:5px 0px;"><%= link_to  @post.subject, @post.get_url_for(@user, 'show') %></span><br/>
           <%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %><br/>
         </div>
         <%=h @match.description.capitalize %><br/>
