@@ -1,7 +1,9 @@
 <div id="post-content">
   <div id="actual-post-content">
       <div id="parent-post">
-          <div id="post-body">
+    <fieldset style="margin:0px">
+   
+          <div id="post-body" style="float:left;">
             <% if @post.owner == @user %>
                <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <% image_tag '/images/pencil.png' %></div>
                <div>
@@ -18,12 +20,13 @@
             <% end %>
                <div><%= image_tag @post.avatar.url(:medium)  if @post.avatar? %></div>
           </div>
-          <span style="color:#0062f6;">
+          <span style="color:#038819;float:right;padding-top:10px;">
           <%= "#{@post.owner.display_name} <br/> #{@post.created_at.to_s(:short)}" %></span>
-          <span style="color:#0062f6;float:right;width:8%;">
+          <span style="color:#038819;float:right;width:8%;">
           <%= image_tag @post.owner.avatar.url(:thumb) if @post.owner.avatar.file? %></span>
-
+    </fieldset>
      </div>
+   
 
     <div id="comments-section">
         <div id="sticky-comments">

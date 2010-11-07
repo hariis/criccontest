@@ -10,15 +10,15 @@ left: 0px;
 color: #black;
 margin:5px 10px;
 padding: 0px 7px;  /* top and bottom is 0 so empty div does not show up */
-width:250px;
+width:240px;
 }
 
 #right {
     float:left;
     width:80px;
-    min-width:250px;
-    margin: 17px 10px;
-    color:black;
+    min-width:240px;
+    margin: 8px 0px;
+    color:#2D392D;
     padding: 0px 7px;
     /*
     position: absolute;
@@ -95,22 +95,42 @@ letter-spacing:1px;
 margin: 0 auto;
 }
 #post-settings{
-    background-color:#C8D6FF;
+    background-color1:#C8D6FF;
+    background-color:#F4F4F4;
     margin-top:10px;
     padding:3px;
-    -moz-box-shadow:2px 2px 14px #4B9CE0;
-    color:#000;
+    colo1r:#000;    
+    color: #2D392D;
 }
 #participants{
-    background-color:#C8D6FF;
+    background-color1:#C8D6FF;
+    background-color:#F4F4F4;
     margin-top:16px;
     padding:2px;
-    -moz-box-shadow:2px 2px 14px #4E9494;
+    color: #2D392D;
+    -moz-box-shadow1:2px 2px 14px #4E9494;
+}
+#participants2{
+    background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
+    border-color:#C9DCA6 -moz-use-text-color -moz-use-text-color;
+    margin-top:16px;
+    border-right:medium none;
+    border-style:solid none none;
+    border-width:1px medium medium;
+    padding:2px;
+    text-align: left;
+    letter-spacing:0.5px;
 }
 #matches{
-    background-color:#C8D6FF;
+    background-color1:#C8D6FF;
     -moz-border-radius:14px;
-    -moz-box-shadow:2px 2px 14px #4E9494;
+    color: #2D392D;
+    -moz-box-shadow1:2px 2px 14px #4E9494;
+    border-top:1px solid #DFDFDF;
+}
+#match-title{
+color:#2D392D;
+font-weight:bold;
 }
 #invitations {
     background-color:#0B84E8;
@@ -165,11 +185,11 @@ html,body {
   float: left;
   margin: 5px 275px;
   margin:17px;
-  margin-left:300px;
+  margin-left:280px;
   overflow:hidden;
   text-align:left;
   color: #000;
-  width: 720px;
+  width: 710px;
   background-color: #fff;
   /* background-repeat: repeat-y;  background-image: url('/images/content-bg.png'); */
   /* background-image: url(/images/middle.png); background-repeat: repeat-y; width: 898px; */
@@ -425,10 +445,11 @@ width:251px;
     padding: 2px;
 }
 #header ul li a, #wide-header ul li a {
-    color:#0B84E8;
+    color:#2D392D;
     text-decoration:none;
     padding:0 13px;
     font-size:16px;
+    font-weight:bold;
     -moz-border-radius:10px 10px 10px 10px;
 }
 #header ul li a.active, #header ul li a:hover,#wide-header ul li a.active, #wide-header ul li a:hover {
@@ -476,7 +497,7 @@ float: left;
 font-size: 14px;
 margin:0 auto;
 min-width:1150px;
-width:1400px;
+width:1285px;
 }
 #dashboard-content {
     overflow:hidden;
@@ -498,8 +519,8 @@ width:930px;
 }
 
 #parent-post {
-background-color: #d1d7f6;
-overflow: auto;
+background-color1:#d1d7f6;
+overflow:auto;
 width: 100%;
 padding: 5px;
 }
@@ -514,7 +535,6 @@ clear: right;
 #post-body{
     float: left;
     padding-bottom:10px;
-    width:88%;
 }
 
 #comments-section {
@@ -585,7 +605,6 @@ clear: right;
     margin-bottom: 5px;
     font-weight: bold;
     padding-top:5px;
-    margin-left:10px;
 }
 .in_place_editor_field, .inplacericheditor-form {
     clear:left;
@@ -615,7 +634,7 @@ clear: right;
 
 div#participants ul li {
     padding:3px;
-    margin-left:-35px;
+    margin-left:-38px;
 }
 div#twitter_followers ul li {
     list-style:none;
@@ -671,13 +690,6 @@ div#twitter_followers ul li {
 }
 
 ul#matches-list li:hover {
-    -moz-border-radius-bottomleft:14px;
-    -moz-border-radius-bottomright:14px;
-    -moz-border-radius-topleft:14px;
-    -moz-border-radius-topright:14px;
-
-    border-top: 2px solid #fff;
-    border-bottom: 2px solid #fff;
     background-color:#f1f1bc;
     color:#000;
 }

@@ -1,14 +1,15 @@
 <div id="matches">
    <ul id="matches-list">
 
-      <li><b><%= link_to "#{get_teamname(match.firstteam).capitalize} vs #{get_teamname(match.secondteam).capitalize}</b><br/>
+      <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{get_teamname(match.firstteam).capitalize} vs #{get_teamname(match.secondteam).capitalize}</span><br/>
               #{match.description.capitalize} @ #{match.venue.capitalize} <br/>
               <span style=font-size:80%;>#{match.display_match_start_time}</span>", match.get_url_for(@eng, 'show') %><br/>
-      
+
       <% if match.check_if_match_started %>
           <span style="font-size:80%;margin-left:80px"><%= facebox_link_to 'See Results', :url => match.get_url_for(@eng, 'result') %></span><br/>
       <% else %>
           <span style="font-size:80%;margin-left:80px"><%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %></span><br/>
       <% end %>
+       
     </ul>
 </div>
