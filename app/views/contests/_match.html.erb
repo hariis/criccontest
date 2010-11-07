@@ -1,9 +1,9 @@
 <p>
-  <%= render :partial => 'matches/show', :member => match, :locals => {:match => match} %>
-  
-  <% if current_user && current_user.admin? && current_user.admin_user? %>
-      <%= link_to "[X]", contest_match_path(@contest, match), :confirm => "Are you sure?", :method => :delete %>
-      <br/><span style="font-size:80%"><%= link_to "Calculate Match Result", :controller => :matches, :action => 'calculate_match_result', :contest_id => @contest.id, :id => match.id %>
-      <br/><%= facebox_link_to 'Set Match Result', :url => match.set_match_predicition_for_admin %><br/><br/></span>
-  <% end %>
+    <%= render :partial => 'matches/show', :member => match, :locals => {:match => match} %>
+
+    <% if current_user && current_user.admin? && current_user.admin_user? %>
+        <%= link_to "[X]", contest_match_path(@contest, match), :confirm => "Are you sure?", :method => :delete %>
+        <br/><span style="font-size:80%"><%= link_to "Calculate Match Result", :controller => :matches, :action => 'calculate_match_result', :contest_id => @contest.id, :id => match.id %>
+        <br/><%= facebox_link_to 'Set Match Result', :url => match.set_match_predicition_for_admin %><br/></span>
+    <% end %>
 </p>

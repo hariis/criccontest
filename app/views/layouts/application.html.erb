@@ -19,7 +19,7 @@
   theme_advanced_resizing_min_width : 500,
   theme_advanced_resizing_max_width : 800,
   plugins : "paste,safari,table,paste,emotions",
-
+facebox
   width: "760",
   button_title_map: false,
   apply_source_formatting: true,
@@ -67,13 +67,19 @@ tinyMCE.init(tinymce_advanced_options);
   <% if current_user && current_user.activated? %>
       <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
    <% else %>
-       <li><% link_to "Register", new_user_path %></li>
+       <% if ENV['RAILS_ENV'] != 'production' %> 
+            <li><%= link_to "Register", new_user_path %> </li>
+       <% end %>  
        <li><%= link_to "Login", login_path %></li>    
    <% end %>
       
 </ul>
 </div>
   
+<div id="widgets" class="banner">
+   <span style="color:#fff;"><%= tag_line %></span>
+</div>
+
 <% if flash[:notice] %>
   <div id="flash-notice">
       <p><%= flash[:notice] %><%  flash[:notice] = nil %></p>
@@ -90,7 +96,7 @@ tinyMCE.init(tinymce_advanced_options);
       <p><%= flash[:status] %><%  flash[:status] = nil %></p>
   </div>
 <% end %>
-<% if controller.action_name == 'dashboard' || (controller_name != 'contacts' && controller.action_name == 'index') %>
+<% if controller.action_name == 'dashboard' || (controller_name != 'contacts' && controller.action_name == 'index1') %>
     <div id="content">
 <% else %>
      <div id="gen-content">
@@ -112,15 +118,7 @@ tinyMCE.init(tinymce_advanced_options);
 <% else %>
      <div id="footer">  
 <% end %>
-      <ul>
-      <li>©2010 DoosraCricket</li> |
-      <li><%= link_to "How to get Started", root_path %></li> |
-      <li><%  link_to "Blog", DOMAIN + "blog" %></li>
-      <li><%  link_to "About", DOMAIN + "about" %></li>
-      <li><%=  link_to "Contact", DOMAIN + "contact" %></li>
-      <li><%  link_to "Privacy", DOMAIN + "privacy" %></li>
-      <li><%  link_to "Help / FAQ", DOMAIN + "help" %></li> 
-    </ul>
+  <%= render 'layouts/footer' %>
   </div>
 </body>
 </html>

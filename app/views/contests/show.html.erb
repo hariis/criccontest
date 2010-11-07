@@ -3,23 +3,21 @@
     <%= button_to "Add New Match",  new_contest_match_path(@contest, @match), :method => 'get' %>      
 <% end %>
 
-<p>
-  <div class='subject'><%=h @contest.name %></div>
-</p>
-
-<p>
-  <%=h @contest.description %>
-</p>
-<h3 style="border-bottom:1px solid #000;"></h3>
-
-<% if @contest.matches.size > 0 %>
-    <span style="font-size:140%;">Listing Matches</span>
-    <%= render :partial => 'match', :collection => @contest.matches %><br/>
-<% end %>
+<span style="float:left;padding-top:5px;">
+    <div class='subject'><%=h @contest.name %></div>
+    <span style="margin-left:12px;"><%=h @contest.description %></span><br/><br/>
+</span><br/>
 
 <div id="signup-btn">
     <%= button_to "Start a Contest", new_contest_post_path(@contest), :method => :get %>
-</div>
+</div><br/>
+
+<fieldset style="clear:both;">
+    <% if @contest.matches.size > 0 %>
+        <legend><b><span style="font-size:140%">Listing Matches</span></b></legend><br/>
+        <%= render :partial => 'match', :collection => @contest.matches %><br/>
+    <% end %>    
+</fieldset>
 
 <% link_to 'Edit', edit_contest_path(@contest) %>
 <% link_to 'Back', contests_path %>

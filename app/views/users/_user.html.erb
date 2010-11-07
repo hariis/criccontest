@@ -1,98 +1,105 @@
 <% form_for(@user, :html => { :multipart => true }) do |f| %>
-  
-  <% if @user.errors.size > 0 %>
-    <h2 style="color:#ff0000;">Please verify the fields and try again!</h2>
-      <% write_errors = true %>
-      <% @user.errors.each do |error| %>
-        <% if ( (error[0].include?('email') && error[1].include?('blank')) || error[0].include?('name')) %>
-            <% write_errors = false %>
-         <% end %>
-      <% end %>
-        <% if write_errors %>
-            <div id="errorExplanation" class="errorExplanation">              
-            <ul>
-            <% @user.errors.each do |error| %>              
-                  <% if error[0].include?('email') || error[1].include?('confirmation') || (error[0] == ('password') && error[1].include?('too short'))  %>
-                  <li><%= error[0].capitalize + " " + error[1]  %> </li>
-                  <% end %>
-             <% end %>
-            
-            </ul>
-            </div>
-      <% end %>
-  <% end %>
-  <p>
-    <%= f.label :email %> (required)<br />
-    <%= f.text_field :email %>
-    <% if controller.action_name == 'new' %>
-    <br/><span style="font-size:85%;">(If you have received DoosraCricket invitations to your email address, then please use the same email address here)</span>
-     <% end %>
-  </p>
-  <p style="float:left;">
-    <%= f.label :first_name %> (required)<br />
-    <%= f.text_field :first_name %>
-  </p>
-  <p style="float:left;">
-    <%= f.label :last_name %> (required)<br />
-    <%= f.text_field :last_name %>
-  </p>
-
-  <p style="float:left;clear:both;">
-    <% if controller.action_name == 'edit' %>        
-        <%= f.label :password, "Choose New Password" %><br/>
-    <% else %>
-        <%= f.label :password %><br/>
-    <% end %>    
-    <%= f.password_field :password %>
-  </p>
-  <p style="float:left;">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %><br/>
-  </p>
-
-<p style="clear:both;">
-  <%= link_to_function 'more >>' do |page|
-    page.toggle 'optional'
-  end %>
-  </p>
-  
-  <div id = 'optional' style='display:none;' >
-
-    <% if controller.action_name == 'xxx' %>
-    <p style="float:left;clear:both;">
-      <%= f.label :screen_name, "Twitter ID" %><br />
-      <%= f.text_field :screen_name %>
-      <% if controller.action_name == 'new' %>
-      <br/><span style="font-size:85%;">If you have received DoosraCricket invitations to your twitter id, then please enter the same here </span>
-      <% end %>
-    </p>
-   <% end %>
-
-  <% if controller.action_name == 'edit' %>
-      <p style="clear:both;">
-          <%= f.label "Facebook Profile" %><br />
-          <%= f.text_field :facebook_link %>
-      </p>
-      <p>
-          <%= f.label "LinkedIn Profile" %><br />
-          <%= f.text_field :linked_in_link %>
-        </p>
-          <p>
-          <%= f.label "Your Blog" %><br />
-          <%= f.text_field :blog_link %>
-        </p>
+   <fieldset> 
+        <% if @user.errors.size > 0 %>
+          <h2 style="color:#ff0000;">Please verify the fields and try again!</h2>
+            <% write_errors = true %>
+            <% @user.errors.each do |error| %>
+              <% if ( (error[0].include?('email') && error[1].include?('blank')) || error[0].include?('name')) %>
+                  <% write_errors = false %>
+               <% end %>
+            <% end %>
+            <% if write_errors %>
+                <div id="errorExplanation" class="errorExplanation">              
+                    <ul>
+                    <% @user.errors.each do |error| %>              
+                          <% if error[0].include?('email') || error[1].include?('confirmation') || (error[0] == ('password') && error[1].include?('too short'))  %>
+                          <li><%= error[0].capitalize + " " + error[1]  %> </li>
+                          <% end %>
+                     <% end %>
+                  </ul>
+                </div>
+            <% end %>
+        <% end %>
+        
         <p>
-        <%= f.label :avatar %><br />
-        <%= f.file_field :avatar %>
-      </p>
-       <% end %>
-   </div>
+          <%= f.label :email %> (required)<br />
+          <%= f.text_field :email %>
+          <% if controller.action_name == 'new' %>
+          <br/><span style="font-size:85%;">(If you have received DoosraCricket invitations to your email address, then please use the same email address here)</span>
+           <% end %>
+        </p>
+        
+        <span style="float:left;padding-top:10px;">
+          <%= f.label :first_name %> (required)<br />
+          <%= f.text_field :first_name %>
+        </span>
+        <span style="float:left;padding-top:10px">
+          <%= f.label :last_name %> (required)<br />
+          <%= f.text_field :last_name %>
+        </span>  
+        <p style="float:left;clear:both;"></p>
 
-  <p style="clear:both;">
+        <span style="float:left;clear:both;padding-top:10px;">
+          <% if controller.action_name == 'edit' %>        
+              <%= f.label :password, "Choose New Password" %><br/>
+          <% else %>
+              <%= f.label :password %><br/>
+          <% end %>    
+          <%= f.password_field :password %>
+        </span>
+
+        <span style="float:left;padding-top:10px;">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %><br/>
+        </span>
+        <p style="float:left;clear:both;"></p>
+    </fieldset>
+
+    <span style="clear:both;margin-left:10px;">
+        <%= link_to_function 'more >>' do |page|
+          page.toggle 'optional'
+        end %>
+    </span>
+
+    <fieldset> 
+        <div id = 'optional' style='display:none;' >
+
+          <% if controller.action_name == 'xxx' %>
+              <p style="float:left;clear:both;">
+                <%= f.label :screen_name, "Twitter ID" %><br />
+                <%= f.text_field :screen_name %>
+                <% if controller.action_name == 'new' %>
+                <br/><span style="font-size:85%;">If you have received DoosraCricket invitations to your twitter id, then please enter the same here </span>
+                <% end %>
+              </p>
+         <% end %>
+
+         <% if controller.action_name == 'edit' %>
+            <p style="clear:both;">
+                <%= f.label "Facebook Profile" %><br />
+                <%= f.text_field :facebook_link %>
+            </p>
+            <p>
+                <%= f.label "LinkedIn Profile" %><br />
+                <%= f.text_field :linked_in_link %>
+            </p>
+            <p>
+                <%= f.label "Your Blog" %><br />
+                <%= f.text_field :blog_link %>
+            </p>
+            <p>
+              <%= f.label :avatar %><br />
+              <%= f.file_field :avatar %>
+            </p>
+         <% end %>
+       </div>
+    </fieldset>
+
+  <span style="clear:both;margin-left:10px;">
     <%= f.submit button_type, :class => 'submit' %>
     <%  if button_type == 'Update' %>
       or <%= link_to ' Cancel', @user %>
     <% end %>
-  </p>
+  </span>
 <% end %>
 

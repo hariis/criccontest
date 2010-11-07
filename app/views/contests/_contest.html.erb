@@ -1,28 +1,29 @@
 <% form_for(@contest) do |f| %>
   <%= f.error_messages %>
+  <fieldset>
+      <p>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, :size=> 91, :maxlength => 80 %>
+      </p>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, :size=> 91, :maxlength => 80 %>
-  </p>
+      <p>
+        <%= f.label :url %><br />
+        <%= f.text_field :url, :size=> 91, :maxlength => 180 %>
+      </p>
 
-  <p>
-    <%= f.label :url %><br />
-    <%= f.text_field :url, :size=> 91, :maxlength => 180 %>
-  </p>
+      <p>
+        <%= f.label :description %><br />
+        <%= f.text_area :description, :class =>"mceNoEditor", :rows => 4 %>
+      </p>
 
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :class =>"mceNoEditor", :rows => 4 %>
-  </p>
-
-  <p>
-    <b>Add Teams (comma seprated)</b><br/>
-    <%= text_area_tag :teams, "", :class =>"mceNoEditor", :rows => 2, :cols => 40 %>
-  </p>
-
-  <p>
-    <%= f.submit submit_button %> | 
-    <%= link_to 'Cancel', contests_path %>
-  </p>
+      <p>
+        Add Teams (comma seprated)<br/>
+        <%= text_area_tag :teams, "", :class =>"mceNoEditor", :rows => 2, :cols => 40 %>
+      </p>
+      <br/>
+      <p>
+        <%= f.submit submit_button %> | 
+        <%= link_to 'Cancel', contests_path %>
+      </p>
+   </fieldset>
 <% end %>
