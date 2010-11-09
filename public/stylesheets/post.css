@@ -12,7 +12,6 @@ margin:5px 10px;
 padding: 0px 7px;  /* top and bottom is 0 so empty div does not show up */
 width:240px;
 }
-
 #right {
     float:left;
     width:80px;
@@ -104,6 +103,7 @@ margin: 0 auto;
     padding:3px;
     colo1r:#000;    
     color: #2D392D;
+    border:1px solid #666666
 }
 #participants{
     background-color1:#C8D6FF;
@@ -112,6 +112,7 @@ margin: 0 auto;
     padding:2px;
     color: #2D392D;
     -moz-box-shadow1:2px 2px 14px #4E9494;
+    border:1px solid #666666
 }
 #participants2{
     background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
@@ -162,7 +163,7 @@ html,body {
   -moz-background-origin:padding;
   background:#89B556 none repeat scroll 0 0;
   background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
-  width: 100%;  
+  width: 100%;
 }
 .fieldWithErrors input {
     border: 1px solid #ff0000;
@@ -193,6 +194,7 @@ html,body {
   color: #000;
   width: 710px;
   background-color: #fff;
+  border:1px solid #666666
   /* background-repeat: repeat-y;  background-image: url('/images/content-bg.png'); */
   /* background-image: url(/images/middle.png); background-repeat: repeat-y; width: 898px; */
 }
@@ -221,6 +223,7 @@ html,body {
   text-align:left;
   color: #beige;
   width:925px;
+  border:1px solid #666666;
 }
 #shadow {
     width:1050px;
@@ -508,6 +511,7 @@ width:1285px;
     width:960px;
     margin:0 auto;
     background: #ffffff;
+    border:1px solid #666666
 }
 .features {
 padding:2px 0 0;

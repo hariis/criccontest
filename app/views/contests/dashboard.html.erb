@@ -33,13 +33,7 @@
         </div>
     </div></div>
 
-    <div id="dashboard-content1" style="float:left;margin-left:40px;">
-        <div id="signup-btn1">
-            <%= link_to image_tag('/images/fixture.png'), contests_path, :method => :get %><br/><br/>
-        </div>
-    </div>
-
-    <div id="dashboard-content" style="float:left;margin-left:40px;width:270px;height:165px;font-size:14px;">
+    <div id="dashboard-content" style="float:left;margin-left:40px;width:240px;height:165px;font-size:14px;">
          <div id="participants21" style="padding:4px 0px;">
                <% form_for(@user_session) do |f| %> 
                     <%= f.label :email %> <br/>
@@ -53,6 +47,13 @@
               <div style="float:right;font-size:12px;padding:6px;">
                     <%= link_to "Forgot Password", new_password_reset_path %> | <%= link_to "Resend Activation", resendnewactivation_users_path %>
               </div>
+        </div>
+    </div>
+
+    <br/><br/>
+    <div id="dashboard-content1" style="float:left;margin-left:40px;margin-top:30px;">
+        <div id="signup-btn1">
+            <%= link_to image_tag('/images/fixture.png'), contests_path, :method => :get %><br/><br/>
         </div>
     </div>
 
