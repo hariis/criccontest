@@ -9,7 +9,8 @@
 </span><br/>
 
 <div id="signup-btn">
-    <%= button_to "Start a Contest", new_contest_post_path(@contest), :method => :get %>
+    <% button_to "Start a Contest", new_contest_post_path(@contest), :method => :get %>
+    <%= link_to image_tag('/images/start_contest.png'), new_contest_post_path(@contest), :method => :get %>
 </div><br/>
 
 <fieldset style="clear:both;">

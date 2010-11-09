@@ -1,15 +1,60 @@
-<div id="dashboard-content">
-    <div id="how-to" style="width:960px;"><br/>
+<br/><br/>
+<div id="home-content">
+    <div id="dashboard-content" style="float:left;margin-left:80px;width:760px;">
+        <div id="howto" style="width:1260px;"><br/>
 
-        <div id="block-text">
-            <div id="signup-btn">
-                <%= button_to "Current Fixtures", contests_path, :method => :get %>
-            </div><br/>
+            <div id="block-text">
+                <div id="signup-btn">
+                    <% link_to image_tag('/images/fixture.png'), contests_path, :method => :get %>
+                </div>
 
-            <h2 style="padding-top:15px;">Start your Private Contest</h2>
-            <h2 style="padding-top:15px;">Invite Friends</h2>
-            <h2 style="padding-top:15px;">Cast Predicitions</h2>
-            <h2 style="padding-top:15px;">Discuss</h2>
+           <div style="color:#5B5B5B;font-size:30px;font-family:Georgia;font-weight:bold;clear:both;float:left;padding:0px 10px;">1</div>
+           <div  class="blurb_about_line">Pick a Fixture and Start a Private Contest for your group<br/></div>
+           <div style="clear: both; padding-top: 30px;"></div>
+
+
+           <div style="color:#5B5B5B;font-size:30px;font-family:Georgia;font-weight:bold;float:left;padding:0px 10px;">2</div>
+           <div  class="blurb_about_line">Invite your friends to the contest<br/></div>
+           <div style="clear: both; padding-top: 30px;"></div>
+
+           <div style="color:#5B5B5B;font-size:30px;font-family:Georgia;font-weight:bold;float:left;padding:0px 10px;">3</div>
+           <div class="blurb_about_line">Cast your Predictions for each match on various categories<br/></div>
+
+           <div style="clear: both; padding-top: 30px;"></div>
+
+           <div style="color:#5B5B5B;font-size:30px;font-family:Georgia;font-weight:bold;float:left;padding:0px 10px;">4</div>
+           <div class="blurb_about_line">Once the match is over, results get tabulated and displayed<br/></div>
+           <div style="clear: both; padding-top: 30px;"></div>
+
+           <div style="color:#5B5B5B;font-size:30px;font-family:Georgia;font-weight:bold;float:left;padding:0px 10px;">5</div>
+           <div class="blurb_about_line">All along, discuss the match by posting comments<br/></div>
+           <div style="clear: both; padding-top: 30px;"></div>
+           <br/>
+        </div>
+    </div></div>
+
+    <div id="dashboard-content1" style="float:left;margin-left:40px;">
+        <div id="signup-btn1">
+            <%= link_to image_tag('/images/fixture.png'), contests_path, :method => :get %><br/><br/>
         </div>
     </div>
+
+    <div id="dashboard-content" style="float:left;margin-left:40px;width:270px;height:165px;font-size:14px;">
+         <div id="participants21" style="padding:4px 0px;">
+               <% form_for(@user_session) do |f| %> 
+                    <%= f.label :email %> <br/>
+                    <%= f.text_field :email %><br /><br />
+                    <%= f.label :password %><br />
+                    <%= f.password_field :password %><br />
+
+                    <%= f.submit 'Login', :class => 'submit' %>    
+               <% end %>
+
+              <div style="float:right;font-size:12px;padding:6px;">
+                    <%= link_to "Forgot Password", new_password_reset_path %> | <%= link_to "Resend Activation", resendnewactivation_users_path %>
+              </div>
+        </div>
+    </div>
+
 </div>
+

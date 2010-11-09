@@ -30,13 +30,16 @@ right: 0px; */
 }
 #howto{
     color:#fff;
-    background:transparent url('/images/shadow-bg-left2.png') no-repeat scroll center bottom;
-    height:400px;
-    width:641px;
+    background1:transparent url('/images/shadow-bg-left2.png') no-repeat scroll center bottom;
+    height1:400px;
+    width1:641px;
     float: left;
     clear:right;
     line-height:1.5;
     text-align:left;
+    font-family:Georgia;
+    font-style:italic;
+    font-size:28px;
 }
 #howto-blurb {
     float:left;
@@ -72,13 +75,13 @@ right: 0px; */
 }
 div.blurb_about_line {
 float:left;
-font-size:20px;
-line-height:24px;
+font-size:22px;
+line-height:28px;
 margin:7px 0 10px;
 text-align:left;
 vertical-align:middle;
 clear:right;
-color: #0B84E8;
+color: #5B5B5B;
 line-height:1em;
 }
 div.blurb_about {
@@ -113,11 +116,9 @@ margin: 0 auto;
 #participants2{
     background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
     border-color:#C9DCA6 -moz-use-text-color -moz-use-text-color;
-    margin-top:16px;
     border-right:medium none;
     border-style:solid none none;
     border-width:1px medium medium;
-    padding:2px;
     text-align: left;
     letter-spacing:0.5px;
 }
@@ -152,7 +153,7 @@ font-weight:bold;
 }
 html,body {
   font-size: 14px;
-  font-family:    Sans-Serif,Arial,'Lucida Grande';
+  font-family: Sans-Serif,Arial,'Lucida Grande';
   color:#2b1e24;
   padding:0px;
   margin:0px;
@@ -160,6 +161,7 @@ html,body {
   -moz-background-inline-policy:continuous;
   -moz-background-origin:padding;
   background:#89B556 none repeat scroll 0 0;
+  background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
   width: 100%;  
 }
 .fieldWithErrors input {
@@ -337,13 +339,13 @@ textarea {
     
 }
 input.submit  {
-    padding: 3px;
-    color:#0b84e8;
-    font-size:20px;
+    padding: 2px;
+    color:#666666;
+    font-size:16px;
     font-weight:bold;
     cursor: pointer;
 }
-#signup-btn input {
+#signup-btn {
     float:right;
     font-size:20px;
     font-weight:bold;   
@@ -574,10 +576,10 @@ clear: right;
     width: 98%;
     margin-left:5px;
 }
-.listing-line-odd {
+.listing-line-odd1 {
         background-color: #E6F1F7;
 }
-.listing-line-even {
+.listing-line-even1 {
         background-color: #fff;
 }
 .current-user-comment {
@@ -853,7 +855,8 @@ padding-top:10px;
 font-size:340%;
 }
 fieldset {
-    background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
+    background-color:#F4F4F4;
+    background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
     border-color:#C9DCA6 -moz-use-text-color -moz-use-text-color;
     border-right:medium none;
     border-style:solid none none;

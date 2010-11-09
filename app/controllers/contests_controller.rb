@@ -5,7 +5,9 @@ class ContestsController < ApplicationController
   before_filter :check_for_admin, :only => [:new, :create]
   #before_filter :load_user
 
-  def dashboard    
+  def dashboard
+    @user_session = UserSession.new
+    @user_session.email = flash[:email]
   end
   
   # GET /contests

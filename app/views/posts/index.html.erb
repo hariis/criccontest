@@ -11,7 +11,8 @@
 </style>
 <br/>
 <div id="dashboard-view">
-<%= button_to 'Current Fixtures', contests_path, :method => :get, :class => 'submit' %>
+<% button_to 'Current Fixtures', contests_path, :method => :get, :class => 'submit' %>
+<%= link_to image_tag('/images/fixture.png'), contests_path, :method => :get, :class => 'submit' %><br/><br/>
 
 <div id="tabs">
       <ul>

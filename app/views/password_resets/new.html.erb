@@ -1,13 +1,11 @@
-<div style="width:725px;margin:auto;">
-    <div id="centered-heading">Forgot Password</div>
-    Not a problem! <br/>
-    Give us your email address and we will email you instructions to reset your password.<br />
-    <br />
-
+<div id="centered-heading">Forgot Password</div>
+<fieldset>
+    <div style="margin-left:10px;padding-top:10px;">
+        Not a problem! <br/>
+        Give us your email address and we will email you instructions to reset your password.<br /><br />
+    </div>
     <% form_tag password_resets_path do %>
-
-      <%= text_field_tag "email", '', :size => 30  %><br />
-      <br />
+      <%= text_field_tag "email", '', :size => 30  %><br /><br />
       <%= submit_tag "Reset my password" %>
     <% end %>
-</div>
+</fieldset>
