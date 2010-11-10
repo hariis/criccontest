@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'authlogic'
   config.gem 'twitter'
-  config.gem "oauth2", :version => "0.0.8"
+#  config.gem "oauth2", :version => "0.0.8"
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -43,10 +43,10 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   DOMAIN = "http://www.doosracricket.com/" if ENV['RAILS_ENV'] == 'production'
   DOMAIN = "http://localhost:3000/" if ENV['RAILS_ENV'] == 'development'
-  TWOAUTH_KEY = "2ABzvtWhFUCZFiluhc7bGg"
-  TWOAUTH_SECRET = "byf0AI0N6iazhGK1AeZWOqmaOZzm0cKvsMmnu8uDIM"
-  TWOAUTH_SITE = "http://twitter.com"
-  TWOAUTH_CALLBACK = "http://www.doosracricket.com/callback"
+#  TWOAUTH_KEY = "2ABzvtWhFUCZFiluhc7bGg"
+#  TWOAUTH_SECRET = "byf0AI0N6iazhGK1AeZWOqmaOZzm0cKvsMmnu8uDIM"
+#  TWOAUTH_SITE = "http://twitter.com"
+#  TWOAUTH_CALLBACK = "http://www.doosracricket.com/callback"
   EV_TAGLINE = "Predict matches and Compete with your friends"
   #redefining the error fields display
   config.action_view.field_error_proc = Proc.new do |html_tag, instance|
