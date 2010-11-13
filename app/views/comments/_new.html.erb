@@ -1,8 +1,8 @@
-<div id="form_<%= @parent_comment.id %>" style="border:8px solid #6abcfd;padding: 5px;">
-<h2>You are replying to </h2>
-<div style="background-color:#e9e2e2;margin-bottom:10px;padding:5px;">
-    <span style="font-size:12px;">
-    <%= truncate_html(@parent_comment.body, 350) %> </span>
+<div id="form_<%= @parent_comment.id %>" style="border:8px solid grey;padding:5px;">
+    <h2 style="margin-left:10px;">You are replying to </h2>
+<div style="background-color:#e9e2e2;margin:10px;margin-right:20px;padding:5px;">
+
+    <span style="font-size:12px;"> <%= truncate_html(@parent_comment.body, 350) %> </span>
     <span style="color:#0062F6;font-size:10px;"> by <%= @parent_comment.owner.display_name(@post) %></span>
 </div>
 
@@ -10,7 +10,7 @@
 
     <%  form_remote_tag :url => { :controller => 'comments', :action => "create", :pcid => "#{@parent_comment.id}",:pid => "#{@post.unique_id}",:uid => params[:uid] }, :html => {:id => "reply_comment_form_#{@parent_comment.id}" },
           :before => "Element.show('n-spinner');", :complete => "Element.hide('n-spinner')" do %>
-    
+
           <%= text_area_tag "comment_body_#{@parent_comment.id}", nil, :rows => 5, :cols => 90 %><br/>
 
           <p style="margin-top: 10px;">

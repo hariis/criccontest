@@ -1,4 +1,5 @@
 <legend style="font-size:150%">Match Result</legend>
+<br/><%= "<b>Result:</b> #{@match.match_result}" %><br/>
 <div id='predictions' style="margin-top:10px;">
     <% match_result = 0 %>
     <%  @category.entries.each do |entry| %>                
@@ -17,5 +18,5 @@
         <% end %>
 
     <% end %>
-    <%= "Results not yet available<br/>" if match_result < 0 %><br/>
+    <% "Result not yet updated<br/>" if match_result < 0 %><br/>     
 </div>

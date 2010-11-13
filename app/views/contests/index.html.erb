@@ -25,13 +25,13 @@
 <fieldset>
     <% count = 1 %>
     <% @contests.each do |contest| %>
-        <p>  
+         <p>  
             <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
             <span style="font-size:120%;"><%= link_to  h(contest.name), contest %></span><br/>
-            <span style="font-weight:normal;clear:both;"><%= link_to  h(contest.url), h(contest.url) %> </span><br/>
-
+            <span style="font-weight:normal;"><%= link_to  h(contest.url), h(contest.url) %> </span>
+            
             <% if current_user && current_user.admin? %>
-                <span style="color:green"><%= contest.posts.size %> contest currently running</span>
+                <br/><span style="color:green"><%= contest.posts.size %> contest currently running</span>
             <% end %>
 
             <% unless current_user && current_user.admin? && current_user.admin_user? %>

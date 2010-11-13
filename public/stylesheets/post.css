@@ -123,6 +123,9 @@ margin: 0 auto;
     text-align: left;
     letter-spacing:0.5px;
 }
+#participants21 {
+    -moz-border-radius:14px;
+}
 #matches{
     background-color1:#C8D6FF;
     -moz-border-radius:14px;
@@ -278,7 +281,7 @@ vertical-align:middle;
     position:fixed;
     top: 142px;
     text-align:center;
-    border:8px solid #6abcfd;
+    border:8px solid grey;
     margin-left:25%;
 }
 #reply-to-comment {    
@@ -511,7 +514,8 @@ width:1285px;
     width:960px;
     margin:0 auto;
     background: #ffffff;
-    border:1px solid #666666
+    border:1px solid #666666;
+    -moz-border-radius:14px;
 }
 .features {
 padding:2px 0 0;
@@ -861,7 +865,7 @@ font-size:340%;
 fieldset {
     background-color:#F4F4F4;
     background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
-    border-color:#C9DCA6 -moz-use-text-color -moz-use-text-color;
+    border-color1:#C9DCA6 -moz-use-text-color -moz-use-text-color;
     border-right:medium none;
     border-style:solid none none;
     border-width:1px medium medium;
@@ -932,7 +936,7 @@ h1, h2,h3 {
     line-height:24px;
     font-family:Georgia,serif;
 }
-#block-text p{    
+#block-text p {    
     margin-bottom:20px;
     background:none no-repeat scroll 0 0 transparent;
     line-height:24px;

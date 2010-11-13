@@ -33,13 +33,13 @@
         </div>
     </div></div>
 
-    <div id="dashboard-content" style="float:left;margin-left:40px;width:240px;height:165px;font-size:14px;">
-         <div id="participants21" style="padding:4px 0px;">
+    <div id="dashboard-content" style="float:left;margin-left:40px;width:240px;height:170px;font-size:14px;-moz-border-radius:14px">
+         <div id="participants21" style="padding:7px 0px;">
                <% form_for(@user_session) do |f| %> 
                     <%= f.label :email %> <br/>
-                    <%= f.text_field :email %><br /><br />
-                    <%= f.label :password %><br />
-                    <%= f.password_field :password %><br />
+                    <%= f.text_field :email, :cols => 30 %><br/><br/>
+                    <%= f.label :password %><br/>
+                    <%= f.password_field :password, :cols => 30  %><br/>
 
                     <%= f.submit 'Login', :class => 'submit' %>    
                <% end %>

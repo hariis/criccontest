@@ -19,5 +19,10 @@
     }
 </script>
 
-<%= render :partial => 'spectators/match_details', :member => @match, :locals => {:match => @match} %><br/>
-<%= render :partial => 'result' %>
+<fieldset>
+    <%= render :partial => 'spectators/match_details', :member => @match, :locals => {:match => @match} %><br/>
+</fieldset>
+
+<fieldset>
+    <%= render :partial => 'result' %>
+</fieldset>

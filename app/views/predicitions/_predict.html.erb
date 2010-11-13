@@ -1,39 +1,31 @@
-<p>
-<% @category.entries.each do |entry| %>
-  <p>
-      <% if entry.name == 'winner' %>
-            <b>Predict Winner </b><br/>
-            <%= radio_button_tag 'winner', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
-            <%= radio_button_tag 'winner', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
-            <%= radio_button_tag 'winner', "0" %> Draw
-      <% end %>
-  </p>
-  
-  <p>
-      <% if entry.name == 'toss' %>
-            <b>Predict Toss </b><br/>
-            <%= radio_button_tag 'toss', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
-            <%= radio_button_tag 'toss', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
-            <h4 style="border-top:1px solid #000;"></h4>
-      <% end %>
-  </p>
-  
-  <p>
-      <% if entry.name == 'ts_firstteam' %>
-            <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><br/>
-            <% @totalscore_entries.each do |totalscore_entry| %>
-                <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
-            <% end %>
-      <% end %>
+<% @category.entries.each do |entry| %>  
+    <% if entry.name == 'winner' %>
+          <br/><b>Predict Winner </b><br/>
+          <%= radio_button_tag 'winner', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
+          <%= radio_button_tag 'winner', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
+          <%= radio_button_tag 'winner', "0" %> Draw
+    <% end %>
 
-      <% if entry.name == 'ts_secondteam' %>
-            <b>Predict Total Score: <%= get_teamname(@match.secondteam) %></b><br/>
-            <% @totalscore_entries.each do |totalscore_entry| %>
-                <%= radio_button_tag 'ts_secondteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
-            <% end %>
-            <h4 style="border-top:1px solid #000;"></h4>
-      <% end %>
-  </p>
+    <% if entry.name == 'toss' %>
+          <br/><b>Predict Toss </b><br/>
+          <%= radio_button_tag 'toss', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
+          <%= radio_button_tag 'toss', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
+          <h4 style="border-top:1px solid #000;"></h4>
+    <% end %>
+
+    <% if entry.name == 'ts_firstteam' %>
+          <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><br/>
+          <% @totalscore_entries.each do |totalscore_entry| %>
+              <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+          <% end %>
+    <% end %>
+
+    <% if entry.name == 'ts_secondteam' %>
+          <br/><b>Predict Total Score: <%= get_teamname(@match.secondteam) %></b><br/>
+          <% @totalscore_entries.each do |totalscore_entry| %>
+              <%= radio_button_tag 'ts_secondteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+          <% end %>
+          <h4 style="border-top:1px solid #000;"></h4>
+    <% end %>
 
 <% end %>
-</p>
