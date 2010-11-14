@@ -3,7 +3,7 @@
           <br/><b>Predict Winner </b><br/>
           <%= radio_button_tag 'winner', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
           <%= radio_button_tag 'winner', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
-          <%= radio_button_tag 'winner', "0" %> Draw
+          <%= radio_button_tag 'winner', "0" %> Draw<br/>
     <% end %>
 
     <% if entry.name == 'toss' %>
@@ -17,7 +17,7 @@
           <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><br/>
           <% @totalscore_entries.each do |totalscore_entry| %>
               <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
-          <% end %>
+          <% end %><br/>
     <% end %>
 
     <% if entry.name == 'ts_secondteam' %>

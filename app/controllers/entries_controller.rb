@@ -48,6 +48,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       if @entry.save
         flash[:notice] = 'Entry was successfully created.'
+        @entry.create_spectator_and_predictions_for_new_rules
         format.html { redirect_to(@entry) }
         format.xml  { render :xml => @entry, :status => :created, :location => @entry }
       else

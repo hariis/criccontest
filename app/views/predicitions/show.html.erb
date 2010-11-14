@@ -29,13 +29,13 @@
          <b><span style='color:red'>Caution! You are a Super Admin. Your predicitions will be used to set the results.</span></b><br/><br/>
          <% form_remote_tag :url => {:controller => 'predicitions', :action => 'admin_predicition', :mid => @match.unique_id } do %>
             Match Result: <%= text_field_tag :match_result, "", :size => 60 %><br/><br/>
-            <%= render :partial => 'predict' %><br/>
-            <br/><%= submit_tag 'Save Results' %>
+            <%= render :partial => 'predict' %>
+            <%= submit_tag 'Save Results' %>
          <% end %>
     <% else %>
          <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
-            <%= render :partial => 'predict' %><br/>
-            <br/><%= submit_tag 'Save Predictions' %>
+            <%= render :partial => 'predict' %>
+            <%= submit_tag 'Save Predictions' %>
          <% end %>
     <% end %>
 </fieldset>

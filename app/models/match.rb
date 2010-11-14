@@ -54,7 +54,7 @@ class Match < ActiveRecord::Base
       spectator.save
 
       #check and create predicition
-      category = Category.find_by_id(match.category_id)
+      category = Category.find(match.category_id)
       category.entries.each do |entry|        
           predicition_exists = Predicition.find(:first, :conditions => ['spectator_id = ? && entry_id = ?', spectator.id, entry.id])
           unless predicition_exists
@@ -75,7 +75,7 @@ class Match < ActiveRecord::Base
   end
   
   def create_result_table(match)
-    category = Category.find_by_id(match.category_id)
+    category = Category.find(match.category_id)
     category.entries.each do |entry|        
         result_exists = Result.find(:first, :conditions => ['match_id = ? && entry_id = ?', match.id, entry.id])
         unless result_exists
@@ -87,6 +87,7 @@ class Match < ActiveRecord::Base
         end
     end
   end
+  
   
   private  
   def self.generate_unique_id
