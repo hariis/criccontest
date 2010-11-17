@@ -41,8 +41,9 @@ ActionController::Routing::Routes.draw do |map|
   map.login "login",   :controller => 'user_sessions', :action => 'new'
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.admin "admin", :controller => 'posts', :action => 'admin'
-  map.dashboard "dashboard", :controller => 'contests', :action => 'dashboard'
+  map.how_to "how_to", :controller => 'contests', :action => 'how_to'
 
+  
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate' 
   map.auth_start '/authorize', :controller => 'shared_posts', :action => 'fb_authorize'
   map.auth_callback '/authorize/callback', :controller => 'shared_posts', :action => 'fb_callback'

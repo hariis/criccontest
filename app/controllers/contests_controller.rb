@@ -10,6 +10,9 @@ class ContestsController < ApplicationController
     @user_session.email = flash[:email]
   end
   
+  def how_to    
+  end
+  
   # GET /contests
   # GET /contests.xml
   def index
