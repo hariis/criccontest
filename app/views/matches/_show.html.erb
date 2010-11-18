@@ -1,9 +1,9 @@
-<% first_team = "/images/#{get_teamname(match.firstteam)}.png" %>
-<% second_team = "/images/#{get_teamname(match.secondteam)}.png" %>
+<% first_team = "/images/#{get_teamname(match.firstteam).to_s}.png" %>
+<% second_team = "/images/#{get_teamname(match.secondteam).to_s}.png" %>
 
-<b><%= image_tag(first_team) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(second_team) %> <%=h get_teamname(match.secondteam).capitalize %></b><br/>
+<b><%= image_tag(first_team.to_s) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(second_team.to_s) %> <%=h get_teamname(match.secondteam).capitalize %></b><br/>
 <%=h match.description %> @ <%=h match.venue %><br/>
-<%= image_tag('/images/date.png') %> <%=h match.display_match_start_time %><br/>
+<%= image_tag('/images/india.png') %> <%=h match.display_match_start_time %><br/>
 
 <% if match.check_if_match_started %>
   <b>Result:</b> <span style="color:#038819;"> <%=h match.match_result %> </span>
