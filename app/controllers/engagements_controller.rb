@@ -3,7 +3,7 @@ class EngagementsController < ApplicationController
   include OauthSystem
  
   before_filter :load_post, :except => [:set_notification, :callback, :exclude, :join_conversation_facebox, :join_conversation_member_not_logged_in, :join_conversation_non_member]
-  before_filter :load_user, :only => [:create, :get_auth_from_twitter, :send_invites]
+  before_filter :load_user, :only => [:create, :get_auth_from_twitter1, :send_invites]
 
   layout 'posts', :except => [:callback]
   layout 'logo_footer' , :only => [:callback]
@@ -49,8 +49,8 @@ class EngagementsController < ApplicationController
       else
         send_ev_invites
       end
-    else
-      send_twitter_invites(params[:followers])
+    #else
+    #  send_twitter_invites(params[:followers])
     end
   end
 
@@ -84,7 +84,7 @@ class EngagementsController < ApplicationController
   end
 
   
-def callback2
+def callback2_currently_not_used
     @user = User.find_by_unique_id(session[:uid]) if session[:uid]
     @post = Post.find(session[:post_id]) if session[:post_id]
 
@@ -122,7 +122,7 @@ def callback2
     end
  end
 
-def get_auth_from_twitter
+def get_auth_from_twitter_not_used
   login_by_oauth  #in lib/oauth_system
 end
 
@@ -145,13 +145,13 @@ end
       end
 
       #data for twitter tab
-      if @user.token.blank?
-        @followers = nil #redirect to twitter for authorization
-        login_by_oauth #sets the @authorization_url
-      else
-        @followers = []
-        @followers = get_followers(@user.token,@user.secret,@user.screen_name)
-      end
+      #if @user.token.blank?
+      #  @followers = nil #redirect to twitter for authorization
+      #  login_by_oauth #sets the @authorization_url
+      #else
+      #  @followers = []
+      #  @followers = get_followers(@user.token,@user.secret,@user.screen_name)
+      #end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -319,9 +319,9 @@ end
       create_engagements_and_send(email_ids.join(','))
    end
    #call send_twitter_invites
-   unless twitter_ids.blank?
-      create_engagements_and_dm(twitter_ids)
-   end
+   #unless twitter_ids.blank?
+   #   create_engagements_and_dm(twitter_ids)
+   #end
 
     render :update do |page|
       if @status_message.blank? && @error_message.blank?
@@ -331,7 +331,7 @@ end
 
         total_count = 0
         total_count = @email_participants.size unless @email_participants.blank?
-        total_count += @twitter_participants.size unless @twitter_participants.blank?
+        #total_count += @twitter_participants.size unless @twitter_participants.blank?
 
         page.replace_html 'invite-status', "#{total_count > 0 ? pluralize(total_count ,"participant") : "None"} added."
         page.replace_html "send-status", "#{total_count > 0 ? pluralize(total_count ,"invitation") : "None"} sent."
