@@ -1,5 +1,5 @@
-<% first_team = "/images/" + "#{get_teamname(match.firstteam)}"  + ".png" %>
-<% second_team = "/images/" + "#{get_teamname(match.secondteam)}"  + ".png" %>
+<% first_team = "/images/#{get_teamname(match.firstteam)}.png" %>
+<% second_team = "/images/#{get_teamname(match.secondteam)}.png" %>
 
 <b><%= image_tag(first_team) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(second_team) %> <%=h get_teamname(match.secondteam).capitalize %></b><br/>
 <%=h match.description %> @ <%=h match.venue %><br/>
