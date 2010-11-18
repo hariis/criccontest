@@ -87,7 +87,7 @@ div.blurb_about {
 font-size:30px;
 line-height:1.5;
 text-align:center;
-padding:20px 0 0;
+padding:10px 0px 10px;
 clear: both;
 font-weight: bold;
 letter-spacing:1px;
@@ -315,6 +315,7 @@ vertical-align:middle;
 }
 #header .logo img {
     width: 260px;
+    float:left;
 }
 #wide-header .logo img {
     width: 260px;
@@ -390,7 +391,8 @@ margin:20px 0 0 0;
     width:200px;
 }
 #widgets {
-background: transparent url('/images/bg-widgets.png') repeat-x scroll 0 0;
+background1: transparent url('/images/bg-widgets.png') repeat-x scroll 0 0;
+background:#038819;
 overflow:hidden;
 padding:10px 20px 7px 30px;
 height:33px;
@@ -488,14 +490,14 @@ margin-left:-2px;
 padding:0 13px;
 }
 #widgets ul li a {
-color:#ff00ff;
+color:#fff;
 text-decoration:none;
 font-weight: bold;
 padding:0 10px;
 -moz-border-radius:10px 10px 10px 10px;
 }
 #widgets ul li a.active, #widgets ul li a:hover {
-color:#ff00ff;
+color:#4b9ce0;
 background-color:#e4a1e4;
 }
 #home-content {
@@ -713,27 +715,29 @@ ul#participants-list li.new-p:hover {
     color: #fff;
 }
 #footer {
-    background: #333333 url('/images/bg-widgets.png') repeat-x scroll 0 0;
+    background1: #333333 url('/images/bg-widgets.png') repeat-x scroll 0 0;
+    background:#2D392D;
     overflow:hidden;
     padding:10px 20px 7px 30px;
     height:33px;
     padding-bottom:1em;
     text-align:center;
     color: #fff;
-    font-size:85%;
+    font-size1:85%;
     position:absolute;
     bottom: 0px;
     width:100%;
 }
 #footer-d {
-    background: #333333 url('/images/bg-widgets.png') repeat-x scroll 0 0;
+    background1: #333333 url('/images/bg-widgets.png') repeat-x scroll 0 0;
+    background:#2D392D;
     overflow:hidden;
     padding:10px 20px 7px 30px;
     height:33px;
     padding-bottom:1em;
     text-align:center;
     color: #fff;
-    font-size:85%;
+    font-size1:85%;
     position:relative;
     margin-top:30px;
     clear:both;

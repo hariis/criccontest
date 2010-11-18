@@ -123,7 +123,7 @@ tinyMCE.init(tinymce_advanced_options);
 </div>
   <% if current_user %>
   <span id="feedback"><% facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
-  <span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png'), :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
+  <span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
   <% end %>
   <% if controller.action_name == 'dashboard' || controller.action_name == 'privacy' || controller.action_name == 'how_to' ||
         controller.action_name == 'edit'|| controller.action_name == 'update'|| 

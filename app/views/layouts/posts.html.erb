@@ -67,8 +67,10 @@
       <% else %>
           <li><% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %></li>              
           <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
+            <b style="font-size:130%;">
               <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></li>              
-              <li> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
+              <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
+            </b>
           <% end %>
       <% end %>       
       
@@ -102,7 +104,7 @@
   <% end %>  
 <%= yield  %>
 <span id="feedback"><% facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
-<span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png'), :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
+<span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
 <% if controller.action_name == 'show' || controller.action_name == 'ushow' || controller.action_name == 'callback' %>
     <div id="footer-d">
 <% else %>
