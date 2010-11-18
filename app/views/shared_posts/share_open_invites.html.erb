@@ -159,9 +159,7 @@
 
 </script>
 
-
-
-<div style="background-color:#BBDEFA;padding: 10px;">
+<fieldset>
   <h3>Not sure who might be interested in this contest? No Problem. <br/>Send Open invitations and let your friends know.</h3>
         <div id="tabs">
               <ul>
@@ -169,7 +167,9 @@
                       <li><a href="#invite-ev">Share from Addressbook</a></li>
                       <% end %>
                       <li><a href="#show_email_form">Share using Email</a></li>
-                      <li><a href="#get_fb_auth">Share using Facebook</a></li>                                            
+                      <% if false %>
+                        <li><a href="#get_fb_auth">Share using Facebook</a></li> 
+                      <% end %>
               </ul>
 
               <div id="show_email_form">
@@ -223,7 +223,7 @@
 
               </div>
     <% end %>
-    
+    <% if false %>
           <div id="get_fb_auth">
              <p  style="font-size: 12px;">
                 
@@ -241,4 +241,5 @@
           <div id="send-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>
 
         </div>
-</div>
+    <% end %>
+</fieldset>

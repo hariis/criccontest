@@ -407,10 +407,10 @@ height:33px;
 /* background: #575455 url('/images/bg-header.png') repeat-x scroll 0 0; */
 /* border-bottom:3px solid #0B84E8; */
 overflow:hidden;
-padding:10px 20px 7px 30px;
+padding:10px 20px 7px 20px;
 /*height:115px; */
 margin: 0 auto;
-width:925px;
+width:1075px;
 }
 #wide-header {
 overflow: hidden;
