@@ -27,5 +27,20 @@
           <% end %>
           <h4 style="border-top:1px solid #000;"></h4>
     <% end %>
+    
+   <% if entry.name == 'win_margin_wicket' %>
+          <b>Predict Win Margin</b> (<span style="font-size:80%;">Predict both but only one will be evaluated based on the match result</span>)
+          <br/><br/><b>Win Margin Wicket: </b><br/>
+          <% Predicition::WIN_MARGIN_WICKET.each_index do |margin_wicket_entry| %>
+              <%= radio_button_tag 'win_margin_wicket', "#{margin_wicket_entry}" %> <%= Predicition::WIN_MARGIN_WICKET[margin_wicket_entry] %>
+          <% end %><br/>
+   <% end %> 
+   <% if entry.name == 'win_margin_score' %>
+          <br/><b>Win Margin Score: </b><br/>
+          <% Predicition::WIN_MARGIN_SCORE.each_index do |margin_score_entry| %>
+              <%= radio_button_tag 'win_margin_score', "#{margin_score_entry}" %> <%= Predicition::WIN_MARGIN_SCORE[margin_score_entry] %>
+          <% end %>
+          <h4 style="border-top:1px solid #000;"></h4>
+    <% end %>
 
 <% end %>

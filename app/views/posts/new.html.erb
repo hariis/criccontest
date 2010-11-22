@@ -4,23 +4,20 @@
   <%= f.error_messages :header_message => "Invalid Post!", :message => "Please address the following fields:", :header_tag => :h3 %>
   <fieldset>
       <% if current_user.nil? || !current_user.activated? %>
-       <p>
-        <%= label_tag "Your Email" %> (required) <br />    
-        <%= text_field_tag :email,'', :size => 60  %>
-      </p>
+        <br /><%= label_tag "Your Email" %> (required) <br />    
+        <%= text_field_tag :email,'', :size => 60  %><br />
       <% end %>
-      <p>
-        <%= f.label :subject, "Contest Name" %> (required) <br />
-        <%= f.text_field :subject, :size=> 87, :maxlength => 80 %>
-      </p>
-      <p>
+   
+        <br /><%= f.label :subject, "Contest Name" %> (required) <br />
+        <%= f.text_field :subject, :size=> 87, :maxlength => 80 %><br /><br />
+   
+      
         <%= f.label :description, "Contest Description" %><br />
-        <%= f.text_area :description, :class =>"mceNoEditor", :cols => 66, :rows => 5  %>
-      </p>
-      <p>
+        <%= f.text_area :description, :class =>"mceNoEditor", :cols => 66, :rows => 5  %><br /><br />
+    
         <%= f.label :url , "Link to a Website" %> (optional)<br />
-        <%= f.text_field :url , :size=> 87, :maxlength => 180 %>
-      </p>
+        <%= f.text_field :url , :size=> 87, :maxlength => 180 %><br /><br />
+    
   </fieldset>
 
   <span style="clear:both;margin-left:10px;">
@@ -31,14 +28,10 @@
 
   <fieldset>
       <div id="optional" style="display:none;">
-          <p>
-            <%= f.check_box :allow_others_to_invite %><%= f.label :allow_others_to_invite, " Allow Participants to Invite"%>
-          </p>
-
-          <p>
+            <%= f.check_box :allow_others_to_invite %><%= f.label :allow_others_to_invite, " Allow Participants to Invite"%><br /><br />
+        
             <%= f.label :avatar, "Attach Picture: " %> (optional)<br />
-            <%= f.file_field :avatar, :size=> 81 %>
-          </p>
+            <%= f.file_field :avatar, :size=> 81 %><br /><br />       
       </div>
  </fieldset>
 

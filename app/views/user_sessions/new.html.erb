@@ -2,14 +2,14 @@
     <legend><b>Login</b></legend>
     <% form_for(@user_session) do |f| %>
       <%= error_messages_for :user_session, :header_message => '',:message => '' %>
-            <p>          
-              <%= f.label :email %><br/>
-              <%= f.text_field :email %>
-            </p>
-            <p>
+                     
+              <br/><%= f.label :email %><br/>
+              <%= f.text_field :email %><br/><br/>
+          
+         
               <%= f.label :password %><br />
-              <%= f.password_field :password %>
-            </p><br/>
+              <%= f.password_field :password %><br/><br/>
+           
               <%= f.submit 'Login', :class => 'submit' %>
     <% end %>
     <br/>

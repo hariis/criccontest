@@ -25,6 +25,9 @@ class PredicitionsController < ApplicationController
         
         @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1 if entry.name == 'ts_firstteam'
         @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1 if entry.name == 'ts_secondteam'
+        
+        @predicition_record.user_predicition = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1 if entry.name == 'win_margin_wicket'
+        @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1 if entry.name == 'win_margin_score'
         @predicition_record.save
     end
     
@@ -42,6 +45,10 @@ class PredicitionsController < ApplicationController
         
         @result.result = params[:ts_firstteam] ? params[:ts_firstteam] : -1 if entry.name == 'ts_firstteam'
         @result.result = params[:ts_secondteam] ? params[:ts_secondteam] : -1 if entry.name == 'ts_secondteam'
+        
+        @result.result = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1 if entry.name == 'win_margin_wicket'
+        @result.result = params[:win_margin_score] ? params[:win_margin_score] : -1 if entry.name == 'win_margin_score'
+ 
         @result.save
     end
 

@@ -39,7 +39,14 @@
                   <% end %>
                   <% if entry.name == 'ts_secondteam' %>
                       <%= "Total Score #{get_teamname(@match.secondteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                  <% end %>          
+                  <% end %>
+                  <% if entry.name == 'win_margin_wicket' %>
+                      <%= "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                  <% end %>
+                  <% if entry.name == 'win_margin_score' %>
+                      <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                  <% end %>                     
+
             <% end %>
             <%= "Yet to predict <br/>" if user_predicted < 0 %>
              </p>

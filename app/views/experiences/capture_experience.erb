@@ -25,7 +25,7 @@
        <h3>What do you think of DoosraCricket? Your feedback is greatly appreciated.</h3>
         <p>    
         To help us prioritize, please choose a type: <br/>
-        <%= select_tag :feedback_type, options_for_select(Experience::COMMENT_TYPES.sort { |v1,v2| v1[1].to_i <=> v2[1].to_i}.collect{|k| [ k[0],k[1] ]}, 1 ) %>
+        <%= select_tag :feedback_type, options_for_select(Experience::COMMENT_TYPES.sort { |v1,v2| v1[1].to_i <=> v2[1].to_i}.collect{|k| [ k[0],k[1] ]}, 0 ) %>
         </p><br/>
  
         <p>

@@ -14,7 +14,7 @@
     <% if current_user && current_user.admin? && current_user.admin_user? %>
           <%= button_to 'Start New Contest', new_contest_path, :class => 'submit' %>
           <%= button_to 'Create a Category', new_category_path, :class => 'submit' %>
-          <%= button_to 'Create a Rule', new_entry_path, :class => 'submit' %>
+          <%= button_to 'Create a Rule/Entry', new_entry_path, :class => 'submit' %>
           <% button_to 'Add Team', new_team_path, :class => 'submit' %>
           <%= button_to 'Add Total Score Prediction Entry', new_predict_total_score_path, :class => 'submit' %>
     <% end %>
