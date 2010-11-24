@@ -19,8 +19,8 @@ module ApplicationHelper
       return "/images/india.png"
     elsif team_name == "Australia"
       return "/images/australia.png"
-    elsif team_name == "New Zealand"
-      return "/images/newzealand.png"
+    elsif team_name == "New zealand"
+      return "/images/newzealand.gif"
     else
       return "/images/india.png"
     end

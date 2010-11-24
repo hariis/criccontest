@@ -82,7 +82,7 @@ tinyMCE.init(tinymce_advanced_options);
       <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
    <% else %>
        <% if ENV['RAILS_ENV'] != 'production' %> 
-            <li><%= link_to "Register", new_user_path %> </li>
+            <li><% link_to "Register", new_user_path %> </li>
        <% end %>  
        <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
    <% end %>
