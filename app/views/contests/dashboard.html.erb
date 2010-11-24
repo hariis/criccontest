@@ -33,31 +33,16 @@
        <div style="clear: both; padding-top: 20px;"></div>
 
     </div>
-    <div id="dashboard-content" style="float:left;margin-left:40px;width:240px;height:180px;font-size:14px;-moz-border-radius:5px">
-         <div id="participants21" style="padding:14px 0px 0px 0px;">
-               <% form_for(@user_session) do |f| %> 
-                    <%= f.label :email %> <br/>
-                    <%= f.text_field :email, :cols => 30 %><br/><br/>
-                    <%= f.label :password %><br/>
-                    <%= f.password_field :password, :cols => 30  %><br/>
 
-                    <%= f.submit 'Login', :class => 'submit' %>    
-               <% end %>
-
-              <div style="float:right;font-size:12px;padding:6px;">
-                    <%= link_to "Forgot Password", new_password_reset_path %> | <%= link_to "Resend Activation", resendnewactivation_users_path %>
-              </div>
-        </div>
-    </div>
-
-    <div id="dashboard-content" style="float:left;margin-left:40px;width:240px;height:268px;font-size:14px;margin-top:30px;margin-bottom:50px;">
-        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F171075412910342%23%21%2Fpages%2FDoosra-Cricket%2F171075412910342&amp;width=240&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=true&amp;height=300" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:300px;" allowTransparency="true"></iframe>
-    </div>
-  
-    <div id="dashboard-content1" style="position:absolute;float:left;margin-left:100px;margin-top:500px;">        
+    <div id="dashboard-content1" style="float:left;margin-left:40px;font-size:14px;margin-bottom:20px;">
         <%= link_to image_tag('/images/fixture.png'), contests_path, :method => :get %>
     </div>    
 
+    <div id="dashboard-content" style="float:left;margin-left:40px;width:240px;height:382px;font-size:14px;margin-top:30px;margin-bottom:50px;">
+        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F171075412910342%23%21%2Fpages%2FDoosra-Cricket%2F171075412910342&amp;width=240&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=true&amp;height=380" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:380px;" allowTransparency="true"></iframe>
+    </div>
+  
+ 
 </div>
 
 

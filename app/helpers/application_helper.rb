@@ -2,11 +2,11 @@
 module ApplicationHelper
   
   def title_tag_line
-    "Doosra Cricket - Predict results and get social with your friends on cricket"
+    "Doosra Cricket - Predict results and get social with your friends"
   end
   
   def tag_line
-    "Predict results and get social with your friends on cricket"
+    "Predict results and get social with your friends"
   end
   
   def get_teamname(teamid)
