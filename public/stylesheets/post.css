@@ -563,8 +563,7 @@ clear: right;
     margin-top:5px;
     padding: 5px 5px 10px 5px;
     float: left;
-    border-left:1px solid #777777;
-    border-top:1px solid #777777;
+    border:1px solid #777777;
 }
 
 .new-comment {
@@ -774,6 +773,7 @@ ul#participants-list li.new-p:hover {
 }
 #comments {
     border-top:1px solid #FFFFFF;
+    padding-right:10px;
 }
 #sticky-comments {
     clear: both;

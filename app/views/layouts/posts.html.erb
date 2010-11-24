@@ -52,7 +52,7 @@
 </div>
   <%  if !current_user || !current_user.activated? %>
     <div class="banner" style="height:33px; padding:10px 20px 7px 30px;">
-      <span style="color:orange;">Discuss, predict results and get social with your friends and families on cricket</span>
+      <span style="font-weight:bold;">Predict results and get social with your friends on cricket</span>
     </div>  
   <% end %>
   <div id="widgets">
@@ -69,14 +69,14 @@
           <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
             <b style="font-size:130%;">
               <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></li>              
-              <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
+              <li><% image_tag "group_add.png" %> <% facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
             </b>
           <% end %>
       <% end %>       
       
       <% unless @readonlypost %>
           <%  if !current_user || !current_user.activated? %>
-            <li style="color:#FF60B0;float:right;"><%= @post.get_all_member_participants_for_display %></li>
+            <li style="color:#fff;float:right;"><%= @post.get_all_member_participants_for_display %></li>
           <% end %>
       <% end %>
     </ul>
@@ -104,7 +104,7 @@
   <% end %>  
 <%= yield  %>
 <span id="feedback"><% facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
-<span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
+<span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
 <% if controller.action_name == 'show' || controller.action_name == 'ushow' || controller.action_name == 'callback' %>
     <div id="footer-d">
 <% else %>

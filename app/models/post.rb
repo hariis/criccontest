@@ -121,7 +121,7 @@ class Post < ActiveRecord::Base
 
     if m.size != 0
       for_display += m.size > 1 ? " are members " : " is a member "
-      for_display += "of EngageVia"
+      for_display += "of Doosra Cricket"
     end
     
     return for_display

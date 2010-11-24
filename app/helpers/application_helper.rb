@@ -6,11 +6,11 @@ module ApplicationHelper
   end
   
   def title_tag_line
-    "Doosra Cricket - Compete and Chat on your favorite Cricket matches and get social with your friends"
+    "Doosra Cricket - Predict results and get social with your friends on cricket"
   end
   
   def tag_line
-    "Compete with your buddies and show off your expertise in a friendly match off"
+    "Predict results and get social with your friends on cricket"
   end
   def in_place_editor(field_id, options = {})
     function =  "new Ajax.InPlaceEditor("
