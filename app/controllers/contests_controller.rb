@@ -16,7 +16,7 @@ class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.xml
   def index
-    @contests = Contest.all
+    @contests = Contest.find(:all, :order => 'created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
