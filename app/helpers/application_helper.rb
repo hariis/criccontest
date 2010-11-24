@@ -1,9 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-    
-  def get_teamname(teamid)
-    Team.find_by_id(teamid).teamname
-  end
   
   def title_tag_line
     "Doosra Cricket - Predict results and get social with your friends on cricket"
@@ -12,6 +8,25 @@ module ApplicationHelper
   def tag_line
     "Predict results and get social with your friends on cricket"
   end
+  
+  def get_teamname(teamid)
+    Team.find_by_id(teamid).teamname
+  end
+  
+  def get_teamflag(teamid)
+    team_name = Team.find_by_id(teamid).teamname.capitalize
+    if team_name == "India"
+      return "/images/india.png"
+    elsif team_name == "Australia"
+      return "/images/australia.png"
+    elsif team_name == "New Zealand"
+      return "/images/newzealand.png"
+    else
+      return "/images/india.png"
+    end
+  end
+  
+  
   def in_place_editor(field_id, options = {})
     function =  "new Ajax.InPlaceEditor("
     function << "'#{field_id}', "
