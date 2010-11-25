@@ -10,4 +10,12 @@ class Predicition < ActiveRecord::Base
   
   PREDICT_TOTAL_SCORE = { "<200" => "1", "201-225" => "2", "226-250" => "3", "251-275" => "4", "276-300" => "5", ">300" => "6" }
   
+  def self.predicition_notification(post_id, match, user_name, predicition_details)
+    post = Post.find(post_id)
+    post.participants_to_notify.each do |participant|
+      engagement = Engagement.find_by_post_id_and_user_id(post_id, participant.id)
+      Notifier.deliver_predicition_notification(post, engagement, match, user_name, predicition_details, participant)
+    end
+  end
+       
 end

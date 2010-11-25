@@ -3,7 +3,7 @@ class SpectatorsController < ApplicationController
   layout 'posts'
   #layout 'application'
   before_filter :load_prerequisite, :only => [:show, :result, :load_all_participants]
-  #before_filter :load_user, :only => [:show]
+  before_filter :load_user, :only => [:show]
   
   def load_prerequisite
     unless params[:mid].nil? || params[:eid].nil?

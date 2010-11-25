@@ -16,7 +16,60 @@ class PredicitionsController < ApplicationController
     #@category = Category.find_by_id(@match.category_id)
   end
   
+  
   def user_predicition
+    @user_name = Engagement.find_by_id(@spectator.engagement_id).invitee.display_name
+    predicition_details = ""
+    predicition_details << "<b> #{@user_name}'s prediction:</b> <br/>"
+    
+    @category.entries.each do |entry|
+        @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
+        
+        if entry.name == 'winner'
+            @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1
+            predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname.capitalize} <br/>" if @predicition_record.user_predicition != -1
+        end
+        
+        if entry.name == 'toss'
+            @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1
+            predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname.capitalize} <br/>" if @predicition_record.user_predicition != -1
+        end
+        
+        if entry.name == 'ts_firstteam'
+            @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1
+            predicition_details << "Total Score #{get_teamname(@match.firstteam).capitalize}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>" if @predicition_record.user_predicition != -1
+        end
+        
+        if entry.name == 'ts_secondteam'
+            @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1
+            predicition_details << "Total Score #{get_teamname(@match.secondteam).capitalize}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>" if @predicition_record.user_predicition != -1
+        end            
+        
+        if entry.name == 'win_margin_wicket'
+            @predicition_record.user_predicition = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1
+            predicition_details << "Win Margin Wicket: #{Predicition::WIN_MARGIN_WICKET[@predicition_record.user_predicition]} <br/>" if @predicition_record.user_predicition != -1
+        end
+        
+        if entry.name == 'win_margin_score'
+            @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1
+            predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE[@predicition_record.user_predicition]} <br/>" if @predicition_record.user_predicition != -1
+        end
+        
+        @predicition_record.save
+    end
+    
+    render :update do |page|
+      page.visual_effect :blind_up, 'facebox'
+    end 
+
+    if predicition_details.size > 0
+        Predicition.predicition_notification(@engagement.post_id, @match, @user_name, predicition_details)
+    end
+
+  end
+ 
+  
+  def user_predicition1
     @category.entries.each do |entry|
         @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
         

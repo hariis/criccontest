@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+    
+  def get_teamname(teamid)
+    Team.find_by_id(teamid).teamname
+  end
   
   private  
     def current_user_session  

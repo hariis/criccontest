@@ -71,6 +71,15 @@ default_url_options[:host] = "www.doosracricket.com"
     body          :experience => experience, :user => user
   end
   
+  def predicition_notification(post, engagement, match, user_name, predicition_details, participant)
+    setup_email
+    @subject    +=    "#{user_name} has added/updated his predicitions on #{truncate(post.subject,20,"...")}"
+    recipients    participant.email
+    body          :match_url => DOMAIN + "spectators/show?mid=#{match.unique_id}&eid=#{engagement.unique_id}", :post => post,
+                  :post_url  => DOMAIN + "posts/show?pid=#{post.unique_id}&uid=#{participant.unique_id}", :post => post,
+                  :user_name => user_name, :match => match, :predicition_details => predicition_details
+  end
+  
   protected
     def setup_email(user=nil)      
       @from        = "Doosra Cricket <admin@doosracricket.com>"
