@@ -90,6 +90,9 @@ class PredicitionsController < ApplicationController
   end
  
   def admin_predicition
+    match_result = params[:match_result] ? params[:match_result] : "Results not yet updated"
+    @match.update_attributes(:match_result => match_result)
+
     @category.entries.each do |entry|
         @result = Result.find_by_match_id_and_entry_id(@match.id, entry.id)
         
