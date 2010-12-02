@@ -59,17 +59,19 @@
     <ul>
       <li id="invite-status"></li>
       <% if @readonlypost %>
-           <% if current_user && current_user.activated? || !@user.unique_id.nil? %>
-                <li><%= image_tag "group_add.png" %> <%= link_to "Join this Contest",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.id, :iid => @inviter_unique_id, :uid => @user.unique_id %></li>
-           <% else %>
-                <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Join this Contest",  :url => @post.get_url_for_jc_facebox(@inviter_unique_id) %></li>
-           <% end %>
+           <b style="font-size:130%;">
+             <% if current_user && current_user.activated? || !@user.unique_id.nil? %>
+                  <li><%= image_tag "group_add.png" %> <%= link_to "Join this Contest",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.id, :iid => @inviter_unique_id, :uid => @user.unique_id %></li>
+             <% else %>
+                  <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Join this Contest",  :url => @post.get_url_for_jc_facebox(@inviter_unique_id) %></li>
+             <% end %>
+          </b>
       <% else %>
           <li><% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %></li>              
           <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
             <b style="font-size:130%;">
               <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></li>              
-              <li><% image_tag "group_add.png" %> <% facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
+              <li><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></li>
             </b>
           <% end %>
       <% end %>       

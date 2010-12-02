@@ -5,7 +5,7 @@ class SpectatorsController < ApplicationController
   before_filter :load_prerequisite, :only => [:show, :result, :load_all_participants]
   before_filter :load_user, :only => [:show]
   
-  def load_prerequisite
+  def load_prerequisite_old
     unless params[:mid].nil? || params[:eid].nil?
         @match = Match.find_by_unique_id(params[:mid], :include => [:category, :contest]) if params[:mid]
         @eng = Engagement.find_by_unique_id(params[:eid], :include => [:post, :invitee]) if params[:eid]
@@ -21,7 +21,22 @@ class SpectatorsController < ApplicationController
         @category = @match.category
     end
   end
-  
+
+  def load_prerequisite
+    if !params[:mid].nil? 
+        @match = Match.find_by_unique_id(params[:mid], :include => [:category, :contest]) if params[:mid]
+        @contest = @match.contest
+        @category = @match.category
+    end
+    
+    if !params[:eid].nil?
+        @eng = Engagement.find_by_unique_id(params[:eid], :include => [:post, :invitee])
+        @user = @eng.invitee
+        @post = @eng.post
+        @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
+    end
+  end
+
   def load_user
      unless params[:mid].nil? || params[:eid].nil?
         if current_user && current_user.activated?
