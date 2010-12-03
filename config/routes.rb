@@ -39,6 +39,7 @@ ActionController::Routing::Routes.draw do |map|
   map.blog "blog", :controller => 'posts', :action => 'blog'
   map.help "help", :controller => 'posts', :action => 'help'
   map.contact "contact", :controller => 'posts', :action => 'contact'
+  map.disclaimer "disclaimer", :controller => 'posts', :action => 'disclaimer'
   map.login "login",   :controller => 'user_sessions', :action => 'new'
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.admin "admin", :controller => 'posts', :action => 'admin'

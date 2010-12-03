@@ -947,3 +947,31 @@ h1, h2,h3 {
     font-family:Georgia,serif;
     color:#656465;
 }
+.button {
+  -moz-border-radius:8px 8px 8px 8px;
+  cursor:pointer;
+    display:block;
+    font-size:18px;
+    font-weight:bold;
+    margin:0 10px 0 0;
+    text-decoration:none;
+    background-color:#ff4800;
+    background-repeat:repeat-x;
+    border:2px solid #CCCCCC;
+    color:white;
+    padding: 5px;
+}
+.general-button {
+}
+.current-fixture-button{
+    font-size:22px;
+}
+.next-button {
+margin-left:50%;
+}
+.submit-button {
+margin-left:30%;
+}
+.button:hover {
+  background-color:#ff692e;
+}

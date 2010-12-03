@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   layout :choose_layout, :except => [:plaxo]
   
-  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :load_all_invitations, :load_all_participants, :update_settings]
-  before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help]
+  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings]
+  before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer]
   before_filter :check_activated_member,
-    :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :load_all_participants, :load_all_invitations]
+    :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :load_all_participants, :load_all_invitations]
   in_place_edit_for :post, :note
 
   def load_contest
@@ -20,7 +20,7 @@ class PostsController < ApplicationController
       'application'
     elsif ['show','ushow','callback'].include? action_name
     'posts'
-    elsif ['dashboard','privacy','about','blog','contact', 'admin','help'].include? action_name
+    elsif ['dashboard','privacy','about','blog','contact', 'admin','help', 'disclaimer'].include? action_name
       'application'  #the one with shorter width content section
     end
   end
@@ -442,6 +442,10 @@ class PostsController < ApplicationController
   
   #-----------------------------------------------------------------------------------------------------
   def help    
+  end
+  
+  #-----------------------------------------------------------------------------------------------------
+  def disclaimer 
   end
   
   #-----------------------------------------------------------------------------------------------------

@@ -37,7 +37,8 @@
     </div>
 
     <div id="dashboard-content1" style="float:left;margin-left:40px;font-size:14px;margin-bottom:20px;">
-        <%= link_to image_tag('/images/fixture.png'), contests_path, :method => :get %>
+        <% link_to image_tag('/images/fixture.png'), contests_path, :method => :get %>
+        <%= button_to "Current Fixtures", contests_path, :method => :get, :class => 'current-fixture-button button' %>         
     </div>    
 
     <div id="dashboard-content" style="float:left;margin-left:40px;width:270px;height:300px;font-size:14px;margin-bottom:0px;">
