@@ -1,0 +1,49 @@
+<script type="text/javascript">
+        $j(function(){
+           $j('#tabs').tabs();
+      });
+ </script>
+<style type="text/css">
+  a.join-link, a.join-link:hover, a.join-link:visited{
+    color: red;
+    margin-left:10px;
+}
+</style>
+
+<h1 style="margin-left:10px;">Current Fixtures</h1>
+
+<fieldset>
+    <% count = 1 %>
+    <% @inviter = User.get_open_contest_inviter %>
+    <% @contests.each do |contest| %>
+         <% @post = Post.get_open_contest(contest, @inviter) %>
+         <p>  
+            <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
+            <span style="font-size:120%;"><%= link_to h(contest.name), @post.get_readonly_url(@inviter) %></span><br/>
+            <span style="font-size:80%;">
+                <%= link_to  h(contest.url), h(contest.url) %><br/>
+                <%= link_to "#{contest.matches.count} matches", contest %>
+            </span>
+            
+            <% if current_user && current_user.admin? %>
+                <br/><span style="color:green;font-size:70%;"><%= contest.posts.size %> contest currently running</span>
+            <% end %>
+
+            <% unless current_user && current_user.admin? && current_user.admin_user? %>
+                <span style="float:right;font-size1:120%;"><% link_to 'Start a Private Contest', new_contest_post_path(contest)  %></span>
+            <% end %>
+            <span style="float:right;font-size1:120%;"><%= link_to 'Start a Private Contest', new_contest_post_path(contest)  %></span><br/>
+
+            <% if current_user && current_user.activated? %>
+                 <span style="float:right;font-size1:120%;"><%= link_to "Join Open Contest",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.unique_id, :iid => @inviter.unique_id, :uid => current_user.unique_id %></span><br/>
+            <% else %>
+                 <span style="float:right;font-size1:120%;"><%= facebox_link_to "Join Open Contest",  :url => @post.get_url_for_jc_facebox(@inviter.unique_id) %></span><br/>
+            <% end %>
+
+            <% if current_user && current_user.admin? && current_user.admin_user? %>
+                <br/><%= link_to 'edit', edit_contest_path(contest), :method => :get %>
+                <%= link_to '[X]', contest, :confirm => 'Are you sure? This will wipe out this contest and all of its instances.', :method => :delete %><br/>
+            <% end %>
+        </p>
+    <% end %>
+</fieldset>

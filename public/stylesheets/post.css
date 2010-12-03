@@ -275,7 +275,7 @@ vertical-align:middle;
 }
 #name-request{
     padding: 5px;
-    background-color: #BBDEFA;
+    background-color: #F4F4F4;
     width:50%;
     z-index:100;
     position:fixed;
@@ -872,7 +872,7 @@ fieldset {
     border-color1:#C9DCA6 -moz-use-text-color -moz-use-text-color;
     border-right:medium none;
     border-style:solid none none;
-    border-width:1px medium medium;
+    border-width:0px medium medium;
     margin:10px;
     text-align: left;
     letter-spacing:0.5px;

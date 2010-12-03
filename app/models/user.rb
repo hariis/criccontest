@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
     elsif screen_name.size > 0
       self.unique_id = Digest::MD5.hexdigest(screen_name + "Mount^Hood")
     end
-    
   end
+  
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
@@ -81,6 +81,10 @@ class User < ActiveRecord::Base
     !activated_at.nil?
   end
 
+  def self.get_open_contest_inviter
+    User.find_by_email("doosracricket@gmail.com")
+  end
+  
   def member?
     has_role?("member")
   end
@@ -149,8 +153,8 @@ class User < ActiveRecord::Base
           return get_email_name  #currently used by layout
         end
       end
-      
   end
+  
   def get_display_name_via_engagement_or_post(post=nil,engagement=nil)
     if engagement
       return get_display_name_via_engagement(engagement)
@@ -160,6 +164,7 @@ class User < ActiveRecord::Base
       return get_display_name_via_engagement(eng)
     end
   end
+  
   def get_display_name_via_engagement(engagement)
     if engagement
       if engagement.invited_via == 'twitter'
@@ -194,6 +199,7 @@ class User < ActiveRecord::Base
   def self.consumer
      OAuth::Consumer.new("2ABzvtWhFUCZFiluhc7bGg","byf0AI0N6iazhGK1AeZWOqmaOZzm0cKvsMmnu8uDIM",{:site => "http://twitter.com"})
   end
+  
   def self.get_admin_user
     UserRole.get_admin_user
   end

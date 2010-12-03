@@ -21,8 +21,8 @@
 
 </script>
 
-<div style="background-color:#BBDEFA;padding: 10px;">
-    If you are a member, please <%= link_to "login ", :controller => 'engagements', :action => "join_conversation_member_not_logged_in"  %>first and click on Join <br/><br/>
+<div style="background-color:#F4F4F4;padding:5px;">
+  <span style="margin-left:10px;">If you are a member, please <%= link_to "login ", :controller => 'engagements', :action => "join_conversation_member_not_logged_in"  %>first and click on Join <br/><br/></span>
     
     <% form_remote_tag :url => { :controller => 'engagements', :action => "join_conversation_non_member", :pid => "#{@post.id}", :iid => "#{@invited_by.unique_id}" } do %>
         Non members, provide your email and we will send you a link to join<br/><%= text_field_tag :email, "", :size => '40' %><br/><br/>

@@ -81,7 +81,7 @@ class Post < ActiveRecord::Base
   end
   
   def get_url_for_jc_facebox(inviter_iid)
-    DOMAIN + "engagements/join_conversation_facebox" + "?pid=#{self.id};iid=" + inviter_iid
+    DOMAIN + "engagements/join_conversation_facebox" + "?pid=#{self.unique_id};iid=" + inviter_iid
   end
   
   def get_readonly_url(inviter)
@@ -96,6 +96,10 @@ class Post < ActiveRecord::Base
   
   def get_fb_auth_url
     DOMAIN + "authorize"
+  end
+  
+  def self.get_open_contest(contest, inviter)
+    Post.find_by_contest_id_and_user_id(contest.id, inviter.id)
   end
   
   def get_all_participants

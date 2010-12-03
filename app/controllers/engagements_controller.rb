@@ -161,7 +161,7 @@ end
   end
  
   def join_conversation_facebox
-    @post = Post.find_by_id(params[:pid])
+    @post = Post.find_by_unique_id(params[:pid])
     @invited_by = User.find_by_unique_id(params[:iid]) if params[:iid]
     @invitee = User.find_by_unique_id(params[:uid]) if params[:uid]
     
