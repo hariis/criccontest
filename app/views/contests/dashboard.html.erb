@@ -41,9 +41,11 @@
         <%= button_to "Current Fixtures", contests_path, :method => :get, :class => 'current-fixture-button button' %>         
     </div>    
 
-    <div id="dashboard-content" style="float:left;margin-left:40px;width:270px;height:300px;font-size:14px;margin-bottom:0px;">
-        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F171075412910342%23%21%2Fpages%2FDoosra-Cricket%2F171075412910342&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=300" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:300px;" allowTransparency="true"></iframe>
-    </div>
+    <% if false %>
+        <div id="dashboard-content" style="float:left;margin-left:40px;width:270px;height:300px;font-size:14px;margin-bottom:0px;">
+            <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F171075412910342%23%21%2Fpages%2FDoosra-Cricket%2F171075412910342&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=300" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:300px;" allowTransparency="true"></iframe>
+        </div>
+    <% end %>
   
     <div id="dashboard-content" style="clear:both;float:left;margin-left:100px;width:740px;font-size:100%;margin-bottom:40px;">
         <%= render :partial => 'display_contests', :collections => @contests %>
