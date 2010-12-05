@@ -1,3 +1,24 @@
+<script type="text/javascript">
+  function openWindow(url) {
+    var w = 480, h = 340;
+
+      if (document.all) {
+         /* the following is only available after onLoad */
+         w = document.body.clientWidth;
+         h = document.body.clientHeight;
+      }
+      else if (document.layers) {
+         w = window.innerWidth;
+         h = window.innerHeight;
+      }
+      var popW = 800, popH = 450;
+      var leftPos = (w)/2, topPos = (h)/2;
+      window.open(url, 'Authorize','width=' + popW + ',height='+popH+',top='+topPos+ ',left='+leftPos);
+
+      return false;
+    }
+</script>
+
 <br/><br/>
 <div id="home-content">
      <div id="dashboard-content" style="float:left;margin-left:100px;width:740px;font-family:Georgia;font-style:italic;font-size:28px;margin-bottom:40px;">
