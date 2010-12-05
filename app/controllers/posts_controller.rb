@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     if [ 'new', 'index','create' ].include? action_name
       'application'
     elsif ['show','ushow','callback'].include? action_name
-    'posts'
+      'posts'
     elsif ['dashboard','privacy','about','blog','contact', 'admin','help', 'disclaimer'].include? action_name
       'application'  #the one with shorter width content section
     end
