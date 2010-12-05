@@ -827,6 +827,9 @@ ul#participants-list li.new-p:hover {
     font-weight: bold;
     color: #0B84E8;
 }
+.contact-info {
+    color: #038819;
+}
 .group-name {
     font-weight: bold;
     padding-left: 5px;

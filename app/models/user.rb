@@ -250,13 +250,13 @@ class User < ActiveRecord::Base
     end
 
     #Add inviter to the adddress book of user (or vice-versa of above)
-    gr2 = Group.find_or_create_by_user_id(:user_id => user.id, :name => 'addbook')
+    #gr2 = Group.find_or_create_by_user_id(:user_id => user.id, :name => 'addbook')
     #Membership.find_or_create_by_user_id_and_group_id(:user_id => self.id, :group_id => gr2.id)
-    mem_exists = Membership.find(:all, :conditions => ["user_id = ? && group_id = ?", self.id,  gr2.id])
-    if mem_exists.empty?
-      membership = Membership.new(:user_id => self.id, :group_id => gr2.id)
-      membership.save
-    end
+    #mem_exists = Membership.find(:all, :conditions => ["user_id = ? && group_id = ?", self.id,  gr2.id])
+    #if mem_exists.empty?
+    #  membership = Membership.new(:user_id => self.id, :group_id => gr2.id)
+    #  membership.save
+    #end
   end
 end
 
