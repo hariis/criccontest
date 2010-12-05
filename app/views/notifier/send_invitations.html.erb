@@ -1,8 +1,7 @@
 Hi there!<br/><br/>
 
 <%  if @share %>
-  <%= @inviter.display_name  %> is having a contest on <em><%= @post.subject %></em><br/>
-   If you are interested, you can join.
+  <%= @inviter.display_name  %> is having a contest on <em><%= @post.subject %></em>. If you are interested, you can join.
 <% else %>
   <%= @inviter.display_name  %> is requesting you to join a contest on <br/>
   <em><%= @post.subject %></em><br/>
@@ -20,14 +19,12 @@ Enjoy Contest,<br/>
 
 IMPORTANT NOTE: Please do not forward this mail or share this link provided to you as a way of inviting friends.<br/>
 
- To invite, please visit the link and invite from there.<br/>
- Each one of your invitees will then get their own unique link.<br/>
-
+ To invite, please visit the link and invite from there. Each one of your invitees will then get their own unique link.<br/>
  If you have problems viewing this contest, please feel free to <a href="mailto:doosracricket@gmail.com">contact us</a><br/>
 
 <hr/>
 <span style="font-size:85%;color:#333333;">
-    If you do not know <%= @inviter.display_name %>, please ignore this email and let us <a href="mailto:doosracricket@gmail.com">know</a>. <br/>
+    NOTE: If you do not know <%= @inviter.display_name %>, please ignore this email and let us <a href="mailto:doosracricket@gmail.com">know</a>. <br/>
     We sincerely apologize for the inconvenience.
 </span>
 </div>
