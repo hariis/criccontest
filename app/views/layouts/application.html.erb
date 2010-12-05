@@ -7,7 +7,7 @@
   <title><%= title_tag_line %> </title>
  
   <%= stylesheet_link_merged :base %>
- <%= javascript_include_merged :proto %>
+ <%= javascript_include_merged :proto, :cache => true %>
   <script src="/javascripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
   <script type="text/javascript">
     var tinymce_advanced_options = {
@@ -19,7 +19,7 @@
   theme_advanced_resizing_min_width : 500,
   theme_advanced_resizing_max_width : 800,
   plugins : "paste,safari,table,paste,emotions",
-facebox
+
   width: "760",
   button_title_map: false,
   apply_source_formatting: true,
@@ -35,7 +35,7 @@ facebox
 
 tinyMCE.init(tinymce_advanced_options);
   </script>
- <%= javascript_include_merged :rest %>
+ <%= javascript_include_merged :rest  %>
   
   <script type="text/javascript">
         jQuery.noConflict();
@@ -47,21 +47,6 @@ tinyMCE.init(tinymce_advanced_options);
      $j('#flash-error').fadeOut(8000);
 });
   </script>
-
-  <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-19617071-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-  </script>
-
 </head>
 <body>
 

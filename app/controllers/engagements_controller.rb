@@ -195,7 +195,6 @@ end
     redirect_to login_path
  end
  
- #TODO: Not working. Needs code review and debugging.
  def join_conversation_non_member
     #Handling scenario 3. If the user is a non-member:
     #Create a SharedPost record, if one does not already exist.
@@ -209,8 +208,9 @@ end
     if invitee && invitee.activated? #check if user is already a member
         @status_message = "Our records indicate that you are a member. Please login first and then join this contest."
     elsif params[:email]
-            create_shared_post_and_send_invite(params[:email], @invited_by) 
+        create_shared_post_and_send_invite(params[:email], @invited_by) 
     end
+    
     render :update do |page|
       if @status_message.blank?
         page.replace_html "send-status", "An email has been sent with a link. <br/> Please check your email and click on the link to join the contest."

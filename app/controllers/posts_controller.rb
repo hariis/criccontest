@@ -523,7 +523,7 @@ class PostsController < ApplicationController
       eng.unique_id = Engagement.generate_unique_id
       eng.totalscore = 0
       eng.save
-      
+      eng.create_spectator_and_send_email
       return eng
   end
   #-----------------------------------------------------------------------------------------------------
