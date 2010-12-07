@@ -17,6 +17,7 @@
     <% @inviter = User.get_open_contest_inviter %>
     <% @contests.each do |contest| %>
          <% @post = Post.get_open_contest(contest, @inviter) %>
+         
          <p>  
             <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
             <span style="font-size:120%;"><%= link_to h(contest.name), @post.get_readonly_url(@inviter) %></span><br/>

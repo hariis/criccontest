@@ -4,4 +4,5 @@ class Contest < ActiveRecord::Base
   
   has_many :teams, :dependent => :destroy
   has_many :matches, :dependent => :destroy
+
 end
