@@ -569,6 +569,7 @@ clear: right;
     border-top:1px solid #94A3C4;
     border-left:1px solid #94A3C4;
     border-bottom:1px solid #94A3C4;
+    background-color:#EDEFF4;
 }
 
 .new-comment {
@@ -597,7 +598,7 @@ clear: right;
         background-color: #fff;
 }
 .current-user-comment {
-    background-color1: #ABD9F5;
+    background-color1:#ABD9F5;
     background-color:#EDEFF4;
 }
 .unread {
