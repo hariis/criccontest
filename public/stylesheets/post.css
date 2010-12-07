@@ -98,7 +98,7 @@ margin: 0 auto;
 }
 #post-settings{
     background-color1:#C8D6FF;
-    background-color:#F4F4F4;
+    background-color:#E5EAF1;
     margin-top:10px;
     padding:3px;
     colo1r:#000;    
@@ -107,7 +107,7 @@ margin: 0 auto;
 }
 #participants{
     background-color1:#C8D6FF;
-    background-color:#F4F4F4;
+    background-color:#E5EAF1;
     margin-top:16px;
     padding:2px;
     color: #2D392D;
@@ -276,7 +276,7 @@ vertical-align:middle;
 }
 #name-request{
     padding: 5px;
-    background-color: #F4F4F4;
+    background-color: #E5EAF1;
     width:50%;
     z-index:100;
     position:fixed;
@@ -564,7 +564,10 @@ clear: right;
     margin-top:5px;
     padding: 5px 5px 10px 5px;
     float: left;
-    border:1px solid #777777;
+    border1:1px solid #777777;
+    border-top:1px solid #777777;
+    border-left:1px solid #777777;
+    border-bottom:1px solid #777777;
 }
 
 .new-comment {
@@ -593,7 +596,9 @@ clear: right;
         background-color: #fff;
 }
 .current-user-comment {
-        background-color: #ABD9F5;
+    background-color1: #ABD9F5;
+    background-color:#EDEFF4;
+    border-bottom:1px solid #E5EAF1;
 }
 .unread {
     background-color: #A9ED2E !important;
@@ -919,7 +924,7 @@ text-align:left;
 -moz-background-clip:border;
 -moz-background-inline-policy:continuous;
 -moz-background-origin:padding;
-background:#F4F4F4 none repeat scroll 0 0;
+background:#E5EAF1 none repeat scroll 0 0;
 color:#484848;
 float:left;
 width:250px;
