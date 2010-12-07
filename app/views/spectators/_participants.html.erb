@@ -5,19 +5,20 @@
 
  <% viewed_count = 0 %>
    <ul id="participants-list">
-    <% unless @post.engagements.empty? %>
-        <% @post.engagements.find(:all, :order => 'totalscore desc').each do |engagement| %>
-              <div id="participant_details_<%=engagement.invitee.id %>" >
-
+    <% unless @post.spectators.empty? %>
+        <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
+            <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
+            
+            <div id="participant_details_<%=engagement.invitee.id %>" >
               <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me (Score - <%= engagement.totalscore %>)
+                  <li id='you'><%= image_tag "user_red.png" %> Me (Score - <%= spectator.totalscore %>)
               <% else %>
                   <% if engagement.invitee.member? %>
                     <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                   <% else %>
                     <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                   <% end  %>
-                  (Score - <%= engagement.totalscore %>)
+                  (Score - <%= spectator.totalscore %>)
               <% end  %>
 
               <!-- common to both -->
@@ -70,8 +71,8 @@
        <% end %>
     <%  end %>
     </ul>
-   <% if @user.admin? %>
-   <%= viewed_count %> participant(s) have viewed this post.
+   <% if @post.owner.id == @user.id %>
+        <%= viewed_count %> participant(s) have viewed this post.
    <% end %>
    </div>
 

@@ -166,6 +166,7 @@ html,body {
   -moz-background-origin:padding;
   background1:#89B556 none repeat scroll 0 0;
   background:#DCF7DD none repeat scroll 0 0;
+  background1:#91CC8A none repeat scroll 0 0;  
   background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
   width: 100%;
 }
@@ -400,8 +401,8 @@ padding:5px 20px 5px 30px;
 height1:33px;
 }
 .banner {
-    color:#fff;
-    font-size:22px;
+    color:#2D392D;
+    font-size:24px;
     font-style:normal;
     font-weight:normal;
     text-align:center;
