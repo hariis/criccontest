@@ -98,7 +98,7 @@ margin: 0 auto;
 }
 #post-settings{
     background-color1:#C8D6FF;
-    background-color:#E5EAF1;
+    background-color:#EDEFF4;
     margin-top:10px;
     padding:3px;
     colo1r:#000;    
@@ -107,7 +107,7 @@ margin: 0 auto;
 }
 #participants{
     background-color1:#C8D6FF;
-    background-color:#E5EAF1;
+    background-color:#EDEFF4;
     margin-top:16px;
     padding:2px;
     color: #2D392D;
@@ -276,7 +276,7 @@ vertical-align:middle;
 }
 #name-request{
     padding: 5px;
-    background-color: #E5EAF1;
+    background-color: #EDEFF4;
     width:50%;
     z-index:100;
     position:fixed;
@@ -393,10 +393,11 @@ margin:20px 0 0 0;
 }
 #widgets {
 background1: transparent url('/images/bg-widgets.png') repeat-x scroll 0 0;
-background:#038819;
+background1:#038819;
+background:#627AAD;
 overflow:hidden;
-padding:10px 20px 7px 30px;
-height:33px;
+padding:5px 20px 5px 30px;
+height1:33px;
 }
 .banner {
     color:#fff;
@@ -565,9 +566,9 @@ clear: right;
     padding: 5px 5px 10px 5px;
     float: left;
     border1:1px solid #777777;
-    border-top:1px solid #777777;
-    border-left:1px solid #777777;
-    border-bottom:1px solid #777777;
+    border-top:1px solid #94A3C4;
+    border-left:1px solid #94A3C4;
+    border-bottom:1px solid #94A3C4;
 }
 
 .new-comment {
@@ -598,7 +599,6 @@ clear: right;
 .current-user-comment {
     background-color1: #ABD9F5;
     background-color:#EDEFF4;
-    border-bottom:1px solid #E5EAF1;
 }
 .unread {
     background-color: #A9ED2E !important;
@@ -855,20 +855,20 @@ ul#participants-list li.new-p:hover {
     float:left;
 }
 #feedback{
-background-color:#A9ED2E;
+background-color:#fff;
 height:auto;
 position:fixed;
 right:0pt;
 text-align:left;
 top:340px;
 width:auto;
-padding: 5px;
+padding: 2px;
 }
 #feedback a{
-background-color:#A9ED2E;
+background-color:#fff;
 color:#000000;
 font-weight:bold;
-padding:4px;
+padding:2px;
 }
 #logo-text{
 float:left;
@@ -876,7 +876,7 @@ padding-top:10px;
 font-size:340%;
 }
 fieldset {
-    background-color:#F4F4F4;
+    background-color:#EDEFF4;
     background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
     border-color1:#C9DCA6 -moz-use-text-color -moz-use-text-color;
     border-right:medium none;
@@ -924,7 +924,7 @@ text-align:left;
 -moz-background-clip:border;
 -moz-background-inline-policy:continuous;
 -moz-background-origin:padding;
-background:#E5EAF1 none repeat scroll 0 0;
+background:#EDEFF4 none repeat scroll 0 0;
 color:#484848;
 float:left;
 width:250px;
