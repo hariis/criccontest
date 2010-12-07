@@ -164,7 +164,8 @@ html,body {
   -moz-background-clip:border;
   -moz-background-inline-policy:continuous;
   -moz-background-origin:padding;
-  background:#89B556 none repeat scroll 0 0;
+  background1:#89B556 none repeat scroll 0 0;
+  background:#DCF7DD none repeat scroll 0 0;
   background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
   width: 100%;
 }
