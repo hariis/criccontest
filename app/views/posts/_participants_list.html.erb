@@ -77,6 +77,6 @@
        <% end %>
     <%  end %>
     </ul>
-   <% if  @post.owner.id == @user.id %>
+    <% if @post.owner.id == @user.id || @user.admin? %>
         <%= viewed_count %> participant(s) have viewed this post.
    <% end %>

@@ -6,7 +6,7 @@
  <% viewed_count = 0 %>
    <ul id="participants-list">
     <% unless @post.spectators.empty? %>
-        <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
+        <% @post.spectators.find_all_by_match_id(@match, :order => 'totalscore desc').each do |spectator| %>
             <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
             
             <div id="participant_details_<%=engagement.invitee.id %>" >
@@ -71,7 +71,7 @@
        <% end %>
     <%  end %>
     </ul>
-   <% if @post.owner.id == @user.id %>
+   <% if @post.owner.id == @user.id || @user.admin? %>
         <%= viewed_count %> participant(s) have viewed this post.
    <% end %>
    </div>
