@@ -33,9 +33,13 @@
             <%= submit_tag 'Save Results' %>
          <% end %>
     <% else %>
-         <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
-            <%= render :partial => 'predict' %>
-            <%= submit_tag 'Save Predictions' %>
-         <% end %>
+        <% if @engagement.nil? %>
+              <%= render :partial => 'predict' %>
+        <% else %>
+             <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
+                <%= render :partial => 'predict' %>
+                <%= submit_tag 'Save Predictions' %>
+             <% end %>
+        <% end %>
     <% end %>
 </fieldset>

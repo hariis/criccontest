@@ -98,7 +98,7 @@ margin: 0 auto;
 }
 #post-settings{
     background-color1:#C8D6FF;
-    background-color:#F4F4F4;
+    background-color:#EDEFF4;
     margin-top:10px;
     padding:3px;
     colo1r:#000;    
@@ -107,7 +107,7 @@ margin: 0 auto;
 }
 #participants{
     background-color1:#C8D6FF;
-    background-color:#F4F4F4;
+    background-color:#EDEFF4;
     margin-top:16px;
     padding:2px;
     color: #2D392D;
@@ -164,7 +164,10 @@ html,body {
   -moz-background-clip:border;
   -moz-background-inline-policy:continuous;
   -moz-background-origin:padding;
-  background:#89B556 none repeat scroll 0 0;
+  background1:#89B556 none repeat scroll 0 0;
+  background1:#DCF7DD none repeat scroll 0 0;
+  background:#91CC8A none repeat scroll 0 0;
+  background1:#fff none repeat scroll 0 0;
   background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
   width: 100%;
 }
@@ -275,7 +278,7 @@ vertical-align:middle;
 }
 #name-request{
     padding: 5px;
-    background-color: #BBDEFA;
+    background-color: #EDEFF4;
     width:50%;
     z-index:100;
     position:fixed;
@@ -392,14 +395,15 @@ margin:20px 0 0 0;
 }
 #widgets {
 background1: transparent url('/images/bg-widgets.png') repeat-x scroll 0 0;
-background:#038819;
+background1:#038819;
+background:#627AAD;
 overflow:hidden;
-padding:10px 20px 7px 30px;
-height:33px;
+padding:5px 20px 5px 30px;
+height1:33px;
 }
 .banner {
-    color:#fff;
-    font-size:22px;
+    color:#2D392D;
+    font-size:24px;
     font-style:normal;
     font-weight:normal;
     text-align:center;
@@ -563,7 +567,11 @@ clear: right;
     margin-top:5px;
     padding: 5px 5px 10px 5px;
     float: left;
-    border:1px solid #777777;
+    border1:1px solid #777777;
+    border-top:1px solid #94A3C4;
+    border-left:1px solid #94A3C4;
+    border-bottom:1px solid #94A3C4;
+    background-color:#EDEFF4;
 }
 
 .new-comment {
@@ -592,7 +600,8 @@ clear: right;
         background-color: #fff;
 }
 .current-user-comment {
-        background-color: #ABD9F5;
+    background-color1:#ABD9F5;
+    background-color:#EDEFF4;
 }
 .unread {
     background-color: #A9ED2E !important;
@@ -827,6 +836,9 @@ ul#participants-list li.new-p:hover {
     font-weight: bold;
     color: #0B84E8;
 }
+.contact-info {
+    color: #038819;
+}
 .group-name {
     font-weight: bold;
     padding-left: 5px;
@@ -846,20 +858,20 @@ ul#participants-list li.new-p:hover {
     float:left;
 }
 #feedback{
-background-color:#A9ED2E;
+background-color:#fff;
 height:auto;
 position:fixed;
 right:0pt;
 text-align:left;
 top:340px;
 width:auto;
-padding: 5px;
+padding: 2px;
 }
 #feedback a{
-background-color:#A9ED2E;
+background-color:#fff;
 color:#000000;
 font-weight:bold;
-padding:4px;
+padding:2px;
 }
 #logo-text{
 float:left;
@@ -867,12 +879,12 @@ padding-top:10px;
 font-size:340%;
 }
 fieldset {
-    background-color:#F4F4F4;
+    background-color:#EDEFF4;
     background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
     border-color1:#C9DCA6 -moz-use-text-color -moz-use-text-color;
     border-right:medium none;
     border-style:solid none none;
-    border-width:1px medium medium;
+    border-width:0px medium medium;
     margin:10px;
     text-align: left;
     letter-spacing:0.5px;
@@ -915,7 +927,7 @@ text-align:left;
 -moz-background-clip:border;
 -moz-background-inline-policy:continuous;
 -moz-background-origin:padding;
-background:#F4F4F4 none repeat scroll 0 0;
+background:#EDEFF4 none repeat scroll 0 0;
 color:#484848;
 float:left;
 width:250px;
@@ -946,4 +958,32 @@ h1, h2,h3 {
     line-height:24px;
     font-family:Georgia,serif;
     color:#656465;
+}
+.button {
+  -moz-border-radius:8px 8px 8px 8px;
+  cursor:pointer;
+    display:block;
+    font-size:18px;
+    font-weight:bold;
+    margin:0 10px 0 0;
+    text-decoration:none;
+    background-color:#ff4800;
+    background-repeat:repeat-x;
+    border:2px solid #CCCCCC;
+    color:white;
+    padding: 5px;
+}
+.general-button {
+}
+.current-fixture-button{
+    font-size:22px;
+}
+.next-button {
+margin-left:50%;
+}
+.submit-button {
+margin-left:30%;
+}
+.button:hover {
+  background-color:#ff692e;
 }

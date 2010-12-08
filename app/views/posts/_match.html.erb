@@ -2,15 +2,21 @@
    <ul id="matches-list">
       <% first_team = "/images/" + "#{get_teamname(match.firstteam)}"  + ".png" %>
       <% second_team = "/images/" + "#{get_teamname(match.secondteam)}"  + ".png" %>
-      <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
-              #{match.description} @ #{match.venue.capitalize} <br/>
-              <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", match.get_url_for(@eng, 'show') %><br/>
-
+      
+      <% if @readonlypost %>
+          <li><span style="color:#2D392D;font-weight:bold"><%= "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
+                #{match.description} @ #{match.venue.capitalize} <br/>
+                <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>" %><br/>
+      <% else %>
+          <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
+                  #{match.description} @ #{match.venue.capitalize} <br/>
+                  <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", match.get_url_for(@eng, 'show') %><br/>
+      <% end %>
+      
       <% if match.check_if_match_started %>
           <span style="font-size:80%;margin-left:40px;"><b>Result:</b> <%= facebox_link_to "#{match.match_result}", :url => match.get_url_for(@eng, 'result') %></span><br/>
       <% else %>
           <span style="font-size:80%;margin-left:40px"><%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %></span><br/>
       <% end %>
-       
-    </ul>
+   </ul>
 </div>

@@ -10,39 +10,12 @@
 }
 </style>
 
-<div id="dashboard-view1">
-    <% if current_user && current_user.admin? && current_user.admin_user? %>
-          <%= button_to 'Start New Contest', new_contest_path, :class => 'submit' %>
-          <%= button_to 'Create a Category', new_category_path, :class => 'submit' %>
-          <%= button_to 'Create a Rule/Entry', new_entry_path, :class => 'submit' %>
-          <% button_to 'Add Team', new_team_path, :class => 'submit' %>
-          <%= button_to 'Add Total Score Prediction Entry', new_predict_total_score_path, :class => 'submit' %>
-    <% end %>
+<% if current_user && current_user.admin? && current_user.admin_user? %>
+      <%= button_to 'Start New Contest', new_contest_path, :class => 'general-button button' %> <br/>
+      <%= button_to 'Create a Category', new_category_path, :class => 'general-button button' %> <br/>
+      <%= button_to 'Create a Rule/Entry', new_entry_path, :class => 'general-button button' %> <br/>
+      <% button_to 'Add Team', new_team_path, :class => 'general-button button' %>
+      <%= button_to 'Add Total Score Prediction Entry', new_predict_total_score_path, :class => 'general-button button' %>
+<% end %>
 
-
-<h1 style="margin-left:10px;">Current Fixtures</h1>
-
-<fieldset>
-    <% count = 1 %>
-    <% @contests.each do |contest| %>
-         <p>  
-            <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
-            <span style="font-size:120%;"><%= link_to  h(contest.name), contest %></span><br/>
-            <span style="font-weight:normal;"><%= link_to  h(contest.url), h(contest.url) %> </span>
-            
-            <% if current_user && current_user.admin? %>
-                <br/><span style="color:green"><%= contest.posts.size %> contest currently running</span>
-            <% end %>
-
-            <% unless current_user && current_user.admin? && current_user.admin_user? %>
-                <span style="float:right;font-size1:120%;"><%= link_to 'Start a Contest', new_contest_post_path(contest)  %></span>
-            <% end %>
-
-            <% if current_user && current_user.admin? && current_user.admin_user? %>
-                <br/><%= link_to 'edit', edit_contest_path(contest), :method => :get %><br/>
-                <%= link_to '[X]', contest, :confirm => 'Are you sure? This will wipe out this contest and all of its instances.', :method => :delete %>
-            <% end %>
-        </p>
-    <% end %>
-</fieldset>
-</div>
+<%= render :partial => 'display_contests', :collections => @contests %>

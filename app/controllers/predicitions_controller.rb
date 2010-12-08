@@ -7,9 +7,11 @@ class PredicitionsController < ApplicationController
     #@user = User.find_by_unique_id(params[:uid]) if params[:uid]
     
     unless current_user && current_user.admin? && current_user.admin_user?
-      @engagement = Engagement.find_by_unique_id(params[:eid]) if params[:eid]
-      #@spectator = @user.spectators.find_by_match_id(@match.id)
-      @spectator = Spectator.find_by_engagement_id_and_match_id(@engagement.id, @match.id)
+      if params[:eid]
+        @engagement = Engagement.find_by_unique_id(params[:eid]) 
+        #@spectator = @user.spectators.find_by_match_id(@match.id)
+        @spectator = Spectator.find_by_engagement_id_and_match_id(@engagement.id, @match.id)
+      end
     end
 
     @category = @match.category

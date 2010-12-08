@@ -7,8 +7,10 @@ class Predicition < ActiveRecord::Base
   
   WIN_MARGIN_WICKET = ["<2", "3-4", "5-6", "7-8", "9-10" ]
   WIN_MARGIN_SCORE = ["<25", "26-50", "51-75", "76-100", ">100" ]
-  
+
+  CATEGORY = {"One day match" => "1"}  
   PREDICT_TOTAL_SCORE = { "<200" => "1", "201-225" => "2", "226-250" => "3", "251-275" => "4", "276-300" => "5", ">300" => "6" }
+  ENTRIES = { "winner" => "1", "toss" => "2", "ts_firstteam" => "3", "ts_secondteam" => "4", "win_margin_wicket" => "5", "win_margin_score" => "6" }
   
   def self.predicition_notification(post_id, match, user_name, predicition_details)
     post = Post.find(post_id)

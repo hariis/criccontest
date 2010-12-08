@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :contests, :has_many => ['matches', 'posts']
   #map.resources :post, :has_many => 'matches', :through => :contest
+  #map.resources :contests,  :collection => { :joinpublic_contest => :get } 
   
   map.root :controller => 'contests', :action => 'dashboard'
   #map.root :controller => 'contests'
@@ -38,10 +39,12 @@ ActionController::Routing::Routes.draw do |map|
   map.blog "blog", :controller => 'posts', :action => 'blog'
   map.help "help", :controller => 'posts', :action => 'help'
   map.contact "contact", :controller => 'posts', :action => 'contact'
+  map.disclaimer "disclaimer", :controller => 'posts', :action => 'disclaimer'
   map.login "login",   :controller => 'user_sessions', :action => 'new'
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.admin "admin", :controller => 'posts', :action => 'admin'
   map.how_to "how_to", :controller => 'contests', :action => 'how_to'
+  #map.join_public_contest "join_public_contest", :controller => 'contests', :action => 'join_public_contest'
 
   
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate' 

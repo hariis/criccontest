@@ -223,6 +223,7 @@
 
               </div>
     <% end %>
+    
     <% if false %>
           <div id="get_fb_auth">
              <p  style="font-size: 12px;">
@@ -237,9 +238,8 @@
             <%=  button_to_function "Grant Access and Post to Facebook", "openWindow(\'#{@authorization_url}\')"  %>
 
             </div>
-
-          <div id="send-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>
-
         </div>
     <% end %>
+    <div id="send-status" style="background-color:#378314;font-weight:bold;color:#fff;"></div>
+
 </fieldset>
