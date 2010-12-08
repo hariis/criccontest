@@ -35,7 +35,7 @@
                 <%= link_to '[X]', contest, :confirm => 'Are you sure? This will wipe out this contest and all of its instances.', :method => :delete %><br/>
             <% end %>
 
-            <% if contest.contest_current %>
+            <% if contest.contest_current == true %>
                 <% unless current_user && current_user.admin? && current_user.admin_user? %>
                     <span style="float:right;font-size1:120%;padding-right:10px;"><% link_to 'Start Private Contest', new_contest_post_path(contest) %></span>
                 <% end %>
