@@ -43,7 +43,7 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-  DOMAIN = "http://www.doosracricket.com/" if ENV['RAILS_ENV'] == 'production'
+  DOMAIN = "http://doosracricket.com/" if ENV['RAILS_ENV'] == 'production'
   DOMAIN = "http://localhost:3000/" if ENV['RAILS_ENV'] == 'development'
   #TWOAUTH_KEY = "2ABzvtWhFUCZFiluhc7bGg"
   #TWOAUTH_SECRET = "byf0AI0N6iazhGK1AeZWOqmaOZzm0cKvsMmnu8uDIM"
