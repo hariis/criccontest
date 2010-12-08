@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   
   before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings]  
   before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer]
-  #before_filter :check_for_contest_current, :only => [:new, :create]
+  before_filter :check_for_contest_current, :only => [:new, :create]
   before_filter :check_activated_member,
     :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :load_all_participants, :load_all_invitations]
   in_place_edit_for :post, :note
@@ -15,6 +15,16 @@ class PostsController < ApplicationController
       #flash[:notice] = "No contest selected. Please start by selecting a contest"
       redirect_to root_url
     end
+  end
+  
+  #-----------------------------------------------------------------------------------------------------
+  def check_for_contest_current
+    unless @contest.nil?
+      return true if @contest.contest_current == true
+    end
+    flash[:error] = "This fixture is over and not avaiable for starting a contest. Pick a current fixture and try again"
+    redirect_to root_url
+    #render 'posts/404', :status => 404, :layout => false and return
   end
   
   #-----------------------------------------------------------------------------------------------------
