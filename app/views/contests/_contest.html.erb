@@ -17,9 +17,15 @@
       </p>
 
       <p>
+        Contest Current 
+        <%= f.check_box :contest_current %>
+      </p>
+
+      <p>
         Add Teams (comma seprated)<br/>
         <%= text_area_tag :teams, "", :class =>"mceNoEditor", :rows => 2, :cols => 40 %>
       </p>
+
       <br/>
       <p>
         <%= f.submit submit_button %> | 

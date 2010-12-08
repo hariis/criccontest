@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   layout :choose_layout, :except => [:plaxo]
   
-  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings]
+  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings]  
   before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer]
+  #before_filter :check_for_contest_current, :only => [:new, :create]
   before_filter :check_activated_member,
     :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :load_all_participants, :load_all_invitations]
   in_place_edit_for :post, :note
 
+  #-----------------------------------------------------------------------------------------------------
   def load_contest
     @contest = Contest.find(params[:contest_id])
     if @contest.nil?
@@ -14,6 +16,7 @@ class PostsController < ApplicationController
       redirect_to root_url
     end
   end
+  
   #-----------------------------------------------------------------------------------------------------
   def choose_layout
     if [ 'new', 'index','create' ].include? action_name
@@ -522,6 +525,7 @@ class PostsController < ApplicationController
       eng.joined = true
       eng.unique_id = Engagement.generate_unique_id
       eng.totalscore = 0
+      eng.notify_me = false if @post.is_open_post?
       eng.save
       eng.create_spectator_and_send_email
       return eng

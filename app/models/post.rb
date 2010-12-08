@@ -21,6 +21,11 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
   after_create :send_post_link
   
+  def is_open_post?
+    open_post_creator = User.get_open_contest_inviter
+    return self.user_id == open_post_creator.id unless open_post_creator.nil?
+    return false
+  end
 
   def send_post_link      
       Notifier.deliver_post_link(self)
@@ -32,6 +37,7 @@ class Post < ActiveRecord::Base
       eng.joined = true
       eng.unique_id = Engagement.generate_unique_id
       eng.totalscore = 0
+      eng.notify_me = false if is_open_post?
       eng.save
       eng.create_spectator_and_send_email
   end

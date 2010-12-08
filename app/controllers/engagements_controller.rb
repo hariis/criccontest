@@ -269,6 +269,7 @@ end
                     eng.invited_via = 'email'
                     eng.unique_id = Engagement.generate_unique_id
                     eng.totalscore = 0
+                    eng.notify_me = false if @post.is_open_post?
                     #eng.joined = join_conversation
                     eng.save
                     if invited_by.nil?
@@ -391,6 +392,7 @@ end
               eng.joined = true
               eng.unique_id = Engagement.generate_unique_id
               eng.totalscore = 0
+              eng.notify_me = false if @post.is_open_post?
               eng.save
               @twitter_participants[invitee] = eng
               eng.create_spectator_and_send_email
