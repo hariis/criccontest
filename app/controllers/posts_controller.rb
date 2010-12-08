@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   
   before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings]  
   before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer]
-  #before_filter :check_for_contest_current, :only => [:new, :create]
+  before_filter :check_for_contest_current, :only => [:new, :create]
   before_filter :check_activated_member,
     :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :load_all_participants, :load_all_invitations]
   in_place_edit_for :post, :note
@@ -15,6 +15,16 @@ class PostsController < ApplicationController
       #flash[:notice] = "No contest selected. Please start by selecting a contest"
       redirect_to root_url
     end
+  end
+  
+  #-----------------------------------------------------------------------------------------------------
+  def check_for_contest_current
+    unless @contest.nil?
+      return true if @contest.contest_current == true
+    end
+    flash[:error] = "This fixture is over and not avaiable for starting a contest. Pick a current fixture and try again"
+    redirect_to root_url
+    #render 'posts/404', :status => 404, :layout => false and return
   end
   
   #-----------------------------------------------------------------------------------------------------
@@ -47,7 +57,7 @@ class PostsController < ApplicationController
                   @user = User.find_by_unique_id(params[:uid]) if params[:uid]
                   #if user is member, so force login
                   if @user && @user.activated?
-                      flash[:notice] = "Please login and you will be on your way."
+                      flash[:error] = "Please login and you will be on your way."
                       flash[:email] = @user.email
                       store_location if action_name == 'show'  #we do not want to store if it is any other action
                       redirect_to login_path
@@ -77,7 +87,7 @@ class PostsController < ApplicationController
           if current_user && current_user.activated?
               @user = current_user
           else
-              flash[:notice] = "Dashboard is a member-only feature. Please signup to enjoy the feature."
+              flash[:error] = "Dashboard is a member-only feature. Please signup to enjoy the feature."
               redirect_to root_path
               return
           end
@@ -205,14 +215,14 @@ class PostsController < ApplicationController
       if  validate_emails(params[:email])
         @user = User.find_by_email(params[:email])
       else
-          flash[:notice] = "Your email is turning out to be not valid. Please check and try again"
+          flash[:error] = "Your email is turning out to be not valid. Please check and try again"
           redirect_to new_post_path
           return
       end
       if @user && @user.activated?
           #Save this post contents
           session[:post] = @post
-          flash[:notice] = "Your email is registered with an account. <br/> Please login first."
+          flash[:error] = "Your email is registered with an account. <br/> Please login first."
           store_location
           redirect_to login_path
           return
@@ -235,7 +245,7 @@ class PostsController < ApplicationController
           #The user has started the process of signing up but has not activated yet.
           #Save this post contents
           session[:post] = @post
-          flash[:notice] = "Your email is registered with an account but not activated yet. <br/> Please activate your account and login first."
+          flash[:error] = "Your email is registered with an account but not activated yet. <br/> Please activate your account and login first."
           store_location          
           redirect_to login_path
           return
@@ -268,8 +278,8 @@ class PostsController < ApplicationController
           flash[:notice] ='Your email contains the link to this contest as well.<br/> '+
             'You can now start inviting your friends to play the contest.'
         else
-          flash[:notice] = 'Your contest page was successfully created. <br/>'
-          flash[:notice] +='Please check your email for the link to this contest you just created. <br/>' +
+          flash[:error] = 'Your contest page was successfully created. <br/>'
+          flash[:error] +='Please check your email for the link to this contest you just created. <br/>' +
             'This redirect helps us to confirm your ownership of the provided email.'+
                        'Enjoy Contest!'
           redirect_to root_url

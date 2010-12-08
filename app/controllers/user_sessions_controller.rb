@@ -31,17 +31,18 @@ class UserSessionsController < ApplicationController
                   render :action => 'new'
                 end
             else
-                flash[:notice] = "Your account is not activated. Please activate your account"
+                flash[:error] = "Your account is not activated. Please activate your account"
                 redirect_to contests_url
             end
         else
           #How can this happen? logged in but not a member - Hacked in, perhaps
-          flash[:notice] = "We're sorry, but we could not locate your account.<br/> Please signup first, if you haven't already."
+          flash[:error] = "We're sorry, but we could not locate your account.<br/> Please check the address and try again."
           redirect_to contests_url
         end
     else
-      flash[:notice] = "We're sorry, but we could not locate your account. Please signup first."
-      redirect_to contests_url
+      flash[:error] = "We're sorry, but we could not locate your account. Please check the address and try again."
+      #redirect_to contests_url
+      redirect_to login_path
     end
   end
    
