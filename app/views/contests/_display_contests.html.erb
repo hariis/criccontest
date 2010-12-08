@@ -44,7 +44,7 @@
                 <% if current_user && current_user.activated? %>
                      <span style="float:right;font-size:120%;padding-right:10px;"><%= link_to "Join Open Contest",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.unique_id, :iid => @inviter.unique_id, :uid => current_user.unique_id %></span><br/>
                 <% else %>
-                     <span style="float:right;font-size:120%;padding-right:10px;"><%= facebox_link_to "Join Open Contest",  :url => @post.get_url_for_jc_facebox(@inviter.unique_id), :method => :get %></span>
+                     <span style="float:right;font-size:120%;padding-right:10px;"><%= facebox_link_to "Join Open Contest",  :url => @post.get_url_for_jc_facebox(@inviter.unique_id) %></span>
                 <% end %>
             <% end %>
 

@@ -87,7 +87,7 @@ class Post < ActiveRecord::Base
   end
   
   def get_url_for_jc_facebox(inviter_iid)
-    DOMAIN + "engagements/join_conversation_facebox" + "?pid=#{self.unique_id};iid=" + inviter_iid
+    DOMAIN + "engagements/join_conversation_facebox" + "?pid=#{self.unique_id};iid=#{inviter_iid}"
   end
   
   def get_readonly_url(inviter)
