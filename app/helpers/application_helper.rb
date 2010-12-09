@@ -14,17 +14,17 @@ module ApplicationHelper
   end
   
   def get_teamflag(teamid)
-    team_name = Team.find_by_id(teamid).teamname.capitalize
+    team_name = Team.find_by_id(teamid).teamname
     if team_name == "India"
       return "/images/india.png"
     elsif team_name == "Australia"
       return "/images/australia.png"
-    elsif team_name == "New zealand"
+    elsif team_name == "New Zealand"
       return "/images/newzealand.gif"
-    elsif team_name == "Sri lanka"
+    elsif team_name == "Sri Lanka"
       return "/images/srilanka.png"
-    elsif team_name == "West indies"
-      return "/images/west_indies.jpg"      
+    elsif team_name == "West Indies"
+      return "/images/westindies.png"      
     else
       return "/images/india.png"
     end
