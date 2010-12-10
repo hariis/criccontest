@@ -987,3 +987,24 @@ margin-left:30%;
 .button:hover {
   background-color:#ff692e;
 }
+
+#footer_new {
+    margin-top:30px;
+    position:relative;
+    text-align:center;
+    width:710px;
+    clear:both;
+    padding:15px 20px 15px 30px;
+    text-align:center;
+    background:#2D392D;
+    width:100%;
+    color: #fff;
+    font-weight1:bold;
+    font-size:15px;
+}
+#footer_new ul {
+    background:none;
+}
+
+
+

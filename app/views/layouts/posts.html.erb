@@ -112,13 +112,9 @@
 <%= yield  %>
 <span id="feedback"><% facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
 <span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
-<% if (controller.action_name == 'show' && !@readonlypost) || controller.action_name == 'ushow' || controller.action_name == 'callback' %>
-    <div id="footer-d">
-<% else %>
-     <div id="footer">
-<% end %>
-     <%= render 'layouts/footer' %>
-  </div>   
+  
+<%= render 'layouts/footer' %>
+
 
   <%= javascript_include_merged :rest %>
   <script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
