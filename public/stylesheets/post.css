@@ -227,7 +227,6 @@ html,body {
   font-size: 14px;
   margin:0 auto;
   text-align:left;
-  color: #beige;
   width:925px;
   border:1px solid #666666;
 }
@@ -978,8 +977,11 @@ h1, h2,h3 {
     color: #fff;
 }
 .general-button {
+   background-color:#627AAD;
+   font-size:100%;
 }
 .current-fixture-button{
+    background-color:#627AAD;
     font-size:22px;
 }
 .next-button {
