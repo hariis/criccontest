@@ -219,6 +219,7 @@ html,body {
 #actual-post-content {
     padding:5px 15px;
     width:680px;
+    min-height:628px;
 }
 #gen-content {
   margin: 0 275px;
