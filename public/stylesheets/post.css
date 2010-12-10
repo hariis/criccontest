@@ -972,6 +972,10 @@ h1, h2,h3 {
     border:2px solid #CCCCCC;
     color:white;
     padding: 5px;
+    font-family: arial;
+}
+.button a {
+    color: #fff;
 }
 .general-button {
 }
@@ -1005,6 +1009,7 @@ margin-left:30%;
 #footer_new ul {
     background:none;
 }
+
 
 
 
