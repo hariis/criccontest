@@ -5,14 +5,14 @@
               <div id="participant_details_<%=engagement.invitee.id %>" >
 
               <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me (Score - <%= engagement.totalscore %>)
+                  <li id='you'><%= image_tag "user_red.png" %> Me (<%= engagement.totalscore %>)
               <% else %>
                     <% if engagement.invitee.member? %>
                       <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                     <% else %>
                       <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                     <% end  %>
-                    (Score - <%= engagement.totalscore %>)
+                    (<%= engagement.totalscore %>)
               <% end  %>
 
               <!-- common to both -->

@@ -976,11 +976,9 @@ h1, h2,h3 {
     color: #fff;
 }
 .general-button {
-   background-color:#627AAD;
    font-size:80%;
 }
 .current-fixture-button{
-    background-color:#627AAD;
     font-size:22px;
 }
 .next-button {
