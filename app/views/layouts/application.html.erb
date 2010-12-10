@@ -52,34 +52,36 @@ tinyMCE.init(tinymce_advanced_options);
 <body>
 
 <div id="header">
-   <!--[if lt IE 7]>
- <div class="banner" style="height:33px; padding:10px 20px 7px 30px;background-color:#ff0000;">
- It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
-</div> <![endif]--> 
+       <!--[if lt IE 7]>
+     <div class="banner" style="height:33px; padding:10px 20px 7px 30px;background-color:#ff0000;">
+     It appears you are using a version of Internet Explorer that we do not support. Please use IE 7 or above.
+    </div> <![endif]--> 
 
+    <strong class="logo">
+       <a href="/"><%= image_tag "doosra-3.png", :size => "40x50" %></a>  
+    </strong>
+    <a href="/"><%= image_tag "doosra-logo-image.jpg", :size => "50x50" %></a>
 
-<strong class="logo">
-   <a href="/"><%= image_tag "doosra-3.png", :size => "40x50" %></a>  
-</strong>
-<a href="/"><%= image_tag "doosra-logo-image.jpg", :size => "50x50" %></a>
+    <ul>
+      <li><% link_to "Home", root_url %></li>
 
-<ul>
-  <li><% link_to "Home", root_url %></li>
- 
-  <% if current_user && current_user.activated? %>
-      <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
-   <% else %>
-       <% if ENV['RAILS_ENV'] != 'production' %> 
-            <li><% link_to "Register", new_user_path %> </li>
-       <% end %>  
-       <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
-   <% end %>
-      
-</ul>
+      <% if current_user && current_user.activated? %>
+           <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
+      <% else %>
+           <% if ENV['RAILS_ENV'] != 'production' %> 
+                <li><% link_to "Register", new_user_path %> </li>
+           <% end %>  
+           <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
+       <% end %>
+    </ul>
+
+    <div class="banner" style="height:33px; padding:5px 20px 7px 10px;">
+       <span style="font-weight:bold;"><%= tag_line %></span>
+    </div>  
 </div>
   
-<div id="widgets" class="banner">
-   <span style="color:#fff;"><%= tag_line %></span>
+<div id="widgets" class="banner" style="height:33px; padding:5px 20px 7px 10px;">
+   <span style="color:#fff;"><% tag_line %></span>
 </div>
 
 <% if flash[:notice] %>

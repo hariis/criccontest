@@ -401,12 +401,11 @@ padding:5px 20px 5px 30px;
 height1:33px;
 }
 .banner {
-    color:#2D392D;
-    font-size:24px;
+    font-size:18px;
     font-style:normal;
-    font-weight:normal;
-    text-align:center;
+    text-align:left;
     letter-spacing:0.1em;
+    color:#2D392D;
 }
 #header {
 /* background: #575455 url('/images/bg-header.png') repeat-x scroll 0 0; */
@@ -420,7 +419,7 @@ width:1075px;
 #wide-header {
 overflow: hidden;
 padding: 10px 20px 7px 30px;
-height: 58px;
+height1: 58px;
 margin: 0 auto;
 width: 1238px;
 }
@@ -978,7 +977,7 @@ h1, h2,h3 {
 }
 .general-button {
    background-color:#627AAD;
-   font-size:100%;
+   font-size:80%;
 }
 .current-fixture-button{
     background-color:#627AAD;
