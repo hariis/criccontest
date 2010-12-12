@@ -118,7 +118,7 @@ class UsersController < ApplicationController
         @user.add_role("member")
         @user.add_role("admin") if User.find(:all).size < 4 # first three users are admin
         @user.deliver_account_confirmation_instructions!
-        flash[:status] = "An email has been sent to confirm that we have your correct email address. <br/>" +
+        flash[:error] = "An email has been sent to confirm that we have your correct email address. <br/>" +
         "Please check your Inbox and also sometimes your Spam folder :( and click on the activation link."
         
         format.html { redirect_to(root_url) }

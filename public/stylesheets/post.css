@@ -463,7 +463,7 @@ width:251px;
     padding:0 13px;
     font-size:16px;
     font-weight:bold;
-    -moz-border-radius:10px 10px 10px 10px;
+    -moz-border-radius:10px;
 }
 #header ul li a.active, #header ul li a:hover,#wide-header ul li a.active, #wide-header ul li a:hover {
     color:#FFFFFF;
@@ -497,15 +497,15 @@ color:#fff;
 text-decoration:none;
 font-weight: bold;
 padding:0 10px;
--moz-border-radius:10px 10px 10px 10px;
+-moz-border-radius:10px;
 }
 #widgets ul li a.active, #widgets ul li a:hover {
 color:#4b9ce0;
 background-color:#e4a1e4;
 }
 #home-content {
-overflow:hidden;
 clear:both;
+overflow:hidden;
 float: left;
 font-size: 14px;
 margin:0 auto;
@@ -959,7 +959,7 @@ h1, h2,h3 {
     color:#656465;
 }
 .button {
-  -moz-border-radius:8px 8px 8px 8px;
+  -moz-border-radius:8px;
   cursor:pointer;
     display:block;
     font-size:18px;
@@ -992,7 +992,7 @@ margin-left:30%;
   background-color:#ff692e;
 }
 
-#footer_new {
+#footer-new {
     margin-top:30px;
     position:relative;
     text-align:center;
@@ -1002,14 +1002,80 @@ margin-left:30%;
     text-align:center;
     background:#2D392D;
     width:100%;
-    color: #fff;
+    color:#fff;
     font-weight1:bold;
     font-size:15px;
 }
-#footer_new ul {
+#footer-new  ul {
     background:none;
 }
 
+#footer-dashboard {
+    position:absolute;
+    top:1380px;
+    text-align:center;
+    width:710px;
+    clear:both;
+    padding:15px 20px 15px 15px;
+    text-align:center;
+    background:#2D392D;
+    width:110%;
+    color: #fff;
+    font-size:15px;
+}
 
+#footer-dashboard ul {
+    background:none;
+}
+
+#dashboard-image { 
+    position:absolute;
+    left:100px;
+    width: 440px;
+    height: 250px;
+    background: #ee3e64;
+}
+
+#whatisit-text { 
+    position:absolute;
+    left:540px;
+    width: 300px;
+    height: 250px;
+    background: #44accf;
+}
+
+#how-to-get-started {
+    -moz-border-radius:6px;
+    position:absolute;
+    clear:both;
+    top:440px;
+    left:100px;
+    width:740px;
+    height1:400px;
+    font-family:Georgia;
+    font-style:italic;
+    font-size:28px;
+    background:#fff;
+}
+
+#contests-display {
+    -moz-border-radius:6px;
+    position:absolute;
+    clear:both;
+    left:100px;
+    top:963px;
+    width:740px;
+    background:#fff;
+}
+
+#facebook-box {
+    position:absolute;
+    clear:both;
+    left:860px;
+    width:270px;
+    height:250px;
+    font-size:14px;
+    background:#fff;
+}
 
 

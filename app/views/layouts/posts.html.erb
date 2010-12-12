@@ -110,7 +110,9 @@
 <span id="feedback"><% facebox_link_to "Feedback",  :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
 <span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{@user.id}" %></span>
   
-<%= render 'layouts/footer' %>
+  <% if controller.action_name != "dashboard" %>
+      <div id="footer-new"><%= render 'layouts/footer' %></div>
+  <% end %>
 
 
   <%= javascript_include_merged :rest %>

@@ -1,6 +1,16 @@
-<br/><br/>
+<br/>
+    
 <div id="home-content">
-     <div id="dashboard-content" style="float:left;margin-left:100px;width:740px;font-family:Georgia;font-style:italic;font-size:28px;margin-bottom:40px;">
+    <div id="dashboard-image"><%= image_tag "cricket8.jpg", :size => "440x250" %></div>
+    <div id="whatisit-text">
+        <div class="blurb_about">Doosra Cricket</div>
+        <div  class="blurb_about_line" style="padding-left:25px;color:#3B5998;font-size:20px;font-weight:bold;">Predict, Discuss, Win and <br/> Show your expertise</div>
+        <div  class="blurb_about_line" style="padding-left:80px;color:#3B5998;;font-size:20px;font-weight:bold;">on matches</div>
+        <div  class="blurb_about_line" style="padding-left:40px;color:#3B5998;font-size:20px;font-weight:bold;">Publically or Privately</div>
+    </div>
+    
+
+     <div id="how-to-get-started">
  
         <div class="blurb_about">How does it work?</div>
 
@@ -36,22 +46,17 @@
 
     </div>
 
-    <div id="dashboard-content1" style="float:left;margin-left:30px;font-size:14px;margin-bottom:30px;">
-        <% link_to image_tag('/images/fixture.png'), contests_path, :method => :get %>
-        <%= button_to "Current Fixtures", contests_path, :method => :get, :class => 'current-fixture-button button' %>         
-    </div>    
-
-    <% if true %>
-        <div id="dashboard-content" style="float:left;margin-left:40px;width:270px;height:255px;font-size:14px;margin-bottom:0px;">
-            
-            <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F183722284976292%3Fv%3Dpage_getting_started%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:255px;" allowTransparency="true"></iframe>
-        </div>
-    <% end %>
-  
-    <div id="dashboard-content" style="clear:both;float:left;margin-left:100px;width:740px;font-size:100%;margin-bottom:40px;">
-        <%= render :partial => 'display_contests', :collections => @contests %>
+    <div id="facebook-box">            
+        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F183722284976292%3Fv%3Dpage_getting_started%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=250" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:250px;" allowTransparency="true"></iframe>
     </div>
- 
-</div>
+  
+    <div id="contests-display">
+        <%= render :partial => 'display_contests', :collections => @contests %>
+    </div><br/><br/>
+
+    <div id="footer-dashboard">
+        <%= render 'layouts/footer' %>
+    </div>
+ </div>
 
 

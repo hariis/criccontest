@@ -24,7 +24,7 @@ module ApplicationHelper
     elsif team_name == "Sri Lanka"
       return "/images/srilanka.png"
     elsif team_name == "West Indies"
-      return "/images/westindies.png"      
+      return "/images/westindies.PNG"      
     else
       return "/images/india.png"
     end

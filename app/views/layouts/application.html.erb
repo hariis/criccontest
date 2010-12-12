@@ -71,6 +71,7 @@ tinyMCE.init(tinymce_advanced_options);
            <% if ENV['RAILS_ENV'] != 'production' %> 
                 <li><% link_to "Register", new_user_path %> </li>
            <% end %>  
+           <li><%= link_to "Register", new_user_path %> </li>
            <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
        <% end %>
     </ul>
@@ -115,7 +116,9 @@ tinyMCE.init(tinymce_advanced_options);
   <span id="feedback"><%= facebox_link_to image_tag('/images/feedback.png', :size => "23x90"), :url => DOMAIN + "experiences/capture_experience?user_id=#{current_user.id}" %></span>
   <% end %>
   
-  <%= render 'layouts/footer' %>
+  <% if controller.action_name != "dashboard" %>
+    <div id="footer-new"><%= render 'layouts/footer' %></div>
+  <% end %>
   
 </body>
 </html>
