@@ -36,14 +36,17 @@
        <a href="/"><%= image_tag "doosra-3.png", :size => "40x50" %></a>
        <% link_to "DOOSRA CRICKET", root_path %>
     </strong>
-    <a href="/"><%= image_tag "doosra-logo-image.jpg", :size => "50x50" %></a>
+    <a href="/"><% image_tag "doosra-logo-image.jpg", :size => "50x50" %></a>
 
     <ul id="band-actions">
       <li><% link_to "Home", root_url %></li>  
       <% if current_user && current_user.activated? %>
           <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => nil} %>
       <% else %>
-          <% unless @readonlypost %>
+          <% if @readonlypost %>
+              <li><%= link_to "Register", new_user_path %> </li>
+              <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
+           <% else %>
               <span style="font-size:16px;"><li id='non-member-name'><%= "Welcome #{@user.display_name}" %></li>
               <li><% link_to "Become a Member", new_user_path %></li>
               <li><%= link_to "Current Fixtures", contests_path %></li></span>
@@ -51,7 +54,8 @@
       <% end %>
     </ul>
 
-    <div class="banner" style="height:33px; padding:5px 20px 7px 10px;">
+    <br/><br/><br/>
+    <div class="banner" style="float:left;height1:33px; padding:5px 20px 7px 10px;">
        <span style="font-weight:bold;"><%= tag_line %></span><br/><br/>
     </div>  
 </div>
@@ -67,7 +71,9 @@
                  <% else %>
                      <%= image_tag "group_add.png" %> <%= facebox_link_to "Join this Contest",  :url => @post.get_url_for_jc_facebox(@inviter_unique_id) %>
                  <% end %>
-               </span>
+            </span>   
+            <span class='button' style="float:left;margin-left:20px;padding-right:10px;"><%= link_to 'Start Private Contest', new_contest_post_path(@contest) %></span>
+
            <% end %>
       <% else %>
           <li><% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %></li>              
