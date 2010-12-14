@@ -10,7 +10,7 @@
 }
 </style>
 
-<h1 style="margin-left:10px;">Current Fixtures</h1>
+<h1 style="margin-left:10px;">Current Series</h1>
 
 <fieldset>
     <% count = 1 %>
@@ -20,9 +20,9 @@
          
          <p>  
             <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
-            <span style="font-size:120%;"><%= link_to h(contest.name), @post.get_readonly_url(@inviter) %></span><br/>
-            <span style="font-size:80%;">
-                <%= link_to  h(contest.url), h(contest.url) %><br/>
+            <span style="font-size:140%;"><%= link_to h(contest.name), @post.get_readonly_url(@inviter) %></span><br/>
+            <span style="font-size:75%;">
+                <% link_to  "Schedules & results on yahoo", h(contest.url) %>
                 <%= link_to "#{contest.matches.count} matches", contest %>
             </span>
 
@@ -51,5 +51,8 @@
             <% end %>
 
         </p>
+    <% end %><br/>
+    <% if controller.action_name != 'index' %>
+        <span style="font-size:140%;"><%= link_to "More >>", contests_path %></span>
     <% end %>
 </fieldset>

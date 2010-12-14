@@ -258,5 +258,9 @@ class User < ActiveRecord::Base
     #  membership.save
     #end
   end
+  
+  def total_score
+    #engagements.sum { |engagement| engagement.totalscore }
+  end
 end
 

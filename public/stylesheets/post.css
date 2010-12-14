@@ -97,6 +97,7 @@ letter-spacing:1px;
 margin: 0 auto;
 }
 #post-settings{
+    -moz-border-radius:6px; 
     background-color1:#C8D6FF;
     background-color:#EDEFF4;
     margin-top:10px;
@@ -106,13 +107,14 @@ margin: 0 auto;
     border:1px solid #666666
 }
 #participants{
+    -moz-border-radius:6px; 
     background-color1:#C8D6FF;
     background-color:#EDEFF4;
-    margin-top:16px;
+    margin-top:10px;
     padding:2px;
     color: #2D392D;
     -moz-box-shadow1:2px 2px 14px #4E9494;
-    border:1px solid #666666
+    border:1px solid #666666;
 }
 #participants2{
     background:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
@@ -406,7 +408,8 @@ height1:33px;
     font-style:normal;
     text-align:left;
     letter-spacing:0.1em;
-    color:#2D392D;
+    color1:#2D392D;
+    color:#5B5B5B;
 }
 #header {
 /* background: #575455 url('/images/bg-header.png') repeat-x scroll 0 0; */
@@ -980,7 +983,9 @@ h1, h2,h3 {
    font-size:80%;
 }
 .current-fixture-button{
-    font-size:22px;
+    font-size:18px;
+    float:left;
+    margin-left:-10px;
 }
 .next-button {
 margin-left:50%;
@@ -1012,7 +1017,7 @@ margin-left:30%;
 
 #footer-dashboard {
     position:absolute;
-    top:1380px;
+    top:880px;
     text-align:center;
     width:710px;
     clear:both;
@@ -1033,7 +1038,6 @@ margin-left:30%;
     left:100px;
     width: 440px;
     height: 250px;
-    background: #ee3e64;
 }
 
 #whatisit-text { 
@@ -1046,16 +1050,16 @@ margin-left:30%;
 
 #how-to-get-started {
     -moz-border-radius:6px;
-    position:absolute;
-    clear:both;
-    top:440px;
-    left:100px;
-    width:740px;
+    position1:absolute;
+    clear1:both;
+    top1:440px;
+    margin-left:100px;
+    width1:740px;
     height1:400px;
-    font-family:Georgia;
-    font-style:italic;
-    font-size:28px;
-    background:#fff;
+    font-family1:Georgia;
+    font-style1:italic;
+    font-size1:28px;
+    background1:#fff;
 }
 
 #contests-display {
@@ -1063,7 +1067,8 @@ margin-left:30%;
     position:absolute;
     clear:both;
     left:100px;
-    top:963px;
+    top1:963px;
+    top:440px;
     width:740px;
     background:#fff;
 }
@@ -1078,4 +1083,16 @@ margin-left:30%;
     background:#fff;
 }
 
-
+#overall-score {
+    -moz-border-radius:6px;  
+    position:absolute;
+    clear:both;
+    top:440px;
+    left:860px;
+    width:271px;
+    font-size:12px;
+    height:327px;
+    overflow:auto;
+    background:#fff;
+    line-height:1.5em;
+}
