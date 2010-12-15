@@ -295,10 +295,10 @@ vertical-align:middle;
     z-index:100;
     position:fixed;
     margin-left:25%;
-    min-width: 800px;
+    min-width:697px;
     top: 76px;
     max-height:575px;
-    overflow: auto;
+    overflow:auto;
 }
 #invitation-title {
     color: #0B84E8;
@@ -423,7 +423,7 @@ width:1075px;
 }
 #wide-header {
 overflow: hidden;
-padding: 10px 20px 7px 30px;
+padding: 10px 20px 0px 30px;
 height1: 58px;
 margin: 0 auto;
 width: 1238px;
@@ -781,7 +781,8 @@ ul#participants-list li.new-p:hover {
     margin-top: 24px;
 }
 #add-new-comment {
-    margin-top:5em;
+    margin-top:10px;
+    padding:5px;
 }
 #comments {
     border-top:1px solid #FFFFFF;
@@ -1046,7 +1047,8 @@ margin-left:30%;
     left:540px;
     width: 300px;
     height: 250px;
-    background: #44accf;
+    background1: #44accf;
+    background: #FFEFC6;
 }
 
 #how-to-get-started {
@@ -1085,15 +1087,30 @@ margin-left:30%;
 }
 
 #overall-score {
-    -moz-border-radius:6px;  
+    -moz-border-radius1:6px;  
     position:absolute;
     clear:both;
     top:440px;
     left:860px;
     width:271px;
     font-size:12px;
-    height:327px;
+    height:240px;
     overflow:auto;
     background:#fff;
     line-height:1.5em;
+}
+
+#sponsor {
+    -moz-border-radius:6px;  
+    position:absolute;
+    clear:both;
+    top:705px;
+    left:860px;
+    width:249px;
+    font-size:15px;
+    height:129px;
+    overflow:auto;
+    background:#fff;
+    line-height:1.5em;
+    padding:12px;
 }

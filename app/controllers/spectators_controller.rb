@@ -35,31 +35,81 @@ class SpectatorsController < ApplicationController
         @post = @eng.post
         @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
     end
+    
+    if !params[:iid].nil? && !params[:mid].nil? && params[:eid].nil?  
+        @user = User.get_open_contest_inviter
+        @post = Post.get_open_contest(@contest, @user)
+        @eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:post, :invitee])
+        @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
+        
+        #if current_user && current_user.activated?
+          #check if user is already a participant
+        #  @eng = current_user.engagements.find_by_post_id(@post.id)
+        #  url = @match.get_url_for(@eng, 'show')
+        #  redirect_to(@match.get_url_for(@eng, 'show')) && return unless @eng.nil?
+        #  return
+        #end
+        
+    end
   end
 
-  def load_user
+  def load_user_old
      unless params[:mid].nil? || params[:eid].nil?
-        if current_user && current_user.activated?
-            #Now check if this is the same user as the logged in user
-            #If not, then logout the current_user
-            force_logout if @user && @user.id != current_user.id
-        else
-            #load the user based on the unique id
-            #if user is member, so force login
-            if @user && @user.activated?
-                flash[:notice] = "Please login and you will be on your way."
-                flash[:email] = @user.email
-                store_location if action_name == 'show'  #we do not want to store if it is any other action
-                redirect_to login_path
-            end
-        end
-        if @user.nil?
-            flash[:error] = "Your identity could not be confirmed from the link that you provided. <br/> Please request the inviter to resend the link."
-            force_logout
-            redirect_to root_path
-        end
-    end
-  end           
+          if current_user && current_user.activated?
+              #Now check if this is the same user as the logged in user
+              #If not, then logout the current_user
+              force_logout if @user && @user.id != current_user.id
+          else
+              #load the user based on the unique id
+              #if user is member, so force login
+              if @user && @user.activated?
+                  flash[:notice] = "Please login and you will be on your way."
+                  flash[:email] = @user.email
+                  store_location if action_name == 'show'  #we do not want to store if it is any other action
+                  redirect_to login_path
+              end
+          end
+          if @user.nil?
+              flash[:error] = "Your identity could not be confirmed from the link that you provided. <br/> Please request the inviter to resend the link."
+              force_logout
+              redirect_to root_path
+          end
+      end
+  end  
+  
+  def load_user
+    unless params[:mid].nil? 
+      if !params[:eid].nil?
+          if current_user && current_user.activated?
+              #Now check if this is the same user as the logged in user
+              #If not, then logout the current_user
+              force_logout if @user && @user.id != current_user.id
+          else
+              #load the user based on the unique id
+              #if user is member, so force login
+              if @user && @user.activated?
+                  flash[:notice] = "Please login and you will be on your way."
+                  flash[:email] = @user.email
+                  store_location if action_name == 'show'  #we do not want to store if it is any other action
+                  redirect_to login_path
+              end
+          end
+          if @user.nil?
+              flash[:error] = "Your identity could not be confirmed from the link that you provided. <br/> Please request the inviter to resend the link."
+              force_logout
+              redirect_to root_path
+          end
+      else
+         @readonlypost = false
+         if params[:iid]
+             #If iid is present in url, then it is a shared/open contest
+             @user = User.new
+         end
+         @readonlypost = true
+         @inviter_unique_id = params[:iid]  #this is required to craft link for displaying join_conversation_facebox              
+      end
+    end           
+  end
       
   def load_all_participants
        #@post = params[:pid] ? Post.find_by_unique_id(params[:pid]) : nil
@@ -79,7 +129,7 @@ class SpectatorsController < ApplicationController
 
   # GET /spectators/1
   # GET /spectators/1.xml
-  def show
+  def show 
     #@spectator = Spectator.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb

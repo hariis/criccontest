@@ -1,4 +1,4 @@
-<div id="post-content">
+<div id="post-content" style="padding-bottom:30px;">
   <div id="actual-post-content">
       <div id="parent-post">
     <fieldset style="margin:0px">
@@ -27,8 +27,11 @@
     </fieldset>
      </div>
    
-
     <div id="comments-section">
+        <% if !@readonlypost %>
+            <%= render :partial => 'posts/new_comment' %>
+        <% end %>    
+        
         <div id="sticky-comments">
             <% if @post.comments.sticky.length > 0 %>
                   <%= render :partial => "/comments/sticky_comment", :collection => @post.comments.sticky, :locals => {:root => 'true',:parent_comment => nil} %>
@@ -40,11 +43,8 @@
                   <% if @post.comments.roots.length > 0 %>
                        <%= render :partial => "/comments/comment", :collection => @post.comments.top, :locals => {:root => 'true',:parent_comment => nil} %>
                   <% end %>
-            </div>
+            </div><br/><br/>
         </div>
-
-        <% if !@readonlypost %>
-            <%= render :partial => 'posts/new_comment' %>
-        <% end %>               
     </div>
+
 </div>

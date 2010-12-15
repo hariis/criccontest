@@ -1,30 +1,20 @@
-<script type="text/javascript">
-        $j(function(){
-           $j('#tabs').tabs();
-      });
- </script>
-<style type="text/css">
-  a.join-link, a.join-link:hover, a.join-link:visited{
-    color: red;
-    margin-left:10px;
-}
-</style>
-
 <h1 style="margin-left:10px;">Current Series</h1>
 
 <fieldset style="padding-bottom:10px;">
-    <% count = 1 %>
     <% @inviter = User.get_open_contest_inviter %>
     <% @contests.each do |contest| %>
          <% @post = Post.get_open_contest(contest, @inviter) %>
-         
+         <% @match = Match.get_next_scheduled_match(contest) %>
+        
          <p>  
-            <span style="color:green"><%  "#{count}." %> <% count = count + 1 %></span>    
-            <span style="font-size:140%;"><%= link_to h(contest.name), @post.get_readonly_url(@inviter) %></span><br/>
-            <span style="font-size:75%;">
-                <% link_to  "Schedules & results on yahoo", h(contest.url) %>
-                <%= link_to "#{contest.matches.count} matches", contest %>
-            </span>
+            <% if @match.nil? %>
+                <% @readonly_url = @post.get_readonly_url(@inviter) %>
+                <span style="font-size:140%;"><%= link_to h(contest.name), @readonly_url %></span><br/>
+            <% else %>
+                <% @readonly_url = @match.get_readonly_url(@inviter) %>
+                <span style="font-size:140%;"><%= link_to h(contest.name), @readonly_url %></span><br/>
+            <% end %>
+            <span style="font-size:75%;"><%= link_to "#{contest.matches.count} matches", contest %></span>
 
             <% if current_user && current_user.admin? %>
                 <br/><span style="color:green;font-size:70%;"><%= contest.posts.size %> contest currently running</span>
@@ -34,18 +24,11 @@
                 <br/><%= link_to 'edit', edit_contest_path(contest), :method => :get %>
                 <%= link_to '[X]', contest, :confirm => 'Are you sure? This will wipe out this contest and all of its instances.', :method => :delete %><br/>
             <% end %>
-
+            
             <% if contest.contest_current == true %>
-                <span style="float:right;padding-right:10px;"><%= link_to 'Start Private Contest', new_contest_post_path(contest), :class => 'button general-button' %></span>
-
-                <span class='button general-button' style="float:right;padding-right:10px;">
-                <% if current_user && current_user.activated? %>
-                     <%= link_to "Join Open Contest",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.unique_id, :iid => @inviter.unique_id, :uid => current_user.unique_id %><br/>
-                <% else %>
-                     <%= facebox_link_to "Join Open Contest",  :url => @post.get_url_for_jc_facebox(@inviter.unique_id) %><br/>
-                <% end %>
-                </span><br/><br/>
-            <% end %>
+                 <span style="float:right;padding-right:10px;"><%= link_to 'Predict / Join', @readonly_url, :class => 'button general-button' %></span>
+            <% end %><br/><br/>
+          
         </p>
     <% end %><br/>
     

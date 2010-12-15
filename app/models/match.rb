@@ -18,12 +18,16 @@ class Match < ActiveRecord::Base
     else
         if action == 'show' || action == 'result'
           #DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&uid=#{user.unique_id}"
-          DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&eid=#{eng.unique_id}"
+          DOMAIN + "spectators/" + action + "?mid= #{self.unique_id}&eid=#{eng.unique_id}"
         elsif action == 'predicitions'
           DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&eid=#{eng.unique_id}"
         end
     end 
-  end  
+  end
+
+  def get_readonly_url(inviter)
+    DOMAIN + "spectators/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+  end
   
   def check_if_match_started
     Time.now.utc > date_time
@@ -97,6 +101,16 @@ class Match < ActiveRecord::Base
     end
   end
   
+  def self.get_next_scheduled_match(contest)
+    contest.matches.each do |match|
+      if !match.check_if_match_started
+        return match
+      end
+    end
+    return contest.matches.find(:first)
+    #return nil
+    #contest.matches.find(:first, :conditions => "date_time > #{Time.now.to_s(:long)}" )
+  end
   
   private  
   def self.generate_unique_id
