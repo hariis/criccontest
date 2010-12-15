@@ -41,7 +41,7 @@ class SpectatorsController < ApplicationController
         @post = Post.get_open_contest(@contest, @user)
         @eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:post, :invitee])
         @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
-        
+         @readonlypost = true
         #if current_user && current_user.activated?
           #check if user is already a participant
         #  @eng = current_user.engagements.find_by_post_id(@post.id)

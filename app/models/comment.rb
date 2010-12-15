@@ -11,10 +11,18 @@ class Comment < ActiveRecord::Base
   after_save :touch_post
 
   def deliver_comment_notification(post)
-    post.participants_to_notify.each do |participant|
-     Notifier.deliver_comment_notification(post, self, participant)   if participant.id != owner.id
+    #Option to notify open post participants by admin
+    if current_user && current_user.admin? && current_user.admin_user?
+      post.participants.each do |participant|
+          Notifier.deliver_comment_notification(post, self, participant)   if participant.id != owner.id
+      end
+    else
+      post.participants_to_notify.each do |participant|
+          Notifier.deliver_comment_notification(post, self, participant)   if participant.id != owner.id
+      end
     end
   end
+  
   def get_url_for_new_comment(post,user)
     DOMAIN + "comments/new" + "?pid=#{post.unique_id};uid=#{user.unique_id};pcid=#{id}"
   end

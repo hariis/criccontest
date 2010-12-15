@@ -143,12 +143,15 @@ class MatchesController < ApplicationController
             end
          end 
          set_contest_score   #set score for all the user's participating in this contest
+         set_user_overall_score #set overall score for all the user's
          #redirect_to :controller => 'spectators', :action => 'show', :mid => @match.unique_id, :uid => current_user.unique_id
          #render 'show'
          flash[:notice] = "Results have been updated"
          redirect_to contest_path(@contest)
      end
   end
+  
+  private
   
   def set_contest_score
     @contest.posts.each do |post|
@@ -162,5 +165,16 @@ class MatchesController < ApplicationController
       end
     end
   end
+  
+  def set_user_overall_score
+    users = User.find(:all)
+    users.each do |user|
+      overall_score = 0
+      user.engagements.each do |eng|
+        overall_score += eng.totalscore
+      end
+      user.update_attribute(:total_score, overall_score)
+    end
+ end
 
 end

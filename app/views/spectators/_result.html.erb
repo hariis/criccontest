@@ -1,5 +1,5 @@
 <legend style="font-size:150%">Match Result</legend>
-<br/><%= "<b>Result:</b> #{@match.match_result}" %><br/>
+<br/><b><%= "Result: #{@match.match_result}" %></b><br/>
 <div id='predictions' style="margin-top:10px;">
     <% match_result = 0 %>
     <%  @category.entries.each do |entry| %>                
@@ -7,7 +7,7 @@
         <% match_result += result.result %>
 
         <% if entry.name == 'winner' || entry.name == 'toss' %>
-            <%= entry.name.capitalize + ": " + Team.find_by_id(result.result).teamname.capitalize + "<br/>" if result.result != -1 %>                    
+            <%= "#{entry.name.capitalize}: "  + Team.find_by_id(result.result).teamname.capitalize + "<br/>" if result.result != -1 %>                    
         <% end %>
 
         <% if entry.name == 'ts_firstteam' %>

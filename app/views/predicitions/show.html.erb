@@ -33,9 +33,9 @@
             <%= submit_tag 'Save Results' %>
          <% end %>
     <% else %>
-        <% if @engagement.nil? %>
+        <% if @readonlypost %>
               <%= render :partial => 'predict' %>
-              <span style='color:red'>It seems that you are not part of this contest.<br/>To join and cast your predictions, close this dialog and click the <b>Join this contest</b></span><br/>
+              <span style='color:red'>  It seems that you are not part of this contest.<br/>To join and cast your predictions, close this dialog and click <b>Join this contest</b> button</span><br/>
         <% else %>
              <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
                 <%= render :partial => 'predict' %>

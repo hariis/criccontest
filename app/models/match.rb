@@ -18,7 +18,7 @@ class Match < ActiveRecord::Base
     else
         if action == 'show' || action == 'result'
           #DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&uid=#{user.unique_id}"
-          DOMAIN + "spectators/" + action + "?mid= #{self.unique_id}&eid=#{eng.unique_id}"
+          DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&eid=#{eng.unique_id}"
         elsif action == 'predicitions'
           DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&eid=#{eng.unique_id}"
         end
@@ -102,14 +102,14 @@ class Match < ActiveRecord::Base
   end
   
   def self.get_next_scheduled_match(contest)
-    contest.matches.each do |match|
-      if !match.check_if_match_started
-        return match
-      end
-    end
-    return contest.matches.find(:first)
-    #return nil
-    #contest.matches.find(:first, :conditions => "date_time > #{Time.now.to_s(:long)}" )
+    #TODO Fix it. sql query not complete
+    #contest.matches.each do |match|
+    #  if !match.check_if_match_started
+    #    return match
+    #  end
+    #end
+    #return contest.matches.find(:first)
+    match = contest.matches.find(:first, :conditions => ["date_time > ?", Time.now] )    
   end
   
   private  

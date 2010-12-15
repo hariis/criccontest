@@ -964,7 +964,7 @@ h1, h2,h3 {
     color:#656465;
 }
 .button {
-  -moz-border-radius:8px;
+  -moz-border-radius:6px;
   cursor:pointer;
     display:block;
     font-size:18px;
@@ -983,6 +983,13 @@ h1, h2,h3 {
 }
 .general-button {
    font-size:80%;
+}
+.button-predicition {
+   -moz-border-radius:0px;
+   font-size:80%;
+   padding:4px;
+   background:#BFC5C8;
+   border:none;
 }
 .current-fixture-button{
     font-size:18px;
