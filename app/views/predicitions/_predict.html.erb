@@ -1,27 +1,27 @@
 <% @category.entries.each do |entry| %>  
     <% if entry.name == 'winner' %>
-          <br/><b>Predict Winner</b><span style="color:#FF4800;font-size:80%;"> (1 point)</span><br/>
+          <br/><b>Predict Winner</b><span style="color:#FF4800;font-size:80%;"> (2 point)</span><br/>
           <%= radio_button_tag 'winner', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
           <%= radio_button_tag 'winner', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
           <%= radio_button_tag 'winner', "0" %> Draw<br/>
     <% end %>
 
     <% if entry.name == 'toss' %>
-          <br/><b>Predict Toss </b><span style="color:#FF4800;font-size:80%;"> (1 point)</span><br/>
+          <br/><b>Predict Toss </b><span style="color:#FF4800;font-size:80%;"> (2 point)</span><br/>
           <%= radio_button_tag 'toss', "#{@match.firstteam}" %> <%= get_teamname(@match.firstteam) %>
           <%= radio_button_tag 'toss', "#{@match.secondteam}" %> <%= get_teamname(@match.secondteam) %>
           <h4 style="border-top:1px solid #000;"></h4>
     <% end %>
 
     <% if entry.name == 'ts_firstteam' %>
-          <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><span style="color:#FF4800;font-size:80%;"> (2 points)</span><br/>
+          <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><span style="color:#FF4800;font-size:80%;"> (3 points)</span><br/>
           <% @totalscore_entries.each do |totalscore_entry| %>
               <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
           <% end %><br/>
     <% end %>
 
     <% if entry.name == 'ts_secondteam' %>
-          <br/><b>Predict Total Score: <%= get_teamname(@match.secondteam) %></b><span style="color:#FF4800;font-size:80%;"> (2 points)</span><br/>
+          <br/><b>Predict Total Score: <%= get_teamname(@match.secondteam) %></b><span style="color:#FF4800;font-size:80%;"> (3 points)</span><br/>
           <% @totalscore_entries.each do |totalscore_entry| %>
               <%= radio_button_tag 'ts_secondteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
           <% end %>
