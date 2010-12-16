@@ -115,6 +115,10 @@ class Match < ActiveRecord::Base
     #end
     #return contest.matches.find(:first)
     match = contest.matches.find(:first, :conditions => ["date_time > ?", Time.now] )    
+    if match.nil?
+        match = contest.matches.find(:last)
+    end
+    return match
   end
   
   private  
