@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :spectators, :through => :matches
   has_many :predicitions, :through => :spectators
   has_many :entries, :through => :predicitions
+  #has_many :prizes  not need now.
   
   #has_many :memberships
   #has_many :groups, :through => :memberships

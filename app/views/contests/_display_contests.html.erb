@@ -2,21 +2,26 @@
 
 <% @inviter = User.get_open_contest_inviter %>
 <% @contests.each do |contest| %>
-    <fieldset style="padding:10px;-moz-border-radius:6px;">
+    <fieldset style="padding:10px;-moz-border-radius:6px;background:#FFEFC6;">
        <% @post = Post.get_open_contest(contest, @inviter) %>
        <% @match = Match.get_next_scheduled_match(contest) %>
 
           <% if @match.nil? %>
               <% @readonly_url = @post.get_readonly_url(@inviter) %>
-              <span style="font-size:140%;"><%= link_to h(contest.name), @readonly_url %></span><br/>
+              <span style="font-size:20px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
           <% else %>
               <% @readonly_url = @match.get_readonly_url(@inviter) %>
-              <span style="font-size:140%;"><%= link_to h(contest.name), @readonly_url %></span><br/>
+              <span style="font-size:20px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
           <% end %>
-          <span style="font-size:75%;"><%= link_to "#{contest.matches.count} matches", contest %></span>
+          
+          <% @post.prizes.each do |prize| %>
+            <span style="color:green;font-size:12px;"><%= prize.title %></span><br/>
+          <% end %>
+          
+          <span style="font-size:12px;"><%= link_to "#{contest.matches.count} matches", contest %></span>
 
           <% if current_user && current_user.admin? %>
-              <br/><span style="color:green;font-size:75%;"><%= contest.posts.size %> contest currently running</span>
+              <br/><span style="color:green;font-size:12px;"><%= contest.posts.size %> contest currently running</span>
           <% end %>
 
           <% if current_user && current_user.admin? && current_user.admin_user? %>

@@ -114,7 +114,16 @@ class ContestsController < ApplicationController
     @post.unique_id = Post.generate_unique_id
     @post.user_id = current_user.id
     @post.save
+    add_prize_to_open_post
     #@contest.update_attributes(:join_open_contest_link => @post.get_readonly_url(current_user))
+  end
+  
+  def add_prize_to_open_post
+    @prize = Prize.new
+    @prize.title = "Winner of the open contest receives $25 gift certificate from Amazon"
+    @prize.amount = 25
+    @prize.post_id = @post.id
+    @prize.save
   end
   
   def parse_and_create_teams(teamtext)

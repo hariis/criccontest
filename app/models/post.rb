@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   
   has_many :spectators, :through => :engagements
   belongs_to :contest
+  has_many :prizes
   
   has_attached_file :avatar, :styles => { :medium => "300x300>" }
   validates_presence_of :subject

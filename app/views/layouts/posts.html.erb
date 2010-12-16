@@ -82,12 +82,11 @@
               <span class='button' style="float:left;padding-right:10px;margin-right:20px;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></span>
           <% end %>
       <% end %>
-        
-      <% unless @readonlypost %>
-          <%  if !current_user || !current_user.activated? %>
-            <li style="color:#fff;float:right;"><%= @post.get_all_member_participants_for_display %></li>
-          <% end %>
+      
+      <% @post.prizes.each do |prize| %>
+            <span style="font-size:18px;padding:15px;color:#fff;"><%= prize.title %></span><br/>
       <% end %>
+          
     </ul>
   </div>
   

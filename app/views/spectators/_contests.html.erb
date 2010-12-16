@@ -6,8 +6,7 @@
             <span style='font-size:120%;font-weight:bold;'><%= link_to  h(@post.subject), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%></span><br/>
         <% end %>
         
-        <%= @contest.matches.size %> matches
+        <span style="font-size:12px;"><%= @contest.matches.size %> matches </span>
         <%= render :partial => 'posts/match', :collection => @contest.matches %>
     </div>
 </div>
-
