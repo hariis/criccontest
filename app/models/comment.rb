@@ -10,7 +10,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body
   after_save :touch_post
 
-  def deliver_comment_notification(post)
+  def deliver_comment_notification(post, current_user)
     #Option to notify open post participants by admin
     if current_user && current_user.admin? && current_user.admin_user?
       post.participants.each do |participant|

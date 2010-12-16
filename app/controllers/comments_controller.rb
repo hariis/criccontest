@@ -80,7 +80,7 @@ class CommentsController < ApplicationController
     if @post.comments << @comment
       #@comment.touch_root_parent_comment unless params[:pcid].nil?
       update_tags_for(@user) if @post.is_first_comment?(@user)
-      @comment.deliver_comment_notification(@post)      
+      @comment.deliver_comment_notification(@post, current_user)      
       #@user.join_ec_of(@post.owner) if @post.owner.id != @user.id  
       #@user.add_mutually_to_address_book(@post.owner) if @post.owner.id != @user.id 
       render :update do |page|
@@ -127,7 +127,7 @@ class CommentsController < ApplicationController
 
     if @post.comments << @comment
       render :text => @comment.body
-      @comment.deliver_comment_notification(@post)   
+      @comment.deliver_comment_notification(@post, current_user)   
       #@user.join_ec_of(@post.owner) if @post.owner.id != @user.id 
       #@user.add_mutually_to_address_book(@post.owner) if @post.owner.id != @user.id 
       #@comment.touch_root_parent_comment
