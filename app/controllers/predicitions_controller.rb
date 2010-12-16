@@ -131,6 +131,7 @@ class PredicitionsController < ApplicationController
   def show
     #@predicition = Predicition.find(params[:id])
     @totalscore_entries = PredictTotalScore.find(:all)
+    @readonlypost = params[:iid].nil? ? false : true
     
     respond_to do |format|
       format.html # show.html.erb

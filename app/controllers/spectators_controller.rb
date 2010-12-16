@@ -134,11 +134,9 @@ class SpectatorsController < ApplicationController
     if @readonlypost && current_user && current_user.activated?
       #check if user is already a participant
       @eng = current_user.engagements.find_by_post_id(@post.id)
-      url = @match.get_url_for(@eng, 'show')
       redirect_to(@match.get_url_for(@eng, 'show')) && return unless @eng.nil?
     end
     
-    #@spectator = Spectator.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @spectator }

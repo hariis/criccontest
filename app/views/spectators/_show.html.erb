@@ -20,8 +20,12 @@
 
   <% if @match.check_if_match_started %>
      <b style="font-size:18px;padding:13px;color:red;">Timeline for predicting this match is over</b><br/>
-  <% else %>  
-    <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></span><br/><br/>
+  <% else %>
+    <% if @readonlypost %>
+        <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_readonly_url('predicitions') %></span><br/><br/>
+    <% else %>  
+        <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></span><br/><br/>
+    <% end %>
   <% end %>
   
   <fieldset>

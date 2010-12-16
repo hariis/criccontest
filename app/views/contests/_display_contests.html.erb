@@ -10,7 +10,7 @@
               <% @readonly_url = @post.get_readonly_url(@inviter) %>
               <span style="font-size:20px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
           <% else %>
-              <% @readonly_url = @match.get_readonly_url(@inviter) %>
+              <% @readonly_url = @match.get_readonly_url('show') %>
               <span style="font-size:20px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
           <% end %>
           

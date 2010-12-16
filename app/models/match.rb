@@ -25,8 +25,13 @@ class Match < ActiveRecord::Base
     end 
   end
 
-  def get_readonly_url(inviter)
-    DOMAIN + "spectators/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+  def get_readonly_url(action)
+    inviter = User.get_open_contest_inviter
+    if action == 'show'
+        DOMAIN + "spectators/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+    elsif action == 'predicitions'
+        DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+    end
   end
   
   def check_if_match_started

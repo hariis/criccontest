@@ -17,7 +17,11 @@
         <% if match.check_if_match_started %>
             <%= facebox_link_to "Result: #{match.match_result}", :url => match.get_url_for(@eng, 'result') %>
         <% else %>
-            <%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %>
+          <% if @readonlypost %>
+                <%= facebox_link_to 'Cast / Change Predictions', :url => match.get_readonly_url('predicitions') %>
+          <% else %>
+                <%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %>
+          <% end %>
         <% end %>
       </span>  
    </ul>
