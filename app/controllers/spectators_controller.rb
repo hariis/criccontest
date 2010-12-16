@@ -41,7 +41,8 @@ class SpectatorsController < ApplicationController
         @post = Post.get_open_contest(@contest, @user)
         @eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:post, :invitee])
         @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
-         @readonlypost = true
+        @readonlypost = true
+        
         #if current_user && current_user.activated?
           #check if user is already a participant
         #  @eng = current_user.engagements.find_by_post_id(@post.id)
@@ -130,6 +131,13 @@ class SpectatorsController < ApplicationController
   # GET /spectators/1
   # GET /spectators/1.xml
   def show 
+    if @readonlypost && current_user && current_user.activated?
+      #check if user is already a participant
+      @eng = current_user.engagements.find_by_post_id(@post.id)
+      url = @match.get_url_for(@eng, 'show')
+      redirect_to(@match.get_url_for(@eng, 'show')) && return unless @eng.nil?
+    end
+    
     #@spectator = Spectator.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
