@@ -150,8 +150,9 @@ class MatchesController < ApplicationController
          redirect_to contest_path(@contest)
      end
   end
-  
+
   private
+  #TODO save it using update_attributes
   
   def set_contest_score
     @contest.posts.each do |post|
@@ -166,15 +167,18 @@ class MatchesController < ApplicationController
     end
   end
   
-  def set_user_overall_score
+ def set_user_overall_score
     users = User.find(:all)
     users.each do |user|
       overall_score = 0
       user.engagements.each do |eng|
         overall_score += eng.totalscore
       end
-      user.update_attribute(:total_score, overall_score)
+      #user.update_attributes(:total_score => overall_score.to_s)
+      user.total_score = overall_score
+      user.save
     end
  end
+ 
 
 end

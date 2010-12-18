@@ -409,8 +409,9 @@ height1:33px;
     font-style:normal;
     text-align:left;
     letter-spacing:0.1em;
-    color1:#2D392D;
-    color:#5B5B5B;
+    color:#2D392D;
+    color1:#5B5B5B;
+    font-weight:bold;
 }
 #header {
 /* background: #575455 url('/images/bg-header.png') repeat-x scroll 0 0; */
@@ -920,6 +921,7 @@ padding:5px 10px 7px;
 fieldset p {
 background:url("/images/divider.gif") repeat-x scroll left bottom transparent;
 padding:5px 5px 7px;
+font-size:14px;
 }
 form fieldset p {
 list-style:none outside none;
@@ -1106,7 +1108,6 @@ margin-left:30%;
     font-size:15px;
     height:55px;
     overflow:auto;
-    background:#fff;
     line-height:1.5em;
     padding:12px;
     background:#FFEFC6;
@@ -1137,4 +1138,16 @@ margin-left:30%;
     line-height:1.3em;
     padding:12px;
     background:#FFEFC6;
+}
+
+#display-winner {
+    -moz-border-radius:6px;  
+    clear:both;
+    font-size:15px;
+    overflow:auto;
+    line-height:1.5em;
+    padding:12px;
+    background:#FFEFC6; 
+    margin-top:10px;
+    border:1px solid #666666;
 }

@@ -114,7 +114,7 @@ class ContestsController < ApplicationController
     @post.unique_id = Post.generate_unique_id
     @post.user_id = current_user.id
     @post.save
-    add_prize_to_open_post
+    #add_prize_to_open_post   No prizes now. Reconsider later
     #@contest.update_attributes(:join_open_contest_link => @post.get_readonly_url(current_user))
   end
   
