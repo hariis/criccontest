@@ -166,8 +166,25 @@ class MatchesController < ApplicationController
       end
     end
   end
-  
- def set_user_overall_score
+ 
+ def set_user_overall_score #total score from only public contest
+    inviter = User.get_open_contest_inviter 
+    users = User.find(:all)
+    
+    users.each do |user|
+      overall_score = 0
+      user.engagements.each do |eng|
+        if eng.post.owner.id == inviter.id  #only open post
+          overall_score += eng.totalscore  
+        end     
+      end
+      #user.update_attributes(:total_score => overall_score.to_s)
+      user.total_score = overall_score
+      user.save
+    end
+ end
+ 
+ def set_user_overall_score_old #total score from both public and private contest
     users = User.find(:all)
     users.each do |user|
       overall_score = 0
