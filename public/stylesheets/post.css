@@ -186,8 +186,9 @@ html,body {
     padding:0 20px 0 30px;
 }
 #content {
-  margin: 20px 275px;
-  margin1:0 auto;
+  margin1: 20px 275px;
+  margin:0 auto;
+  margin-top:20px;
   text-align:left;
   color: #000;
 }
@@ -1028,7 +1029,7 @@ margin-left:30%;
 
 #footer-dashboard {
     position:absolute;
-    top:1000px;
+    top:900px;
     text-align:center;
     width:710px;
     clear:both;
