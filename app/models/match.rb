@@ -73,11 +73,16 @@ class Match < ActiveRecord::Base
 
       #check and create predicition
       category = Category.find(match.category_id)
-      category.entries.each do |entry|        
+      category.entries.each do |entry|
+        user
+          #predicition_exists = Predicition.find(:first, :conditions => ['user_id = ? && match_id = ? && entry_id = ?', user.id, match.id, entry.id])
           predicition_exists = Predicition.find(:first, :conditions => ['spectator_id = ? && entry_id = ?', spectator.id, entry.id])
           unless predicition_exists
               predicition = Predicition.new
               predicition.spectator_id = spectator.id
+              #predicition.match_id = match.id
+              #predicition.user_id = user.id
+              
               predicition.entry_id = entry.id
               predicition.user_predicition = -1
               predicition.score = 0
