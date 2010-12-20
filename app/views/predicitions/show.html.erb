@@ -20,6 +20,12 @@
 </script>
 
 <fieldset>
+  <% if @readonlypost %>
+        <span style='color:red'>  It seems that you are not part of this contest.<br/>To join and cast your predictions, close this dialog and click <b>Join this contest</b> button</span><br/>
+  <% end %>
+</fieldset>
+
+<fieldset>
     <%= render :partial => 'spectators/match_details', :member => @match, :locals => {:match => @match} %>
 </fieldset>
 
@@ -33,8 +39,7 @@
          <% end %>
     <% else %>
         <% if @readonlypost %>
-              <%= render :partial => 'predict' %>
-              <span style='color:red'>  It seems that you are not part of this contest.<br/>To join and cast your predictions, close this dialog and click <b>Join this contest</b> button</span><br/>
+             <%= render :partial => 'predict' %>
         <% else %>
              <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
                 <%= render :partial => 'predict' %>
