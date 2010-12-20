@@ -3,20 +3,20 @@
         <div id="display-predicition">
           <fieldset style="margin-bottom:15px;">
               <div id="parent-post" style="padding-bottom:10px;">
+                  
                   <div class="subject1">
                       <% if @post.owner == @user %>
-                         <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <% image_tag '/images/pencil.png' %></div>
-                         <div><%= in_place_rich_editor_field :post, :description ,{}, :size => '75', :mode => 'tinymce_advanced_options' %><% image_tag '/images/pencil.png' %></div>
+                         <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <%= image_tag '/images/pencil.png' %></div><br/>
                       <% else %>
                          <div class="subject"> <%= @post.subject %></div>
                       <% end %>
                   </div>
 
-                  <b><%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %></b><br/>
-
+                  <div class="subject1"> <%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %><br/>
                   <%=h @match.description %>
-                  @ <%=h @match.venue %><br/>
-                  <%= @match.display_match_start_time %><br/>           
+                  @ <%=h @match.venue %><br/></div>
+                  <%= @match.display_match_start_time %><br/>
+                          
               </div>
           </fieldset>
 

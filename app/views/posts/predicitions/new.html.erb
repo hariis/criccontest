@@ -1,0 +1,37 @@
+<h1>New predicition</h1>
+
+<% form_for(@predicition) do |f| %>
+  <%= f.error_messages %>
+
+
+  <p>
+    <%= f.label :result %><br />
+    <%= f.text_field :result %>
+  </p>
+
+  <p>
+    <%= f.label :score %><br />
+    <%= f.text_field :score %>
+  </p>
+
+  <p>
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </p>
+
+  <p>
+    <%= f.label :entry %><br />
+    <%= f.text_field :entry %>
+  </p>
+
+  <p>
+    <%= f.label :match %><br />
+    <%= f.text_field :match %>
+  </p>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', predicitions_path %>
