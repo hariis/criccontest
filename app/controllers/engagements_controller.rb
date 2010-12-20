@@ -236,7 +236,7 @@ end
           #                                                             :endcolor => "#cf6d0f", :duration => 5.0 }
           page.select("#invite-status").each { |b| b.visual_effect :fade, :startcolor => "#fb3f37",
                                                                           :endcolor => "#cf6d0f", :duration => 15.0 }
-          page.replace_html "participant-count", "(#{@post.engagements.size})"       
+          #page.replace_html "participant-count", "(#{@post.engagements.size})"       
           #page.replace_html "contacts-count", "(#{@user.get_address_book_contacts.count})"
       else
           page.replace_html "send-status", @status_message

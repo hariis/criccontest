@@ -131,6 +131,8 @@ class SpectatorsController < ApplicationController
   # GET /spectators/1
   # GET /spectators/1.xml
   def show 
+    #@last_viewed_at = Time.now
+              
     if @readonlypost && current_user && current_user.activated?
       #check if user is already a participant
       @eng = current_user.engagements.find_by_post_id(@post.id)

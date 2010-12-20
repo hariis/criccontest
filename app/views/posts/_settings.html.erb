@@ -1,0 +1,40 @@
+<div id="right">
+  <% unless @readonlypost %>
+     <div id="post-settings">
+         <span style="font-size:14px;font-weight:bold;padding:8px;">Settings</span>
+
+         <%= link_to_function( (image_tag ("bullet_arrow_down.png")),  :id => "p_more_link_down") do |page|
+                page.visual_effect  :toggle_blind, "post-settings-form"
+                page.show "p_more_link_up"
+                page.hide "p_more_link_down"
+         end  %>
+
+         <%= link_to_function( (image_tag ("bullet_arrow_up.png")),  :id => "p_more_link_up", :style => 'display:none;') do |page|
+                page.visual_effect  :toggle_blind, "post-settings-form"
+                page.hide "p_more_link_up"
+                page.show "p_more_link_down"
+         end  %>
+
+         <div id="post-settings-form"  style="display:none;">        
+                <% eng = get_user_engagement_from_post(@user, @post) %>
+
+                <%  form_remote_tag :url => { :action => "update_settings", :uid => params[:uid], :pid => params[:pid], :eid => eng.id },
+                      :before => "Element.show('p-spinner');Element.hide('post-settings-status');",
+                      :complete => "Element.hide('p-spinner');Element.show('post-settings-status');", :update => 'post-settings-status' do %>
+                       <h3 style="border-top:1px solid #DFDFDF;"></h3>
+                       <%= check_box_tag :notify_me, 'checked', eng.notify_me %><%= label_tag :notify_me, " Comment Notifications Enabled" %><br/><br/>
+                       <% if @post.owner.id == @user.id %>
+                           <%= check_box_tag :allow_others_to_invite, 'checked', @post.allow_others_to_invite %><%= label_tag :allow_others_to_invite, " Allow Participants to Invite" %><br/><br/>
+                       <% end %>
+                     
+                       <%= submit_tag 'Save' %><%= image_tag 'spinner.gif', :id=>"p-spinner", :style=>"display:none;" %><br/>
+                     
+                <% end %>        
+
+                <div id="post-settings-status" style="text-align:center;color:#0B84E8;"></div>
+         </div>
+     </div>
+  <% end %>
+</div>
+
+ 

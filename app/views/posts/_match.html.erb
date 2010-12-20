@@ -6,19 +6,24 @@
       <% if @readonlypost %>
           <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
                 #{match.description} @ #{match.venue.capitalize} <br/>
-                <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", match.get_readonly_url('show') %><br/>
+                <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", @post.get_readonly_url_with_match_id(match, 'show') %><br/>
       <% else %>
           <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
                   #{match.description} @ #{match.venue.capitalize} <br/>
-                  <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", match.get_url_for(@eng, 'show') %><br/>
+                  <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", @post.get_url_for_with_match_id(@user, match, 'show') %><br/>
       <% end %>
       
-      <span class="button button-predicition" style="float:left;margin-top:5px;">
+      <span class="button button-predicition" style="float:left;margin-top:5px;padding:6px;">
         <% if match.check_if_match_started %>
-            <%= facebox_link_to "Result: #{match.match_result}", :url => match.get_url_for(@eng, 'result') %>
+            <% if @readonlypost %>
+                <% x = @post.get_readonly_url_with_match_id(match, 'result') %>
+                <%= facebox_link_to "Result: #{match.match_result}", :url => @post.get_readonly_url_with_match_id(match, 'result') %>
+            <% else %>
+                <%= facebox_link_to "Result: #{match.match_result}", :url => match.get_url_for(@eng, 'result') %>
+            <% end %>                 
         <% else %>
           <% if @readonlypost %>
-                <%= facebox_link_to 'Cast / Change Predictions', :url => match.get_readonly_url('predicitions') %>
+                <%= facebox_link_to 'Cast / Change Predictions', :url => @post.get_readonly_url_with_match_id(match, 'predicitions') %>
           <% else %>
                 <%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %>
           <% end %>

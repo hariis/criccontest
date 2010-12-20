@@ -136,6 +136,13 @@ class PostsController < ApplicationController
       #@contest = Contest.find_by_id(@post.contest_id)
       @contest = @post.contest unless @post.nil?
       
+      if params[:mid].nil?
+        @match = Match.get_next_scheduled_match(@contest)
+      else
+        @match = Match.find_by_unique_id(params[:mid])
+      end
+      @category = @match.category
+    
       if @post 
           if @readonlypost
               @last_viewed_at = Time.now

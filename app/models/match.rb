@@ -9,11 +9,11 @@ class Match < ActiveRecord::Base
   
   def get_url_for(eng, action)
     if eng.nil?
+        inviter = User.get_open_contest_inviter
         if action == 'show' || action == 'result'
-          #DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&uid=#{user.unique_id}"
-          DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}"
+          DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
         elsif action == 'predicitions'
-          DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}"
+          DOMAIN + "predicitions/" + action + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
         end
     else
         if action == 'show' || action == 'result'
@@ -25,14 +25,14 @@ class Match < ActiveRecord::Base
     end 
   end
 
-  def get_readonly_url(action)
-    inviter = User.get_open_contest_inviter
-    if action == 'show'
-        DOMAIN + "spectators/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
-    elsif action == 'predicitions'
-        DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
-    end
-  end
+  #def get_readonly_url(action)
+  #  inviter = User.get_open_contest_inviter
+  #  if action == 'show'
+  #      DOMAIN + "spectators/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+  #  elsif action == 'predicitions'
+  #      DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+  #  end
+  #end
   
   def check_if_match_started
     Time.now.utc > date_time

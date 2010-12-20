@@ -1,30 +1,5 @@
-<div id="post-content" style="padding-bottom:30px;">
+<div id="post-content1" style="padding-bottom:30px;">
   <div id="actual-post-content">
-      <div id="parent-post">
-    <fieldset style="margin:0px">
-   
-          <div id="post-body1" style="float:left;">
-            <% if @post.owner == @user %>
-               <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <% image_tag '/images/pencil.png' %></div>
-               <div>
-               <span id="url-text" class="url"><%= render :partial => 'posts/update_url_text', :object => @post  %></span><% image_tag '/images/pencil.png' %>
-               <span id="url-link"><%= render :partial => 'posts/update_url_link', :object => @post %></span>
-               </div>                           
-               <div><%= in_place_rich_editor_field :post, :description ,{}, :size => '75', :mode => 'tinymce_advanced_options' %><% image_tag '/images/pencil.png' %></div>
-            <% else %>
-               <div class="subject"> <%= @post.subject %></div>
-               <% unless @post.description.empty? %>
-                   <div class="description"> <%= @post.description %></div>
-               <% end %>
-            <% end %>
-               <div><%= image_tag @post.avatar.url(:medium)  if @post.avatar? %></div>
-          </div>
-          <span style="color:#038819;float:right;padding-top:10px;">
-          <%= "#{@post.owner.display_name} <br/> #{@post.created_at.to_s(:short)}" %></span>
-          <span style="color:#038819;float:right;width:8%;">
-          <%= image_tag @post.owner.avatar.url(:thumb) if @post.owner.avatar.file? %></span>
-    </fieldset>
-     </div>
    
     <div id="comments-section">
         <% if !@readonlypost %>

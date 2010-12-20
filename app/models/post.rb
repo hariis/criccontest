@@ -73,9 +73,9 @@ class Post < ActiveRecord::Base
     invitees.each_key{|invitee| Notifier.deliver_send_invitations(self, invitee,inviter, share)}
   end
 
-  def get_url_for1(contest, user, action)
-      DOMAIN + "contest/#{contest.id}/" + "posts/" + action + "?pid=#{self.unique_id}&uid=#{user.unique_id}"
-  end
+  #def get_url_for1(contest, user, action)
+  #    DOMAIN + "contest/#{contest.id}/" + "posts/" + action + "?pid=#{self.unique_id}&uid=#{user.unique_id}"
+  #end
     
   def get_url_for(user, action)
     if action == 'show'
@@ -87,6 +87,16 @@ class Post < ActiveRecord::Base
     end      
   end
   
+  def get_url_for_with_match_id(user, match, action)
+    if action == 'show'
+      DOMAIN + "posts/" + action + "?pid=#{self.unique_id}&mid=#{match.unique_id}&uid=#{user.unique_id}"
+   # elsif action == 'send_invites' 
+   #   DOMAIN + "engagements/" + action + "?post_id=#{self.id};uid=#{user.unique_id}"
+   # elsif action == 'share_open_invites'
+   #   DOMAIN + "shared_posts/" + action + "?post_id=#{self.id};uid=#{user.unique_id}"
+    end      
+  end
+  
   def get_url_for_jc_facebox(inviter_iid)
     DOMAIN + "engagements/join_conversation_facebox" + "?pid=#{self.unique_id};iid=#{inviter_iid}"
   end
@@ -95,6 +105,17 @@ class Post < ActiveRecord::Base
     DOMAIN + "posts/show" + "?pid=#{self.unique_id}&iid=#{inviter.unique_id}"
   end
   
+  def get_readonly_url_with_match_id(match, action)
+    inviter = User.get_open_contest_inviter
+    if action == 'show'
+        DOMAIN + "posts/show" + "?pid=#{self.unique_id}&mid=#{match.unique_id}&iid=#{inviter.unique_id}"
+    elsif action == 'predicitions'
+        DOMAIN + "predicitions/show" + "?mid=#{match.unique_id}&iid=#{inviter.unique_id}"
+    elsif action == 'result'
+        DOMAIN + "spectators/result" + "?mid=#{match.unique_id}&iid=#{inviter.unique_id}"
+    end
+  end
+
   def get_join_from_ev_url_for(sp)
     #DOMAIN + "engagements/join" + "?spid=#{sp.id};uid=#{user.unique_id}"
     inviter = User.find_by_id(sp.shared_by)

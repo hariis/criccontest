@@ -1,74 +1,79 @@
-<div id="post-content">
-  <div id="actual-post-content">
+<div id="post-content" style="padding-bottom:30px;">
+    <div id="actual-post-content">
+        <div id="display-predicition">
+          <fieldset style="margin-bottom:15px;">
+              <div id="parent-post" style="padding-bottom:10px;">
+                  <div class="subject1">
+                      <% if @post.owner == @user %>
+                         <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <% image_tag '/images/pencil.png' %></div>
+                         <div><%= in_place_rich_editor_field :post, :description ,{}, :size => '75', :mode => 'tinymce_advanced_options' %><% image_tag '/images/pencil.png' %></div>
+                      <% else %>
+                         <div class="subject"> <%= @post.subject %></div>
+                      <% end %>
+                  </div>
 
-  <fieldset style="margin-bottom:15px;">
-      <div id="parent-post" style="padding-bottom:10px;">
-          <div class="subject">
-                <% if @readonlypost %>
-                  <span style="margin:5px 0px;"><%= @post.subject %></span><br/>
-                <% else %>
-                    <span style="margin:5px 0px;"><%= link_to  @post.subject, @post.get_url_for(@user, 'show') %></span><br/>
-                <% end %>
-          </div>
-          <b><%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %></b><br/>
-          
-          <%=h @match.description %>
-          @ <%=h @match.venue %><br/>
-          <%= @match.display_match_start_time %><br/>           
-      </div>
-  </fieldset>
+                  <b><%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %></b><br/>
 
-  <% if @match.check_if_match_started %>
-     <b style="font-size:18px;padding:13px;color:red;">Timeline for predicting this match is over</b><br/>
-  <% else %>
-    <% if @readonlypost %>
-        <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_readonly_url('predicitions') %></span><br/><br/>
-    <% else %>  
-        <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></span><br/><br/>
-    <% end %>
-  <% end %>
-  
-  <fieldset>
-       <%= render :partial => 'result' %>
-  </fieldset>
- 
-  <fieldset>
-      <legend style="font-size:150%">Listing Predictions</legend>
-      <div id='predictions' style="margin-top:10px;">
+                  <%=h @match.description %>
+                  @ <%=h @match.venue %><br/>
+                  <%= @match.display_match_start_time %><br/>           
+              </div>
+          </fieldset>
 
-          <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
-            <p>
-            <b><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</b> <br/>
-            <% user_predicted = 0 %>
-            <% spectator.predicitions.each do |predicition| %>  
-
-                  <% entry = Entry.find_by_id(predicition.entry_id) %>
-                  <% user_predicted += predicition.user_predicition %>
-
-                  <% if entry.name == 'winner' || entry.name == 'toss' %>
-                      <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname.capitalize + "<br/>" if predicition.user_predicition != -1 %>
-                  <% end %>
-
-                  <% if entry.name == 'ts_firstteam' %>
-                      <%= "Total Score #{get_teamname(@match.firstteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                  <% end %>
-                  <% if entry.name == 'ts_secondteam' %>
-                      <%= "Total Score #{get_teamname(@match.secondteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                  <% end %>
-                  <% if entry.name == 'win_margin_wicket' %>
-                      <%= "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
-                  <% end %>
-                  <% if entry.name == 'win_margin_score' %>
-                      <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
-                  <% end %>                     
-
+          <% if @match.check_if_match_started %>
+             <b style="font-size:18px;padding:13px;color:red;">Timeline for predicting this match is over</b><br/>
+          <% else %>
+            <% if @readonlypost %>
+                <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @post.get_readonly_url_with_match_id(@match, 'predicitions') %></span><br/><br/>
+            <% else %>  
+                <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></span><br/><br/>
             <% end %>
-            <%= "Yet to predict <br/>" if user_predicted < 0 %>
-             </p>
           <% end %>
-      </div>
-  </fieldset>
-  <h4 style="border-top:1px solid #DFDFDF;"></h4>
 
-  </div>
+          <fieldset>
+               <%= render :partial => 'spectators/result' %>
+          </fieldset>
+
+          <fieldset>
+              <legend style="font-size:150%">Listing Predictions</legend>
+              <div id='predictions' style="margin-top:10px;">
+
+                  <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
+                    <p>
+                    <b><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</b> <br/>
+                    <% user_predicted = 0 %>
+                    <% spectator.predicitions.each do |predicition| %>  
+
+                          <% entry = Entry.find_by_id(predicition.entry_id) %>
+                          <% user_predicted += predicition.user_predicition %>
+
+                          <% if entry.name == 'winner' || entry.name == 'toss' %>
+                              <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname.capitalize + "<br/>" if predicition.user_predicition != -1 %>
+                          <% end %>
+
+                          <% if entry.name == 'ts_firstteam' %>
+                              <%= "Total Score #{get_teamname(@match.firstteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                          <% end %>
+                          <% if entry.name == 'ts_secondteam' %>
+                              <%= "Total Score #{get_teamname(@match.secondteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                          <% end %>
+                          <% if entry.name == 'win_margin_wicket' %>
+                              <%= "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                          <% end %>
+                          <% if entry.name == 'win_margin_score' %>
+                              <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                          <% end %>                     
+
+                    <% end %>
+                    <%= "Yet to predict <br/>" if user_predicted < 0 %>
+                     </p>
+                  <% end %>
+              </div>
+          </fieldset>
+         
+          
+       </div>
+    </div>
+<h4 style="border-top: 1px solid rgb(223, 223, 223);"></h4>
+<%= render :partial => 'posts/forum' %>
 </div>

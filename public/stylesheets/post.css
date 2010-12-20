@@ -100,9 +100,8 @@ margin: 0 auto;
     -moz-border-radius:6px; 
     background-color1:#C8D6FF;
     background-color:#EDEFF4;
-    margin-top:10px;
+    margin-top1:10px;
     padding:3px;
-    colo1r:#000;    
     color: #2D392D;
     border:1px solid #666666
 }
@@ -110,7 +109,7 @@ margin: 0 auto;
     -moz-border-radius:6px; 
     background-color1:#C8D6FF;
     background-color:#EDEFF4;
-    margin-top:10px;
+    margin-top1:10px;
     padding:2px;
     color: #2D392D;
     -moz-box-shadow1:2px 2px 14px #4E9494;
@@ -187,8 +186,8 @@ html,body {
     padding:0 20px 0 30px;
 }
 #content {
-  margin: 5px 275px;
-  margin:0 auto;
+  margin: 20px 275px;
+  margin1:0 auto;
   text-align:left;
   color: #000;
 }
@@ -219,9 +218,9 @@ html,body {
   /* background-image: url(/images/middle.png); background-repeat: repeat-y; width: 898px; */
 }
 #actual-post-content {
-    padding:5px 15px;
+    padding:10px 15px;
     width:680px;
-    min-height:475px;
+    min-height1:475px;
 }
 #gen-content {
   margin: 0 275px;
@@ -419,15 +418,16 @@ height1:33px;
 overflow:hidden;
 padding:10px 20px 7px 20px;
 /*height:115px; */
-margin: 0 auto;
-width:1075px;
+margin1: 0 auto;
+width1:1075px;
+margin-left:70px;
 }
 #wide-header {
 overflow: hidden;
 padding: 10px 20px 0px 30px;
 height1: 58px;
-margin: 0 auto;
-width: 1238px;
+margin1: 0 auto;
+width1: 1238px;
 }
 * html #header {
 height:1%;
@@ -522,9 +522,9 @@ width:1285px;
     width:100%;
     font-size: 20px;
     width:960px;
-    margin:0 auto;
+    margin1:0 auto;
     background: #ffffff;
-    border:1px solid #666666;
+    border1:1px solid #666666;
     -moz-border-radius:5px;
 }
 .features {
@@ -782,7 +782,7 @@ ul#participants-list li.new-p:hover {
     margin-top: 24px;
 }
 #add-new-comment {
-    margin-top:10px;
+    margin-top1:10px;
     padding:5px;
 }
 #comments {
@@ -1150,4 +1150,9 @@ margin-left:30%;
     background:#FFEFC6; 
     margin-top:10px;
     border:1px solid #666666;
+}
+
+#display-predicition {
+    height:500px;
+    overflow:auto;
 }
