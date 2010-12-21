@@ -82,7 +82,10 @@
           <li><% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %></li>              
 
           <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
-              <span class='button' style="float:left;padding-right:10px;margin-right:20px;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></span>        
+              <% @inviter = User.get_open_contest_inviter %>
+              <% if @post.owner.id != @inviter.id || current_user && current_user.admin? %>
+                    <span class='button' style="float:left;padding-right:10px;margin-right:20px;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></span>        
+              <% end %>
               <span class='button' style="float:left;padding-right:10px;margin-right:20px;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></span>
           <% end %>
       <% end %>
