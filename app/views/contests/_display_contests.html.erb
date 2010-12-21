@@ -1,4 +1,4 @@
-<h1 style="margin-left:10px;">Current Series</h1>
+<h1 style="margin-left:12px;color:#21519C">Current Series</h1>
 
 <% @inviter = User.get_open_contest_inviter %>
 <% @contests.each do |contest| %>
@@ -7,7 +7,7 @@
        <% @match = Match.get_next_scheduled_match(contest) %>
 
           <% @readonly_url = @post.get_readonly_url(@inviter) %>
-          <span style="font-size:20px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
+          <span style="font-size:22px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
           
           <% @post.prizes.each do |prize| %>
             <span style="color:green;font-size:12px;"><%= prize.title %></span><br/>

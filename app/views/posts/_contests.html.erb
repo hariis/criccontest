@@ -14,7 +14,7 @@
       <div id="list-all-p1"></div>
  
     <div id="participants">
-        <span style='font-size:120%;font-weight:bold;'><%= @post.subject %></span><br/> 
+        <span style='font-size:100%;font-weight:bold;color:#21519C;'><%= @post.subject %></span><br/> 
         <span style="font-size:12px;"><%= @contest.matches.size %> matches</span>
         <%= render :partial => 'match', :collection => @contest.matches %>
     </div>

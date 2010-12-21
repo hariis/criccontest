@@ -1,12 +1,12 @@
 <div id="right1" style="padding-left:7px;">  
   <div id="participants" style="background:none;border:none;padding:0px;">
-    <h4 style="border-bottom:1px solid #000;font-size:16px;"><%= image_tag "group.png" %> Overall Standing </h4>
+    <h4 style="border-bottom:1px solid #000;font-size:16px;color:#21519C;"><%= image_tag "group.png" %> Overall Standing </h4>
 
     <ul id="participants-list">
     <% unless @users.empty? %>
       <% @users.each do |user| %>
             <div id="participant_details_<%= user.id %>" >
-                <li><% @display_name = truncate(user.display_name(nil, nil), 15, "...").titleize %>
+                <li><% @display_name = truncate(user.display_name(nil, nil), 20, "...").titleize %>
 
                 <%= link_to_function( "#{(image_tag('user_green.png'))} #{@display_name}",  :id => "more_link_down_#{user.id}") do |page|
                         page.visual_effect  :toggle_blind, "user-details_#{user.id}"

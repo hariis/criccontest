@@ -10,10 +10,10 @@
             
             <div id="participant_details_<%=engagement.invitee.id %>" >
               <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me [<%= spectator.totalscore %>]
+                  <li id='you'><%= image_tag "user_red.png" %> Me <span style="float:right;padding-right:30px;">[<%= spectator.totalscore %>]</span>
               <% else %>
                   <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
-                  [<%= spectator.totalscore %>]
+                  <span style="float:right;padding-right:30px;">[<%= spectator.totalscore %>]</span>
               <% end  %>
 
               </li>

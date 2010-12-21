@@ -40,7 +40,7 @@
 
                   <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
                     <p>
-                    <b><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</b> <br/>
+                    <span style="color:#21519C;font-weight:bold"><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</span> <br/>
                     <% user_predicted = 0 %>
                     <% spectator.predicitions.each do |predicition| %>  
 

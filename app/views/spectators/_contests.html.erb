@@ -1,9 +1,9 @@
 <div id="left">  
     <div id="participants">
         <% if @readonlypost %>
-            <span style='font-size:120%;font-weight:bold;'><%= h(@post.subject) %></span><br/>
+            <span style='font-size:120%;font-weight:bold;color:#21519C;'><%= h(@post.subject) %></span><br/>
         <% else %>
-            <span style='font-size:120%;font-weight:bold;'><%= link_to  h(@post.subject), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%></span><br/>
+            <span style='font-size:120%;font-weight:bold;color:#21519C;'><%= link_to  h(@post.subject), @post.get_url_for(@user, 'show'), :class => "#{@post.unread_comments_for(@user) > 0 ? "unread-post" : "read-post"}"%></span><br/>
         <% end %>
         
         <span style="font-size:12px;"><%= @contest.matches.size %> matches </span>

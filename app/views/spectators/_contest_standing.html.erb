@@ -8,14 +8,10 @@
         <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>
             <div id="participant_details_<%= engagement.invitee.id %>" >
               <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me [<%= engagement.totalscore %>]
+                  <li id='you'><%= image_tag "user_red.png" %> Me <span style="float:right;padding-right:30px;">[<%= engagement.totalscore %>]</span>
               <% else %>
-                  <% if engagement.invitee.member? %>
-                    <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
-                  <% else %>
-                    <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
-                  <% end  %>
-                  [<%= engagement.totalscore %>]
+                  <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 20, "...").titleize %>
+                  <span style="float:right;padding-right:30px;">[<%= engagement.totalscore %>]</span>
               <% end  %>
 
               <!-- common to both -->
@@ -24,15 +20,15 @@
                       page.show "more_link_up_#{engagement.invitee.id}"
                       page.hide "more_link_down_#{engagement.invitee.id}"
                       #page.replace_html 'more_link', "#{image_tag "bullet_arrow_up.png"}"
-               end  %>
+              end  %>
 
-               <%= link_to_function( (image_tag ("bullet_arrow_up.png")),  :id => "more_link_up_#{engagement.invitee.id}", :style => 'display:none;') do |page|
+              <%= link_to_function( (image_tag ("bullet_arrow_up.png")),  :id => "more_link_up_#{engagement.invitee.id}", :style => 'display:none;') do |page|
                       page.visual_effect  :toggle_blind, "user-details_#{engagement.invitee.id}"
                       page.hide "more_link_up_#{engagement.invitee.id}"
                       page.show "more_link_down_#{engagement.invitee.id}"
-               end  %>
+              end  %>
 
-               <div id="user-details_<%=engagement.invitee.id %>"  style="display:none;">
+              <div id="user-details_<%=engagement.invitee.id %>"  style="display:none;">
                     <% if engagement.invitee.avatar? %>
                       <%= image_tag engagement.invitee.avatar.url(:thumb) %>
                     <% else %>

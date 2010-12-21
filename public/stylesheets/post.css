@@ -630,6 +630,7 @@ clear: right;
     margin-bottom: 5px;
     font-weight: bold;
     padding-top:5px;
+    color:#21519C;
 }
 .in_place_editor_field, .inplacericheditor-form {
     clear:left;
@@ -1073,6 +1074,7 @@ margin-left:30%;
     font-style1:italic;
     font-size1:28px;
     background1:#fff;
+    border:1px solid #666666;    
 }
 
 #contests-display {
@@ -1084,6 +1086,7 @@ margin-left:30%;
     top:440px;
     width:740px;
     background:#fff;
+    border:1px solid #666666;    
 }
 
 #overall-score {
@@ -1097,6 +1100,7 @@ margin-left:30%;
     background:#EDEFF4;
     background1:#fff;
     line-height:1.6em;
+    border:1px solid #666666;
 }
 
 #prizes {
@@ -1112,13 +1116,32 @@ margin-left:30%;
     line-height:1.5em;
     padding:12px;
     background:#FFEFC6;
+    color:#21519C;
+    border:1px solid #666666;
+}
+
+#world-cup-comming-soon {
+    -moz-border-radius:6px;  
+    position:absolute;
+    clear:both;
+    top:535px;
+    left:870px;
+    width:249px;
+    font-size:15px;
+    height:50px;
+    overflow:auto;
+    line-height:1.5em;
+    padding:12px;
+    background:#FFEFC6;
+    color:#21519C;
+    border:1px solid #666666;
 }
 
 #facebook-box {
     position:absolute;
     clear:both;
     left:870px;
-    top:535px;
+    top:625px;
     width:270px;
     height:250px;
     font-size:14px;
@@ -1151,8 +1174,9 @@ margin-left:30%;
     background:#FFEFC6; 
     margin-top:10px;
     border:1px solid #666666;
+    color:#21519C;
 }
-
+    
 #display-predicition {
     height:500px;
     overflow:auto;
