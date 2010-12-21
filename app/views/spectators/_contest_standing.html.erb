@@ -10,7 +10,7 @@
               <% if engagement.invitee.id == @user.id  %>
                   <li id='you'><%= image_tag "user_red.png" %> Me <span style="float:right;padding-right:30px;">[<%= engagement.totalscore %>]</span>
               <% else %>
-                  <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 20, "...").titleize %>
+                  <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                   <span style="float:right;padding-right:30px;">[<%= engagement.totalscore %>]</span>
               <% end  %>
 
