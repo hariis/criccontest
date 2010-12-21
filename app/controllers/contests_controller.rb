@@ -8,7 +8,7 @@ class ContestsController < ApplicationController
   def dashboard
     @user_session = UserSession.new
     @user_session.email = flash[:email]
-    @contests = Contest.find(:all, :conditions => "contest_current = true",  :order => 'created_at desc', :limit => 3)
+    @contests = Contest.find(:all, :conditions => "contest_current = true",  :order => 'created_at asc', :limit => 3)
     #@contests = Contest.find(:all, :order => 'created_at desc', :limit => 3)
     @users = User.find(:all, :order => 'total_score desc')
   end
