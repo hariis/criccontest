@@ -1,4 +1,8 @@
-<h1 style="margin-left:12px;color:#21519C">Current Series</h1>
+<% if controller.action_name == 'index' %>
+    <h1 style="margin-left:12px;color:#21519C">All Series</h1>
+<% else %>
+    <h1 style="margin-left:12px;color:#21519C">Current Series</h1>
+<% end %>
 
 <% @inviter = User.get_open_contest_inviter %>
 <% @contests.each do |contest| %>
