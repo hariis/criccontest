@@ -13,9 +13,14 @@
       
       <div id="list-all-p1"></div>
  
-    <div id="participants">
+    <% @number_of_matches = @contest.matches.size %>
+    <% if @number_of_matches > 5 %>
+        <div id="participants" style="height:750px;overflow:auto;">
+    <% else %>
+        <div id="participants">
+    <% end %>     
         <span style='font-size:100%;font-weight:bold;color:#21519C;'><%= @post.subject %></span><br/> 
-        <span style="font-size:12px;"><%= @contest.matches.size %> matches</span>
+        <span style="font-size:12px;"><%= @number_of_matches %> matches</span>
         <%= render :partial => 'match', :collection => @contest.matches %>
     </div>
   <% end %>

@@ -1,6 +1,12 @@
-<div id="right">  
-  <div id="participants">
-    <h4 style="border-bottom:1px solid #000;"><%= image_tag "group.png" %> Contest Standing </h4>
+<div id="right">
+   <% @number_of_participants = @post.engagements.size %>
+   <% if @number_of_participants > 10 %>
+       <div id="participants" style="height:315px;overflow:auto;">
+   <% else %>
+       <div id="participants">
+   <% end %>
+
+   <h4 style="border-bottom:1px solid #000;"><%= image_tag "group.png" %> Contest Standing </h4>
 
  <% viewed_count = 0 %>
    <ul id="participants-list">
