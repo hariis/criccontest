@@ -11,7 +11,10 @@ If you clicked on the link from your email, please try copying the pasting the l
 
   <%= render :partial => 'spectators/show' %>
   <%= render :partial => 'spectators/display_winner' %>
-  <%= render :partial => 'settings' %>
+  
+  <% unless @readonlypost %>
+    <%= render :partial => 'settings' %>
+  <% end %>
   
   <%= render :partial => 'spectators/contest_standing' %>
   <%= render :partial => 'spectators/match_standing' %>
