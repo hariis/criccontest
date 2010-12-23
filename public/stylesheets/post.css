@@ -1,4 +1,4 @@
-/*
+body/*
     Original Design by     : http://www.intensivstation.ch/files/en_templates/temp07.html
 */
 table.mceLayout{
@@ -165,10 +165,8 @@ html,body {
   -moz-background-clip:border;
   -moz-background-inline-policy:continuous;
   -moz-background-origin:padding;
-  background1:#89B556 none repeat scroll 0 0;
-  background1:#DCF7DD none repeat scroll 0 0;
-  background:#91CC8A none repeat scroll 0 0;
-  background1:#fff none repeat scroll 0 0;
+  background1:#91CC8A none repeat scroll 0 0;
+  background:#fff none repeat scroll 0 0;
   background1:url("/images/fieldset.gif") repeat-x scroll left bottom #F8FDEF;
   width: 100%;
 }
@@ -1060,6 +1058,10 @@ margin-left:30%;
     height: 250px;
     background1: #44accf;
     background: #FFEFC6;
+    text-align:center;
+    color:#21519C;
+    font-size:20px;
+    font-weight:bold;   
 }
 
 #how-to-get-started {
@@ -1105,40 +1107,38 @@ margin-left:30%;
 #prizes {
     -moz-border-radius:6px;  
     position:absolute;
-    clear:both;
     top:440px;
     left:870px;
     width:249px;
     font-size:15px;
-    height:55px;
     overflow:auto;
     line-height:1.5em;
     padding:12px;
     background:#FFEFC6;
     color:#21519C;
     border:1px solid #666666;
+    text-align:center;
 }
 
 #world-cup-comming-soon {
     -moz-border-radius:6px;  
     position:absolute;
-    clear:both;
-    top:535px;
+    top:530px;
     left:870px;
     width:249px;
     font-size:15px;
-    height:50px;
     overflow:auto;
     line-height:1.5em;
     padding:12px;
     background:#FFEFC6;
     color:#21519C;
     border:1px solid #666666;
+    text-align:center;
 }
 
 #facebook-box {
+    -moz-border-radius:6px;
     position:absolute;
-    clear:both;
     left:870px;
     top:625px;
     width:270px;
@@ -1165,7 +1165,6 @@ margin-left:30%;
 
 #display-winner {
     -moz-border-radius:6px;  
-    clear:both;
     font-size:15px;
     overflow:auto;
     line-height:1.5em;
@@ -1174,6 +1173,7 @@ margin-left:30%;
     margin-top:10px;
     border:1px solid #666666;
     color:#21519C;
+    text-align:center;
 }
     
 #display-predicition {
