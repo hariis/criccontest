@@ -6,7 +6,8 @@
        <div id="participants">
    <% end %>
 
-   <h4 style="border-bottom:1px solid #000;"><%= image_tag "group.png" %> Contest Standing </h4>
+   <h4 style="border-bottom:1px solid #000;"><%= image_tag "group.png" %> Contest Standing 
+   <span style="font-size:11px;"> (<%= "#{@number_of_participants}" %> participants)</span></h4>
 
  <% viewed_count = 0 %>
    <ul id="participants-list">
