@@ -1,6 +1,7 @@
 require 'stringio'
 require 'uri'
 require 'active_support/test_case'
+require 'action_controller/rack_lint_patch'
 
 module ActionController
   module Integration #:nodoc:
@@ -268,7 +269,9 @@ module ActionController
 
           env["QUERY_STRING"] ||= ""
 
-          data = data.is_a?(IO) ? data : StringIO.new(data || '')
+          data ||= ''
+          data.force_encoding(Encoding::ASCII_8BIT) if data.respond_to?(:force_encoding)
+          data = data.is_a?(IO) ? data : StringIO.new(data)
 
           env.update(
             "REQUEST_METHOD"  => method.to_s.upcase,
@@ -320,7 +323,9 @@ module ActionController
 
           @headers = Rack::Utils::HeaderHash.new(headers)
 
-          (@headers['Set-Cookie'] || "").split("\n").each do |cookie|
+          cookies = @headers['Set-Cookie']
+          cookies = cookies.to_s.split("\n") unless cookies.is_a?(Array)
+          cookies.each do |cookie|
             name, value = cookie.match(/^([^=]*)=([^;]*);/)[1,2]
             @cookies[name] = value
           end
@@ -349,6 +354,8 @@ module ActionController
           # TestResponse so that things like assert_response can be
           # used in integration tests.
           @response.extend(TestResponseBehavior)
+
+          body.close if body.respond_to?(:close)
 
           return @status
         rescue MultiPartNeededException
@@ -407,15 +414,25 @@ module ActionController
         end
 
         def multipart_requestify(params, first=true)
-          returning Hash.new do |p|
+          Array.new.tap do |p|
             params.each do |key, value|
               k = first ? key.to_s : "[#{key.to_s}]"
               if Hash === value
                 multipart_requestify(value, false).each do |subkey, subvalue|
-                  p[k + subkey] = subvalue
+                  p << [k + subkey, subvalue]
+                end
+              elsif Array === value
+                value.each do |element|
+                  if Hash === element || Array === element
+                    multipart_requestify(element, false).each do |subkey, subvalue|
+                      p << ["#{k}[]#{subkey}", subvalue]
+                    end
+                  else
+                    p << ["#{k}[]", element]
+                  end
                 end
               else
-                p[k] = value
+                p << [k, value]
               end
             end
           end
@@ -446,6 +463,7 @@ EOF
             end
           end.join("")+"--#{boundary}--\r"
         end
+
     end
 
     # A module used to extend ActionController::Base, so that integration tests
@@ -476,6 +494,11 @@ EOF
     end
 
     module Runner
+      def initialize(*args)
+        super
+        @integration_session = nil
+      end
+
       # Reset the current session. This is useful for testing multiple sessions
       # in a single test case.
       def reset!
@@ -488,7 +511,7 @@ EOF
           reset! unless @integration_session
           # reset the html_document variable, but only for new get/post calls
           @html_document = nil unless %w(cookies assigns).include?(method)
-          returning @integration_session.__send__(method, *args) do
+          @integration_session.__send__(method, *args).tap do
             copy_session_variables!
           end
         end
@@ -543,8 +566,12 @@ EOF
       # Delegate unhandled messages to the current session instance.
       def method_missing(sym, *args, &block)
         reset! unless @integration_session
-        returning @integration_session.__send__(sym, *args, &block) do
-          copy_session_variables!
+        if @integration_session.respond_to?(sym)
+          @integration_session.__send__(sym, *args, &block).tap do
+            copy_session_variables!
+          end
+        else
+          super
         end
       end
     end
