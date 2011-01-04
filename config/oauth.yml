@@ -1,6 +1,11 @@
 defaults: &defaults
-  api_key: '176832355680665'
-  api_secret: '428e2179f3462ab6081d870685db5499'
+  #Local_host
+  #api_key: '176832355680665'
+  #api_secret: '428e2179f3462ab6081d870685db5499'
+
+  #Doosra Cricket
+  api_key: '154671041249477'
+  api_secret: '5c88e0520b86fb7dbbf05628ef761a23'
 
 development:
   <<: *defaults
