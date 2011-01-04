@@ -1,9 +1,31 @@
+<script type="text/javascript">
+  function openWindow(url) {
+    var w = 480, h = 340;
+
+      if (document.all) {
+         /* the following is only available after onLoad */
+         w = document.body.clientWidth;
+         h = document.body.clientHeight;
+      }
+      else if (document.layers) {
+         w = window.innerWidth;
+         h = window.innerHeight;
+      }
+      var popW = 800, popH = 450;
+      var leftPos = (w)/2, topPos = (h)/2;
+      window.open(url, 'Authorize','width=' + popW + ',height='+popH+',top='+topPos+ ',left='+leftPos);
+
+      return false;
+    }
+</script>
+
+<% match_details = "My prediction on http://doosracricket.com/ for the match\n" %>
 <div id="post-content" style="padding-bottom:30px;">
     <div id="actual-post-content">
         <div id="display-predicition">
           <fieldset style="margin-bottom:15px;">
               <div id="parent-post" style="padding-bottom:10px;">
-                  
+
                   <div class="subject1">
                       <% if @post.owner == @user %>
                          <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <%= image_tag '/images/pencil.png' %></div><br/>
@@ -12,11 +34,17 @@
                       <% end %>
                   </div>
 
-                  <div class="subject1"> <%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %><br/>
-                  <%=h @match.description %>
-                  @ <%=h @match.venue %><br/></div>
+                  <div class="subject1"> <%= output = get_teamname(@match.firstteam).capitalize + " vs " + get_teamname(@match.secondteam).capitalize %><br/>
+                  <% match_details << output.to_s %> <% match_details << "\n" %>
+                  
+                  <%= @match.description %> @ <%=h @match.venue %><br/></div>
                   <%= @match.display_match_start_time %><br/>
                           
+                  <% match_details << @match.description %>
+                  <% match_details << "@" %>
+                  <% match_details << @match.venue %> <% match_details << "\n" %>
+                  <% match_details << @match.display_match_start_time %> <% match_details << "\n" %>
+                  
               </div>
           </fieldset>
 
@@ -39,34 +67,54 @@
               <div id='predictions' style="margin-top:10px;">
 
                   <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
+                
                     <p>
-                    <span style="color:#21519C;font-weight:bold"><%= Engagement.find_by_id(spectator.engagement_id).invitee.display_name %>'s prediction:</span> <br/>
-                    <% user_predicted = 0 %>
-                    <% spectator.predicitions.each do |predicition| %>  
+                        <% selected_user = Engagement.find_by_id(spectator.engagement_id).invitee %>
+                        <span style="color:#21519C;font-weight:bold"><%= selected_user.display_name %>'s prediction:</span> <br/>
+                        <% predicition_details = "" %>
+                        <% user_predicted = 0 %>
+                        
+                        <% spectator.predicitions.each do |predicition| %>  
 
-                          <% entry = Entry.find_by_id(predicition.entry_id) %>
-                          <% user_predicted += predicition.user_predicition %>
+                              <% entry = Entry.find_by_id(predicition.entry_id) %>
+                              <% user_predicted += predicition.user_predicition %>
 
-                          <% if entry.name == 'winner' || entry.name == 'toss' %>
-                              <%= entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname.capitalize + "<br/>" if predicition.user_predicition != -1 %>
-                          <% end %>
+                              <% if entry.name == 'winner' || entry.name == 'toss' %>
+                                  <%= output = entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname.capitalize + "<br/>" if predicition.user_predicition != -1 %>
+                                  <% predicition_details << output.to_s %>
+                              <% end %>
 
-                          <% if entry.name == 'ts_firstteam' %>
-                              <%= "Total Score #{get_teamname(@match.firstteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                          <% end %>
-                          <% if entry.name == 'ts_secondteam' %>
-                              <%= "Total Score #{get_teamname(@match.secondteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
-                          <% end %>
-                          <% if entry.name == 'win_margin_wicket' %>
-                              <%= "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
-                          <% end %>
-                          <% if entry.name == 'win_margin_score' %>
-                              <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
-                          <% end %>                     
+                              <% if entry.name == 'ts_firstteam' %>
+                                  <%= output = "Total Score #{get_teamname(@match.firstteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                  <% predicition_details << output.to_s %>
+                              <% end %>
+                              
+                              <% if entry.name == 'ts_secondteam' %>
+                                  <%= output = "Total Score #{get_teamname(@match.secondteam).capitalize}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                  <% predicition_details << output.to_s %>
+                              <% end %>
+                              
+                              <% if entry.name == 'win_margin_wicket' %>
+                                  <%= output = "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                  <% predicition_details << output.to_s %>
+                              <% end %>
+                              
+                              <% if entry.name == 'win_margin_score' %>
+                                  <%= output = "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                  <% predicition_details << output.to_s %>
+                              <% end %>                     
+                        <% end %>
 
-                    <% end %>
-                    <%= "Yet to predict <br/>" if user_predicted < 0 %>
-                     </p>
+                        <%= "Yet to predict <br/>" if user_predicted < 0 %>
+                        
+                        <% if user_predicted > 0 && selected_user.id == @user.id %>
+                           <% session[:prediction] = match_details + predicition_details %>                    
+                           <span style="float:right;padding-right:10px;">
+                                <%= link_to_function "Post my predictions on Facebook", "openWindow(\'#{@authorization_url}\')", :class => 'button' %>
+                           </span>    
+                           <br/><br/>
+                        <% end %>
+                    </p>
                   <% end %>
               </div>
           </fieldset>

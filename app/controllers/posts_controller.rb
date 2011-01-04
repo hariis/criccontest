@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   #-----------------------------------------------------------------------------------------------------
   def load_contest
     @contest = Contest.find(params[:contest_id])
+    #@contest = Contest.find(:first)
     if @contest.nil?
       #flash[:notice] = "No contest selected. Please start by selecting a contest"
       redirect_to root_url
@@ -133,6 +134,8 @@ class PostsController < ApplicationController
   # GET /posts/1.xml  
   def show
       @post = params[:pid] ? Post.find_by_unique_id(params[:pid], :include => [:contest, :owner]) : nil
+      @authorization_url = @post.get_fb_auth_url
+   
       #@contest = Contest.find_by_id(@post.contest_id)
       @contest = @post.contest unless @post.nil?
       

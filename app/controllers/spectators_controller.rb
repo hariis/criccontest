@@ -1,6 +1,6 @@
 class SpectatorsController < ApplicationController
   
-  layout 'posts'
+  layout 'posts', :except => [:fb_callback]
   #layout 'application'
   before_filter :load_prerequisite, :only => [:show, :result, :load_all_participants]
   before_filter :load_user, :only => [:show]
@@ -132,7 +132,6 @@ class SpectatorsController < ApplicationController
   # GET /spectators/1.xml
   def show 
     #@last_viewed_at = Time.now
-              
     if @readonlypost && current_user && current_user.activated?
       #check if user is already a participant
       @eng = current_user.engagements.find_by_post_id(@post.id)
@@ -214,4 +213,40 @@ class SpectatorsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  #-----------------------------------------------------------------------------------------------------
+ #Facebook
+ def fb_authorize  
+    redirect_to OAuthClient.web_server.authorize_url(
+      :redirect_uri => auth_callback_url,
+      :scope => 'email,offline_access,publish_stream'
+    )
+ end
+
+ #-----------------------------------------------------------------------------------------------------
+ def fb_callback
+    begin
+      access_token = OAuthClient.web_server.access_token(
+        params[:code], :redirect_uri => auth_callback_url
+      )  
+      
+      @fb_user = FacebookUser.create_from_fb(access_token, @user)
+
+      if session[:prediction]
+        prediction_text = session[:prediction] 
+        wall_message = prediction_text.gsub("<br/>", "\n")
+        session[:prediction] = nil
+      end
+
+      @fb_user.post(wall_message)
+      flash[:notice] = "Your prediction has been successfully posted to your Facebook Profile. <br/>
+                        Please close this window and proceed with your contest."
+      rescue => err
+        RAILS_DEFAULT_LOGGER.error "Failed to get callback from Facebook" + err
+        flash[:notice] = "There was a problem posting your prediction to your Profile. <br/>
+                        Please close this window and try again later."
+
+    end
+ end
+
 end
