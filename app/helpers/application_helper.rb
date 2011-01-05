@@ -2,7 +2,7 @@
 module ApplicationHelper
   
   def title_tag_line
-    "Predict, Discuss, Win and Show your expertise on cricket matches publicly or privately"
+    "Predict, Discuss, Win and Show your expertise on cricket matches with your friends or world"
   end
   
   def tag_line
