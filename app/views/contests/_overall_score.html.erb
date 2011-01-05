@@ -21,7 +21,7 @@
                       page.show "more_link_down_#{user.id}"
                 end  %>
 
-               <span style="float:right;padding-right:30px;">[<%= user.total_score %>]</span>
+               <span style="float:right;padding-right:30px;">[<%= user.total_score.nil? ? 0 : user.total_score %>]</span>
 
     
                <div id="user-details_<%= user.id %>"  style="display:none;padding-left:10px;">
