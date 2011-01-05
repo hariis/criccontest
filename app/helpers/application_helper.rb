@@ -2,7 +2,7 @@
 module ApplicationHelper
   
   def title_tag_line
-    "Doosra Cricket - Predict results and get social with your friends"
+    "Predict, Discuss, Win and Show your expertise on cricket matches publicly or privately"
   end
   
   def tag_line
