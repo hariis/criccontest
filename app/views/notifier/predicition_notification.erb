@@ -2,8 +2,7 @@
 Hi there!<br/><br/>
 
 <%= @user_name %> has added/updated his predicitions on <em><%= @post.subject %></em>.<br/>
-<%= @match.description %><br/>
-<%= @match.venue %><br/>
+<%= @match.description %> @ <%= @match.venue %><br/>
 <%= @match.display_match_start_time %><br/><br/>
 
 <div style="background-color: #dcdcdc; padding: 3px;">
@@ -17,6 +16,5 @@ Enjoy Contest,<br/>
 -DoosraCricket Team<br/>
 
 <hr/>
-NOTE:<br/>
-If you do not want to receive further notifications, please visit the <%= link_to 'contest page', @post_url %>
+NOTE: If you do not want to receive further notifications, please visit the <%= link_to 'contest page', @post_url %>
 and update the notification settings under the 'Settings' section.

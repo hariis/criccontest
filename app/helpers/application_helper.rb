@@ -2,7 +2,7 @@
 module ApplicationHelper
   
   def title_tag_line
-    "Compete with friends or world by predicting cricket match results "
+    "Doosra Cricket - Compete with friends or world by predicting cricket match results"
   end
   
   def tag_line
