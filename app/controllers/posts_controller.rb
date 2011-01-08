@@ -478,8 +478,9 @@ class PostsController < ApplicationController
       @participants = Engagement.find(:all)
       @comments = Comment.find(:all)
       @members = User.find_by_sql "select users.id,email,first_name,last_name from users,user_roles WHERE users.id = user_roles.user_id AND role_id = 5;"
-      @members1 = User.find_by_sql "select id from user_roles WHERE role_id = 5;"
+      @users_member = User.find_by_sql "select id from user_roles WHERE role_id = 5;"
       @users = User.find(:all)
+
     else
       redirect_to root_path
     end

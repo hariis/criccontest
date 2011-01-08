@@ -2,11 +2,11 @@
 module ApplicationHelper
   
   def title_tag_line
-    "Predict, Discuss, Win and Show your expertise on cricket matches with your friends or world"
+    "Compete with friends or world by predicting cricket match results "
   end
   
   def tag_line
-    "Predict results and get social with your friends"
+    "Compete with friends or world by predicting match results"
   end
   
   def get_teamname(teamid)
