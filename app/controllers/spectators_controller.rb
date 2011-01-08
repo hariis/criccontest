@@ -239,11 +239,11 @@ class SpectatorsController < ApplicationController
       end
 
       @fb_user.post(wall_message)
-      flash[:notice] = "Your prediction has been successfully posted to your Facebook Profile. <br/>
+      @status_msg = "Your prediction has been successfully posted to your Facebook Profile. <br/>
                         Please close this window and proceed with your contest."
       rescue => err
         RAILS_DEFAULT_LOGGER.error "Failed to get callback from Facebook" + err
-        flash[:notice] = "There was a problem posting your prediction to your Profile. <br/>
+        @status_msg = "There was a problem posting your prediction to your Profile. <br/>
                         Please close this window and try again later."
 
     end
