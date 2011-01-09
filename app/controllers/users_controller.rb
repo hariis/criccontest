@@ -79,8 +79,11 @@ class UsersController < ApplicationController
       if @user.non_member?
           assign_user_object
       elsif !@user.activated?
-          flash[:error] = "Your account already exists. Please activate your account"
-          redirect_to root_url
+          flash[:error] = "Your account already exists. Please activate your account <br/>" +
+          "Instructions to confirm your account have been emailed to you. <br/>" +
+          "Please check your Inbox and also sometimes your Spam folder :( and click on the activation link." +
+          "If you missed the activation email, click on the <b>Resend Activation</b> for new activation link"
+          redirect_to login_url
           return
       else
           flash[:error] = "Your account already exists. Please login or use reset password"
