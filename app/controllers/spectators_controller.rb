@@ -219,7 +219,7 @@ class SpectatorsController < ApplicationController
  def fb_authorize  
     redirect_to OAuthClient.web_server.authorize_url(
       :redirect_uri => auth_callback_url,
-      :scope => 'email,offline_access,publish_stream'
+      :scope => 'email, offline_access, publish_stream'
     )
  end
 
@@ -238,7 +238,7 @@ class SpectatorsController < ApplicationController
         session[:prediction] = nil
       end
 
-      @fb_user.post(wall_message)
+      #@fb_user.post(wall_message)
       @status_msg = "Your prediction has been successfully posted to your Facebook Profile. <br/>
                         Please close this window and proceed with your contest."
       rescue => err
