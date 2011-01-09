@@ -65,16 +65,14 @@
           <fieldset>
               <legend style="font-size:150%">Listing Predictions</legend>
               <div id='predictions' style="margin-top:10px;">
-
-                  <% @post.spectators.find_all_by_match_id(@match).each do |spectator| %>
-                
+                  <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>               
                     <p>
-                        <% selected_user = Engagement.find_by_id(spectator.engagement_id).invitee %>
+                        <% selected_user = engagement.invitee %>
                         <span style="color:#21519C;font-weight:bold"><%= selected_user.display_name %>'s prediction:</span> <br/>
                         <% predicition_details = "" %>
                         <% user_predicted = 0 %>
                         
-                        <% spectator.predicitions.each do |predicition| %>  
+                        <% engagement.spectators.find_by_match_id(@match, :include => :predicitions).predicitions.each do |predicition| %>  
 
                               <% entry = Entry.find_by_id(predicition.entry_id) %>
                               <% user_predicted += predicition.user_predicition %>
