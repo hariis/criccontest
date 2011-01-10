@@ -1,79 +1,74 @@
-<div id="right">
+<div id="right" style="background:#fff;">
    <% @number_of_participants = @post.engagements.size %>
    <% if @number_of_participants > 10 %>
        <div id="participants" style="height:315px;overflow:auto;">
    <% else %>
        <div id="participants">
    <% end %>
-
-   <h4 style="border-bottom:1px solid #000;"><%= image_tag "group.png" %> Contest Standing 
-   <span style="font-size:11px;"> (<%= "#{@number_of_participants}" %> participants)</span></h4>
-
- <% viewed_count = 0 %>
-   <ul id="participants-list">
-    <% unless @post.spectators.empty? %>
-        <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>
-            <div id="participant_details_<%= engagement.invitee.id %>" >
-              <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me <span style="float:right;padding-right:30px;">[<%= engagement.totalscore %>]</span>
-              <% else %>
-                  <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
-                  <span style="float:right;padding-right:30px;">[<%= engagement.totalscore %>]</span>
-              <% end  %>
-
-              <!-- common to both -->
-              <%= link_to_function( (image_tag ("bullet_arrow_down.png")),  :id => "more_link_down_#{engagement.invitee.id}") do |page|
-                      page.visual_effect  :toggle_blind, "user-details_#{engagement.invitee.id}"
-                      page.show "more_link_up_#{engagement.invitee.id}"
-                      page.hide "more_link_down_#{engagement.invitee.id}"
-                      #page.replace_html 'more_link', "#{image_tag "bullet_arrow_up.png"}"
-              end  %>
-
-              <%= link_to_function( (image_tag ("bullet_arrow_up.png")),  :id => "more_link_up_#{engagement.invitee.id}", :style => 'display:none;') do |page|
-                      page.visual_effect  :toggle_blind, "user-details_#{engagement.invitee.id}"
-                      page.hide "more_link_up_#{engagement.invitee.id}"
-                      page.show "more_link_down_#{engagement.invitee.id}"
-              end  %>
-
-              <div id="user-details_<%=engagement.invitee.id %>"  style="display:none;">
-                    <% if engagement.invitee.avatar? %>
-                      <%= image_tag engagement.invitee.avatar.url(:thumb) %>
-                    <% else %>
-                      No photo available <br/>
-                    <% end %>
-
-                    <% if @post.owner.id == @user.id && engagement.invitee.id != @user.id %>
-                        <div id="resend_<%= engagement.invitee.id %>" style="float:right;margin-bottom:10px;">
-                            <%= button_to_remote 'Resend Invite', :url => {:controller => 'engagements', :action => 'resend_invite', :id => engagement.id, :post_id => @post.id} %>
-                        </div>
-                    <% end %>
-
-                    <% if @post.owner.id == @user.id && engagement.invitee.id != @user.id %>
-                        <div id="exclude_<%= engagement.invitee.id %>" style="float:left;margin-bottom:10px;">
-                            <%= button_to_remote 'Exclude', :url => {:controller => 'engagements', :action => 'exclude', :id => engagement.id } %>
-                       </div>
-                    <% end %>
-
-                     <div class ="user-bio">
-                          <b>Twitter Profile:</b><br/>
-                           <%= engagement.invitee.screen_name.blank? ? "" : "http://twitter.com/" + engagement.invitee.screen_name %><br/>
-                          <b>Blog:</b><br/>
-                          <%= link_to engagement.invitee.blog_link, engagement.invitee.blog_link if !engagement.invitee.blog_link.nil? %> <br/>
-                          <b>Facebook Profile:</b><br/>
-                          <%=h engagement.invitee.facebook_link %><br/>
-                          <b>LinkedIn Profile:</b><br/>
-                          <%=h engagement.invitee.linked_in_link %><br/>
-                     </div>
-                 </div>
-              </li>
-           </div>
-            <%  viewed_count = viewed_count + 1 if engagement.last_viewed_at != nil %>
-       <% end %>
-    <%  end %>
-    </ul>
-   <% if @post.owner.id == @user.id || @user.admin? %>
-        <%= viewed_count %> participant(s) have viewed this post.
-   <% end %>
+ 
+   <div class="tc-row" style="font-size:20px;padding-top:12px;font-weight:bold;padding-bottom:10px;">Contest Standing 
+      <div style="font-size:10px;"> <%= "#{@number_of_participants}" %> participants</div>
    </div>
 
+   <% viewed_count = 0 %>
+        <% unless @post.spectators.empty? %>
+            <% rank = 1 %>
+            <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>
+               <div class="tc-row">
+                    <span style="float:left;">
+                        <div class="tc-row-rank"><%= "#{rank}" %></div>
+                    </span>
+                    <% rank += 1 %>
+                    <span style="float:left;">
+                        <% if @user.avatar? %>
+                          <%= image_tag @user.avatar.url(:thumb) %>
+                        <% else %>
+                          <%= image_tag "fb_default.gif", :size => "36x32"  %>
+                        <% end %>
+                    </span>
+
+                    <span style="float:left;margin-left:5px;">
+                        <% if engagement.invitee.id == @user.id  %>
+                            <% @display_name = "Me" %>
+                        <% else %>
+                            <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
+                        <% end %>
+                        <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => @user.id %>
+                        <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points</div>
+                    </span> 
+
+                    <% if @post.owner.id == @user.id && engagement.invitee.id != @user.id %>
+                        <%= link_to_function( (image_tag ("bullet_arrow_down.png")),  :id => "more_link_down_#{engagement.invitee.id}") do |page|
+                                page.visual_effect  :toggle_blind, "user-details_#{engagement.invitee.id}"
+                                page.show "more_link_up_#{engagement.invitee.id}"
+                                page.hide "more_link_down_#{engagement.invitee.id}"
+                                #page.replace_html 'more_link', "#{image_tag "bullet_arrow_up.png"}"
+                        end  %>
+
+                        <%= link_to_function( (image_tag ("bullet_arrow_up.png")),  :id => "more_link_up_#{engagement.invitee.id}", :style => 'display:none;') do |page|
+                                page.visual_effect  :toggle_blind, "user-details_#{engagement.invitee.id}"
+                                page.hide "more_link_up_#{engagement.invitee.id}"
+                                page.show "more_link_down_#{engagement.invitee.id}"
+                        end  %>
+
+                        <div id="user-details_<%=engagement.invitee.id %>"  style="display:none;">
+                            <div id="resend_<%= engagement.invitee.id %>" style="float:right;margin-bottom:10px;">
+                                <%= button_to_remote 'Resend Invite', :url => {:controller => 'engagements', :action => 'resend_invite', :id => engagement.id, :post_id => @post.id} %>
+                            </div>
+
+                            <div id="exclude_<%= engagement.invitee.id %>" style="float:left;margin-bottom:10px;">
+                                <%= button_to_remote 'Exclude', :url => {:controller => 'engagements', :action => 'exclude', :id => engagement.id } %>
+                            </div>
+                        </div>
+                    <% end %>
+                 </div>
+              
+               <%  viewed_count = viewed_count + 1 if engagement.last_viewed_at != nil %>
+           <% end %>
+       <%  end %>
+    
+       <% if @post.owner.id == @user.id || @user.admin? %>
+            <%= viewed_count %> participant(s) have viewed this post.
+       <% end %>
+   </div>
 </div>

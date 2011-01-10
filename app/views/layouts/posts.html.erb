@@ -116,7 +116,88 @@
   <div id="name-request">
     <%= render :partial => 'posts/name_request' %>
   </div>
-  <% end %>  
+  <% end %> 
+
+
+<style type="text/css">
+  .tc-row {
+      -moz-background-clip:border;
+      -moz-background-inline-policy:continuous;
+      -moz-background-origin:padding;
+      background1:#FFFFFF none repeat scroll 0 0;
+      border-bottom:1px solid #709CB2;
+      height:32px;
+      padding:4px 2px;
+      position:relative;
+      text-align:left;
+  }
+
+  .tc-row-rank {
+      -moz-background-clip:border;
+      -moz-background-inline-policy:continuous;
+      -moz-background-origin:padding;
+      background:#DDDDDD none repeat scroll 0 0;
+      color:#FFFFFF;
+      display:inline-block;
+      float:left;
+      font-size:22px;
+      font-weight:bold;
+      margin-right:2px;
+      padding-top:2px;
+      text-align:center;
+      width:42px;
+      height:32px;
+  }
+
+#participants{
+    -moz-border-radius:6px; 
+    background-color:#fff;
+    background-color1:#EDEFF4;
+    margin-top1:10px;
+    padding:2px;
+    color: #2D392D;
+    -moz-box-shadow1:2px 2px 14px #4E9494;
+    border:none;
+}
+
+#participants a{
+  color:#0B84E8;
+  outline-color:-moz-use-text-color;
+  outline-style:none;
+  outline-width:medium;
+  text-decoration:none;
+}
+
+#post-settings{
+    -moz-border-radius:6px; 
+    background-color:#fff;
+    background-color1:#EDEFF4;
+    padding:3px;
+    color: #2D392D;
+    border:none;
+}
+
+#right {
+    float:left;
+    width:80px;
+    min-width:260px;
+    margin: 8px 0px;
+    color:#2D392D;
+    padding: 0px 4px;
+}
+
+#left {
+position: absolute;
+left: 0px;
+color: #black;
+margin:5px 10px;
+padding: 0px 4px;  /* top and bottom is 0 so empty div does not show up */
+width:260px;
+}
+
+</style>
+
+
 <%= yield  %>
 
 <% if current_user %>

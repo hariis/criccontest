@@ -1,36 +1,49 @@
-<div id="right">  
+<div id="right" style="background:#fff;">
    <% @number_of_participants = @post.engagements.size %>
    <% if @number_of_participants > 10 %>
        <div id="participants" style="height:315px;overflow:auto;">
    <% else %>
        <div id="participants">
    <% end %>
-   
-   <h4 style="border-bottom:1px solid #000;"><%= image_tag "group.png" %> Match Standing </h4>
+ 
+  <div class="tc-row" style="font-size:20px;padding-top:12px;font-weight:bold;">Match Standing </div>
 
  <% viewed_count = 0 %>
-   <ul id="participants-list">
     <% unless @post.spectators.empty? %>
+        <% rank = 1 %>
         <% @post.spectators.find_all_by_match_id(@match, :order => 'totalscore desc').each do |spectator| %>
             <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
             
-            <div id="participant_details_<%=engagement.invitee.id %>" >
-              <% if engagement.invitee.id == @user.id  %>
-                  <li id='you'><%= image_tag "user_red.png" %> Me <span style="float:right;padding-right:30px;">[<%= spectator.totalscore %>]</span>
-              <% else %>
-                  <li><%= image_tag "user_green.png" %> <%= truncate(engagement.invitee.display_name(nil,engagement), 18, "...").titleize %>
-                  <span style="float:right;padding-right:30px;">[<%= spectator.totalscore %>]</span>
-              <% end  %>
+            <div class="tc-row">
+                <span style="float:left;">
+                    <div class="tc-row-rank"><%= "#{rank}" %></div>
+                </span>
+                <% rank += 1 %>
+                <span style="float:left;">
+                    <% if @user.avatar? %>
+                      <%= image_tag @user.avatar.url(:thumb) %>
+                    <% else %>
+                      <%= image_tag "fb_default.gif", :size => "36x32"  %>
+                    <% end %>
+                </span>
 
-              </li>
-           </div>
+                <span style="float:left;margin-left:5px;">
+                    <% if engagement.invitee.id == @user.id  %>
+                        <% @display_name = "Me" %>
+                    <% else %>
+                        <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 20, "...").titleize %>
+                    <% end %>
+                    <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => @user.id %>
+                    <div style="font-size:10px;"><%= spectator.totalscore.nil? ? 0 : spectator.totalscore %> points</div>
+                </span> 
+            </div>
             <%  viewed_count = viewed_count + 1 if engagement.last_viewed_at != nil %>
        <% end %>
     <%  end %>
-    </ul>
-   <% if @post.owner.id == @user.id || @user.admin? %>
+    
+    <% if @post.owner.id == @user.id || @user.admin? %>
         <%= viewed_count %> participant(s) have viewed this post.
-   <% end %>
+    <% end %>
    </div>
 
 </div>

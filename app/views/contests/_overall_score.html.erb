@@ -1,50 +1,30 @@
-<div id="right1" style="padding-left:7px;">  
-  <div id="participants" style="background:none;border:none;padding:0px;">
-    <h4 style="border-bottom:1px solid #000;font-size:16px;color:#21519C;"><%= image_tag "group.png" %> Overall Standing </h4>
-
-    <ul id="participants-list">
+<div id="right1" style="padding-left:7px;">
+    <div class="tc-row" style="font-size:20px;padding-top:12px;font-weight:bold;">Overall Standing </div>
+  
     <% unless @users.empty? %>
+      <% rank = 1 %>
       <% @users.each do |user| %>
-            <div id="participant_details_<%= user.id %>" >
-                <li><% @display_name = truncate(user.display_name(nil, nil), 20, "...").titleize %>
+         <div class="tc-row">
 
-                <%= link_to_function( "#{(image_tag('user_green.png'))} #{@display_name}",  :id => "more_link_down_#{user.id}") do |page|
-                        page.visual_effect  :toggle_blind, "user-details_#{user.id}"
-                        page.show "more_link_up_#{user.id}"
-                        page.hide "more_link_down_#{user.id}"
-                        #page.replace_html 'more_link', "#{image_tag "bullet_arrow_up.png"}"
-                 end  %>
-     
-                <%= link_to_function( "#{(image_tag('user_green.png'))} #{@display_name}",  :id => "more_link_up_#{user.id}", :style => 'display:none;') do |page|
-                      page.visual_effect  :toggle_blind, "user-details_#{user.id}"
-                      page.hide "more_link_up_#{user.id}"
-                      page.show "more_link_down_#{user.id}"
-                end  %>
+              <span style="float:left;">
+                  <div class="tc-row-rank"><%= "#{rank}" %></div>
+              </span>
+              <% rank += 1 %>
+              <span style="float:left;">
+                  <% if user.avatar? %>
+                    <%= image_tag user.avatar.url(:thumb) %>
+                  <% else %>
+                    <%= image_tag "fb_default.gif", :size => "36x32"  %>
+                  <% end %>
+              </span>
 
-               <span style="float:right;padding-right:30px;">[<%= user.total_score.nil? ? 0 : user.total_score %>]</span>
-
-    
-               <div id="user-details_<%= user.id %>"  style="display:none;padding-left:10px;">
-                    <% if user.avatar? %>
-                      <%= image_tag user.avatar.url(:thumb) %>
-                    <% else %>
-                      No photo available <br/>
-                    <% end %>
-
-                   <div class ="user-bio">
-                        <b>Twitter Profile:</b><br/>
-                         <%= user.screen_name.blank? ? "" : "http://twitter.com/" + user.screen_name %>
-                        <b>Blog:</b><br/>
-                        <%= link_to user.blog_link, user.blog_link if !user.blog_link.nil? %>
-                        <b>Facebook Profile:</b><br/>
-                        <%=h user.facebook_link %>
-                   </div>
-              </div>
-              </li>
-           </div>
+              <span style="float:left;margin-left:5px;">
+                  <% @display_name = truncate(user.display_name(nil, nil), 20, "...").titleize %>
+                  <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => user.id %>
+                  <div style="font-size:10px;"><%= user.total_score.nil? ? 0 : user.total_score %> points</div>
+              </span> 
+         </div>
        <% end %>
     <%  end %>
-    </ul>
-   </div>
-
 </div>
+
