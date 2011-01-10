@@ -53,7 +53,18 @@
           <% else %>
             <% if @readonlypost %>
                 <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @post.get_readonly_url_with_match_id(@match, 'predicitions') %></span><br/><br/>
-            <% else %>  
+            <% else %>
+                <% eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:spectators]) %>
+                <% user_predicted = 0 %>
+                <% eng.spectators.find_by_match_id(@match, :include => :predicitions).predicitions.each do |predicition| %>
+                  <% user_predicted += predicition.user_predicition %>
+                <% end %>
+                <% if user_predicted > 0 && current_user.id == @user.id %>
+                    <span style="float:left;padding-left:10px;">
+                        <%= link_to_function "Post my predictions on Facebook", "openWindow(\'#{@authorization_url}\')", :class => 'button' %>
+                    </span>    
+                <% end %>
+   
                 <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %></span><br/><br/>
             <% end %>
           <% end %>
@@ -108,7 +119,7 @@
                         <% if user_predicted > 0 && selected_user.id == @user.id %>
                            <% session[:prediction] = match_details + predicition_details %>                    
                            <span style="float:right;padding-right:10px;">
-                                <%= link_to_function "Post my predictions on Facebook", "openWindow(\'#{@authorization_url}\')", :class => 'button' %>
+                                <%= link_to_function "Post my predictions on Facebook", "openWindow(\'#{@authorization_url}\')", :class => 'button general-button' %>
                            </span>    
                            <br/><br/>
                         <% end %>

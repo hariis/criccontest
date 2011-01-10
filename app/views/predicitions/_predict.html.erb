@@ -29,7 +29,7 @@
     <% end %>
     
    <% if entry.name == 'win_margin_wicket' %>
-          <b>Predict Win Margin</b> (<span style="font-size:80%;">Predict both but only one will be evaluated based on the match result <span style="color:#FF4800;"> (2 points)</span></span>)
+          <b>Predict Win Margin</b> (<span style="font-size:80%;">Predict both but only one will be evaluated based on the match result) <br/><span style="color:#FF4800;">(2 points)</span></span>
           <br/><br/><b>Win Margin Wicket: </b><br/>
           <% Predicition::WIN_MARGIN_WICKET.each_index do |margin_wicket_entry| %>
               <%= radio_button_tag 'win_margin_wicket', "#{margin_wicket_entry}" %> <%= Predicition::WIN_MARGIN_WICKET[margin_wicket_entry] %>
