@@ -33,7 +33,13 @@
                         <% else %>
                             <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                         <% end %>
-                        <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => @user.id %>
+                        
+                        <% if current_user && current_user.admin? %>
+                            <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => engagement.invitee.id %>
+                        <% else %>
+                            <span style="color:#21519C;"><%= "#{@display_name}" %></span>
+                        <% end %>
+
                         <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points</div>
                     </span> 
 
