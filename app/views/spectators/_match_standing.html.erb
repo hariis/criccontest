@@ -31,7 +31,7 @@
                     <% if engagement.invitee.id == @user.id  %>
                         <% @display_name = "Me" %>
                     <% else %>
-                        <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 20, "...").titleize %>
+                        <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %>
                     <% end %>
                     <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => @user.id %>
                     <div style="font-size:10px;"><%= spectator.totalscore.nil? ? 0 : spectator.totalscore %> points</div>
