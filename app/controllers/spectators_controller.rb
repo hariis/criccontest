@@ -244,7 +244,7 @@ class SpectatorsController < ApplicationController
         session[:prediction] = nil
       end
 
-      #@fb_user.post(wall_message)
+      @fb_user.post(wall_message)
       @status_msg = "Your prediction has been successfully posted to your Facebook Profile. <br/>
                         Please close this window and proceed with your contest."
       rescue => err
