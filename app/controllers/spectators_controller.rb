@@ -231,7 +231,12 @@ class SpectatorsController < ApplicationController
         params[:code], :redirect_uri => auth_callback_url
       )  
       
-      @fb_user = FacebookUser.create_from_fb(access_token, @user)
+      if session[:user_id]
+        user_id = session[:user_id]
+        session[:user_id] = nil
+      end
+      
+      @fb_user = FacebookUser.create_from_fb(access_token, user_id)
 
       if session[:prediction]
         prediction_text = session[:prediction] 
@@ -239,7 +244,7 @@ class SpectatorsController < ApplicationController
         session[:prediction] = nil
       end
 
-      @fb_user.post(wall_message)
+      #@fb_user.post(wall_message)
       @status_msg = "Your prediction has been successfully posted to your Facebook Profile. <br/>
                         Please close this window and proceed with your contest."
       rescue => err

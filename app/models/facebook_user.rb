@@ -1,5 +1,5 @@
 class FacebookUser < ActiveRecord::Base
-  def self.create_from_fb(access_token,user_id)
+  def self.create_from_fb(access_token, user_id)
     atts = JSON.parse(access_token.get('/me'))
     atts['facebook_id'] = atts.delete('id')
     returning(first(:conditions => { :facebook_id => atts['facebook_id'] }) || create(atts.slice(*column_names))) do |user|

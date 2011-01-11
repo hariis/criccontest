@@ -117,7 +117,8 @@
                         <%= "Yet to predict <br/>" if user_predicted < 0 %>
                         
                         <% if user_predicted > 0 && selected_user.id == @user.id  && !@match.check_if_match_started %>
-                           <% session[:prediction] = match_details + predicition_details %>                    
+                           <% session[:prediction] = match_details + predicition_details %>
+                           <% session[:user_id] = @user.id %>
                            <span style="float:right;padding-right:10px;">
                                 <%= link_to_function "Post my predictions on Facebook", "openWindow(\'#{@authorization_url}\')", :class => 'button general-button' %>
                            </span>    

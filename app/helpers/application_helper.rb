@@ -37,6 +37,14 @@ module ApplicationHelper
     end
   end
   
+  def get_fb_profile_picture(user)
+      fb_user = FacebookUser.find_by_user_id(user.id)
+      if fb_user
+          return "http://graph.facebook.com/#{fb_user.facebook_id}/picture"
+      else 
+          return "fb_default.gif"
+      end
+  end
   
   def in_place_editor(field_id, options = {})
     function =  "new Ajax.InPlaceEditor("

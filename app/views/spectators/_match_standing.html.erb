@@ -20,11 +20,7 @@
                 </span>
                 <% rank += 1 %>
                 <span style="float:left;">
-                    <% if @user.avatar? %>
-                      <%= image_tag @user.avatar.url(:thumb) %>
-                    <% else %>
-                      <%= image_tag "fb_default.gif", :size => "36x32"  %>
-                    <% end %>
+                   <%= image_tag get_fb_profile_picture(engagement.invitee), :size => "36x32" %>
                 </span>
 
                 <span style="float:left;margin-left:5px;">
