@@ -20,11 +20,7 @@
 
               <span style="float:left;margin-left:5px;">
                   <% @display_name = truncate(user.display_name(nil, nil), 20, "...").titleize %>
-                  <% if current_user && current_user.admin? %>
-                        <%= link_to "#{@display_name}", :controller => 'users', :action => 'display_profile', :id => user.id %>
-                  <% else %>
-                        <span style="color:#21519C;"><%= "#{@display_name}" %></span>
-                  <% end %>
+                  <span style="color:#21519C;"><%= "#{@display_name}" %></span>       
                   <div style="font-size:10px;"><%= user.total_score.nil? ? 0 : user.total_score %> points</div>
               </span> 
          </div>
