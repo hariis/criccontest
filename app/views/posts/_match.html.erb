@@ -5,11 +5,11 @@
       <% second_team = "/images/" + "#{get_teamname(match.secondteam)}"  + ".png" %>
       
       <% if @readonlypost %>
-          <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
+          <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam)} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam)}</span><br/>
                 #{match.description} @ #{match.venue.capitalize} <br/>
                 <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", @post.get_readonly_url_with_match_id(match, 'show') %><br/>
       <% else %>
-          <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam).capitalize} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam).capitalize}</span><br/>
+          <li><span style="color:#2D392D;font-weight:bold"><%= link_to "#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam)} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam)}</span><br/>
                   #{match.description} @ #{match.venue.capitalize} <br/>
                   <span style=font-size:80%;>#{image_tag('/images/date.png')}  #{match.display_match_start_time}</span>", @post.get_url_for_with_match_id(@user, match, 'show') %><br/>
       <% end %>

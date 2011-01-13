@@ -1,5 +1,5 @@
 <div id="parent-post">
-  <div class="subject"><%=h get_teamname(@match.firstteam).capitalize %> vs <%=h get_teamname(@match.secondteam).capitalize %><br/></div>
+  <div class="subject"><%=h get_teamname(@match.firstteam) %> vs <%=h get_teamname(@match.secondteam) %><br/></div>
   <%=h @match.description %> @ <%=h @match.venue %><br/>
   <%= @match.display_match_start_time %>
 </div>

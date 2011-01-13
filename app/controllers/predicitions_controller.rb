@@ -32,7 +32,7 @@ class PredicitionsController < ApplicationController
             @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1
             if params[:winner]
                 #prediction_count += 1
-                predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname.capitalize} <br/>"
+                predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
             end
         end
         
@@ -40,7 +40,7 @@ class PredicitionsController < ApplicationController
             @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1
             if params[:toss]
                 #prediction_count += 1
-                predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname.capitalize} <br/>"
+                predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
             end
         end
         
@@ -48,7 +48,7 @@ class PredicitionsController < ApplicationController
             @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1
             if params[:ts_firstteam]
                 #prediction_count += 1
-                predicition_details << "Total Score #{get_teamname(@match.firstteam).capitalize}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                predicition_details << "Total Score #{get_teamname(@match.firstteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
             end
         end
         
@@ -56,7 +56,7 @@ class PredicitionsController < ApplicationController
             @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1
             if  params[:ts_secondteam]
                 #prediction_count += 1
-                predicition_details << "Total Score #{get_teamname(@match.secondteam).capitalize}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                predicition_details << "Total Score #{get_teamname(@match.secondteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
             end
         end            
         
