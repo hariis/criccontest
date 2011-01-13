@@ -228,7 +228,7 @@ end
       if @status_message.blank?
           #page.hide 'facebox'
           #page.insert_html :bottom, 'participants-list', :partial => 'participants', :locals => { :participants => @email_participants }
-          page.replace_html 'invite-status', "#{@email_participants ? pluralize(@email_participants.size ,"participant") : "None"} added."
+          #page.replace_html 'invite-status', "#{@email_participants ? pluralize(@email_participants.size ,"participant") : "None"} added."
           page.replace_html "send-status", "#{@email_participants ? pluralize(@email_participants.size ,"invitation") : "None"} sent."
           page.select("#send-status").each { |b| b.visual_effect :fade, :startcolor => "#4B9CE0",
                                                                         :endcolor => "#cf6d0f", :duration => 15.0 }

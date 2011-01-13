@@ -19,8 +19,8 @@
     <% else %>
         <div id="participants">
     <% end %>     
-        <div class="tc-row" style="font-weight:bold;color:#21519C;height:50px;"><%= @post.subject %>
-            <div style="font-size:12px;"><%= @number_of_matches %> matches</div>
+        <div class="tc-row1" style="font-weight:bold;color:#21519C;height1:50px;border-bottom:1px solid #709CB2;"><% @post.subject %>
+            <%= link_to "#{@number_of_matches} matches", @contest %>
         </div>
         <%= render :partial => 'match', :collection => @contest.matches %>      
     </div>

@@ -26,15 +26,7 @@
           <fieldset style="margin-bottom:15px;">
               <div id="parent-post" style="padding-bottom:10px;">
 
-                  <div class="subject1">
-                      <% if @post.owner == @user %>
-                         <div class="subject"> <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <%= image_tag '/images/pencil.png' %></div><br/>
-                      <% else %>
-                         <div class="subject"> <%= @post.subject %></div>
-                      <% end %>
-                  </div>
-
-                  <div class="subject1"> <%= output = get_teamname(@match.firstteam) + " vs " + get_teamname(@match.secondteam) %><br/>
+                  <div class="subject"> <%= output = get_teamname(@match.firstteam) + " vs " + get_teamname(@match.secondteam) %><br/>
                   <% match_details << output.to_s %> <% match_details << "\n" %>
                   
                   <%= @match.description %> @ <%=h @match.venue %><br/></div>

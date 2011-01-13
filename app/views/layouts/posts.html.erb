@@ -58,35 +58,43 @@
       <% end %>
     </ul>
 
-    <br/><br/><br/>
-    <div class="banner" style="float:left;padding:0px 20px 4px 10px;">
-       <%= tag_line %><br/><br/>
+    <div class="banner" style="float:left;padding:0px 20px 24px 10px;">
+       <%= tag_line %>
     </div>  
 </div>
 
-  <div id="widgets">
-    <ul>
-      <li id="invite-status"></li>
+<div id="widgets" style="text-align:left;"> 
+    <span class="subject" style="color:#fff;padding-left:10px;padding-top:0px;"> 
+       <% if @post.owner == @user %>
+          <%= in_place_editor_field :post, 'subject',{}, :size => '70', :text_between_controls => ' or ',:save_text => 'save' %> <%= image_tag '/images/pencil.png' %>
+       <% else %>
+          <%= @post.subject %>
+       <% end %>
+     </span>
+     
+    <ul1>
+      
       <% if @readonlypost %>
            <% if @contest.contest_current == true %>            
-               <span class='button' style="float:left;padding-right:10px;">
+               <span class='button' style="float:right;"><%= link_to 'Start Private Contest', new_contest_post_path(@contest) %></span>
+               <span class='button' style="float:right;">
                    <% if current_user && current_user.activated? || !@user.unique_id.nil? %>
                        <%= image_tag "group_add.png" %> <%= link_to "Join this Contest",  :controller => 'engagements', :action => 'join_conversation_facebox', :pid => @post.unique_id, :iid => @inviter_unique_id, :uid => @user.unique_id %>
                    <% else %>
                        <%= image_tag "group_add.png" %> <%= facebox_link_to "Join this Contest",  :url => @post.get_url_for_jc_facebox(@inviter_unique_id) %>
                    <% end %>
                </span>   
-               <span class='button' style="float:left;margin-left:20px;padding-right:10px;"><%= link_to 'Start Private Contest', new_contest_post_path(@contest) %></span>
+               
            <% end %>
       <% else %>
-          <li><% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %></li>              
+          <% link_to "Add a Match",  :controller => 'matches', :action => 'new',  :post_id => @post.id, :user_id => @user.id %>
 
           <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
               <% @inviter = User.get_open_contest_inviter %>
               <% if @post.owner.id != @inviter.id || current_user && current_user.admin? %>
-                    <span class='button' style="float:left;padding-right:10px;margin-right:20px;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></span>        
+                    <span class='button' style="float:right;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></span>        
               <% end %>
-              <span class='button' style="float:left;padding-right:10px;margin-right:20px;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></span>
+              <span class='button' style="float:right;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></span>
           <% end %>
       <% end %>
       
@@ -94,8 +102,10 @@
             <span style="font-size:18px;padding:15px;color:#fff;"><%= prize.title %></span><br/>
       <% end %>
           
-    </ul>
-  </div>
+    </ul1>
+    
+               
+    </div>
   
   <% unless @comment_notice.blank? %>
   <div style="background-color:#ADEAED;color:#000;height:24px;padding-top:6px;text-align:center;font-weight:bold;">
