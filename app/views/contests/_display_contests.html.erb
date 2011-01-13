@@ -17,11 +17,11 @@
             <span style="color:green;font-size:12px;"><%= prize.title %></span><br/>
           <% end %>
           
-          <span style="font-size:12px;"><%= link_to "#{contest.matches.count} matches", contest %></span>
+          <span style="font-size:12px;"><%= link_to "#{contest.matches.count} matches", contest %></span> |
+          <span style="color:green;font-size:12px;"><%= @post.engagements.size %> participants</span>
 
           <% if current_user && current_user.admin? %>
-              <br/><span style="color:green;font-size:12px;"><%= @post.engagements.size %> participants</span>,
-              <span style="color:green;font-size:12px;"><%= contest.posts.size %> series currently running</span>
+             | <span style="color:green;font-size:12px;"><%= contest.posts.size %> series currently running</span>
           <% end %>
 
           <% if current_user && current_user.admin? && current_user.admin_user? %>
