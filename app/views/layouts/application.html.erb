@@ -72,7 +72,7 @@ tinyMCE.init(tinymce_advanced_options);
            <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
       <% else %>
            <li><%= link_to "Register", new_user_path %> </li>
-           <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
+           <li><%= link_to "Login", login_path %></li>    
        <% end %>
     </ul>
 
@@ -80,11 +80,21 @@ tinyMCE.init(tinymce_advanced_options);
     <div class="banner" style="height1:33px; padding:5px 20px 7px 10px;">
        <%= tag_line %>
     </div>  
+ 
+
 </div>
-  
-<div id="widgets" class="banner" style="height:33px; padding:5px 20px 7px 10px;">
-   <span style="color:#fff;"><% tag_line %></span>
-</div>
+
+<% if controller.action_name == 'dashboard' %>
+    <span style="color:#21519C;padding-left:100px;">
+        <script type="text/javascript">
+           // Array of day names
+           var dayNames = new Array("Sunday","Monday","Tuesday","Wednesday",
+           "Thursday","Friday","Saturday");
+           var now = new Date();
+           document.write("Happy " + dayNames[now.getDay()] + ".");
+        </script>
+    </span>
+ <% end %> 
 
 <% if flash[:notice] %>
   <div id="flash-notice">
@@ -162,13 +172,26 @@ tinyMCE.init(tinymce_advanced_options);
     clear:both;
     left:870px;
     width:270px;
-    height:250px;
+    height:253px;
     font-size:14px;
     overflow:auto;
     background1:#EDEFF4;
     background:#fff;
     line-height:1.5;
     border:1px solid #666666;
+}
+
+#whatisit-text { 
+    position:absolute;
+    left:540px;
+    width: 300px;
+    height: 253px;
+    background1: #44accf;
+    background: #FFEFC6;
+    text-align:center;
+    color:#21519C;
+    font-size:20px;
+    font-weight:bold;   
 }
 
 #right {
@@ -181,12 +204,20 @@ tinyMCE.init(tinymce_advanced_options);
 }
 
 #left {
-position: absolute;
-left: 0px;
-color: #black;
-margin:5px 10px;
-padding: 0px 4px;  /* top and bottom is 0 so empty div does not show up */
-width:247px;
+    position: absolute;
+    left: 0px;
+    color: #black;
+    margin:5px 10px;
+    padding: 0px 4px;  /* top and bottom is 0 so empty div does not show up */
+    width:247px;
+}
+
+a {
+    color:#336699;
+    outline-color:-moz-use-text-color;
+    outline-style:none;
+    outline-width:medium;
+    text-decoration:none;
 }
 
 </style>

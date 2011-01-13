@@ -49,7 +49,7 @@
       <% else %>
           <% if @readonlypost %>
               <li><%= link_to "Register", new_user_path %> </li>
-              <li><%= link_to "#{image_tag('/images/lock.png')} Login", login_path %></li>    
+              <li><%= link_to "Login", login_path %></li>    
            <% else %>
               <span style="font-size:16px;"><li id='non-member-name'><%= "Welcome #{@user.display_name}" %></li>
               <li><% link_to "Become a Member", new_user_path %></li>
@@ -161,7 +161,7 @@
 }
 
 #participants a{
-  color:#0B84E8;
+  color:#336699;
   outline-color:-moz-use-text-color;
   outline-style:none;
   outline-width:medium;
@@ -187,12 +187,20 @@
 }
 
 #left {
-position: absolute;
-left: 0px;
-color: #black;
-margin:5px 10px;
-padding: 0px 4px;  /* top and bottom is 0 so empty div does not show up */
-width:247px;
+    position: absolute;
+    left: 0px;
+    color: #black;
+    margin:5px 10px;
+    padding: 0px 4px;  /* top and bottom is 0 so empty div does not show up */
+    width:247px;
+}
+
+a {
+    color:#336699;
+    outline-color:-moz-use-text-color;
+    outline-style:none;
+    outline-width:medium;
+    text-decoration:none;
 }
 
 </style>
