@@ -39,7 +39,7 @@ class SpectatorsController < ApplicationController
     if !params[:iid].nil? && !params[:mid].nil? && params[:eid].nil?  
         @user = User.get_open_contest_inviter
         @post = Post.get_open_contest(@contest, @user)
-        @eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:post, :invitee, :spectator])
+        @eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:post, :invitee])
         #@spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
         @spectator = @eng.spectators.find_by_match_id(@match.id) unless @eng.nil?
         @readonlypost = true
