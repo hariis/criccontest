@@ -35,7 +35,7 @@
          <% form_remote_tag :url => {:controller => 'predicitions', :action => 'admin_predicition', :mid => @match.unique_id } do %>
             Match Result: <%= text_field_tag :match_result, "", :size => 60 %><br/><br/>
             <%= render :partial => 'predict' %>
-            <%= submit_tag 'Save Results' %>
+            <%= submit_tag 'Save Predictions', :class => 'button' %>
          <% end %>
     <% else %>
         <% if @readonlypost %>
@@ -43,7 +43,7 @@
         <% else %>
              <% form_remote_tag :url => {:controller => 'predicitions', :action => 'user_predicition', :mid => @match.unique_id, :eid => @engagement.unique_id } do %>
                 <%= render :partial => 'predict' %>
-                <%= submit_tag 'Save Predictions' %>
+                <%= submit_tag 'Save Predictions', :class => 'button' %>
              <% end %>
         <% end %>
     <% end %>

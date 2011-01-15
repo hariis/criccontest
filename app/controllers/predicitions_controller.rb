@@ -80,10 +80,14 @@ class PredicitionsController < ApplicationController
     end
     
     render :update do |page|
-      if prediction_count != 6
-         page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options"
+      if current_user && current_user.admin? && current_user.admin_user?
+        page.visual_effect :blind_up, 'facebox'
       else
-         page.visual_effect :blind_up, 'facebox'
+        if prediction_count != 6
+           page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options"
+        else
+           page.visual_effect :blind_up, 'facebox'
+        end
       end
     end 
 
