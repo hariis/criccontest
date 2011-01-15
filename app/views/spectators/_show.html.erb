@@ -26,7 +26,7 @@
           <fieldset style="margin-bottom:15px;">
               <div id="parent-post" style="padding-bottom:10px;">
 
-                  <div class="subject"> <%= output = get_teamname(@match.firstteam) + " vs " + get_teamname(@match.secondteam) %><br/>
+                  <div class="subject" style="font-size:20px;"> <%= output = get_teamname(@match.firstteam) + " vs " + get_teamname(@match.secondteam) %><br/>
                   <% match_details << output.to_s %> <% match_details << "\n" %>
                   
                   <%= @match.description %> @ <%=h @match.venue %><br/></div>
