@@ -91,7 +91,8 @@ class PredicitionsController < ApplicationController
       end
     end 
 
-    if predicition_details.size > 0
+    #if predicition_details.size > 0
+    if prediction_count == 6 && predicition_details.size > 0
         Predicition.predicition_notification(@engagement.post_id, @match, @user_name, predicition_details)
     end
 
