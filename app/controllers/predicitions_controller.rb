@@ -22,7 +22,7 @@ class PredicitionsController < ApplicationController
   def user_predicition
     @user_name = Engagement.find_by_id(@spectator.engagement_id).invitee.display_name
     predicition_details = ""
-    #prediction_count = 0
+    prediction_count = 0
     predicition_details << "<b> #{@user_name}'s prediction:</b> <br/>"
     
     @category.entries.each do |entry|
@@ -31,7 +31,7 @@ class PredicitionsController < ApplicationController
         if entry.name == 'winner'
             @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1
             if params[:winner]
-                #prediction_count += 1
+                prediction_count += 1
                 predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
             end
         end
@@ -39,7 +39,7 @@ class PredicitionsController < ApplicationController
         if entry.name == 'toss'
             @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1
             if params[:toss]
-                #prediction_count += 1
+                prediction_count += 1
                 predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
             end
         end
@@ -47,7 +47,7 @@ class PredicitionsController < ApplicationController
         if entry.name == 'ts_firstteam'
             @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1
             if params[:ts_firstteam]
-                #prediction_count += 1
+                prediction_count += 1
                 predicition_details << "Total Score #{get_teamname(@match.firstteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
             end
         end
@@ -55,7 +55,7 @@ class PredicitionsController < ApplicationController
         if entry.name == 'ts_secondteam'
             @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1
             if  params[:ts_secondteam]
-                #prediction_count += 1
+                prediction_count += 1
                 predicition_details << "Total Score #{get_teamname(@match.secondteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
             end
         end            
@@ -63,7 +63,7 @@ class PredicitionsController < ApplicationController
         if entry.name == 'win_margin_wicket'
             @predicition_record.user_predicition = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1
             if params[:win_margin_wicket]
-                #prediction_count += 1
+                prediction_count += 1
                 predicition_details << "Win Margin Wicket: #{Predicition::WIN_MARGIN_WICKET[@predicition_record.user_predicition]} <br/>"
             end
         end
@@ -71,7 +71,7 @@ class PredicitionsController < ApplicationController
         if entry.name == 'win_margin_score'
             @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1
             if params[:win_margin_score]
-                #prediction_count += 1
+                prediction_count += 1
                 predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE[@predicition_record.user_predicition]} <br/>"
             end
         end
@@ -80,11 +80,11 @@ class PredicitionsController < ApplicationController
     end
     
     render :update do |page|
-      #if prediction_count != 6
-      #   page.replace_html "prediction-status", "Please cast prediction for all the option"
-      #else
+      if prediction_count != 6
+         page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options"
+      else
          page.visual_effect :blind_up, 'facebox'
-      #end
+      end
     end 
 
     if predicition_details.size > 0
