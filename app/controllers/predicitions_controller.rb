@@ -1,26 +1,31 @@
 class PredicitionsController < ApplicationController
   
   before_filter :load_prerequisite, :only => [:user_predicition, :admin_predicition, :show]
+  #TODO before_filter :redirect_to_error, :except => [:user_predicition, :admin_predicition, :show]
   
+  #-----------------------------------------------------------------------------------------------------
+  def redirect_to_error
+    render 'posts/404', :status => 404, :layout => false and return
+  end
+  
+  #-----------------------------------------------------------------------------------------------------  
   def load_prerequisite
     @match = Match.find_by_unique_id(params[:mid], :include => :category) if params[:mid]
-    #@user = User.find_by_unique_id(params[:uid]) if params[:uid]
+    @category = @match.category if @match
     
     unless current_user && current_user.admin? && current_user.admin_user?
       if params[:eid]
         @engagement = Engagement.find_by_unique_id(params[:eid]) 
-        #@spectator = @user.spectators.find_by_match_id(@match.id)
         @spectator = Spectator.find_by_engagement_id_and_match_id(@engagement.id, @match.id)
       end
     end
-
-    @category = @match.category
-    #@category = Category.find_by_id(@match.category_id)
   end
   
-  
+  #-----------------------------------------------------------------------------------------------------
   def user_predicition
-    @user_name = Engagement.find_by_id(@spectator.engagement_id).invitee.display_name
+    #@user_name = Engagement.find_by_id(@spectator.engagement_id).invitee.display_name
+    @user_name = @engagement.invitee.display_name
+    
     predicition_details = ""
     prediction_count = 0
     predicition_details << "<b> #{@user_name}'s prediction:</b> <br/>"
@@ -84,41 +89,19 @@ class PredicitionsController < ApplicationController
         page.visual_effect :blind_up, 'facebox'
       else
         if prediction_count != 6
-           page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options"
+           page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options."
         else
            page.visual_effect :blind_up, 'facebox'
         end
       end
     end 
 
-    #if predicition_details.size > 0
     if prediction_count == 6 && predicition_details.size > 0
         Predicition.predicition_notification(@engagement.post_id, @match, @user_name, predicition_details)
     end
+  end
 
-  end
- 
-  
-  def user_predicition1
-    @category.entries.each do |entry|
-        @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
-        
-        @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1 if entry.name == 'winner'
-        @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1 if entry.name == 'toss'
-        
-        @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1 if entry.name == 'ts_firstteam'
-        @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1 if entry.name == 'ts_secondteam'
-        
-        @predicition_record.user_predicition = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1 if entry.name == 'win_margin_wicket'
-        @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1 if entry.name == 'win_margin_score'
-        @predicition_record.save
-    end
-    
-    render :update do |page|
-      page.visual_effect :blind_up, 'facebox'
-    end 
-  end
- 
+  #-----------------------------------------------------------------------------------------------------  
   def admin_predicition
     match_result = params[:match_result] ? params[:match_result] : "Results not yet updated"
     @match.update_attributes(:match_result => match_result)
@@ -143,6 +126,7 @@ class PredicitionsController < ApplicationController
     end 
   end
   
+  #-----------------------------------------------------------------------------------------------------
   # GET /predicitions
   # GET /predicitions.xml
   def index
@@ -154,6 +138,7 @@ class PredicitionsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # GET /predicitions/1
   # GET /predicitions/1.xml
   def show
@@ -168,6 +153,7 @@ class PredicitionsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # GET /predicitions/new
   # GET /predicitions/new.xml
   def new
@@ -179,11 +165,13 @@ class PredicitionsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # GET /predicitions/1/edit
   def edit
     @predicition = Predicition.find(params[:id])
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # POST /predicitions
   # POST /predicitions.xml
   def create
@@ -201,6 +189,7 @@ class PredicitionsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # PUT /predicitions/1
   # PUT /predicitions/1.xml
   def update
@@ -218,6 +207,7 @@ class PredicitionsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # DELETE /predicitions/1
   # DELETE /predicitions/1.xml
   def destroy
@@ -230,4 +220,5 @@ class PredicitionsController < ApplicationController
     end
   end
   
+  #-----------------------------------------------------------------------------------------------------
 end

@@ -1,85 +1,48 @@
 class SpectatorsController < ApplicationController
   
   layout 'posts', :except => [:fb_callback]
-  #layout 'application'
   before_filter :load_prerequisite, :only => [:show, :result, :load_all_participants]
-  before_filter :load_user, :only => [:show]
-  
-  def load_prerequisite_old
-    unless params[:mid].nil? || params[:eid].nil?
-        @match = Match.find_by_unique_id(params[:mid], :include => [:category, :contest]) if params[:mid]
-        @eng = Engagement.find_by_unique_id(params[:eid], :include => [:post, :invitee]) if params[:eid]
-        #@user = User.find(@eng.user_id)
-        @user = @eng.invitee
-        #@post = Post.find(@eng.post_id)    needed to display the matches on the spectator page
-        @post = @eng.post
-        #@contest = Contest.find(@post.contest_id) needed to display the matches on the spectator page
-        @contest = @match.contest
-        #@spectator = @user.spectators.find_by_match_id(@match.id)
-        @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
-        #@category = Category.find(@match.category_id)
-        @category = @match.category
-    end
-  end
-
+  #before_filter :load_user, :only => [:show]
+ 
+  #-----------------------------------------------------------------------------------------------------
   def load_prerequisite
-    if !params[:mid].nil? 
+    
+    unless params[:mid].nil? 
         @match = Match.find_by_unique_id(params[:mid], :include => [:category, :contest]) if params[:mid]
         @contest = @match.contest
         @category = @match.category
-    end
     
-    if !params[:eid].nil?
-        @eng = Engagement.find_by_unique_id(params[:eid], :include => [:post, :invitee])
-        @user = @eng.invitee
-        @post = @eng.post
-        @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
-    end
-    
-    if !params[:iid].nil? && !params[:mid].nil? && params[:eid].nil?  
-        @user = User.get_open_contest_inviter
-        @post = Post.get_open_contest(@contest, @user)
-        @eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:post, :invitee])
-        #@spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
-        @spectator = @eng.spectators.find_by_match_id(@match.id) unless @eng.nil?
-        @readonlypost = true
-        
-        #if current_user && current_user.activated?
-          #check if user is already a participant
-        #  @eng = current_user.engagements.find_by_post_id(@post.id)
-        #  url = @match.get_url_for(@eng, 'show')
-        #  redirect_to(@match.get_url_for(@eng, 'show')) && return unless @eng.nil?
-        #  return
-        #end
-        
+        unless params[:eid].nil?
+            @eng = Engagement.find_by_unique_id(params[:eid], :include => [:post, :invitee])
+            @user = @eng.invitee
+            @post = @eng.post
+            @spectator = Spectator.find_by_engagement_id_and_match_id(@eng.id, @match.id)
+        end
+ 
+        if params[:eid].nil? && !params[:iid].nil?
+            #@inviter = User.get_open_contest_inviter
+            @inviter = User.find_by_unique_id(params[:iid])         
+            @post = Post.get_open_contest(@contest, @inviter)
+            
+            @eng = Engagement.find_by_post_id_and_user_id(@post.id, @inviter.id, :include => [:post, :invitee])
+            @spectator = @eng.spectators.find_by_match_id(@match.id) unless @eng.nil?
+            @readonlypost = true
+            @user = User.new
+            @inviter_unique_id = params[:iid]  #this is required to craft link for displaying join_conversation_facebox    
+
+            #if current_user && current_user.activated?
+              #check if user is already a participant
+            #  @eng = current_user.engagements.find_by_post_id(@post.id)
+            #  url = @match.get_url_for(@eng, 'show')
+            #  redirect_to(@match.get_url_for(@eng, 'show')) && return unless @eng.nil?
+            #  return
+            #end
+        end      
     end
   end
 
-  def load_user_old
-     unless params[:mid].nil? || params[:eid].nil?
-          if current_user && current_user.activated?
-              #Now check if this is the same user as the logged in user
-              #If not, then logout the current_user
-              force_logout if @user && @user.id != current_user.id
-          else
-              #load the user based on the unique id
-              #if user is member, so force login
-              if @user && @user.activated?
-                  flash[:notice] = "Please login and you will be on your way."
-                  flash[:email] = @user.email
-                  store_location if action_name == 'show'  #we do not want to store if it is any other action
-                  redirect_to login_path
-              end
-          end
-          if @user.nil?
-              flash[:error] = "Your identity could not be confirmed from the link that you provided. <br/> Please request the inviter to resend the link."
-              force_logout
-              redirect_to root_path
-          end
-      end
-  end  
-  
-  def load_user
+  #-----------------------------------------------------------------------------------------------------
+  def load_user  #TODO to be deleted. Is is not used.
     unless params[:mid].nil? 
       if !params[:eid].nil?
           if current_user && current_user.activated?
@@ -112,12 +75,13 @@ class SpectatorsController < ApplicationController
       end
     end           
   end
-      
+    
+  #-----------------------------------------------------------------------------------------------------  
   def load_all_participants
-       #@post = params[:pid] ? Post.find_by_unique_id(params[:pid]) : nil
-       render :partial => 'participants_list'
+    render :partial => 'participants_list'
   end
   
+  #-----------------------------------------------------------------------------------------------------
   # GET /spectators
   # GET /spectators.xml  
   def index
@@ -129,6 +93,7 @@ class SpectatorsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # GET /spectators/1
   # GET /spectators/1.xml
   def show 
@@ -145,6 +110,7 @@ class SpectatorsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   def result
     respond_to do |format|
       format.html # show.html.erb
@@ -153,6 +119,7 @@ class SpectatorsController < ApplicationController
     end   
   end
   
+  #-----------------------------------------------------------------------------------------------------
   # GET /spectators/new
   # GET /spectators/new.xml
   def new
@@ -164,11 +131,13 @@ class SpectatorsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # GET /spectators/1/edit
   def edit
     @spectator = Spectator.find(params[:id])
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # POST /spectators
   # POST /spectators.xml
   def create
@@ -186,6 +155,7 @@ class SpectatorsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # PUT /spectators/1
   # PUT /spectators/1.xml
   def update
@@ -203,6 +173,7 @@ class SpectatorsController < ApplicationController
     end
   end
 
+  #-----------------------------------------------------------------------------------------------------
   # DELETE /spectators/1
   # DELETE /spectators/1.xml
   def destroy
@@ -254,5 +225,6 @@ class SpectatorsController < ApplicationController
 
     end
  end
-
+ 
+#-----------------------------------------------------------------------------------------------------
 end

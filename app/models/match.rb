@@ -13,7 +13,8 @@ class Match < ActiveRecord::Base
         if action == 'show' || action == 'result'
           DOMAIN + "spectators/" + action + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
         elsif action == 'predicitions'
-          DOMAIN + "predicitions/" + action + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+          #DOMAIN + "predicitions/" + action + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
+          DOMAIN + "predicitions/show" + "?mid=#{self.unique_id}&iid=#{inviter.unique_id}"
         end
     else
         if action == 'show' || action == 'result'
