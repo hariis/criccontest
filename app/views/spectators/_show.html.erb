@@ -43,9 +43,7 @@
           <% if @match.check_if_match_started %>
              <b style="font-size:18px;padding:13px;color:red;">Timeline for predicting this match is over</b><br/>
           <% else %>
-            <% if @readonlypost %>
-                <span class="button" style="float:right;"><%= facebox_link_to 'Cast / Change Predictions', :url => @post.get_readonly_url_with_match_id(@match, 'predicitions') %></span><br/><br/>
-            <% else %>
+            <% unless @readonlypost %>
                 <% eng = Engagement.find_by_post_id_and_user_id(@post.id, @user.id, :include => [:spectators]) %>
                 <% user_predicted = 0 %>
                 <% eng.spectators.find_by_match_id(@match, :include => :predicitions).predicitions.each do |predicition| %>

@@ -15,6 +15,7 @@
           <th>Created at</th>
           <th>Participants</th>
           <th>Comments</th>
+          <th>Unique Id</th>
       </tr>
 
       <% @posts.each do |post| %>
@@ -23,15 +24,33 @@
             <td><%= post.created_at.to_s(:long) %></td>
             <td><%= post.participants.count %></td>
             <td><%= post.comments.count %></td>
+            <td><%= post.unique_id %></td>
         </tr>
       <% end %>
     </table>   
     <br/><br/>
 
+   <table border=1>
+      <tr>
+          <th>DateTime</th>
+          <th>Venue</th>
+          <th>Unique Id</th>
+      </tr>
+
+      <% @matches.each do |match| %>
+        <tr>
+            <td><%= match.date_time.to_s(:long) %></td>
+            <td><%= match.venue %></td>
+            <td><%= match.unique_id %></td>
+        </tr>
+      <% end %>
+    </table>  
+
     <% @users.each do |user| %>
-      <%= user.email %>;
-    <% end %><br/><br/>
+      <% user.email %>
+    <% end %><br/>
     
+
     <table border=1>
       <tr>
           <th>First Name</th>
