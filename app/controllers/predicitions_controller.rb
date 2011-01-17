@@ -28,7 +28,7 @@ class PredicitionsController < ApplicationController
     
     predicition_details = ""
     prediction_count = 0
-    predicition_details << "<b> #{@user_name}'s prediction:</b> <br/>"
+    predicition_details << "<span style='color:#21519C;font-weight:bold'> #{@user_name}'s prediction: </span><br/>"
     
     @category.entries.each do |entry|
         @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
@@ -91,7 +91,8 @@ class PredicitionsController < ApplicationController
         if prediction_count != 6
            page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options."
         else
-           page.visual_effect :blind_up, 'facebox'
+           page.replace_html "prediction_details_#{@engagement.id}", predicition_details           
+           page.visual_effect :blind_up, 'facebox'         
         end
       end
     end 
