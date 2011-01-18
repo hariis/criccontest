@@ -10,3 +10,66 @@
 
 
 
+<fieldset>
+
+    <table border=1>
+      <tr>
+          <th>Post Id</th>
+          <th>Created at</th>
+          <th>Participants</th>
+          <th>Comments</th>
+      </tr>
+
+      <% @posts.each do |post| %>
+        <tr>
+            <td><%= post.id %></td>
+            <td><%= post.created_at.to_s(:long) %></td>
+            <td><%= post.participants.count %></td>
+            <td><%= post.comments.count %></td>
+        </tr>
+      <% end %>
+      
+    </table>   
+    <br/><br/>
+
+   <table border=1>
+      <tr>
+          <th>DateTime</th>
+          <th>Venue</th>
+          <th>Unique Id</th>
+      </tr>
+      <% @matches.each do |match| %>
+        <tr>
+            <td><%= match.date_time.to_s(:long) %></td>
+            <td><%= match.venue %></td>
+            <td><%= match.unique_id %></td>
+        </tr>
+      <% end %>
+    </table>  
+
+    <% @users.each do |user| %>
+      <% user.email %>
+    <% end %><br/>
+    
+    <table border=1>
+      <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Member</th>
+          <th>Activated At</th>
+          <th>Email Id</th>
+      </tr>
+
+     <% @users.each do |user| %>
+        <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.member? %></td>
+            <td><%= user.activated_at %></td>
+            <td><%= user.email %></td>
+        </tr>
+      <% end %>
+
+    </table>   
+
+</fieldset>
