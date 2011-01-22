@@ -44,6 +44,8 @@ ActionController::Routing::Routes.draw do |map|
   map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
   map.admin "admin", :controller => 'posts', :action => 'admin'
   map.how_to "how_to", :controller => 'contests', :action => 'how_to'
+  map.world_cup "world_cup", :controller => 'posts', :action => "world_cup"
+  
   #map.join_public_contest "join_public_contest", :controller => 'contests', :action => 'join_public_contest'
 
   

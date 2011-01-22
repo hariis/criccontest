@@ -67,6 +67,7 @@ tinyMCE.init(tinymce_advanced_options);
     
     <ul>
       <li><% link_to "Home", root_url %></li>
+      <li><%= link_to "World Cup 2011", world_cup_url %></li>  
 
       <% if current_user && current_user.activated? %>
            <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => true} %>
@@ -218,6 +219,17 @@ a {
     outline-style:none;
     outline-width:medium;
     text-decoration:none;
+}
+
+#facebook-box {
+    -moz-border-radius:6px;
+    position:absolute;
+    left:870px;
+    top:643px;
+    width:270px;
+    height:250px;
+    font-size:14px;
+    background:#fff;
 }
 
 </style>

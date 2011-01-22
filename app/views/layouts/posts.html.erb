@@ -44,6 +44,7 @@
 
     <ul id="band-actions">
       <li><% link_to "Home", root_url %></li>  
+      <li><%= link_to "World Cup 2011", world_cup_url %></li>
       <% if current_user && current_user.activated? %>
           <%= render :partial => 'posts/member_band_actions', :locals => { :applayout => nil} %>
       <% else %>
