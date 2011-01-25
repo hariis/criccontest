@@ -1,7 +1,28 @@
 <div id="right">  
   <div id="display-winner">
-        Winner of this Open contest<br/> 
-        will be displayed here<br/>
-        It could be you
+
+        <% eng = @post.engagements.find(:first, :order => 'totalscore desc') %>         
+        <% if eng && eng.totalscore == 0 %> 
+            <span style="text-align:center;">
+                Winner of this Open contest<br/> 
+                will be displayed here<br/>
+                It could be you
+            </span>
+        <% else %>
+            Winner of this Open contest<br/>
+            <% previous_score = 0 %>
+            <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>               
+                <% if engagement.totalscore >= previous_score %>
+                    <div style="border-bottom:1px solid #709CB2;"></div>
+                    <div style="padding:5px;"></div>
+                    <div style="float:left;">
+                        <%= image_tag get_fb_profile_picture(engagement.invitee), :size => "36x32" %>
+                    </div>
+                    <span style="color:#21519C;"><%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %></span>
+                    <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points</div>
+                    <% previous_score = engagement.totalscore %>                    
+                <% end %>
+            <% end %>
+        <% end %>
   </div>
 </div>
