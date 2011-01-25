@@ -9,7 +9,7 @@
                 It could be you
             </span>
         <% else %>
-            Winner of this Open contest<br/>
+            Leader(s) of this Open contest<br/>
             <% previous_score = 0 %>
             <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>               
                 <% if engagement.totalscore >= previous_score %>
