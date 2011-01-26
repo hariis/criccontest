@@ -30,7 +30,7 @@
         World Cup 2011 Series<br/>Many prizes to be won<br/> <span style="color:red">COMING SOON</span>
     </div>
 
-    <div id="facebook-box">            
+    <div id="facebook-box">                   
         <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F183722284976292%3Fv%3Dpage_getting_started%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=250" scrolling="no" frameborder="0" style="border:medium; overflow:hidden; width:270px; height:250px;" allowTransparency="true"></iframe>
     </div>
 
@@ -43,6 +43,14 @@
 
     <div id="contests-display">
         <%= render :partial => 'display_contests', :collections => @contests %>
+    </div>
+
+    <div id="live-score">
+        <% if ENV['RAILS_ENV'] == 'development' %>
+            <!-- VCricket Score Feed Code Start v 3.00 --><script language="JavaScript" type="text/JavaScript" src="http://ifeed.vcricket.com/get_code.aspx?dk=CC8EF9B5BDCF49FAAAA1748410BCC0E1&amp;sc=&amp;sz=180x320"></script><noscript><a href="http://www.vcricket.com/help.aspx?q=java_disable"  target="_blank"><img src="http://images-1.vcricket.com/images/error_java_180x320.gif"  alt="Javascript is disabled." width="180" height="320" border="0" /></a></noscript><!-- Please note this will not work if directly run in browser. --><!-- VCricket Score Feed Code End -->
+        <% else %>
+            <!-- VCricket Score Feed Code Start v 3.00 --><script language="JavaScript" type="text/JavaScript" src="http://ifeed.vcricket.com/get_code.aspx?dk=EA51DCF457B04028A2EA7CC12F597453&amp;sc=&amp;sz=180x320"></script><noscript><a href="http://www.vcricket.com/help.aspx?q=java_disable"  target="_blank"><img src="http://images-1.vcricket.com/images/error_java_180x320.gif"  alt="Javascript is disabled." width="180" height="320" border="0" /></a></noscript><!-- Please note this will not work if directly run in browser. --><!-- VCricket Score Feed Code End -->
+        <% end %>
     </div>
 
     <div id="footer-dashboard">
