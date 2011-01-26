@@ -1,7 +1,7 @@
 <div class="tc-row" style="font-size:20px;padding-top:10px;padding-left:10px;font-weight:bold;">Leader's Board</div>
  
 <% @inviter = User.get_open_contest_inviter %>
-<% contests = Contest.all %>
+<% contests = Contest.find(:all, :order => 'created_at desc') %>
 <% contests.each do |contest| %>
        <% @post = Post.get_open_contest(contest, @inviter) %>
        <% eng = @post.engagements.find(:first, :order => 'totalscore desc') %>         
@@ -19,8 +19,13 @@
                       <span style="float:left;margin-left:5px;">
                           <span style="color:#21519C;"><%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %></span>
                           <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points
-                          <% previous_score = engagement.totalscore %><br/>                          
-                          Winner of <%= @post.subject %></div>
+                          <% previous_score = engagement.totalscore %><br/>
+                          <% if contest.contest_current %>
+                            Leading
+                          <% else %>
+                            Winner of
+                          <% end %>
+                          <%= @post.subject %></div>
                       </span>
                   </div>
               <% end %>
