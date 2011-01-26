@@ -1,7 +1,8 @@
- <div class="tc-row" style="font-size:20px;padding-top:10px;padding-left:10px;font-weight:bold;">Leader's Board</div>
+<div class="tc-row" style="font-size:20px;padding-top:10px;padding-left:10px;font-weight:bold;">Leader's Board</div>
  
 <% @inviter = User.get_open_contest_inviter %>
-<% @contests.each do |contest| %>
+<% contests = Contest.all %>
+<% contests.each do |contest| %>
        <% @post = Post.get_open_contest(contest, @inviter) %>
        <% eng = @post.engagements.find(:first, :order => 'totalscore desc') %>         
        <% if eng && eng.totalscore > 0 %> 
