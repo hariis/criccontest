@@ -1,0 +1,31 @@
+ <div class="tc-row" style="font-size:20px;padding-top:10px;padding-left:10px;font-weight:bold;">Leader's Board</div>
+ 
+<% @inviter = User.get_open_contest_inviter %>
+<% @contests.each do |contest| %>
+       <% @post = Post.get_open_contest(contest, @inviter) %>
+       <% eng = @post.engagements.find(:first, :order => 'totalscore desc') %>         
+       <% if eng && eng.totalscore == 0 %> 
+           <% @post.subject %>
+           
+           <% previous_score = 0 %>
+           <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>               
+              <div class="tc-row" style="height:50px;">
+                  <% if engagement.totalscore >= previous_score %>
+
+                      
+                      <span style="float:left;padding:5px;">
+                          <%= image_tag get_fb_profile_picture(engagement.invitee), :size => "36x32" %>
+                      </span>
+
+                      <span style="float:left;margin-left:5px;">
+                          <span style="color:#21519C;"><%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %></span>
+                          <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points
+                          <% previous_score = engagement.totalscore %><br/>                          
+                          Winner of <%= @post.subject %></div>
+                      </span>
+                  <% end %>
+             </div>
+           <% end %>
+      <% end %>  
+<% end %>
+

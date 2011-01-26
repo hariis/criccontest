@@ -22,9 +22,11 @@
     </div>
 <% end %>
 
+<% if false %>
     <div id="prizes">
           Previous Public Series Winners<br/>will be displayed here
     </div>
+<% end %>
 
     <div id="world-cup-comming-soon">
         World Cup 2011 Series<br/>Many prizes to be won<br/> <span style="color:red">COMING SOON</span>
@@ -34,14 +36,14 @@
         <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F183722284976292%3Fv%3Dpage_getting_started%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=250" scrolling="no" frameborder="0" style="border:medium; overflow:hidden; width:270px; height:250px;" allowTransparency="true"></iframe>
     </div>
 
-<% if true %>
+
     <div id="sponsor">
         <div style="padding-bottom:20px;"><b>Doosra Cricket</b> is looking for sponsors to reward the winners</div>
         <span style="font-size:12px;line-height:1.2em;">For more information contact us at <br/><a href="mailto:doosracricket@gmail.com">doosracricket@gmail.com</a></span>
    </div>
-<% end %>
 
-    <div id="contests-display">
+
+    <div id="display-contests">
         <%= render :partial => 'display_contests', :collections => @contests %>
     </div>
 
@@ -51,6 +53,10 @@
         <% else %>
             <!-- VCricket Score Feed Code Start v 3.00 --><script language="JavaScript" type="text/JavaScript" src="http://ifeed.vcricket.com/get_code.aspx?dk=EA51DCF457B04028A2EA7CC12F597453&amp;sc=&amp;sz=180x320"></script><noscript><a href="http://www.vcricket.com/help.aspx?q=java_disable"  target="_blank"><img src="http://images-1.vcricket.com/images/error_java_180x320.gif"  alt="Javascript is disabled." width="180" height="320" border="0" /></a></noscript><!-- Please note this will not work if directly run in browser. --><!-- VCricket Score Feed Code End -->
         <% end %>
+    </div>
+
+    <div id="display-winners">
+        <%= render :partial => 'display_winners', :collections => @contests %>
     </div>
 
     <div id="footer-dashboard">
