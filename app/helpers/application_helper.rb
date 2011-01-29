@@ -2,11 +2,11 @@
 module ApplicationHelper
   
   def title_tag_line
-    "Doosra Cricket - Compete with friends or world by predicting cricket match results"
+    "Doosra Cricket - Challenge your friends or the world by predicting cricket match results"
   end
   
   def tag_line
-    "Compete with friends or world by predicting match results"
+    "Challenge your friends or the world by predicting match results"
   end
   
   def get_teamname(teamid)

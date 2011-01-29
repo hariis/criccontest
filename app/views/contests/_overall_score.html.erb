@@ -4,22 +4,24 @@
     <% unless @users.empty? %>
       <% rank = 1 %>
       <% @users.each do |user| %>
-         <div class="tc-row">
+        <% if !user.total_score.nil? && user.total_score > 0 %>
+               <div class="tc-row">
 
-              <span style="float:left;">
-                  <div class="tc-row-rank"><%= "#{rank}" %></div>
-              </span>
-              <% rank += 1 %>
-              <span style="float:left;">
-                  <%= image_tag get_fb_profile_picture(user), :size => "36x32" %>
-              </span>
+                    <span style="float:left;">
+                        <div class="tc-row-rank"><%= "#{rank}" %></div>
+                    </span>
+                    <% rank += 1 %>
+                    <span style="float:left;">
+                        <%= image_tag get_fb_profile_picture(user), :size => "36x32" %>
+                    </span>
 
-              <span style="float:left;margin-left:5px;">
-                  <% @display_name = truncate(user.display_name(nil, nil), 20, "...").titleize %>
-                  <span style="color:#21519C;"><%= "#{@display_name}" %></span>       
-                  <div style="font-size:10px;"><%= user.total_score.nil? ? 0 : user.total_score %> points</div>
-              </span> 
-         </div>
+                    <span style="float:left;margin-left:5px;">
+                        <% @display_name = truncate(user.display_name(nil, nil), 20, "...").titleize %>
+                        <span style="color:#21519C;"><%= "#{@display_name}" %></span>       
+                        <div style="font-size:10px;"><%= user.total_score.nil? ? 0 : user.total_score %> points</div>
+                    </span> 
+               </div>
+           <% end %>
        <% end %>
     <%  end %>
 </div>
