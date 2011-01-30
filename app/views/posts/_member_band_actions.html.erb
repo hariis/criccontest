@@ -1,5 +1,6 @@
 <li><%= link_to "My Contests (#{current_user.posts.count})", posts_path if current_user.activated? %></li>
-
+<li><%= link_to "World Cup 2011", world_cup_url %></li>
+<li><%= link_to "Blog", "http://blog.doosracricket.com/" %></li>
 <li><%= link_to "#{image_tag('/images/group.png')} Contacts", contacts_path %></li>
 <li><%= link_to "#{image_tag('/images/user.png')}  #{h current_user.display_name}", :controller => 'users', :action => 'show' %></li>
 <% if current_user.admin? %>

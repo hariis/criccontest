@@ -1,12 +1,17 @@
 <div id="right" style="background:#fff;">
    <% @number_of_participants = @post.engagements.size %>
    <% if @number_of_participants > 10 %>
-       <div id="participants" style="height:375px;overflow:auto;">
+       <div id="participants" style="height:403px;overflow:auto;">
    <% else %>
        <div id="participants">
    <% end %>
  
-  <div class="tc-row" style="font-size:20px;padding-top:12px;font-weight:bold;">Match Standing </div>
+ <div class="tc-row" style="font-size:20px;padding-top:12px;font-weight:bold;height:60px;">Match Standing
+  <div style="font-size:10px;"> 
+     <%= output = get_teamname(@match.firstteam) + " vs " + get_teamname(@match.secondteam) %><br/>
+     <%= @match.description %> @ <%=h @match.venue %><br/>
+     <%= @match.display_match_start_time %></div>
+ </div>
 
  <% viewed_count = 0 %>
     <% unless @post.spectators.empty? %>
