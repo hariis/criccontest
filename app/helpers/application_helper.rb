@@ -31,8 +31,19 @@ module ApplicationHelper
       return "/images/southafrica.png"
     elsif team_name == "Pakistan"
       return "/images/pakistan.png"      
-    else
-      
+    elsif team_name == "Kenya"
+      return "/images/kenya.png"
+    elsif team_name == "Canada"
+      return "/images/canada.png"      
+    elsif team_name == "Zimbabwe"
+      return "/images/zimbabwe.png"      
+    elsif team_name == "Bangladesh"
+      return "/images/bangladesh.png"        
+    elsif team_name == "Ireland"
+      return "/images/ireland.png"      
+    elsif team_name == "Netherlands"
+      return "/images/netherlands.png"      
+    else      
       return "/images/india.png"
     end
   end
