@@ -67,6 +67,7 @@
               <legend style="font-size:150%">Listing Predictions</legend>
               <div id='predictions' style="margin-top:10px;">
                   
+                  <% predicted_user_count = 0 %>
                   <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>               
                     <p>
                         <div id="prediction_details_<%= engagement.id %>">
@@ -74,7 +75,7 @@
                             <span style="color:#21519C;font-weight:bold"><%= selected_user.display_name %>'s prediction:</span> <br/>
                             <% predicition_details = "" %>
                             <% user_predicted = 0 %>
-
+                            
                             <% engagement.spectators.find_by_match_id(@match, :include => :predicitions).predicitions.each do |predicition| %>  
 
                                   <% entry = Entry.find_by_id(predicition.entry_id) %>
@@ -106,7 +107,11 @@
                                   <% end %>                     
                             <% end %>                         
 
-                            <%= "Yet to predict <br/>" if user_predicted < 0 %>
+                            <% if user_predicted < 0 %>
+                                <%= "Yet to predict <br/>" %>
+                            <% else %>
+                                <% predicted_user_count += 1 %>
+                            <% end %>
                         </div>
                         
                         <% if user_predicted > 0 && selected_user.id == @user.id  && !@match.check_if_match_started %>
@@ -121,9 +126,10 @@
                   <% end %>
               </div>
           </fieldset>
-         
-          
        </div>
+          <% if @user.admin? %>
+            <br/>Predicted participants count: <%= predicted_user_count %>
+          <% end %>
     </div>
 <h4 style="border-top: 1px solid rgb(223, 223, 223);"></h4>
 <%= render :partial => 'posts/forum' %>

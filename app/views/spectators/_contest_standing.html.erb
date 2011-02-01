@@ -36,7 +36,21 @@
                             <span style="color:#21519C;"><%= "#{@display_name}" %></span>
                         <% end %>
 
-                        <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points</div>
+                        <% if @user.admin? %>
+                            <% number_of_matches_predicted = 0 %>
+                            <% @contest.matches.each do |match| %>
+                                <% prediction = engagement.spectators.find_by_match_id(match, :include => :predicitions).predicitions.find(:first) %>  
+                                <% number_of_matches_predicted += 1 if prediction.user_predicition != -1 %>
+                            <% end %>                            
+                        <% end %>
+
+    
+                        <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points 
+                            <% if @user.admin? %>
+                                (<%= number_of_matches_predicted %> matches)
+                            <% end %>
+                        </div>
+                        
                     </span> 
 
                     <% if @post.owner.id == @user.id && engagement.invitee.id != @user.id %>
