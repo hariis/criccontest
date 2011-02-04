@@ -8,8 +8,8 @@
 
 <fieldset1>
 <span style="float:left;width:45%;padding:10px;text-align:center;">
-    <table border=1">
-        <tr>
+    <table>
+        <tr class="schedule-header">
           <th>Group A Team</th>	
           <th>P</th>
           <th>W</th>
@@ -20,23 +20,23 @@
           <th>NRR</th>
         </tr>
 
-        <tr>
+        <tr class="schedule">
            
-           <tr> <td style="width:100px;">Australia</td> <% 7.times do %> <td style="width:35px;">0</td> <% end %> </tr>
+           <tr class="schedule"> <td style="width:100px;">Australia</td> <% 7.times do %> <td style="width:35px;">0</td> <% end %> </tr>
            
-           <tr> <td>New Zealand</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Pakistan</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Sri Lanka</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Zimbabwe</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Canada</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Kenya</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>New Zealand</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Pakistan</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Sri Lanka</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Zimbabwe</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Canada</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Kenya</td> <% 7.times do %> <td>0</td> <% end %> </tr>
        </tr>    
     </table>
  </span>
 
 <span style="float:left;width:45%;padding:10px;margin-bottom:20px;text-align:center;">
-    <table border=1>
-        <tr>
+    <table>
+        <tr class="schedule-header">
           <th>Group B Team</th>	
           <th>P</th>
           <th>W</th>
@@ -47,14 +47,14 @@
           <th>NRR</th>
         </tr>
 
-       <tr>
-           <tr> <td style="width:100px;">Bangladesh</td> <% 7.times do %> <td style="width:35px;">0</td> <% end %> </tr>
-           <tr> <td>England</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>India</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>South Africa</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>West Indies</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Ireland</td> <% 7.times do %> <td>0</td> <% end %> </tr>
-           <tr> <td>Netherlands</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+       <tr class="schedule">
+           <tr class="schedule"> <td style="width:100px;">Bangladesh</td> <% 7.times do %> <td style="width:35px;">0</td> <% end %> </tr>
+           <tr class="schedule"> <td>England</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>India</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>South Africa</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>West Indies</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Ireland</td> <% 7.times do %> <td>0</td> <% end %> </tr>
+           <tr class="schedule"> <td>Netherlands</td> <% 7.times do %> <td>0</td> <% end %> </tr>
        </tr>  
     </table>
  </span>
@@ -62,10 +62,10 @@
 
 
 
-<span style="padding:10px;text-align:center">
+<span style="padding:10px;text-align:center;">
 <h2>SCHEDULE</h2>
-    <table border=1>
-        <tr>
+    <table>
+        <tr class="schedule-header">
           <th>Date</th>	
           <th> # , Group</th>
           <th>Match Details</th>
@@ -75,18 +75,18 @@
           <th>D/N</th>	
         </tr>
 
-        <tr>
-          <td style="width:90px;">Feb 19 - Sat</td>
+        <tr class="schedule">
+          <td style="width:90px;">Sat - Feb 19</td>
           <td style="width:150px;">1st Match, Group B</td>
           <td style="width:160px;text-align:left;padding-left:10px;">Bangladesh v India</td>
           <td style="width:90px;">08:30 GMT 14:30 local</td>
           <td style="width:250px;text-align:left;padding-left:10px;">Shere Bangla National Stadium, Mirpur</td>
           <td style="width:85px;text-align:left;padding-left:10px;">Dhaka</td>
-          <td>D/N</td>
+          <td style="width:30px;text-align:left;padding-left:10px;">D/N</td>
         </tr>
 
-        <tr>
-          <td>Feb 20 - Sun</td>
+        <tr class="schedule">
+          <td>Sun - Feb 20</td>
           <td>2nd Match, Group A</td>
           <td style="text-align:left;padding-left:10px;">Kenya v New Zealand</td>
           <td>04:00 GMT 09:30 local</td>
@@ -95,8 +95,8 @@
           <td>---</td>
         </tr>
 
-        <tr>
-          <td>Feb 20 - Sun</td>
+        <tr class="schedule">
+          <td>Sun - Feb 20</td>
           <td>3rd Match, Group A</td>
           <td style="text-align:left;padding-left:10px;">Sri Lanka v Canada</td>
           <td>09:00 GMT 14:30 local</td>
@@ -105,8 +105,8 @@
           <td>D/N</td>
         </tr>
 
-        <tr>
-          <td>Feb 21 - Mon</td>
+        <tr class="schedule">
+          <td>Mon - Feb 21</td>
           <td>4th Match, Group A</td>
           <td style="text-align:left;padding-left:10px;">Australia v Zimbabwe</td>
           <td>09:00 GMT 14:30 local</td>
@@ -114,8 +114,8 @@
           <td style="text-align:left;padding-left:10px;">Ahmedabad</td>
           <td>D/N</td>
         </tr>
-	
-        <tr>
+	                                            
+       <tr class="schedule">
           <td>Feb 22 - Tue</td>
           <td>5th Match, Group B</td>
           <td style="text-align:left;padding-left:10px;">England v Netherlands</td>
@@ -124,6 +124,490 @@
           <td style="text-align:left;padding-left:10px;">Nagpur</td>
           <td>D/N</td>
         </tr>
+
+
+       <tr class="schedule">
+          <td>Wed - Feb 23</td>
+          <td>6th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Kenya v Pakistan</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Mahinda Rajapaksha International Cricket Stadium, Sooriyawewa</td>
+          <td style="text-align:left;padding-left:10px;">Hambantota</td>
+          <td>D/N</td>
+        </tr>
+
+		
+	<tr class="schedule">
+          <td>Thu - Feb 24</td>
+          <td>7th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">South Africa v West Indies</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Feroz Shah Kotla</td>
+          <td style="text-align:left;padding-left:10px;">Delhi</td>
+          <td>D/N</td>
+        </tr>
+
+
+        <tr class="schedule">
+          <td>Fri - Feb 25</td>
+          <td>8th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Australia v New Zealand</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Vidarbha Cricket Association Stadium, Jamtha</td>
+          <td style="text-align:left;padding-left:10px;">Nagpur</td>
+          <td>---</td>
+        </tr>
+
+        <tr class="schedule">
+          <td>Fri - Feb 25</td>
+          <td>9th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Bangladesh v Ireland</td>
+          <td>08:30 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Shere Bangla National Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mirpur</td>
+          <td>D/N</td>
+        </tr>
+
+        <tr class="schedule">
+          <td>Sat - Feb 26</td>
+          <td>10th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Sri Lanka v Pakistan</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+
+
+        <tr class="schedule">
+          <td>Sun - Feb 27</td>
+          <td>11th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">India v England</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">M Chinnaswamy Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Bangalore</td>
+          <td>D/N</td>
+        </tr>
+	
+          
+        <tr class="schedule">
+          <td>Mon - Feb 28</td>
+          <td>12th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Canada v Zimbabwe</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Vidarbha Cricket Association Stadium, Jamtha</td>
+          <td style="text-align:left;padding-left:10px;">Nagpur</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Mon - Feb 28</td>
+          <td>13th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Netherlands v West Indies</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Feroz Shah Kotla</td>
+          <td style="text-align:left;padding-left:10px;">Delhi</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Tue - Mar 1</td>
+          <td>14th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Sri Lanka v Kenya</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Wed - Mar 2</td>
+          <td>15th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">England v Ireland</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">M Chinnaswamy Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Bangalore</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Thu - Mar 3</td>
+          <td>16th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Netherlands v South Africa</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Punjab Cricket Association Stadium, Mohali</td>
+          <td style="text-align:left;padding-left:10px;">Chandigarh</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Thu - Mar 3</td>
+          <td>17th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Canada v Pakistan</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Fri - Mar 4</td>
+          <td>18th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">New Zealand v Zimbabwe</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Sardar Patel Stadium, Motera</td>
+          <td style="text-align:left;padding-left:10px;">Ahmedabad</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Fri - Mar 4</td>
+          <td>19th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Bangladesh v West Indies</td>
+          <td>08:30 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Shere Bangla National Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mirpur</td>
+          <td>D/N</td>
+        </tr>
+	
+          
+        <tr class="schedule">
+          <td>Sat - Mar 5</td>
+          <td>20th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Sri Lanka v Australia</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+	
+          
+        <tr class="schedule">
+          <td>Sun - Mar 6</td>
+          <td>21st Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">England v South Africa</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">MA Chidambaram Stadium, Chepauk</td>
+          <td style="text-align:left;padding-left:10px;">Chennai</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sun - Mar 6</td>
+          <td>22nd Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">India v Ireland</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">M Chinnaswamy Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Bangalore</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Mon - Mar 7</td>
+          <td>23rd Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Canada v Kenya</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Feroz Shah Kotla</td>
+          <td style="text-align:left;padding-left:10px;">Delhi</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Tue - Mar 8</td>
+          <td>24th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">New Zealand v Pakistan</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Pallekele International Cricket Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Kandy</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Wed - Mar 9</td>
+          <td>25th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">India v Netherlands</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Feroz Shah Kotla</td>
+          <td style="text-align:left;padding-left:10px;">Delhi</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Thu - Mar 10</td>
+          <td>26th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Sri Lanka v Zimbabwe</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Pallekele International Cricket Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Kandy</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Fri - Mar 11</td>
+          <td>27th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Ireland v West Indies</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Punjab Cricket Association Stadium, Mohali</td>
+          <td style="text-align:left;padding-left:10px;">Chandigarh</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Fri - Mar 11</td>
+          <td>28th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Bangladesh v England</td>
+          <td>08:30 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Zahur Ahmed Chowdhury Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Chittagong</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sat - Mar 12</td>
+          <td>29th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">India v South Africa</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Vidarbha Cricket Association Stadium, Jamtha</td>
+          <td style="text-align:left;padding-left:10px;">Nagpur</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sun - Mar 13</td>
+          <td>30th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Canada v New Zealand</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Wankhede Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mumbai</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sun - Mar 13</td>
+          <td>31st Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Australia v Kenya</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">M Chinnaswamy Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Bangalore</td>
+          <td>D/N</td>
+        </tr>
+	
+          
+        <tr class="schedule">
+          <td>Mon - Mar 14</td>
+          <td>32nd Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Bangladesh v Netherlands</td>
+          <td>03:30 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Zahur Ahmed Chowdhury Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Chittagong</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Mon - Mar 14</td>
+          <td>33rd Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Pakistan v Zimbabwe</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Pallekele International Cricket Stadium</td>
+          <td style="text-align:left;padding-left:10px;"></td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Tue - Mar 15</td>
+          <td>34th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Ireland v South Africa</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Eden Gardens</td>
+          <td style="text-align:left;padding-left:10px;">Kolkata</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Wed - Mar 16</td>
+          <td>35th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Australia v Canada</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">M Chinnaswamy Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Bangalore</td>
+          <td>D/N</td>
+        </tr>
+	
+         
+        <tr class="schedule">
+          <td>Thu - Mar 17</td>
+          <td>36th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">England v West Indies</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">MA Chidambaram Stadium, Chepauk</td>
+          <td style="text-align:left;padding-left:10px;">Chennai</td>
+          <td>D/N</td>
+        </tr>
+	
+          
+        <tr class="schedule">
+          <td>Fri - Mar 18</td>
+          <td>37th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Ireland v Netherlands</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Eden Gardens</td>
+          <td style="text-align:left;padding-left:10px;">Kolkata</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Fri - Mar 18</td>
+          <td>38th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">New Zealand v Sri Lanka</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Wankhede Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mumbai</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sat - Mar 19</td>
+          <td>39th Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">Bangladesh v South Africa</td>
+          <td>03:30 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Shere Bangla National Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mirpur</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sat - Mar 19</td>
+          <td>40th Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Australia v Pakistan</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sun - Mar 20</td>
+          <td>41st Match, Group A</td>
+          <td style="text-align:left;padding-left:10px;">Kenya v Zimbabwe</td>
+          <td>04:00 GMT 09:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Eden Gardens</td>
+          <td style="text-align:left;padding-left:10px;">Kolkata</td>
+          <td>---</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sun - Mar 20</td>
+          <td>42nd Match, Group B</td>
+          <td style="text-align:left;padding-left:10px;">India v West Indies</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">MA Chidambaram Stadium, Chepauk</td>
+          <td style="text-align:left;padding-left:10px;">Chennai</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Wed - Mar 23</td>
+          <td>Quarter Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC (A1 v B4)</td>
+          <td>08:30 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Shere Bangla National Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mirpur</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Thu - Mar 24</td>
+          <td>Quarter Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC (A2 v B3)</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Sardar Patel Stadium, Motera</td>
+          <td style="text-align:left;padding-left:10px;">Ahmedabad</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Fri - Mar 25</td>
+          <td>Quarter Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC (A3 v B2)</td>
+          <td>08:30 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Shere Bangla National Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mirpur</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sat - Mar 26</td>
+          <td>Quarter Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC (A4 v B1)</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Tue - Mar 29</td>
+          <td>Semi Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">R Premadasa Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Colombo</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Wed - Mar 30</td>
+          <td>Semi Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Punjab Cricket Association Stadium, Mohali</td>
+          <td style="text-align:left;padding-left:10px;">Chandigarh</td>
+          <td>D/N</td>
+        </tr>
+	
+
+        <tr class="schedule">
+          <td>Sat - Apr 2</td>
+          <td>Final</td>
+          <td style="text-align:left;padding-left:10px;">TBC v TBC</td>
+          <td>09:00 GMT 14:30 local</td>
+          <td style="text-align:left;padding-left:10px;">Wankhede Stadium</td>
+          <td style="text-align:left;padding-left:10px;">Mumbai</td>
+          <td>D/N</td>
+        </tr>
+	
+          
 
     </table>
 </span>

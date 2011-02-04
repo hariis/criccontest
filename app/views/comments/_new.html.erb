@@ -2,7 +2,7 @@
     <h2 style="margin-left:10px;">You are replying to </h2>
 <div style="background-color:#e9e2e2;margin:10px;margin-right:20px;padding:5px;">
 
-    <span style="font-size:12px;"> <%= truncate_html(@parent_comment.body, 350) %> </span>
+    <span style="font-size:12px;"> <%= truncate_html(@parent_comment.body, 100) %> </span>
     <span style="color:#0062F6;font-size:10px;"> by <%= @parent_comment.owner.display_name(@post) %></span>
 </div>
 

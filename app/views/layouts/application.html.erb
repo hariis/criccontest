@@ -9,6 +9,20 @@
 
   <title><%= title_tag_line %> </title>
  
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19617071-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+
   <%= stylesheet_link_merged :base %>
 
   <%= javascript_include_merged :proto %>
@@ -375,6 +389,16 @@ html,body {
   text-align:left;
   width:925px;
   border:1px solid #709CB2;
+}
+
+.schedule {
+    background-color:#E8F5FD;
+}
+
+.schedule-header {
+    background-color:#627AAD;
+    color:#fff;
+    font-weight:bold;
 }
 
 </style>
