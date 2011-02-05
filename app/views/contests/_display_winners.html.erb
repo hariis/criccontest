@@ -5,9 +5,7 @@
 <% contests.each do |contest| %>
        <% @post = Post.get_open_contest(contest, @inviter) %>
        <% eng = @post.engagements.find(:first, :order => 'totalscore desc') %>         
-       <% if eng && eng.totalscore > 0 %> 
-           <% @post.subject %>
-           
+       <% if eng && eng.totalscore > 0 %>           
            <% previous_score = 0 %>
            <% @post.engagements.find(:all, :order => 'totalscore desc', :include => :invitee).each do |engagement| %>               
               <% if engagement.totalscore >= previous_score %>
@@ -25,7 +23,7 @@
                           <% else %>
                             Winner of
                           <% end %>
-                          <%= @post.subject %></div>
+                          <%= contest.name %></div>
                       </span>
                   </div>
               <% end %>

@@ -30,7 +30,7 @@
 <% end %>
 
     <div id="world-cup-comming-soon">
-        World Cup 2011 Series<br/>Many prizes to be won<br/> <span style="color:red">COMING SOON on 7th Feb</span>
+        World Cup 2011 Series<br/>Many prizes to be won<br/> <span style="color:red">Prediction contest starts on 7th Feb</span>
     </div>
 
     <div id="facebook-box">                   
@@ -43,9 +43,12 @@
         <span style="font-size:12px;line-height:1.2em;">For more information contact us at <br/><a href="mailto:doosracricket@gmail.com">doosracricket@gmail.com</a></span>
    </div>
 
-
     <div id="display-contests">
         <%= render :partial => 'display_contests', :collections => @contests %>
+    </div>
+
+    <div id="display-winners">
+        <%= render :partial => 'display_winners', :collections => @contests %>
     </div>
 
     <div id="live-score">
@@ -57,12 +60,9 @@
     </div>
 
     <div id="live-news">
-        <!-- Begin Feedzilla news widget Code --><script type='text/javascript' src='http://www.feedzilla.com/tools/swfobject.js'></script><script type='text/javascript'>var flashvars = {id:'undefined',code:'Flash',c:'nw',scroll:'v',prov:'news',cat:'Sports',cat2:'Cricket',width:'180',height:'300',num_articles:'10',show_summaries:'yes',show_sources:'Yes',show_dates:'Yes',title:'',title_size:'14pt',title_bold:'Yes',keywords:'',url:'',headers_size:'14pt',font_size:'10pt',font_family:'Arial',text_alignment:'Left',space:'Yes',titlecolor:'#15aa15',fcolor:'#2200cc',desccolor:'#1b1b1b',sourcecolor:'#008000',datecolor:'#777777',bgcolor:'#ffffff',ref:document.location.href};var params = {scale:'noscale',salign:'lt',bgcolor:'#ffffff'};var attributes = {};swfobject.embedSWF('http://www.feedzilla.com/tools/news-widget.swf', 'Feedzilla_news_widget_undefined', '180', '300', '9.0.0','',flashvars, params, attributes);</script><div align='center' id='Feedzilla_container_undefined' style='text-align:center;width:180px;'><div id='Feedzilla_container2_undefined' style='text-align:center;height:300px;width:180px;border:1px solid #cccccc'><div id='Feedzilla_news_widget_undefined'></div></div><font style='font-size:10px;'><a title='Free news widgets' href='http://www.feedzilla.com' style='text-decoration:none;font-size:10px;'>News widgets</a> and <a title='Free RSS feeds' href='http://www.feedzilla.com/rss.asp' style='text-decoration:none;font-size:10px;'>RSS</a></font></div><!-- End Feedzilla news widget Code -->
+        <h2>Cricket News</h2><!-- Begin Feedzilla news widget Code --><script type='text/javascript' src='http://www.feedzilla.com/tools/swfobject.js'></script><script type='text/javascript'>var flashvars = {id:'undefined',code:'Flash',c:'nw',scroll:'v',prov:'news',cat:'Sports',cat2:'Cricket',width:'540',height:'317',num_articles:'10',show_summaries:'yes',show_sources:'Yes',show_dates:'Yes',title:'',title_size:'14pt',title_bold:'Yes',keywords:'',url:'',headers_size:'14pt',font_size:'10pt',font_family:'Arial',text_alignment:'Left',space:'Yes',titlecolor:'#15aa15',fcolor:'#2200cc',desccolor:'#1b1b1b',sourcecolor:'#008000',datecolor:'#777777',bgcolor:'#ffffff',ref:document.location.href};var params = {scale:'noscale',salign:'lt',bgcolor:'#ffffff'};var attributes = {};swfobject.embedSWF('http://www.feedzilla.com/tools/news-widget.swf', 'Feedzilla_news_widget_undefined', '540', '317', '9.0.0','',flashvars, params, attributes);</script><div align='center' id='Feedzilla_container_undefined' style='text-align:center;width:540px;'><div id='Feedzilla_container2_undefined' style='text-align:center;height:317px;width:540px;border:1px solid #cccccc'><div id='Feedzilla_news_widget_undefined'></div></div><font style='font-size:10px;'><a title='Free news widgets' href='http://www.feedzilla.com' style='text-decoration:none;font-size:10px;'>News widgets</a> and <a title='Free RSS feeds' href='http://www.feedzilla.com/rss.asp' style='text-decoration:none;font-size:10px;'>RSS</a></font></div><!-- End Feedzilla news widget Code -->
     </div>
 
-    <div id="display-winners">
-        <%= render :partial => 'display_winners', :collections => @contests %>
-    </div>
 
     <div id="footer-dashboard">
         <%= render 'layouts/footer' %>
