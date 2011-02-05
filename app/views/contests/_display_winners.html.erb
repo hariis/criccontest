@@ -23,7 +23,7 @@
                           <% else %>
                             Winner of
                           <% end %>
-                          <%= contest.name %></div>
+                          <%= truncate(contest.name, 30, "...") %></div>
                       </span>
                   </div>
               <% end %>
