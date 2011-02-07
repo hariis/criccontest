@@ -49,6 +49,7 @@
       <% else %>
           <% if @readonlypost %>
               <li><%= link_to "World Cup 2011#{image_tag 'new.png'}", world_cup_url %></li>  
+              <li><%= link_to "Prizes#{image_tag 'new.png'}", prize_url %></li>  
               <li><%= link_to "Blog#{image_tag 'new.png'}", "http://blog.doosracricket.com/" %></li>
               <li><%= link_to "Register", new_user_path %> </li>
               <li><%= link_to "Login", login_path %></li>    
@@ -291,6 +292,15 @@ html,body {
     background-color:#627AAD;
     color:#fff;
     font-weight:bold;
+}
+
+#header ul li a, #wide-header ul li a {
+    color:#2D392D;
+    text-decoration:none;
+    padding:0 13px;
+    font-size:14px;
+    font-weight:bold;
+    -moz-border-radius:10px;
 }
 
 </style>
