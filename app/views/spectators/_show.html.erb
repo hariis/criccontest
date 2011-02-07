@@ -82,34 +82,37 @@
                                   <% user_predicted += predicition.user_predicition %>
 
                                   <% if entry.name == 'winner' || entry.name == 'toss' %>
-                                      <%= output = entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != -1 %>
+                                      <%= output = entry.name.capitalize + ": " + Team.find_by_id(predicition.user_predicition).teamname + "<br/>" if predicition.user_predicition != -1 && (selected_user.id == @user.id || @match.check_if_match_started) %>
                                       <% predicition_details << output.to_s %>
                                   <% end %>
 
                                   <% if entry.name == 'ts_firstteam' %>
-                                      <%= output = "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                      <%= output = "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 && (selected_user.id == @user.id || @match.check_if_match_started) %>
                                       <% predicition_details << output.to_s %>
                                   <% end %>
 
                                   <% if entry.name == 'ts_secondteam' %>
-                                      <%= output = "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                      <%= output = "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 && (selected_user.id == @user.id || @match.check_if_match_started) %>
                                       <% predicition_details << output.to_s %>
                                   <% end %>
 
                                   <% if entry.name == 'win_margin_wicket' %>
-                                      <%= output = "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <%= output = "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 && (selected_user.id == @user.id || @match.check_if_match_started) %>
                                       <% predicition_details << output.to_s %>
                                   <% end %>
 
                                   <% if entry.name == 'win_margin_score' %>
-                                      <%= output = "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <%= output = "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 && (selected_user.id == @user.id || @match.check_if_match_started) %>
                                       <% predicition_details << output.to_s %>
-                                  <% end %>                     
+                                  <% end %>
                             <% end %>                         
-
+                            
                             <% if user_predicted < 0 %>
-                                <%= "Yet to predict <br/>" %>
+                                <span style="color:red;"><%= "Yet to predict <br/>" %></span>                            
                             <% else %>
+                                <% if selected_user.id != @user.id && !@match.check_if_match_started %>
+                                    <span style="color:#038819;"><%= "Prediction will be displayed once the match begin <br/>" %></span>
+                                <% end %>
                                 <% predicted_user_count += 1 %>
                             <% end %>
                         </div>
@@ -127,9 +130,9 @@
               </div>
           </fieldset>
        </div>
-          <% if @user.admin? %>
-            <br/>Predicted participants count: <%= predicted_user_count %>
-          <% end %>
+          
+       <br/><span style="margin-left:10px;font-weight:bold;">Predicted participants count: <%= predicted_user_count %></span>
+          
     </div>
 <h4 style="border-top: 1px solid rgb(223, 223, 223);"></h4>
 <%= render :partial => 'posts/forum' %>
