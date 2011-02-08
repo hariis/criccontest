@@ -18,10 +18,14 @@
           <% end %>
           
           <span style="font-size:12px;"><%= link_to "#{contest.matches.count} matches", contest %></span>
-          <span style="color:green;font-size:12px;">| <%= @post.engagements.count %> participants</span>
+          <% if contest.id == 10 %>
+            <span style="font-size:12px;">| <%= link_to "schedule", world_cup_url %></span>
+            <span style="font-size:12px;">| <%= link_to "prizes", prize_url  %></span>
+          <% end %>
+          | <span style="color:green;font-size:12px;"> <%= @post.engagements.count %> participants</span>
 
           <% if current_user && current_user.admin? %>
-             <span style="color:green;font-size:12px;">| <%= contest.posts.count %> series currently running</span>
+             | <span style="color:green;font-size:12px;"> <%= contest.posts.count %> series currently running</span>
           <% end %>
 
           <% if current_user && current_user.admin? && current_user.admin_user? %>

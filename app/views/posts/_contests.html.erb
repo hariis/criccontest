@@ -1,16 +1,25 @@
 <div id="left" style="margin-top:18px;background:#fff;"> 
     <% @number_of_matches = @contest.matches.size %>
+    
     <% if @number_of_matches > 5 %>
         <div id="participants-overflow">
             <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
-                <%= link_to "#{@number_of_matches} matches", @contest %>
+                <% if @contest.id == 10 %> 
+                    <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
+                <% else %>
+                    <%= link_to "#{@number_of_matches} matches", @contest %>
+                <% end %>                
             </div>
             <%= render :partial => 'match', :collection => @contest.matches %>      
         </div>    
     <% else %>
         <div id="participants">
             <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
-                <%= link_to "#{@number_of_matches} matches", @contest %>
+                <% if @contest.id == 10 %> 
+                    <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
+                <% else %>
+                    <%= link_to "#{@number_of_matches} matches", @contest %>
+                <% end %>                
             </div>
             <%= render :partial => 'match', :collection => @contest.matches %>      
         </div>

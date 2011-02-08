@@ -491,7 +491,7 @@ class PostsController < ApplicationController
       @comments = Comment.all
       @members = User.find_by_sql "select users.id,email,first_name,last_name from users,user_roles WHERE users.id = user_roles.user_id AND role_id = 5;"
       @users_member = User.find_by_sql "select id from user_roles WHERE role_id = 5;"
-      @users = User.all
+      @users = User.find(:all, :order => 'created_at asc')
     else
       redirect_to root_path
     end

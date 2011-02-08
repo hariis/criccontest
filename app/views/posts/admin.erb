@@ -47,9 +47,9 @@
       <% end %>
     </table>  
 
-    <% @users.each do |user| %>
-      <% user.email %>
-    <% end %><br/>
+    <br/><% @users.each do |user| %>
+      <%= user.email %>;
+    <% end %><br/><br/>
     
     <table border=1>
       <tr>

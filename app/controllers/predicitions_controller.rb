@@ -97,6 +97,10 @@ class PredicitionsController < ApplicationController
       end
     end 
 
+     if !@match.check_if_match_started
+        predicition_details = "Prediction will be displayed once the match begin"
+     end
+    
     if prediction_count == 6 && predicition_details.size > 0
         Predicition.predicition_notification(@engagement.post_id, @match, @user_name, predicition_details)
     end
