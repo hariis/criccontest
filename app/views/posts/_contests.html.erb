@@ -1,7 +1,7 @@
 <div id="left" style="margin-top:18px;background:#fff;"> 
     <% @number_of_matches = @contest.matches.size %>
     <% if @number_of_matches > 5 %>
-        <div id="participants" style="height:662px;overflow:auto;">
+        <div id="participants-overflow">
             <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
                 <%= link_to "#{@number_of_matches} matches", @contest %>
             </div>
