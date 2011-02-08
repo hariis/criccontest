@@ -8,7 +8,8 @@ If you clicked on the link from your email, please try copying the pasting the l
 
 <% else %>  
 <div id="home-content">
-
+  <%= render :partial => 'contests' %>
+  
   <%= render :partial => 'spectators/show' %>
   <%= render :partial => 'spectators/display_winner' %>
   
@@ -19,7 +20,7 @@ If you clicked on the link from your email, please try copying the pasting the l
   <%= render :partial => 'spectators/contest_standing' %>
   <%= render :partial => 'spectators/match_standing' %>
   
-  <%= render :partial => 'contests' %>
+
 
   
   
