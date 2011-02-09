@@ -48,7 +48,7 @@
     </table>  
 
     <br/><% @users.each do |user| %>
-      <%= user.email %>;
+      <%= user.email %>, <%= user.first_name.capitalize %>, <%= user.last_name.capitalize %><br/>
     <% end %><br/><br/>
     
     <table border=1>
