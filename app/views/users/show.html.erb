@@ -5,7 +5,7 @@
 
 <fieldset>
     <p>
-    <b>Photo: </b><%= image_tag @user.avatar.url(:thumb) %>
+    <b>Photo: </b><%= image_tag get_fb_profile_picture(@user), :size => "36x32" %>
     </p>
 
     <p>

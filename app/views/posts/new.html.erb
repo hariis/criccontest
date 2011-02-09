@@ -1,4 +1,4 @@
-<h2 style="margin-left:20px;"><%= @contest.name %>: Start a Contest</h2>
+<h2 style="margin-left:20px;">Start a Private Contest to play with your friends<br/><br/><%= @contest.name %></h2>
 
 <% form_for([@contest, @post] , :html => { :multipart => true }) do |f| %>
   <%= f.error_messages :header_message => "Invalid Post!", :message => "Please address the following fields:", :header_tag => :h3 %>
