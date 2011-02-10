@@ -77,7 +77,8 @@ default_url_options[:host] = "www.doosracricket.com"
     recipients    participant.email
     body          :match_url => DOMAIN + "posts/show?pid=#{post.unique_id}&mid=#{match.unique_id}&uid=#{participant.unique_id}", :post => post,
                   :post_url  => DOMAIN + "posts/show?pid=#{post.unique_id}&uid=#{participant.unique_id}", :post => post,                 
-                  :user_name => user_name, :match => match, :predicition_details => predicition_details
+                  :user_name => user_name, :match => match, :predicition_details => predicition_details,
+                  :first_team => get_teamname(match.firstteam), :second_team => get_teamname(match.secondteam)
   end
   
   protected
@@ -87,5 +88,9 @@ default_url_options[:host] = "www.doosracricket.com"
       @subject     = ""
       @sent_on     = Time.zone.now
       @content_type = "text/html"
+    end
+    
+    def get_teamname(teamid)
+      Team.find_by_id(teamid).teamname
     end
   end
