@@ -54,7 +54,7 @@
    
                 <span class="button" style="float:right;">
                     <% if predicition && predicition.user_predicition > 0 %>
-                        <%= facebox_link_to 'Change Predictions', :url => @match.get_url_for(@eng, 'predicitions') %>
+                        <%= facebox_link_to 'Update Predictions', :url => @match.get_url_for(@eng, 'predicitions') %>
                     <% else %>
                         <%= facebox_link_to 'Cast Predictions', :url => @match.get_url_for(@eng, 'predicitions') %>
                     <% end %>

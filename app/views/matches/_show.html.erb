@@ -9,5 +9,7 @@
   <b>Result:</b> <span style="color:#038819;"> <%=h match.match_result %> </span>
 <% end %>
 
-<% link_to 'Edit', edit_match_path(match) %>
-<% link_to 'Back', matches_path %>
+<% if current_user && current_user.admin? && current_user.admin_user? %>
+    <br/><%= link_to 'Edit', edit_contest_match_path(@contest, match) %>
+    <% link_to 'Back', matches_path %>
+<% end %>
