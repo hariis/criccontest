@@ -27,7 +27,12 @@
         <% if @readonlypost %>
               <%= facebox_link_to 'Cast / Change Predictions', :url => @post.get_readonly_url_with_match_id(match, 'predicitions') %>
         <% else %>
-              <%= facebox_link_to 'Cast / Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %>
+            <% predicition = @eng.spectators.find_by_match_id(match, :include => :predicitions).predicitions.find(:first) %>
+            <% if predicition && predicition.user_predicition > 0 %>
+                <%= facebox_link_to 'Change Predictions', :url => match.get_url_for(@eng, 'predicitions') %>
+            <% else %>
+                <%= facebox_link_to 'Cast Predictions', :url => match.get_url_for(@eng, 'predicitions') %>
+            <% end %>           
         <% end %>
       <% end %>
     </span>  
