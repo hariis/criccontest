@@ -27,6 +27,10 @@ class Comment < ActiveRecord::Base
     DOMAIN + "comments/new" + "?pid=#{post.unique_id};uid=#{user.unique_id};pcid=#{id}"
   end
 
+  def get_url_for_destroy_comment(post,user)
+    DOMAIN + "comments/delete" + "?pid=#{post.unique_id};uid=#{user.unique_id};id=#{id}"
+  end
+  
   def touch_post    
     post.update_attribute(:updated_at, self.updated_at)
   end

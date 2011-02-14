@@ -23,6 +23,11 @@
       <span style="float:left;clear:left;">
           <%= link_to_remote "#{image_tag("comment_add.png")} reply",  :url => comment.get_url_for_new_comment(@post, @user) %>
       </span>
+      <% if current_user && current_user.admin? %>
+        <span style="clear:both;float:right;">
+            <%= link_to "[X]", comment, :pid => @post.unique_id, :uid => @user.unique_id, :id => comment.id, :method => :delete %>
+        </span>
+      <% end %>     
   <% end %>
    
   <div id="children_for_<%= comment.id %>">

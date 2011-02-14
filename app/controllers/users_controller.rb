@@ -45,7 +45,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = current_user
+    #@user = current_user
+    if params[:id] && current_user && current_user.admin?
+      @user = User.find_by_unique_id(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   # POST /users
@@ -137,8 +142,16 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = current_user    
-    assign_user_object
+    #@user = current_user
+    if params[:id] && current_user && current_user.admin?
+      @user = User.find(params[:id])
+      @user.first_name = params[:user][:first_name]
+      @user.last_name = params[:user][:last_name]
+    else
+      @user = current_user
+      assign_user_object
+    end
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
         #flash[:notice] = "Successfully updated profile."

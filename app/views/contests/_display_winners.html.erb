@@ -23,7 +23,9 @@
                           <% else %>
                             Winner of
                           <% end %>
-                          <%= truncate(contest.name, 30, "...") %></div>
+                          <% @inviter = User.get_open_contest_inviter %>
+                          <% @readonly_url = @post.get_readonly_url(@inviter) %>
+                          <%= link_to "#{truncate(contest.name, 25, '...')}", @readonly_url %></div>
                       </span>
                   </div>
               <% end %>

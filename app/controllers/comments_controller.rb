@@ -166,11 +166,14 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.xml
   def destroy
+    store_location
     @comment = Comment.find(params[:id])
-    @comment.destroy if @comment.owner == @user && @comment.sticky?
+    #@comment.destroy if @comment.owner == @user && @comment.sticky?
+    @comment.destroy if current_user && current_user.admin?
 
     respond_to do |format|
-      format.html { redirect_to(@post, @comment) }
+      #format.html { redirect_to(@post, @comment) }
+      format.html { redirect_back_or_default(comment_path) }
       format.xml  { head :ok }
       format.js {
         render :update do |page|
