@@ -28,7 +28,7 @@
 <fieldset style="clear:both;">
     <% if @contest.matches.size > 0 %>
         <legend><b><span style="font-size:140%">Listing Matches</span></b></legend><br/>
-        <%= render :partial => 'match', :collection => @contest.matches %><br/>
+        <%= render :partial => 'match', :collection => @contest.matches.find(:all, :order => 'date_time asc') %><br/>
     <% end %>    
 </fieldset>
 
