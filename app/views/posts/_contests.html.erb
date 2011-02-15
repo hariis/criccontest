@@ -10,7 +10,7 @@
                     <%= link_to "#{@number_of_matches} matches", @contest %>
                 <% end %>                
             </div>
-            <%= render :partial => 'match', :collection => @contest.matches %>      
+            <%= render :partial => 'match', :collection => @contest.matches.find(:all, :order => 'date_time asc') %>
         </div>    
     <% else %>
         <div id="participants">
@@ -21,7 +21,7 @@
                     <%= link_to "#{@number_of_matches} matches", @contest %>
                 <% end %>                
             </div>
-            <%= render :partial => 'match', :collection => @contest.matches %>      
+            <%= render :partial => 'match', :collection => @contest.matches.find(:all, :order => 'date_time asc') %>      
         </div>
     <% end %>     
 </div>

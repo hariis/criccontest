@@ -7,6 +7,6 @@
         <% end %>
         
         <span style="font-size:12px;"><%= @contest.matches.size %> matches </span>
-        <%= render :partial => 'posts/match', :collection => @contest.matches %>
+        <%= render :partial => 'posts/match', :collection => @contest.matches.find(:all, :order => 'date_time desc') %>
     </div>
 </div>
