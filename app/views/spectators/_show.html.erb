@@ -22,7 +22,7 @@
 <% match_details = "My prediction on http://doosracricket.com/ for the match\n" %>
 <div id="post-content" style="padding-bottom:30px;">
     <div id="actual-post-content">
-        <div id="display-predicition">
+        <div id="display-match-result">
           <fieldset style="margin-bottom:15px;">
               <div id="parent-post" style="padding-bottom:10px;">
 
@@ -65,7 +65,8 @@
           <fieldset>
                <%= render :partial => 'spectators/result' %>
           </fieldset>
-
+        </div>
+        <div id="display-predicition">
           <fieldset>
               <legend style="font-size:150%">Listing Predictions</legend>
               <div id='predictions' style="margin-top:10px;">

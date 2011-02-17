@@ -94,11 +94,12 @@
 
           <% if @post.allow_others_to_invite || @post.owner.id == current_user.id %>
               <% @inviter = User.get_open_contest_inviter %>
-              <% if @contest.contest_current == true %>       
+              <% if @contest.contest_current == true %>
+                <span class='button' style="float:right;"><%= link_to 'Start Private Contest', new_contest_post_path(@contest) %></span>                
                 <% if @post.owner.id != @inviter.id || current_user && current_user.admin? %>
                       <span class='button' style="float:right;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Invite Friends",  :url => @post.get_url_for(@user, 'send_invites') %></span>        
                 <% end %>
-                <span class='button' style="float:right;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></span>
+                <span class='button' style="float:right;"><%= image_tag "group_add.png" %> <%= facebox_link_to "Share Open Invites",  :url => @post.get_url_for(@user,'share_open_invites') %></span>                
               <% end %>
           <% end %>
       <% end %>
@@ -301,6 +302,16 @@ html,body {
     font-size:14px;
     font-weight:bold;
     -moz-border-radius:10px;
+}
+
+#display-predicition {
+    height:240px;
+    overflow:auto;
+}
+
+#display-match-result {
+    height:305px;
+    overflow:auto;
 }
 
 </style>
