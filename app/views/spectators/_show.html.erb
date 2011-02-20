@@ -22,7 +22,11 @@
 <% match_details = "My prediction on http://doosracricket.com/ for the match\n" %>
 <div id="post-content" style="padding-bottom:30px;">
     <div id="actual-post-content">
-        <div id="display-match-result">
+        <% if @match.check_if_match_started %>
+            <div id="display-match-result">
+        <% else %>
+            <div id="display-match-result1">
+        <% end %>
           <fieldset style="margin-bottom:15px;">
               <div id="parent-post" style="padding-bottom:10px;">
 
