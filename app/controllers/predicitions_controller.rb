@@ -24,71 +24,75 @@ class PredicitionsController < ApplicationController
   #-----------------------------------------------------------------------------------------------------
   def user_predicition
     #@user_name = Engagement.find_by_id(@spectator.engagement_id).invitee.display_name
-    @user_name = @engagement.invitee.display_name
-    
-    predicition_details = ""
-    prediction_count = 0
-    predicition_details << "<span style='color:#21519C;font-weight:bold'> #{@user_name}'s prediction: </span><br/>"
-    
-    @category.entries.each do |entry|
-        @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
-        
-        if entry.name == 'winner'
-            @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1
-            if params[:winner]
-                prediction_count += 1
-                predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
+    if !@match.check_if_match_started
+        @user_name = @engagement.invitee.display_name
+
+        predicition_details = ""
+        prediction_count = 0
+        predicition_details << "<span style='color:#21519C;font-weight:bold'> #{@user_name}'s prediction: </span><br/>"
+
+        @category.entries.each do |entry|
+            @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
+
+            if entry.name == 'winner'
+                @predicition_record.user_predicition = params[:winner] ? params[:winner] : -1
+                if params[:winner]
+                    prediction_count += 1
+                    predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
+                end
             end
+
+            if entry.name == 'toss'
+                @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1
+                if params[:toss]
+                    prediction_count += 1
+                    predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
+                end
+            end
+
+            if entry.name == 'ts_firstteam'
+                @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1
+                if params[:ts_firstteam]
+                    prediction_count += 1
+                    predicition_details << "Total Score #{get_teamname(@match.firstteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                end
+            end
+
+            if entry.name == 'ts_secondteam'
+                @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1
+                if  params[:ts_secondteam]
+                    prediction_count += 1
+                    predicition_details << "Total Score #{get_teamname(@match.secondteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                end
+            end            
+
+            if entry.name == 'win_margin_wicket'
+                @predicition_record.user_predicition = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1
+                if params[:win_margin_wicket]
+                    prediction_count += 1
+                    predicition_details << "Win Margin Wicket: #{Predicition::WIN_MARGIN_WICKET[@predicition_record.user_predicition]} <br/>"
+                end
+            end
+
+            if entry.name == 'win_margin_score'
+                @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1
+                if params[:win_margin_score]
+                    prediction_count += 1
+                    predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE[@predicition_record.user_predicition]} <br/>"
+                end
+            end
+
+            @predicition_record.save
         end
-        
-        if entry.name == 'toss'
-            @predicition_record.user_predicition = params[:toss] ? params[:toss] : -1
-            if params[:toss]
-                prediction_count += 1
-                predicition_details << "#{entry.name.capitalize}: #{Team.find_by_id(@predicition_record.user_predicition).teamname} <br/>"
-            end
-        end
-        
-        if entry.name == 'ts_firstteam'
-            @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1
-            if params[:ts_firstteam]
-                prediction_count += 1
-                predicition_details << "Total Score #{get_teamname(@match.firstteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
-            end
-        end
-        
-        if entry.name == 'ts_secondteam'
-            @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1
-            if  params[:ts_secondteam]
-                prediction_count += 1
-                predicition_details << "Total Score #{get_teamname(@match.secondteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
-            end
-        end            
-        
-        if entry.name == 'win_margin_wicket'
-            @predicition_record.user_predicition = params[:win_margin_wicket] ? params[:win_margin_wicket] : -1
-            if params[:win_margin_wicket]
-                prediction_count += 1
-                predicition_details << "Win Margin Wicket: #{Predicition::WIN_MARGIN_WICKET[@predicition_record.user_predicition]} <br/>"
-            end
-        end
-        
-        if entry.name == 'win_margin_score'
-            @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1
-            if params[:win_margin_score]
-                prediction_count += 1
-                predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE[@predicition_record.user_predicition]} <br/>"
-            end
-        end
-        
-        @predicition_record.save
     end
     
     render :update do |page|
       if current_user && current_user.admin? && current_user.admin_user?
         page.visual_effect :blind_up, 'facebox'
       else
-        if prediction_count != 6
+        if @match.check_if_match_started
+          page.replace_html "prediction-status", "Timeline for predicting this match is over</b>."
+        elsif prediction_count != 6
            page.replace_html "prediction-status", "It seems that are missing few predictions.<br/> Please add your input for all the options."
         else
            page.replace_html "prediction_details_#{@engagement.id}", predicition_details           

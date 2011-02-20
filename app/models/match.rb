@@ -36,7 +36,7 @@ class Match < ActiveRecord::Base
   #end
   
   def check_if_match_started
-    Time.now.utc > date_time
+    Time.now.utc + 30.minutes > date_time
   end
   
   def display_match_start_time
