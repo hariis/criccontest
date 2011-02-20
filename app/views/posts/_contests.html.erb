@@ -1,27 +1,82 @@
+<script type="text/javascript">
+        $j(function(){
+           $j('#tabs').tabs();
+      });
+ </script>
+<style type="text/css">
+  a.join-link, a.join-link:hover, a.join-link:visited{
+    color: red;
+    margin-left1:10px;
+}
+</style>
+<br/>
+
+
 <div id="left" style="margin-top:18px;background:#fff;"> 
-    <% @number_of_matches = @contest.matches.size %>
-    
-    <% if @number_of_matches > 3 %>
-        <div id="participants" style="height:662px;overflow:auto;">
-            <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
-                <% if @contest.id == 10 %> 
-                    <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
-                <% else %>
-                    <%= link_to "#{@number_of_matches} matches", @contest %>
-                <% end %>                
-            </div>
-            <%= render :partial => 'match', :collection => @contest.matches.find(:all, :order => 'date_time asc') %>
-        </div>    
-    <% else %>
-        <div id="participants">
-            <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
-                <% if @contest.id == 10 %> 
-                    <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
-                <% else %>
-                    <%= link_to "#{@number_of_matches} matches", @contest %>
-                <% end %>                
-            </div>
-            <%= render :partial => 'match', :collection => @contest.matches.find(:all, :order => 'date_time asc') %>      
+    <div id="tabs" style="border:none;padding:0em;">
+        <ul>
+            <span style="font-size:80%;">
+                <li><a href="#upcoming-matches">Upcoming</a></li>
+                <li><a href="#past-matches">Past Matches</a></li>
+            </span>
+        </ul>
+
+        <div id='upcoming-matches' style="padding:0em 0em;"> 
+            <% matches = @contest.matches.find(:all, :conditions => ['date_time > ?', Time.now.utc]) %>
+            <% @number_of_matches = matches.size %>
+
+            <% if @number_of_matches > 3 %>
+                <div id="participants" style="height:662px;overflow:auto;">
+                    <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
+                        <% if @contest.id == 10 %> 
+                            <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
+                        <% else %>
+                            <%= link_to "#{@number_of_matches} matches", @contest %>
+                        <% end %>                
+                    </div>
+                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time > ?', Time.now.utc], :order => 'date_time asc') %>
+                </div>    
+            <% else %>
+                <div id="participants">
+                    <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
+                        <% if @contest.id == 10 %> 
+                            <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
+                        <% else %>
+                            <%= link_to "#{@number_of_matches} matches", @contest %>
+                        <% end %>                
+                    </div>
+                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time > ?', Time.now.utc], :order => 'date_time asc') %>      
+                </div>
+            <% end %>     
         </div>
-    <% end %>     
+
+        <div id='past-matches' style="padding:0em 0em;"> 
+            <% matches = @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc]) %>
+            <% @number_of_matches = matches.size %>
+
+            <% if @number_of_matches > 3 %>
+                <div id="participants" style="height:662px;overflow:auto;">
+                    <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
+                        <% if @contest.id == 10 %> 
+                            <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
+                        <% else %>
+                            <%= link_to "#{@number_of_matches} matches", @contest %>
+                        <% end %>                
+                    </div>
+                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc], :order => 'date_time asc') %>
+                </div>    
+            <% else %>
+                <div id="participants">
+                    <div class="tc-row1" style="font-weight:bold;color:#21519C;border-bottom:1px solid #709CB2;"><% @post.subject %>
+                        <% if @contest.id == 10 %> 
+                            <%= link_to "#{@number_of_matches} out of 49 matches", @contest %>
+                        <% else %>
+                            <%= link_to "#{@number_of_matches} matches", @contest %>
+                        <% end %>                
+                    </div>
+                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc], :order => 'date_time asc') %>      
+                </div>
+            <% end %>     
+        </div>
+    </div>  
 </div>
