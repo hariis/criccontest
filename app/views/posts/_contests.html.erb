@@ -62,7 +62,7 @@
                             <%= link_to "#{@number_of_matches} matches", @contest %>
                         <% end %>                
                     </div>
-                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc], :order => 'date_time asc') %>
+                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc], :order => 'date_time desc') %>
                 </div>    
             <% else %>
                 <div id="participants">
@@ -73,7 +73,7 @@
                             <%= link_to "#{@number_of_matches} matches", @contest %>
                         <% end %>                
                     </div>
-                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc], :order => 'date_time asc') %>      
+                    <%= render :partial => 'match', :collection => @contest.matches.find(:all, :conditions => ['date_time <= ?', Time.now.utc], :order => 'date_time desc') %>      
                 </div>
             <% end %>     
         </div>
