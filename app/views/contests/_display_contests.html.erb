@@ -9,7 +9,11 @@
     <fieldset style="padding:10px;-moz-border-radius:6px;background:#FFEFC6;">
        <% @post = Post.get_open_contest(contest, @inviter) %>
        <% @match = Match.get_next_scheduled_match(contest) %>
-
+          
+          <% if contest.id == 10 %>
+         <span style="float:left;margin-right:20px;"><%= image_tag "2011-world-cup.jpg", :size => "60x80" %></span>
+          <% end %>
+          
           <% @readonly_url = @post.get_readonly_url(@inviter) %>
           <span style="font-size:22px;"><%= link_to h(contest.name), @readonly_url %></span><br/>
           

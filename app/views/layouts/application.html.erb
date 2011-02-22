@@ -97,7 +97,13 @@ tinyMCE.init(tinymce_advanced_options);
     <br/><br/><br/>
     <div class="banner" style="height1:33px; padding:5px 20px 7px 10px;">
        <%= tag_line %>
-    </div>  
+    
+    <% if controller.action_name != 'dashboard' %>
+        <span style="float:right;">
+            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2F%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;layout=standard&amp;show_faces=false&amp;width=300&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:35px;" allowTransparency="true"></iframe>
+        </span>
+    <% end %> 
+</div>  
  
 
 </div>
@@ -113,6 +119,8 @@ tinyMCE.init(tinymce_advanced_options);
         </script>
     </span>
  <% end %> 
+
+
 
 <% if flash[:notice] %>
   <div id="flash-notice">
@@ -319,9 +327,9 @@ a {
     left:640px;
     width:220px;
     height: 250px;
-    top1:440px;
+    top:709px;
     top1:910px;
-    top:802px;
+    top1:802px;
     background1: #44accf;
     background1: #FFEFC6;
     text-align:center;
@@ -336,8 +344,8 @@ a {
     width:180px;
     width:540px;
     height:300px;
-    top1:910px;
-    top:803px;
+    top:710px;
+    top1:803px;
     background1: #44accf;
     background1: #FFEFC6;
     text-align:center;
@@ -350,8 +358,8 @@ a {
     position:absolute;
     clear:both;
     left:870px;
-    top:957px;
-    top1:780px;
+    top1:957px;
+    top:864px;
     width:269px;
     background:#fff;
     border:1px solid #709CB2;
@@ -362,7 +370,7 @@ a {
 
 #footer-dashboard {
     position:absolute;
-    top:1200px;
+    top:1100px;
     text-align:center;
     width:710px;
     clear:both;

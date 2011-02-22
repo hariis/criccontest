@@ -1,6 +1,7 @@
 <div id="home-content">
     <div id="dashboard-image"><% image_tag "cricket8.jpg", :size => "440x253" %></div>
-    <div id="dashboard-image"><%= image_tag "world_cup_logos.jpg", :size => "440x280" %></div>
+    <div id="dashboard-image"><%= image_tag "world_cup_logos.jpg", :size => "280x280" %>
+    <%= image_tag "world_cup_mascot.jpg", :size => "145x155" %></div>
     <div id="whatisit-text">
         <div class="blurb_about" style="padding-bottom:15px;margin-top:10px;">Doosra Cricket</div>
             Predict, Discuss, Win and <br/>
@@ -32,10 +33,11 @@
       <b>ICC World Cup 2011 Series</b><br/><span style="color:red;font-weight:bold;">56 <a href="http://doosracricket.com/prizes">prizes</a>, one every match </span><br/> <span style="font-size:12px;"><a href="http://doosracricket.com/prizes#special_offer">Share</a> with friends and get additional credits</span>                                                                                                                                    
     </div>
 
+<% if true %>
     <div id="facebook-box">                   
-        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F183722284976292%3Fv%3Dpage_getting_started%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=250" scrolling="no" frameborder="0" style="border:medium; overflow:hidden; width:270px; height:250px;" allowTransparency="true"></iframe>
+        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FDoosra-Cricket%2F183722284976292%3Fv%3Dpage_getting_started%23%21%2Fpages%2FDoosra-Cricket%2F183722284976292&amp;width=270&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=160" scrolling="no" frameborder="0" style="border:medium; overflow:hidden; width:270px; height:160px;" allowTransparency="true"></iframe>
     </div>
-
+<% end %>
 
     <div id="sponsor">
         <div style="padding-bottom:20px;"><b>Doosra Cricket</b> is looking for sponsors to reward the winners</div>
