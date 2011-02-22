@@ -138,8 +138,8 @@
           </fieldset>
        </div>
           
-       <br/><span style="margin-left:10px;font-weight:bold;">Predicted participants count: <%= predicted_user_count %></span>
        <% if @user.admin? %>
+         <br/><span style="margin-left:10px;font-weight:bold;">Predicted participants count: <%= predicted_user_count %></span>
          <br/><br/><b>Email id of the participants who are yet to predict. Use for sending reminders.</b><br/><%= yet_to_predict_email %>
        <% end %>
           
