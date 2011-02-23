@@ -18,7 +18,7 @@
                     <div style="float:left;">
                         <%= image_tag get_fb_profile_picture(engagement.invitee), :size => "36x32" %>
                     </div>
-                    <span style="color:#21519C;"><%= truncate(engagement.invitee.display_name(nil,engagement), 15, "...").titleize %></span>
+                    <span style="color:#21519C;"><%= truncate(engagement.invitee.display_name(nil,engagement), 30, "...").titleize %></span>
                     <div style="font-size:10px;"><%= engagement.totalscore.nil? ? 0 : engagement.totalscore %> points</div>
                     <% previous_score = engagement.totalscore %>                    
                 <% end %>
