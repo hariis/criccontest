@@ -16,14 +16,26 @@
     <% if entry.name == 'ts_firstteam' %>
           <b>Predict Total Score: <%= get_teamname(@match.firstteam) %></b><span style="color:#FF4800;font-size:80%;"> (3 points)</span><br/>
           <% @totalscore_entries.each do |totalscore_entry| %>
-              <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+              <% if @match.id == 61 && totalscore_entry.id == 6 %>
+                  <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> >300
+              <% else %>
+                  <% if !(@match.id == 61 && totalscore_entry.label_text == '>325') %>
+                    <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+                  <% end %>
+              <% end %>
           <% end %><br/>
     <% end %>
 
     <% if entry.name == 'ts_secondteam' %>
           <br/><b>Predict Total Score: <%= get_teamname(@match.secondteam) %></b><span style="color:#FF4800;font-size:80%;"> (3 points)</span><br/>
           <% @totalscore_entries.each do |totalscore_entry| %>
-              <%= radio_button_tag 'ts_secondteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+             <% if @match.id == 61 && totalscore_entry.id == 6 %>
+                  <%= radio_button_tag 'ts_firstteam', "#{totalscore_entry.id}" %> >300
+              <% else %>
+                  <% if !(@match.id == 61 && totalscore_entry.label_text == '>325') %>
+                        <%= radio_button_tag 'ts_secondteam', "#{totalscore_entry.id}" %> <%= totalscore_entry.label_text %>
+                  <% end %>
+              <% end %>
           <% end %>
           <h4 style="border-top:1px solid #000;"></h4>
     <% end %>
