@@ -8,15 +8,15 @@
  
  <div class="tc-row" style="font-size:20px;padding-top:12px;font-weight:bold;height:60px;">Match Standing
   <div style="font-size:10px;"> 
-     <%= output = get_teamname(@match.firstteam) + " vs " + get_teamname(@match.secondteam) %><br/>
-     <%= @match.description %> @ <%=h @match.venue %><br/>
-     <%= @match.display_match_start_time %></div>
+     <%= output = get_teamname(@previous_match.firstteam) + " vs " + get_teamname(@previous_match.secondteam) %><br/>
+     <%= @previous_match.description %> @ <%=h @previous_match.venue %><br/>
+     <%= @previous_match.display_match_start_time %></div>
  </div>
 
  <% viewed_count = 0 %>
     <% unless @post.spectators.empty? %>
         <% rank = 1 %>
-        <% @post.spectators.find_all_by_match_id(@match, :order => 'totalscore desc').each do |spectator| %>
+        <% @post.spectators.find_all_by_match_id(@previous_match, :order => 'totalscore desc').each do |spectator| %>
             <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
             
             <div class="tc-row">

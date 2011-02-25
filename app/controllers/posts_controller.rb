@@ -152,8 +152,10 @@ class PostsController < ApplicationController
       
       if params[:mid].nil?
         @match = Match.get_next_scheduled_match(@contest)
+        @previous_match = Match.get_previous_match(@contest, @match)
       else
         @match = Match.find_by_unique_id(params[:mid])
+        @previous_match = @match
       end
       @category = @match.category
     

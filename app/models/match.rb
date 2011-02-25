@@ -127,6 +127,15 @@ class Match < ActiveRecord::Base
     return match
   end
   
+  def self.get_previous_match(contest, current_match)
+    match = contest.matches.find(:last, :conditions => ["date_time < ?", current_match.date_time] )    
+  
+    if match.nil?
+        match = contest.matches.find(:first)
+    end
+    return match
+  end
+  
   private  
   def self.generate_unique_id
     ActiveSupport::SecureRandom.hex(20)
