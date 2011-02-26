@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   layout :choose_layout, :except => [:plaxo]
   
-  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings, :world_cup, :prize]  
-  before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :world_cup, :prize]
+  before_filter :load_contest, :except => [:destroy, :show, :index, :privacy, :about, :blog, :contact, :admin, :help, :disclaimer, :load_all_invitations, :load_all_participants, :update_settings, :world_cup, :prize, :redeem_credits]  
+  before_filter :load_user, :except => [:new, :create, :dashboard, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :world_cup, :prize, :redeem_credits]
   before_filter :check_for_contest_current, :only => [:new, :create]
   before_filter :check_activated_member,
-    :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :load_all_participants, :load_all_invitations, :world_cup, :prize]
+    :except => [:new, :show, :create, :dashboard, :index, :privacy, :about, :blog, :contact, :plaxo, :help, :disclaimer, :load_all_participants, :load_all_invitations, :world_cup, :prize, :redeem_credits]
   in_place_edit_for :post, :note
 
   #-----------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
       'application'
     elsif ['show','ushow','callback'].include? action_name
       'posts'
-    elsif ['dashboard','privacy','about','blog','contact', 'admin','help', 'disclaimer', 'world_cup', 'prize'].include? action_name
+    elsif ['dashboard','privacy','about','blog','contact', 'admin','help', 'disclaimer', 'world_cup', 'prize', 'redeem_credits'].include? action_name
       'application'  #the one with shorter width content section
     end
   end
@@ -119,7 +119,11 @@ class PostsController < ApplicationController
   #-----------------------------------------------------------------------------------------------------
   def prize
   end
-
+  
+  #-----------------------------------------------------------------------------------------------------
+  def redeem_credits
+  end
+  
   #-----------------------------------------------------------------------------------------------------
   def index
     @posts = @user.posts.find(:all, :order => 'updated_at desc')

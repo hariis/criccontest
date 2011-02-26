@@ -46,7 +46,8 @@ ActionController::Routing::Routes.draw do |map|
   map.how_to "how_to", :controller => 'contests', :action => 'how_to'
   map.world_cup "world_cup", :controller => 'posts', :action => "world_cup"
   map.prize "prizes", :controller => 'posts', :action => "prize"
-  
+  map.redeem_credits "redeem_credits", :controller => 'posts', :action => "redeem_credits"
+    
   
   #map.join_public_contest "join_public_contest", :controller => 'contests', :action => 'join_public_contest'
 
