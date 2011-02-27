@@ -7,7 +7,11 @@
         <% match_result += result.result %>
 
         <% if entry.name == 'winner' || entry.name == 'toss' %>
-            <%= "#{entry.name.capitalize}: "  + Team.find_by_id(result.result).teamname + "<br/>" if result.result != -1 %>                    
+            <% if result.result == 0 %>
+                <%= "#{entry.name.capitalize}: " + "Match Tied<br/>" %>                      
+            <% else %>
+                <%= "#{entry.name.capitalize}: "  + Team.find_by_id(result.result).teamname + "<br/>" if result.result != -1 %>                    
+            <% end %>
         <% end %>
 
         <% if entry.name == 'ts_firstteam' %>
