@@ -33,19 +33,17 @@
       <br/><h2>Contest Scores:</h2>
       <% @user.engagements.find(:all, :order => 'updated_at desc').each do |engagement| %>
         <p>
-          <% link_to_function "<b>#{engagement.post.subject} : #{engagement.totalscore} points</b>" do |page|
-            page.toggle 'match_result_#{engagement.id}'
+          <%= link_to_function "<b>#{engagement.post.subject} : #{engagement.totalscore} points</b>" do |page|
+            page.toggle "match_result_#{engagement.id}"
           end %>
-          
-          <%= "<b>#{engagement.post.subject} : #{engagement.totalscore} points</b>" %><br/>
-    
-          <div1 id = 'match_result_#{engagement.id}' style1='display:none;' >
+
+          <div id = "match_result_<%= engagement.id %>" style='display:none;' >
               <% contest = Contest.find(engagement.post.contest_id) %>
               <% contest.matches.each do |match| %>
                 <%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam).capitalize %>:
                 <%= Spectator.find_by_match_id_and_engagement_id(match.id, engagement.id).totalscore %> points<br/>
               <% end %>
-          </div1>         
+          </div>         
         </p>
       <% end %>
    
