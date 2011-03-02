@@ -39,8 +39,8 @@
 
           <div id = "match_result_<%= engagement.id %>" style='display:none;' >
               <% contest = Contest.find(engagement.post.contest_id) %>
-              <% contest.matches.each do |match| %>
-                <%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam).capitalize %>:
+              <% contest.matches.find(:all, :conditions => ['date_time < ?', Time.now.utc], :order => 'date_time desc').each do |match| %>
+                <span style="float:left;width:30%;"><%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam).capitalize %>:</span>
                 <%= Spectator.find_by_match_id_and_engagement_id(match.id, engagement.id).totalscore %> points<br/>
               <% end %>
           </div>         
