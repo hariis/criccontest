@@ -15,7 +15,13 @@
         <div id ="comments-heading" class="sub-heading">Comments (<%= @post.comments.size - @post.comments.sticky.length %>)</div>
             <div id="comments">                      
                   <% if @post.comments.roots.length > 0 && @post.comments.top.length > 0 %>
-                       <%= render :partial => "/comments/comment", :collection => @post.comments.top, :locals => {:root => 'true',:parent_comment => nil} %>
+                       <%= render :partial => "/comments/comment", :collection => @post.comments.top.find(:all, :limit => 15), :locals => {:root => 'true',:parent_comment => nil} %><br/>
+                       <b><%= link_to_function "All Comments >>" do |page| 
+                             page.toggle "all-comments"
+                       end %></b>
+                       <div id='all-comments' style="display:none;">
+                            <%= render :partial => "/comments/comment", :collection => @post.comments.top, :locals => {:root => 'true',:parent_comment => nil} %>
+                       </div>
                   <% end %>
             </div><br/><br/>
         </div>
