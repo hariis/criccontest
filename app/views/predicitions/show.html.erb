@@ -31,7 +31,7 @@
 
 <fieldset style="width:600px;">
     <% if current_user && current_user.admin? && current_user.admin_user? %>
-         <b><span style='color:red'>Caution! You are a Super Admin. Your predicitions will be used to set the results.</span></b><br/><br/>
+         <b><span style='color:red'>Caution! You are a Super Admin. Your predictions will be used to set the results.</span></b><br/><br/>
          <% form_remote_tag :url => {:controller => 'predicitions', :action => 'admin_predicition', :mid => @match.unique_id } do %>
             Match Result: <%= text_field_tag :match_result, "", :size => 60 %><br/><br/>
             <%= render :partial => 'predict' %>
