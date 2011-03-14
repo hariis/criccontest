@@ -1,0 +1,88 @@
+<span style="padding:10px;text-align:center;">
+<h2>ICC World Cup 2011 Winners</h2>
+    <table>
+        <tr class="schedule-header">
+          <th>Match Details</th>
+          <th>Match Score</th>
+          <th>Winners/Contest Score</th>
+          <th>Perfect Doosra<br/><span style="font-size:10px;">200 credits</span></th>
+        </tr>
+
+        <% @contest.matches.find(:all, :order => 'date_time desc').each do |match| %>
+          <tr class="schedule">
+
+            <td style="width:275px;text-align:left;padding:10px;">
+                <b><%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam).capitalize %></b><br/>
+                <span style="font-size:10px;"> <%=h match.display_match_start_time %><br/> </span>
+            </td>
+            
+            <% unless @post.spectators.empty? %>
+                <% spectator = @post.spectators.find_by_match_id(match, :order => 'totalscore desc') %>         
+                <% if spectator && spectator.totalscore == 0 %>
+                   <td style="width:60px;text-align:center;">N/A</td>
+                   <td style="width:220px;text-align:left;padding-left:10px;">
+                     <span style="text-align:center;">Results not yet updated</span>
+                   </td>
+                <% else %>
+                    <% previous_score = 0 %>
+                    <% points_count = 0 %>
+                    
+                    <td style="width:60px;text-align:left;padding-left:10px;">
+                        <%= spectator.totalscore.nil? ? 0 : spectator.totalscore %> points
+                    </td>
+
+                    <td style="width:220px;text-align:left;padding-left:10px;">
+                        <% @post.spectators.find_all_by_match_id(match, :order => 'totalscore desc').each do |spectator| %>
+                            <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
+                            <% if spectator.totalscore >= previous_score %>
+                                <span style="float:left;"><%= image_tag get_fb_profile_picture(engagement.invitee.id), :size => "36x32" %></span>
+                                <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 30, "...").titleize %>
+                                <span style="color:#21519C;float:left;margin-left:5px"><%= "#{@display_name}" %> 
+                                <div style="font-size:10px;"><%= engagement.totalscore %> points <br/></div></span>
+
+                                <% previous_score = spectator.totalscore %>  
+                                <% points_count += 1 %>  
+                            <% end %>
+                        <% end %>
+                    </td>
+
+                    <% if match.id == 85 %>
+                        <% user = User.find(1213) %>
+                    <% end %>
+                    <% if match.id == 83 %>
+                        <% user = User.find(1324) %>
+                    <% end %>
+                    <% if match.id == 82 %>
+                        <% user = User.find(1361) %>
+                    <% end %>
+                    <% if match.id == 81 %>
+                        <% user = User.find(1454) %>
+                    <% end %>
+                    <% if match.id == 71 %>
+                        <% user = User.find(1448) %>
+                    <% end %>
+                    <% if match.id == 69 %>
+                        <% user = User.find(1405) %>
+                    <% end %>
+                    <% if match.id == 61 %>
+                        <% user = User.find(1210) %>
+                    <% end %>
+                    <% if match.id == 58 %>
+                        <% user = User.find(1410) %>
+                    <% end %>
+                    
+                    <% if user %>
+                       <td style="width:220px;text-align:left;padding-left:10px;">
+                            <span style="float:left;"><%= image_tag get_fb_profile_picture(user.id), :size => "36x32" %></span>
+                            <% @display_name = truncate(user.display_name(nil,nil), 30, "...").titleize %>
+                            <span style="color:#21519C;float:left;margin-left:5px"><%= "#{@display_name}" %> </span>
+                       </td>
+                    <% end %>  
+            
+               <% end %>
+            <%  end %>
+
+        </tr>
+      <% end %>
+    </table>
+</span>

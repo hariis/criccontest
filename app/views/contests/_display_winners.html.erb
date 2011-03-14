@@ -11,7 +11,7 @@
               <% if engagement.totalscore >= previous_score %>
                   <div class="tc-row" style="height:50px;">
                       <span style="float:left;padding:5px;">
-                          <%= image_tag get_fb_profile_picture(engagement.invitee), :size => "36x32" %>
+                          <%= image_tag get_fb_profile_picture(engagement.invitee.id), :size => "36x32" %>
                       </span>
 
                       <span style="float:left;margin-left:5px;">

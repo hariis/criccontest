@@ -48,8 +48,8 @@ module ApplicationHelper
     end
   end
   
-  def get_fb_profile_picture(user)
-      fb_user = FacebookUser.find_by_user_id(user.id)
+  def get_fb_profile_picture(user_id)
+      fb_user = FacebookUser.find_by_user_id(user_id)
       if fb_user
           return "http://graph.facebook.com/#{fb_user.facebook_id}/picture"
       else 
