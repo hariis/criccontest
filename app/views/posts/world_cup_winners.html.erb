@@ -1,4 +1,4 @@
-<span style="padding:10px;text-align:center;">
+<span style="padding:10px;text-align:center;color:#21519C;">
 <h2>ICC World Cup 2011 Winners</h2>
     <table>
         <tr class="schedule-header">
@@ -12,8 +12,13 @@
           <tr class="schedule">
 
             <td style="width:275px;text-align:left;padding:10px;">
-                <b><%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam).capitalize %></b><br/>
-                <span style="font-size:10px;"> <%=h match.display_match_start_time %><br/> </span>
+                <% match_link = "<span style='font-weight:bold;'>#{image_tag(get_teamflag(match.firstteam))}  #{get_teamname(match.firstteam)} vs #{image_tag(get_teamflag(match.secondteam))} #{get_teamname(match.secondteam)}</span><br/>
+                                 <span style='font-size:10px;'> #{match.display_match_start_time} <br/></span>" %>
+                <% if current_user %>                 
+                  <%= link_to match_link, @post.get_url_for_with_match_id(current_user, match, 'show') %>
+                <% else %>
+                  <%= link_to match_link, @post.get_readonly_url_with_match_id(match, 'show') %>
+                <% end %>                
             </td>
             
             <% unless @post.spectators.empty? %>
@@ -31,20 +36,21 @@
                         <%= spectator.totalscore.nil? ? 0 : spectator.totalscore %> points
                     </td>
 
+                    <span style="height:40px;overflow:auto;">
                     <td style="width:220px;text-align:left;padding-left:10px;">
                         <% @post.spectators.find_all_by_match_id(match, :order => 'totalscore desc').each do |spectator| %>
                             <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
                             <% if spectator.totalscore >= previous_score %>
                                 <span style="clear:both;float:left;padding:5px;"><%= image_tag get_fb_profile_picture(engagement.invitee.id), :size => "36x32" %></span>
                                 <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 30, "...").titleize %>
-                                <span style="color:#21519C;float:left;margin-left:5px"><%= "#{@display_name}" %> 
+                                <span style="float:left;margin-left:5px"><%= "#{@display_name}" %> 
                                 <div style="font-size:10px;"><%= engagement.totalscore %> points <br/></div></span>
 
                                 <% previous_score = spectator.totalscore %>  
                                 <% points_count += 1 %>  
                             <% end %>
                         <% end %>
-                    </td>
+</td></span>
 
                     <% if match.id == 85 %>
                         <% user = User.find(1213) %>
@@ -75,7 +81,7 @@
                        <td style="width:220px;text-align:left;padding-left:10px;">
                             <span style="float:left;"><%= image_tag get_fb_profile_picture(user.id), :size => "36x32" %></span>
                             <% @display_name = truncate(user.display_name(nil,nil), 30, "...").titleize %>
-                            <span style="color:#21519C;float:left;margin-left:5px"><%= "#{@display_name}" %> </span>
+                            <span style="float:left;margin-left:5px"><%= "#{@display_name}" %> </span>
                        </td>
                     <% end %>  
             

@@ -1,7 +1,7 @@
 <% first_team1 = "/images/#{get_teamname(match.firstteam)}.png" %>
 <% second_team = "/images/#{get_teamname(match.secondteam)}.png" %>
 
-<b><%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam).capitalize %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam).capitalize %></b><br/>
+<b><%= image_tag(get_teamflag(match.firstteam)) %> <%=h get_teamname(match.firstteam) %> vs <%= image_tag(get_teamflag(match.secondteam)) %> <%=h get_teamname(match.secondteam) %></b><br/>
 <%=h match.description %> @ <%=h match.venue %><br/>
 <%= image_tag("/images/date.png") %> <%=h match.display_match_start_time %><br/>
 
