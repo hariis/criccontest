@@ -126,7 +126,7 @@ class PostsController < ApplicationController
   
   #-----------------------------------------------------------------------------------------------------
   def world_cup_winners
-    @contest = Contest.find_by_id(4)
+    @contest = Contest.find_by_id(10)
     @inviter = User.get_open_contest_inviter
     @post = Post.get_open_contest(@contest, @inviter)
   end

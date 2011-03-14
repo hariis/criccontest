@@ -35,7 +35,7 @@
                         <% @post.spectators.find_all_by_match_id(match, :order => 'totalscore desc').each do |spectator| %>
                             <% engagement = Engagement.find_by_id(spectator.engagement_id) %>
                             <% if spectator.totalscore >= previous_score %>
-                                <span style="float:left;"><%= image_tag get_fb_profile_picture(engagement.invitee.id), :size => "36x32" %></span>
+                                <span style="clear:both;float:left;padding:5px;"><%= image_tag get_fb_profile_picture(engagement.invitee.id), :size => "36x32" %></span>
                                 <% @display_name = truncate(engagement.invitee.display_name(nil,engagement), 30, "...").titleize %>
                                 <span style="color:#21519C;float:left;margin-left:5px"><%= "#{@display_name}" %> 
                                 <div style="font-size:10px;"><%= engagement.totalscore %> points <br/></div></span>
