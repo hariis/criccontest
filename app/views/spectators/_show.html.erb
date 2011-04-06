@@ -96,12 +96,20 @@
                                   <% end %>
 
                                   <% if entry.name == 'ts_firstteam' %>
-                                      <%= output = "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% if @match.category.name == 'Twenty20 match' %>
+                                            <%= output = "Total Score #{get_teamname(@match.firstteam)}: " + Predicition::PREDICT_TOTAL_SCORE_TWENTY20[predicition.user_predicition - 1] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% else %>
+                                            <%= output = "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% end %>
                                       <% predicition_details << output.to_s %>
                                   <% end %>
 
                                   <% if entry.name == 'ts_secondteam' %>
-                                      <%= output = "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% if @match.category.name == 'Twenty20 match' %>
+                                            <%= output = "Total Score #{get_teamname(@match.secondteam)}: " + Predicition::PREDICT_TOTAL_SCORE_TWENTY20[predicition.user_predicition - 1] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% else %>
+                                            <%= output = "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(predicition.user_predicition).label_text + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% end %>
                                       <% predicition_details << output.to_s %>
                                   <% end %>
 
@@ -111,7 +119,11 @@
                                   <% end %>
 
                                   <% if entry.name == 'win_margin_score' %>
-                                      <%= output = "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% if @match.category.name == 'Twenty20 match' %>
+                                            <%= output = "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE_TWENTY20[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% else %>
+                                            <%= output = "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[predicition.user_predicition] + "<br/>" if predicition.user_predicition != -1 %>
+                                      <% end %>                                            
                                       <% predicition_details << output.to_s %>
                                   <% end %>
                             <% end %>                         

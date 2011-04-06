@@ -73,9 +73,10 @@ class Match < ActiveRecord::Base
       spectator.save
 
       #check and create predicition
-      category = Category.find(match.category_id)
-      category.entries.each do |entry|
-        user
+      #category = Category.find(match.category_id)
+      #category.entries.each do |entry|
+      Entry.find(:all).each do |entry|
+ 
           #predicition_exists = Predicition.find(:first, :conditions => ['user_id = ? && match_id = ? && entry_id = ?', user.id, match.id, entry.id])
           predicition_exists = Predicition.find(:first, :conditions => ['spectator_id = ? && entry_id = ?', spectator.id, entry.id])
           unless predicition_exists
@@ -99,8 +100,9 @@ class Match < ActiveRecord::Base
   end
   
   def create_result_table(match)
-    category = Category.find(match.category_id)
-    category.entries.each do |entry|        
+    #category = Category.find(match.category_id)
+    #category.entries.each do |entry|        
+    Entry.find(:all).each do |entry|
         result_exists = Result.find(:first, :conditions => ['match_id = ? && entry_id = ?', match.id, entry.id])
         unless result_exists
             result = Result.new

@@ -11,7 +11,8 @@ class PredicitionsController < ApplicationController
   #-----------------------------------------------------------------------------------------------------  
   def load_prerequisite
     @match = Match.find_by_unique_id(params[:mid], :include => :category) if params[:mid]
-    @category = @match.category if @match
+    #@category = @match.category if @match
+    @entries = Entry.find(:all)
     
     unless current_user && current_user.admin? && current_user.admin_user?
       if params[:eid]
@@ -31,7 +32,8 @@ class PredicitionsController < ApplicationController
         prediction_count = 0
         predicition_details << "<span style='color:#21519C;font-weight:bold'> #{@user_name}'s prediction: </span><br/>"
 
-        @category.entries.each do |entry|
+        #@category.entries.each do |entry|
+        @entries.each do |entry|
             @predicition_record = Predicition.find_by_spectator_id_and_entry_id(@spectator.id, entry.id)      
 
             if entry.name == 'winner'
@@ -54,7 +56,11 @@ class PredicitionsController < ApplicationController
                 @predicition_record.user_predicition = params[:ts_firstteam] ? params[:ts_firstteam] : -1
                 if params[:ts_firstteam]
                     prediction_count += 1
-                    predicition_details << "Total Score #{get_teamname(@match.firstteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                    if @match.category.name == 'Twenty20 match'
+                        predicition_details << "Total Score #{get_teamname(@match.firstteam)}:   #{Predicition::PREDICT_TOTAL_SCORE_TWENTY20[@predicition_record.user_predicition - 1]} <br/>"
+                    else
+                        predicition_details << "Total Score #{get_teamname(@match.firstteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                    end
                 end
             end
 
@@ -62,7 +68,11 @@ class PredicitionsController < ApplicationController
                 @predicition_record.user_predicition = params[:ts_secondteam] ? params[:ts_secondteam] : -1
                 if  params[:ts_secondteam]
                     prediction_count += 1
-                    predicition_details << "Total Score #{get_teamname(@match.secondteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                    if @match.category.name == 'Twenty20 match'
+                        predicition_details << "Total Score #{get_teamname(@match.secondteam)}:   #{Predicition::PREDICT_TOTAL_SCORE_TWENTY20[@predicition_record.user_predicition - 1]} <br/>"
+                    else
+                        predicition_details << "Total Score #{get_teamname(@match.secondteam)}:  #{PredictTotalScore.find_by_id(@predicition_record.user_predicition).label_text} <br/>"
+                    end
                 end
             end            
 
@@ -78,7 +88,11 @@ class PredicitionsController < ApplicationController
                 @predicition_record.user_predicition = params[:win_margin_score] ? params[:win_margin_score] : -1
                 if params[:win_margin_score]
                     prediction_count += 1
-                    predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE[@predicition_record.user_predicition]} <br/>"
+                    if @match.category.name == 'Twenty20 match'
+                        predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE_TWENTY20[@predicition_record.user_predicition]} <br/>"
+                    else
+                        predicition_details << "Win Margin Score:  #{Predicition::WIN_MARGIN_SCORE[@predicition_record.user_predicition]} <br/>"
+                    end
                 end
             end
 
@@ -116,7 +130,8 @@ class PredicitionsController < ApplicationController
     match_result = params[:match_result] ? params[:match_result] : "Results not yet updated"
     @match.update_attributes(:match_result => match_result)
 
-    @category.entries.each do |entry|
+    #@category.entries.each do |entry|
+    @entries.each do |entry|
         @result = Result.find_by_match_id_and_entry_id(@match.id, entry.id)
         
         @result.result = params[:winner] ? params[:winner] : -1 if entry.name == 'winner'

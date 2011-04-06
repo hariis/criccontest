@@ -122,7 +122,8 @@ class MatchesController < ApplicationController
                 #spectator = Spectator.find(:first, :conditions => ['match_id = ? && engagement_id = ?', match.id, engagement.id])
                 if spectator
                    @total_score = 0
-                   category.entries.each do |entry|
+                   #category.entries.each do |entry|
+                   Entry.find(:all).each do |entry|
                       #calculate_prediction_result('winner')
                       #if entry.name == 'winner'
                       result = Result.find_by_match_id_and_entry_id(match.id, entry.id)

@@ -2,7 +2,7 @@
 <br/><span style="color:#21519C;font-weight:bold"><%= "Result: #{@match.match_result}" %></span><br/>
 <div id='predictions' style="margin-top:10px;">
     <% match_result = 0 %>
-    <%  @category.entries.each do |entry| %>                
+    <%  Entry.find(:all).each do |entry| %>                
         <% result = Result.find_by_match_id_and_entry_id(@match.id, entry.id) %>
         <% match_result += result.result %>
 
@@ -14,18 +14,34 @@
             <% end %>
         <% end %>
 
-        <% if entry.name == 'ts_firstteam' %>
-            <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+        <% if @match.category.name == 'Twenty20 match' %>
+            <% if entry.name == 'ts_firstteam' %>
+                <%= "Total Score #{get_teamname(@match.firstteam)}: " + Predicition::PREDICT_TOTAL_SCORE_TWENTY20[result.result - 1] + "<br/>" if result.result != -1 %>
+            <% end %>
+            <% if entry.name == 'ts_secondteam' %>
+                <%= "Total Score #{get_teamname(@match.secondteam)}: " + Predicition::PREDICT_TOTAL_SCORE_TWENTY20[result.result - 1] + "<br/>" if result.result != -1 %>
+            <% end %>
+        <% else %>
+            <% if entry.name == 'ts_firstteam' %>
+                <%= "Total Score #{get_teamname(@match.firstteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+            <% end %>
+            <% if entry.name == 'ts_secondteam' %>
+                <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
+            <% end %>         
         <% end %>
-        <% if entry.name == 'ts_secondteam' %>
-            <%= "Total Score #{get_teamname(@match.secondteam)}: " + PredictTotalScore.find_by_id(result.result).label_text + "<br/>" if result.result != -1 %>
-        <% end %>
+        
         <% if entry.name == 'win_margin_wicket' %>
             <%= "Win Margin Wicket: " + Predicition::WIN_MARGIN_WICKET[result.result] + "<br/>" if result.result != -1 %>
         <% end %>
+        
         <% if entry.name == 'win_margin_score' %>
-            <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[result.result] + "<br/>" if result.result != -1 %>
-        <% end %>    
+            <% if @match.category.name == 'Twenty20 match' %>
+                <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE_TWENTY20[result.result] + "<br/>" if result.result != -1 %>
+            <% else %>
+                <%= "Win Margin Score: " + Predicition::WIN_MARGIN_SCORE[result.result] + "<br/>" if result.result != -1 %>
+            <% end %>
+        <% end %>
+        
     <% end %>
     <% "Result not yet updated<br/>" if match_result < 0 %><br/>     
 </div>
